@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block pagecss %}
+{% endblock %}
+
+
+{% block content %}
+{% include "messages.html" %}
+<div class="content">
+    <form enctype="multipart/form-data" method="post">{% csrf_token %}
+        <div class="employee-title">Change the status of {{ employee.first_name }} {{ employee.last_name }}</div>
+        <div class="form-container">
+            <fieldset class="item">
+                <span class="status-wrapper">
+                    <label>Choose a status and message...</label>
+                    <select id="status-select" name="status-select">
+                        {% for status in inout_statuses %}
+                            <option value="status-id:{{ status.id }}">{{ status.display }}</option>
+                        {% endfor %}
+                    </select>
+
+                    {{ form.status_message }}
+                    {% if form.errors %}
+                        {% for field, error in form.errors.items %}
+                            {% if field == 'status_message' %} 
+                                <i class="fa fa-exclamation">{{ error.as_text }}</i>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}            
+
+                    <select id="status-message-select">
+                        <option value="status-message-id:0">None</option>
+                        {% for message in inout_messages %}
+                            <option value="status-message-id:{{ message.id }}">{{ message.text }}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="button normal" name="delete-message">Delete Message</button>
+                <span>
+            </fieldset>
+            <fieldset class="item">
+                <span class="duration-wrapper">
+                    <label>
+                        Return Time:
+                        {% comment %}
+                        <select id="id_duration" name="duration">
+                            {% for duration in durations %}
+                                <option value="duration-id:{{ duration.id }}" {% if duration.display == '???' %}selected="selected"{% endif %}>{{ duration.display }}</option>
+                            {% endfor %}
+                        </select>
+                        {% endcomment %}
+
+                        {% comment %}
+                        {{ form.duration }}
+                        {% endcomment %}
+
+                        <select id="id_duration" name="duration">
+                            {% for choice in form.duration.field.choices %}
+                                <option value="{{ choice.0 }}" {% if choice.1 == "???" %}selected="selected"{% endif %}>{{ choice.1 }}</option>
+                            {% endfor %}
+                        </select>
+
+                    </label>
+                </span>
+            </fieldset>
+            <fieldset class="button item">
+                <button class="button normal" name="done">Done</button>
+                <button class="button normal" name="clear">Clear</button>
+                <button class="button normal" name="save-message">Done and Save</button>
+                <a class="button normal" href="{% url 'employees:EmployeeListView' district_id=employee.district.id %}" name="cancel">Cancel</a>
+            </fieldset>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block pagejs %}
+<script type="text/javascript">
+    $( document ).on( 'ready', function( e ){
+
+        // avoid submitting form on keydown == ENTER
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+              event.preventDefault();
+              return false;
+            }
+        });
+        
+        // on clear, clear inputs
+        $( "button[name='clear']" ).on( 'click', function( e ) {
+            e.preventDefault();
+            e.stopPropagation();
+            $( '.form-container input' ).val( '' );
+            $( '#status-select' )
+                .find( "option[value='status-id:0']" )
+                .prop( 'selected', true );
+            $( '#status-message-select' )
+                .find( "option[value='status-message-id:0']" )
+                .prop( 'selected', true );
+        });
+
+
+        // add select option to input onchange
+        var set_selection_callback  = function( e ) {
+            var $select_target  = $( e.target );
+            var $related_input = $select_target.parent().find( 'input' );
+            var option_text = $select_target.find( 'option:selected' ).text();
+            if ( option_text === 'None' ) {
+                $related_input.val( '' );
+                return false; // break
+            }
+            $related_input.val( option_text );
+        };
+        $( "#status-message-select" ).on( 'change', set_selection_callback );
+
+        // if there's a message, fade it out
+        if ( $( '.note p' ).length > 0 ) {
+             $( '.note p' ).fadeOut(2000);
+        }
+    });
+</script>
+{% endblock %}
+

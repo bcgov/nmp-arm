@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^bc_worksheet.html$ bc_worksheet.php

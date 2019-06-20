@@ -1,0 +1,60 @@
+#
+#  django imports
+#
+from django import forms
+
+#
+#  sys imports
+#
+import re
+import logging
+logger = logging.getLogger( '{{ app_label }}.forms' ) 
+
+#
+#  app imports
+#
+from {{ app_label }} import {{ model_name }}
+
+
+class {{ model_name }}ModelForm( forms.ModelForm ):
+
+
+    ####
+    #
+    # new form fields for hidden inputs
+    #
+    ####
+    id = forms.IntegerField( widget = forms.HiddenInput(), required=False )
+
+
+    def __init__(self, *args, **kwargs):
+        super( {{ model_name }}ModelForm , self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = {{ model_name }}
+        exclude = ( 
+        {% for field_data in exclude_fields %}
+            '{{ field_data.0 }}' ,
+        {% endfor %}
+        )
+
+
+    def clean(self):
+        cleaned_data = self.cleaned_data
+    
+        # always return the full collection of cleaned data.
+        return cleaned_data
+
+    {% for field_data in include_fields %}
+    def clean_{{ field_data.0 }}( self ):
+        cleaned_field = self.cleaned_data['{{ field_data.0 }}']
+        {% if field_data.1 == 'CharField' %}
+        if re.search(r'\s', cleaned_field):
+            raise forms.ValidationError('[{{ field_data.0 }}] cannot contain spaces!')
+        if re.search( r'<\/?.*\/?>', cleaned_field ):
+            raise forms.ValidationError('[{{ field_data.0 }}] cannot contain HTML tags')
+        {% endif %}
+        return cleaned_field
+    {% endfor %}
+
+

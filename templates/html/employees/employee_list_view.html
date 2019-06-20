@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block pagecss %}
+<META http-equiv="refresh" content="15;URL={% url 'employees:EmployeeListView' district.id %}">
+{% endblock %}
+
+
+{% block extra_headers %}
+<a href="{% url "districts:DistrictListView" %}">Back to Districts</a>
+{% endblock %}
+{% block content %}
+{% include "messages.html" %}
+<div class="content">
+    <h2 class="district">District {{ district.name }}</h2>
+    <form enctype="multipart/form-data" method="post">{% csrf_token %}
+        <ul class="employees">
+        {% for employee in employee_list %}
+            <li class="employee {{ employee.get_color_display_class }}">
+                <button class="button normal" name="employee-id:{{ employee.id }}">
+                    {{ employee.first_name }} {{ employee.last_name }}
+                </button>
+                <p>{{ employee.get_latest_employee_status }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    </form>
+</div>
+{% endblock %}
+
+{% block pagejs %}
+<script type='text/javascript'>
+$( document ).on( 'ready', function( e ) {
+
+    // if there's a message, fade it out
+    if ( $( '.note p' ).length > 0 ) {
+         $( '.note p' ).fadeOut(2000);
+    }
+
+
+    // walk through each <li> and 
+
+});
+</script>
+{% endblock %}
+

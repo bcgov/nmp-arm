@@ -1,0 +1,50 @@
+<div class="form-errors">
+    {% if messages %}
+    <!-- this should be non-error messages -->
+    <div class="note messages">
+        {% for message in messages %}
+                {% if message.tags == 'success' %}
+                <p><i class="fa fa-fw fa-check"></i>{{ message }}</p>
+                {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- this should be error messages -->
+    <div class="note errors">
+        {% for message in messages %}
+                {% if  message.tags == 'error' %}
+                <p><i class="fa fa-fw fa-exclamation"></i>There were errors</p>
+                {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- this should be warning messages -->
+    <div class="note errors">
+        {% for message in messages %}
+                {% if  message.tags == 'warning' %}
+                <p><i class="fa fa-fw fa-exclamation"></i>{{ message }}</p>
+                {% endif %}
+        {% endfor %}
+    </div>
+
+    {% endif %}
+
+    {% comment %}
+    {% if form.errors or form.non_field_errors %}
+    <div class="note errors">
+        <ul class="errorlist">
+        {% if form.non_field_errors %}
+            {% for field, error in form.non_field_errors.items %}
+            <li>{{ field.label }}<i class="fa fa-exclamation"></i>{{ error.as_text }}</li>
+            {% endfor %}
+        {% endif %}
+        {% if form.errors %}
+            {% for field, error in form.errors.items %}
+            <li>{{ field.label }}<i class="fa fa-exclamation"></i>{{ error.as_text }}</li>
+            {% endfor %}
+        {% endif %}
+        </ul>
+    </div>
+    {% endif %}
+    {% endcomment %}
+</div>

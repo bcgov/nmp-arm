@@ -1,0 +1,94 @@
+#
+#  django imports
+#
+from django.db import models
+from django.contrib import admin
+from django.contrib.auth.models import User as AuthUser
+
+
+#
+#  sys imports
+#
+import logging
+logger = logging.getLogger( '{{ app_label }}.admin' )
+
+#
+#  app imports
+#
+from {{ app_label }} import {{ model_name }}
+{% for dict in inline_admins.items %}
+from {{ dict.app_label }}.admin import {{ dict.inline_admin_name }}
+{% endfor %}
+
+
+class {{ model_name}}ModelAdmin( admin.ModelAdmin ):
+
+    inlines = [
+        {% for dict in inline_admins.items %}
+            '{{ dict.inline_admin_name }}' ,
+        {% endfor %}
+     ]
+
+    #
+    #
+    #  to solve problem where it complains fields are not on form
+    #  due to auto_now for DateTimeField
+    #  http://stackoverflow.com/questions/4114105/django-admin-error-out-that-a-field-that-is-missing-from-the-form
+    #
+    readonly_fields = (
+    {% for include_list in include_fields %}
+    {% if 'date_created' in include_list %}
+            'date_created',
+    {% endif %}
+    {% if 'date_updated' in include_list %}
+            'date_updated' ,
+    {% endif %}
+    {% endfor %}
+    )
+
+
+    fields = (
+        {% for field_data in show_fields %}
+            '{{ field_data }}' ,
+        {% endfor %}
+    )
+
+    list_display = (
+        {% for field_data in include_fields %}
+            '{{ field_data }}' ,
+        {% endfor %}
+    )
+
+    search_fields = (
+        {% for field_data in search_fields %}
+            '{{ field_data }}' ,
+        {% endfor %}
+    )
+
+    list_filter = (
+        {% for field_data in filter_fields %}
+            '{{ field_data }}' ,
+        {% endfor %}
+    )
+
+    ordering = (
+        {% for field_data in order_fields %}
+            '{{ field_data }}' ,
+        {% endfor %}
+    )
+
+#
+#    def parent(self, obj ):
+#        user = obj
+#        url = reverse( 'admin:%s_%s_change' % ( 'resources', 'resourceuser' ), args=[ user.id ] )
+#        return '<a href="%s">%s</a>' % ( url, user )
+#
+#    parent.allow_tags = True
+#    parent.short_description = 'User'
+#    parent.admin_order_field = 'name'
+#
+
+
+admin.site.register( {{ model_name }}, {{ model_name}}ModelAdmin )
+
+

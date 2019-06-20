@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block pagecss %}
+    <META http-equiv="refresh" content="3;URL={% url 'districts:LoginView' %}">
+    <link rel="stylesheet" href="/css/logout.css">
+{% endblock %}
+
+
+{% block content %}
+<div id="subheader">
+    <div class="wrap">
+        <h4>District Logout</h4>
+    </div>
+</div>
+
+<div class="message content">
+        {% include "messages.html" %}
+</div>
+
+<div class="content">
+	<h2>Logged Out</h2>
+	<p>You will be taken to the <a href="/">login page</a> in 2 seconds..</p>
+</div>
+
+{% endblock %}
+
+{% block pagejs %}
+{% endblock %}
+

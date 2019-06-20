@@ -1,0 +1,58 @@
+{% load general_filters %}
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"> -->
+
+        <link rel="shortcut icon" type="text/png" href="/img/favicon.png">
+        {% if site.name %}<title>In/Out Board</title>{% endif %}
+        <meta name="viewport" content="width=device-width">
+        <meta itemprop="name" content="">
+        <meta itemprop="description" content="">
+        <!--<link rel="stylesheet" href="/css/style.css">-->
+        <link rel="stylesheet" href="/css/site.css">
+
+        {% block pagecss %}
+        {% endblock %}
+
+        <!--[if IE]>
+            <link href="/css/ie.css" rel="stylesheet">
+        <![endif]-->
+    </head>
+    <body class="{{ page_name|body_name }}">
+        <header>
+            <div class="container">
+                <div class="account">
+                    {% if district %}
+                    <div class="actions">
+                        <a tabindex="-1" href="{% url 'districts:LogoutView' %}">Logout</a>
+                    </div>
+                    {% else %}
+                    <div class="actions">
+                        <a tabindex="-1" href="{% url 'districts:LoginView' %}">Login</a>
+                    </div>
+                    {% endif %}
+                </div><!-- account -->
+                {% block extra_headers %}
+                {% endblock %}
+            </div><!--container-->
+         </header>
+
+        <div id="wrap">
+            {% block content %}
+            {% endblock %}
+        </div><!-- content-wrap -->
+
+        <footer>
+            {% include "footer.html" %}
+        </footer>
+
+        {# Put javascript to execute in the page here #}
+        <script src="/js/jquery.1.10.2.min.js"></script>
+        {% block pagejs %}
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block pagecss %}
+{% endblock %}
+
+
+{% block content %}
+{% include "messages.html" %}
+<div class="content">
+    <h2 class="welcome">Districts</h2>
+    <ul class="districts">
+    {% for district in district_list %}
+        <li class="district"><a href={% url 'employees:EmployeeListView' district_id=district.id %}>{{ district.name }}</a></li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block pagejs %}
+<script type='text/javascript'>
+$( document ).on( 'ready', function( e ) {
+
+    // if there's a message, fade it out
+    if ( $( '.note p' ).length > 0 ) {
+         $( '.note p' ).fadeOut(2000);
+    }
+
+});
+</script>
+{% endblock %}
+
