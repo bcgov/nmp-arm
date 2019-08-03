@@ -106,3 +106,4 @@ venv.bak/
 
 .DS_Store
 arm/settings.original.py
+.vscode
