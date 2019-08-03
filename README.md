@@ -21,6 +21,13 @@ importlib
 
 In addition, the legagy app's `/venv/pyvenv/lib/python2.6` implies Python version 2.6.
 
+NOTE: `Django==1.6` results in:
+```
+ERROR: django-timezone-field 3.0 has requirement django>=1.8, but you'll have django 1.6 which is incompatible.
+```
+
+So `Django==1.8` is a more appropriate starting point.
+
 ### Apache Configuration
 In terms of codebase, there appears to be a common codebase that serves out the Whatcom and the BC version of the app.  The legacy app already had a 'BC-specific' side to the app :
 
