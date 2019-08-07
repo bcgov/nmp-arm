@@ -1,0 +1,22 @@
+# Use postgres/example user/password credentials
+version: '3.7'
+
+services:
+  # PGPASSWORD=$POSTGRES_PASSWORD psql -h $HOSTNAME -U $POSTGRES_USER $POSTGRES_DB
+  db:
+    image: mdillon/postgis:9.6-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: aphay
+      POSTGRES_DB: arm
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres-passwd
+    volumes:
+       - ./openshift/postgis-config/secrets:/run/secrets
+       - ./openshift/postgis-config/data:/var/lib/postgresql/data
+       - ./openshift/postgis-config/initdb:/docker-entrypoint-initdb.d
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
