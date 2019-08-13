@@ -9,7 +9,7 @@ from django.contrib import admin
 from django.db.models.loading import cache as model_cache
 if not model_cache.loaded:
     model_cache.get_models() 
-admin.autodiscover()
+#admin.autodiscover()
 from django.contrib.messages import get_messages
 from django.contrib.sites.models import Site
 from django.shortcuts import render_to_response
@@ -57,8 +57,8 @@ urlpatterns = patterns('',
     url( r'/^$', WorksheetView.as_view(), name='worksheet'  ),
     url( r'^$', WorksheetView.as_view(), name='worksheet'  ),
     url( r'^thankyou/$', TemplateView.as_view( template_name="thankyou.html" ), name="thankyou" ),
-    #url( r'/^$', TemplateView.as_view( template_name="bc_worksheet.html" ) ),
-    #url( r'^worksheet/$', TemplateView.as_view( template_name="bc_worksheet.html" ) ),
+    #url( r'/^$', TemplateView.as_view( template_name="worksheet.html" ) ),
+    #url( r'^worksheet/$', TemplateView.as_view( template_name="worksheet.html" ) ),
     url( r'^admin/', include(admin.site.urls) ),
     #url( r'^employee/', include( 'inout_board.employees.urls', app_name='employees', namespace='employees' ) ),
     #url( r'^district/', include( 'inout_board.districts.urls', app_name='districts', namespace='districts' ) ),

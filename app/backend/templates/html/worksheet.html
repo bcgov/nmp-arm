@@ -1,0 +1,940 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>ARM Worksheet</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3.2.0/css/bootstrap.min.css"/>
+
+    <!-- Include FontAwesome CSS if you want to use feedback icons provided by FontAwesome -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/fontawesome/4.1.0/css/font-awesome.min.css" />
+
+    <!-- BootstrapValidator CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css"/>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.11.1/jquery.min.js"></script>
+    
+    <!-- added for dialogue windows by KV -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.ui/1.11.4/jquery-ui.min.css" /> 
+    <script src="https://cdn.jsdelivr.net/jquery.ui/1.11.4/jquery-ui.min.js"></script>
+    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+    <!-- BootstrapValidator JS -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
+    <!-- adding GoogleAnalytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-1119087-17', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <style type="text/css">
+        .armhili {
+           color: red !important;
+           text-decoration: none !important;
+           border-bottom: 1px solid blue !important;
+        }
+        .fixed-dialog{
+            position: fixed;
+            top: 33%;
+            left: 33%;
+        }
+        // remove all input spinners
+        input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number]{
+            -moz-appearance:textfield;
+        }
+
+
+        p.desc { }
+        .form-horizontal .has-feedback .form-control-feedback {
+            top: 27px !important;
+            right: -29px !important;
+        }
+        
+        .riskrating {
+            padding-top: 15px;
+            font-weight: bold;
+        }
+        
+        .help-block {
+            padding-top: 15px;
+            font-weight: bold;
+            /* 
+            font-size: 14px; 
+            color: #a94442;   
+            */
+            font-style: italic;                     
+        }
+        
+        .cautionrating{
+            padding-top: 15px;
+            font-weight: bold;
+            /* 
+            font-size: 14px;
+            size="14" ;            
+            */
+            font-style: italic;
+
+        }
+
+        .show-hide-wrapper[data-state='opened'] {
+            display: block;
+        }
+
+        .show-hide-wrapper[data-state='closed'] {
+            display: none;
+        }
+        
+        .riskanalysis {
+            border: 1px black solid;
+            border-radius: 5px;
+            padding: 13px;
+        }
+
+    
+        .low {
+            color: lightblue;
+        }
+        .low-med  {
+            color: green;
+        }
+        .med  {
+            color: gold;
+        }
+        .med-high  {
+            color: orange;
+        }
+        .high  {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="page-header"><h2>ARM Worksheet</h2><p>It is recommended that you fill out this form no more than 24 hours prior to a manure application event, particularly from October through February. You can group similar fields together into one field unit. For questions related to filling out any of the fields below, click on the provided hyperlinks for more information.</p>
+                </div>
+
+                <!- -
+                Change the "action" attribute to your back-end URL
+                To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+                - ->
+                <form id="arm_form" method="post" class="form-horizontal" action="/arm/"
+                    data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                    data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                    data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">{% csrf_token %}
+
+
+                    <div class="form-group">
+                        <!--<label class="col-lg-3 control-label">Farm Name</label>-->
+                        <label class="col-lg-8"><h3>Farm Name</h3></label>
+                        <p class="col-lg-8 desc"></p>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="dairy_farm_name"
+                                data-bv-notempty="true"
+                                data-bv-notempty-message="the farm name is required and cannot be empty"
+
+                                data-bv-stringlength="true"
+                                data-bv-stringlength-min="0"
+                                data-bv-stringlength-max="2000"
+                                data-bv-stringlength-message="the farm name must be more than 0 and less than 2000 characters long"
+
+                                data-bv-regexp="true"
+                                data-bv-regexp-regexp="^[a-zA-Z0-9 ]+$"
+                                data-bv-regexp-message="the farm name can only consist of alphabetical, number and space characters"
+                            />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-lg-8"><h3>County Name</h3></label>
+                        <div class="col-lg-5">                        
+                            <select id="countylist" onchange="">
+                              <option value="">Select one...</option>
+                              <optgroup label="Washington">
+                                <option value="Clallam">Clallam      (WA)</option>
+                                <option value="Grays Harbor">Grays Harbor (WA)</option>
+                                <option value="Island">Island       (WA)</option>
+                                <option value="Jefferson">Jefferson    (WA)</option>
+                                <option value="King">King         (WA)</option>
+                                <option value="Kitsap">Kitsap       (WA)</option>
+                                <option value="Lewis">Lewis        (WA)</option>
+                                <option value="Mason">Mason        (WA)</option>
+                                <option value="Pacific">Pacific      (WA)</option>
+                                <option value="Pierce">Pierce       (WA)</option>
+                                <option value="San Juan">San Juan     (WA)</option>
+                                <option value="Skagit">Skagit       (WA)</option>
+                                <option value="Snohomish">Snohomish    (WA)</option>
+                                <option value="Thurston">Thurston     (WA)</option>
+                                <option value="Wahkiakum">Wahkiakum    (WA)</option>
+                                <option value="Whatcom">Whatcom      (WA)</option>
+                              </optgroup>
+                              <optgroup label="Oregon">
+                                <option value="Benton">Benton       (OR)</option>
+                                <option value="Clackamas">Clackamas    (OR)</option>
+                                <option value="Clatsop">Clatsop      (OR)</option>
+                                <option value="Columbia">Columbia     (OR)</option>
+                                <option value="Coos">Coos         (OR)</option>
+                                <option value="Curry">Curry        (OR)</option>
+                                <option value="Douglas">Douglas      (OR)</option>
+                                <option value="Jackson">Jackson      (OR)</option>
+                                <option value="Josephine">Josephine    (OR)</option>
+                                <option value="Lane">Lane         (OR)</option>
+                                <option value="Lincoln">Lincoln      (OR)</option>
+                                <option value="Linn">Linn         (OR)</option>
+                                <option value="Marion">Marion       (OR)</option>
+                                <option value="Multnomah">Multnomah    (OR)</option>
+                                <option value="Polk">Polk         (OR)</option>
+                                <option value="Tillamook">Tillamook    (OR)</option>
+                                <option value="Washington">Washington   (OR)</option>
+                                <option value="Yamhill">Yamhill      (OR)</option>
+                                <option value="Other">Other</option>
+                              </optgroup>
+                            </select>
+                        </div>                      
+                    </div>
+                    
+
+
+                    <div class="form-group">
+                        <label class="col-lg-8"><h3>Application Date</h3></label><p class="col-lg-8 desc">Date you want to apply: You must do this evaluation no more than 24 hours prior to application.</p>                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="apply_date" placeholder="MM/DD/YYYY"
+                                data-bv-notempty="true"
+                                data-bv-notempty-message="the date is required"
+
+                                data-bv-date="true"
+                                data-bv-date-format="MM/DD/YYYY"
+                                data-bv-date-message="the date is not valid" />
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="col-lg-8"><h3>Field Name or Unit</h3></label><p class="col-lg-8 desc">Field Name or Unit</p>                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="managment_unit" placeholder="Enter the field name/number you want to apply to"
+                                data-bv-notempty="true"
+                                data-bv-notempty-message="the field name is required and cannot be empty"
+
+                                data-bv-stringlength="true"
+                                data-bv-stringlength-min="0"
+                                data-bv-stringlength-max="2000"
+                                data-bv-stringlength-message="the field name must be more than 0 and less than 2000 characters long"
+
+                                data-bv-regexp="true"
+                                data-bv-regexp-regexp="^[a-zA-Z0-9 ]+$"
+                                data-bv-regexp-message="the field name can only consist of alphabetical, number and space characters"
+                            />
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-lg-8"><h3>24 hour Precipitation ( inches )</h3></label>
+                        <p class="col-lg-8 desc">Link to <a target="_blank" href="https://sites.google.com/site/wadairyplan/MSA">MSA precipitation</a></p>
+                        <div class="col-lg-5">
+                            <input type="number" step="0.01" min="0", max="2000" class="form-control" name="precipitation_1" placeholder="Enter the 24 hour precipition amount"
+                                data-bv-notempty="true"
+                                data-bv-notempty-message="the precipiation is required and cannot be empty"
+
+                                data-bv-regexp="true"
+                                data-bv-regexp-regexp="^[0-9.]+$"
+                                data-bv-regexp-message="The precipitation can only consist of number characters"
+
+                                data-bv-lessthan-inclusive=false
+                                data-bv-lessthan-value=0.50
+                                data-bv-lessthan-message="Stop: The risk of runoff associated with more than 0.5 inches of rain after application is too high. Do not apply at this time."
+                            />
+                        </div>
+                        <div class="col-lg-8 desc riskrating" data-name="precipitation_1">Risk Rating: N/A</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-lg-8"><h3>72 hour Precipitation ( inches )</h3></label>
+                        <p class="col-lg-8 desc">Link to <a target="_blank" href="https://sites.google.com/site/wadairyplan/MSA">MSA precipitation</a></p>
+                        <div class="col-lg-5">
+                            <input type="number" step="0.01" min="0", max="2000" class="form-control" name="precipitation_2" placeholder="Enter the 72 hour precipition amount"
+                                data-bv-notempty="true"
+                                data-bv-notempty-message="the precipiation is required and cannot be empty"
+
+                                data-bv-regexp="true"
+                                data-bv-regexp-regexp="^[0-9.]+$"
+                                data-bv-regexp-message="The precipitation can only consist of number characters"
+
+                                data-bv-lessthan-inclusive=false
+                                data-bv-lessthan-value=0.50
+                                data-bv-lessthan-message="Stop: The risk of runoff associated with more than 0.5 inches of rain after application is too high. Do not apply at this time."
+                            />
+                        </div>
+                        <div class="col-lg-8 desc riskrating" data-name="precipitation_2">Risk Rating: N/A</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-lg-8"><h3>Soil Type</h3></label><p class="col-lg-8 desc">Enter the general soil type you want to apply to. If you dont know your soil type, make your selection under &quot;Don&#039;t know&quot;. Soil type can be found on your farm plan map.</p>                        <div class="col-lg-5">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="soil_type" value="sand"
+                                        data-bv-notempty="true"
+                                        data-bv-notempty-message="soil type is required" /> Sandy/Gravelly (Course Textured Soil - A)
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="soil_type" value="silt" /> Silt (Medium Textured Soil - B)
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="soil_type" value="clay" /> Clay (Fine Textured Soil – C/D)
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="soil_type"  value="peat_muck" /> Peat/Muck (Organic Soil)
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="soil_type"  value="other" /> Don't know
+                                </label>
+                            </div>
+                        </div>
+                        <!--col-lg-5-->
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-lg-8"><h3>Soil Moisture</h3></label><p class="col-lg-8 desc">Select your soil moisture range. For guidance on how to determine soil moisture, click <a  target="_blank" href="http://www.wadairyplan.org/ARM/soil-moisture-determination">HERE</a></p>                        <div class="col-lg-5">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="soil_moisture" value="100" 
+                                        data-bv-notempty="true"
+                                        data-bv-notempty-message="soil moisture is required"
+                                    /> 90-100% (If your boots squish in the field, you are at saturation)
+
+
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="soil_moisture" value="80" /> 80-90% (In this range you would not comfortably drive a tractor into the field and are worried about potential soil compaction due to field wetness)
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="soil_moisture" value="60" /> 60-80% (In this range you could comfortably drive a tractor out into the field without worrying about ruts or field compaction)
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="soil_moisture"  value="50" /> &lt; 60% (In this range your soil is firm and starting to dry out)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 desc riskrating" data-name="soil_moisture">Risk Rating: N/A</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-lg-8"><h3>Water Table Depth ( inches )</h3></label><p class="col-lg-8 desc">Water table can be determined by nearby ditches, or by digging a hole in your field. For more on how to determine water table depth, click <a target="_blank" href="http://www.wadairyplan.org/ARM/water-table-depth-determination">HERE</a></p><!-- <div class="col-lg-5">
+                            <input type="number" step="0.01" min="2", max="20000" class="form-control" name="water_table_depth" placeholder="Enter value in inches"
+                                data-bv-notempty="true"
+                                data-bv-notempty-message="the water table depth is required and cannot be empty"
+
+                                data-bv-regexp="true"
+                                data-bv-regexp-regexp="^[0-9.]+$"
+                                data-bv-regexp-message="The water table depth can only consist of number characters"
+
+                                data-bv-greaterthan-inclusive=false
+                                data-bv-greaterthan-value=12
+                                data-bv-greaterthan-message="Stop: The water table is too close to the soil surface for safe application at this time. Wait until it recedes  before manure is applied."
+                            />
+                        </div> -->
+                        <div class="col-lg-5">                        
+                            <select id="water_table_depth" onchange="" name="water_table_depth">
+                              <option value="">Select one...</option>
+                                <option value="6"> 0-12 inches</option>
+                                <option value="18">12-24 inches</option>
+                                <option value="36">24-48 inches</option>
+                                <option value="48"> >48 inches</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-8 desc riskrating" data-name="water_table_depth">Risk Rating: N/A</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-lg-8"><h3>Surface Cover</h3></label><p class="col-lg-8 desc">Surface cover is the amount (%) of soil surface that is covered by your crop. For guidance on how to determine surface cover , click <a  target="_blank" href="http://www.wadairyplan.org/ARM/forage-density-determination">HERE.</a></p>                        <div class="col-lg-5">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="forage_density" value="100"
+                                        data-bv-notempty="true"
+                                        data-bv-notempty-message="forage density is required" /> 90-100%
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="forage_density" value="80" /> 70-90%
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="forage_density"  value="60" /> 50-70%
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="forage_density"  value="50" /> &lt; 50%
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="forage_density"  value="102" /> Other: Annual/Fallow/Row Crop Field (eg, new seeding, corn, berry, bare soil, etc.)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 desc riskrating" data-name="forage_density">Risk Rating: N/A</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-lg-8"><h3>Forage Height ( inches )</h3></label><p class="col-lg-8 desc">Forage/cover height is the average height of forage or cover in your field. If you are not evalauting a forage field, select &quot;Not forage crop&quot;.</p>                        <div class="col-lg-5">                        
+                            <select id="forage_height" onchange="" name="forage_height">
+                              <option value="">Select one...</option>
+                                <option value="0">No cover</option>
+                                <option value="2">1-3 inches</option>
+                                <option value="5">3-6 inches</option>
+                                <option value="6"> >6 inches</option>
+                                <option value="10">Not forage crop</option>
+                            </select>
+                        </div>
+                    
+                        <!-- <div class="col-lg-5">
+                            <input type="number" step="0.1" min="0", max="2000" class="form-control" name="forage_height" placeholder="Enter value in inches"
+                                data-bv-notempty="true"
+                                data-bv-notempty-message="the forage height is required and cannot be empty"
+
+                                data-bv-regexp="true"
+                                data-bv-regexp-regexp="^[0-9.]+$"
+                                data-bv-regexp-message="The forage height can only consist of number characters"
+
+                                data-bv-greaterthan-inclusive=false
+                                data-bv-greaterthan-value=1
+                                data-bv-greaterthan-message="Stop: Cover height is not adequate to properly function: Instate a 100 manure setback distance from critical areas"
+                            />
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="forage_height" value="101" />Not forage crop
+                                </label>
+                            </div>
+                        </div>
+                         <div class="col-lg-5">
+                           <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="forage_height_notforagecrop" value="notforagecrop" />Not forage crop
+                                </label>
+                            </div>
+                        </div> -->
+                        <div class="col-lg-8 desc riskrating" data-name="forage_height">Risk Rating: N/A</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="col-lg-8"><h3>Field Surface Condition</h3></label><p class="col-lg-8 desc">Check all that apply to your current field conditions.</p>                        <div class="col-lg-5">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="surface_condition" value="ponding"
+                                        data-bv-notempty="true"
+                                        data-bv-notempty-message="field surface condition is required" /> Ponding
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="surface_condition" value="flooding" /> Flooding current or potential in 15 days
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="surface_condition" value="frozen" /> Frozen ( more than 1 inch ) or snow covered
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="surface_condition"  value="tiles" /> Tiles present in field
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="surface_condition"  value="none" /> None of the above
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 desc riskrating" data-name="surface_condition">Risk Rating: N/A</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="col-lg-8"><h3>Manure Application Equipment</h3></label><p class="col-lg-8 desc">Check equipment/method of application.</p>                        <div class="col-lg-5">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="application_equipment" value="below_application"
+                                        data-bv-notempty="true"
+                                        data-bv-notempty-message="application equipment is required" /> Below surface applicator (eg, injector, incorportaion within 24 hours)
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="application_equipment" value="surface_application" /> Surface application (eg, splash plate, tank, aerator)
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="application_equipment"  value="irrigation_sprinkler" /> Irrigation sprinkler (eg, Big Gun)
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="application_equipment"  value="grazing" /> Grazing
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="application_equipment"  value="soild_manure_application" /> Solid Manure Application
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 desc riskrating" data-name="application_equipment">Risk Rating: N/A</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+                    <!--
+                    <div class="form-group">
+                        <label class="col-lg-8">Estimated Application Amount</label>
+                        <p class="col-lg-8 desc">Enter in gallons ( liquid ) or tons ( dry ) per acre</p>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="application_amount"
+                                data-bv-notempty="true"
+                                data-bv-notempty-message="the application amount is required and cannot be empty"
+
+                                data-bv-regexp="true"
+                                data-bv-regexp-regexp="^[0-9]+$"
+                                data-bv-regexp-message="the application amount can only consist of number characters"
+                            />
+                        </div>
+                    </div>
+                    -->
+
+
+
+                    <div class="form-group">
+                        <label class="col-lg-8"><h3>Waterbody or Critical Area</h3></label><p class="col-lg-8 desc">Do you have a waterbody (i.e., ditch, stream, river, etc.) or identified critical area (i.e., swale, wetland, etc) adjacent to your field?</p>                        <div class="col-lg-5">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="critical_area" value="yes" data-bv-notempty="true" data-bv-notempty-message="critical area is required" /> Yes (answer next two questions)
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="critical_area" value="no" /> No (click submit)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 desc riskrating" data-name="critical_area"></div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+
+                    <div class="show-hide-wrapper" data-state="closed">
+                    <div class="form-group"><label class="col-lg-8">Manure Setback Distance</label><p class="col-lg-8 desc">Manure setbacks must be a minimum of 10 feet from May 1 to August 31 (40 for Big Gun use). 40 feet from September 1 to May. and 80 feet from October 1 to February 28. For more information on seasonal manure application setback distance, click <a target="_blank" href="http://www.wadairyplan.org/setbacks">HERE</a></p>                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="manure_setback_distance"
+                                data-bv-notempty="true"
+                                data-bv-notempty-message="manure setback distance is required and cannot be empty"
+
+                                data-bv-regexp="true"
+                                data-bv-regexp-regexp="^[0-9]+$"
+                                data-bv-regexp-message="manure setback distance can only consist of number characters"
+
+                            />
+                        </div>
+                        <div class="col-lg-8 desc riskrating" data-name="manure_setback_distance"></div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+
+                    <div class="form-group"><label class="col-lg-8">Buffer</label><p class="col-lg-8 desc">Do you have a dedicated vegetative buffer next to the waterbody? [If you are applying to a grass field, your grass acts as a &quot;vegetative buffer&quot; as long as it is dense and greater than three inches in height.]</p>                        <div class="col-lg-5">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="vegetation_buffer" value="22"
+                                        data-bv-notempty="true"
+                                        data-bv-notempty-message="vegetation buffer is required" /> No
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="vegetation_buffer" data-distance="10" value="34" /> Yes, it is less than 35 feet
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="vegetation_buffer" data-distance="36" value="36" /> Yes, it is greater than 35 feet
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 desc riskrating" data-name="vegetation_buffer">Risk Rating: N/A</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+                    </div><!--group-wrapper-->
+
+                    <div class="form-group riskanalysis">
+                        <label class="col-lg-8"><h3>Application Risk Analysis for Surface Runoff</h3></label>
+                        <p class="col-lg-8 desc"></p>
+                        <!--<div class="col-lg-8 desc riskrating" data-name="total_risk">Risk Rating: N/A</div>-->
+                        <div class="col-lg-8">
+                            <div class="readonly">
+                                <label>
+                                    <input readonly=readonly type="text" name="total_risk" value=""/>
+                                </label>
+                            </div>
+                        </div> 
+                    </div>
+                    <p>Save as PDF by clicking File > Print on your desktop browser menu. Then click Save.</p>
+                    <button id="send_btn" type="submit" class="btn btn-default">Send/Email</button>
+                    <button id="clear_btn" class="btn btn-default">Clear</button>                    
+                    <button id="print_btn" type="submit" class="btn btn-default">Print/Save </button>
+<!-- Print/Save – Opens as a PDF to be printed or saved
+    Send – Send – Opens in an email to send to whoever they want
+-->
+
+                    <!--<button id="save_btn" class="btn btn-default">Save</button>-->
+
+
+                 <div id="downloadwindow" title="Download PDF Form"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="/arm/js/validators.js"></script>
+<script>
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    /*
+    **
+    **  ON READY
+    **
+    */
+    $(document).ready(function() {
+
+        var form_selector = '#arm_form';
+        var pdfdownloadlink = "";
+        var armbaseurl = "https://maps.whatcomcd.org/";
+        $( form_selector )
+            .on('init.form.bv', function(e) {
+
+                // auto populate apply date and call validator
+                var now = new Date();
+                $( "input[name='apply_date']" ).val( now.getMonth()+1 + "/" + now.getDate() + "/" + now.getFullYear() );
+                $( "input[name='apply_date']" ).change();
+
+                // handle  24 and 72 hour params if exist
+                var oneday_predict = getParameterByName( '24' );
+                var threeday_predict = getParameterByName( '72' );
+                if ( oneday_predict && threeday_predict ) {
+                    $( "input[name='precipitation_1']" ).val( Number( oneday_predict ) );
+                    $( "input[name='precipitation_1']" ).change();
+                    $( "input[name='precipitation_2']" ).val( Number( threeday_predict ) );
+                    $( "input[name='precipitation_2']" ).change();
+                }
+            })
+            .bootstrapValidator( window.CONFIG_VALIDATOR )
+            .on('error.field.bv', function(e,data) {
+                // $(e.target)  --> The field element
+                // data.bv      --> The BootstrapValidator instance
+                // data.field   --> The field name
+                // data.element --> The field element
+                if  ( data.field === 'apply_date' ) {
+                    // revalidate manure setback
+                    if ( $( "input[name='manure_setback_distance']" ).val() !== "" ) {
+                        data.bv.revalidateField( 'manure_setback_distance' ); 
+                    }
+                }
+                $( document ).trigger( 'rating-update', [ {}, true ] )
+            })
+            .on('success.field.bv', function(e, data) {
+                // $(e.target)  --> The field element
+                // data.bv      --> The BootstrapValidator instance
+                // data.field   --> The field name
+                // data.element --> The field element
+                if  ( data.field === 'apply_date' ) {
+                    // revalidate manure setback
+                    if ( $( "input[name='manure_setback_distance']" ).val() !== "" ) {
+                        data.bv.revalidateField( 'manure_setback_distance' ); 
+                    }
+                }
+                $( document ).trigger( 'rating-update', [ RATING ] )
+            })
+            .on('success.form.bv', function(e) {
+
+                var $form = $(e.target);
+
+                // delete all hidden inputs
+                $( "input.hidden_risk" ).remove();
+                
+                // add all risk ratings as hidden inputs
+                $( '.riskrating' ).each( function( indx, elem ) {
+
+                    var data_name = $( elem ).attr( 'data-name' );
+                    var value = $( elem ).text();
+
+                    $form.append( '<input type="hidden" class="hidden_risk" name="'+data_name+'_risk" value="'+value+'"/>' );
+
+                });
+
+            });
+
+
+        /*
+        **
+        **  event bindings
+        **
+        */
+        $( '#clear_btn' ).on( 'click', function( e ) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            $( form_selector ).data( 'bootstrapValidator' ).resetForm();
+
+            // clear risk and caution ratings
+            $( 'div.riskrating' ).text('');
+            $( 'div.cautionrating' ).text('');
+
+            // clear all radio and text inputs except the ones we want
+            $( "input[data-bv-notempty='true']" ).each( function( indx, elem ) {
+                var name = $( elem ).attr( 'name' );
+                if ( !( name in { 'apply_date' : true, 'precipitation_1' : true, 'precipitation_2' : true } ) ) {
+                    $( elem ).val( '' );
+                }
+            });
+
+            $( "input[type='radio']:checked" ).prop( "checked", false )
+        } ); 
+
+        $( '#send_btn' ).on( 'click', function( e ) {
+            e.stopPropagation();
+            e.preventDefault();
+            createFormPdf('email');
+            // var thedownloadlink = createFormPdf('email');
+            // var emailmessage = "You can download your form in PDF format here "+thedownloadlink ;
+            // window.location.href = "mailto:?subject=Your ARM Worksheet Download Link&body="+emailmessage; 
+        });
+
+        $( '#print_btn' ).on( 'click', function( e ) {
+            // validate entire form
+            // var validator = $('#arm_form').data('bootstrapValidator').validate({ignore:":not(:visible)"});
+            // var amessage = validator.getInvalidFields({ignore:":not(:visible)"});
+            e.stopPropagation();
+            e.preventDefault();
+            // var theerrors = amessage.length;
+            // loop fields check if invalid
+            createFormPdf('print');
+        });
+
+        function createFormPdf(requesttype){
+        // create array for check
+            var i, formfield, theerrors, returnlink;
+            returnlink = null;
+            // armbaseurl = "https://maps.whatcomcd.org/";
+            var theerrors = 0;
+            var scval = "";
+            var critical_area = "";
+            var surface_condition_array = [];
+            var formfieldsarray = [['dairy_farm_name','text'],['apply_date','text'],['managment_unit','text'],['precipitation_1','text'],['precipitation_2','text'],['water_table_depth','dropdown'],['forage_height','dropdown'],['soil_type','radio'],['soil_moisture','radio'],['forage_density','radio'],['surface_condition','checkbox'],['application_equipment','radio'],['critical_area','radio'],['manure_setback_distance','text'],['vegetation_buffer','radio'],['countylist','dropdown']];
+            var fieldvaluesarray = [];
+            var len = formfieldsarray.length;
+            for (i=0; i<len; ++i) {
+              if (i in formfieldsarray) {
+                formfield = formfieldsarray[i][0];
+                fieldtype = formfieldsarray[i][1];
+                if (fieldtype === "text"){
+                    fieldvaluesarray[i] = $("#arm_form input[name="+formfield+"]").val();
+                }
+                else if (fieldtype === "radio"){
+                    fieldvaluesarray[i] = $("#arm_form input[name="+formfield+"]:checked").val(); 
+                }
+                else if (fieldtype === "checkbox"){
+                    surface_condition_array = [];
+                    $('input[name=surface_condition]:checked').each(function () {
+                        // add values to array for surface_condition
+                        scval = (this.checked ? $(this).val() : "");
+                        if (scval !== "") {
+                           surface_condition_array.push(scval);
+                        }
+                    });
+                    fieldvaluesarray[i] = surface_condition_array.toString();
+                }
+                else if (fieldtype === "dropdown"){
+                    fieldvaluesarray[i] = $("#"+formfield+" :selected").val();
+                }
+                // if no value reevaluate for invalid mark
+                if     ( fieldvaluesarray[i] === "" || typeof fieldvaluesarray[i] === "undefined"){
+                    // re-validate only that field
+                    // check if visible
+                    var isvisible = $("#arm_form input[name="+formfield+"]").is(":visible"); 
+                    if (isvisible){
+                       $('#arm_form').data('bootstrapValidator').revalidateField(formfieldsarray[i][0]);
+                       console.log("Assumed form field entry error in "+ formfieldsarray[i][0]);
+                       theerrors = theerrors +1;
+                    }
+                }
+              }
+            }
+            
+            if (theerrors < 1) {
+                // $('#arm_form').data('bootstrapValidator').validate(); 
+                // input fields ************************************************************************
+                var dairy_farm_name   = fieldvaluesarray[0];  //   = $("#arm_form input[name=dairy_farm_name]").val();
+                var apply_date        = fieldvaluesarray[1];  //   = $("#arm_form input[name=apply_date]").val();
+                var managment_unit    = fieldvaluesarray[2];  //   = $("#arm_form input[name=managment_unit]").val();
+                var precipitation_1   = fieldvaluesarray[3];  //   = $("#arm_form input[name=precipitation_1]").val();
+                var precipitation_2   = fieldvaluesarray[4];  //   = $("#arm_form input[name=precipitation_2]").val();
+                var water_table_depth = fieldvaluesarray[5];  //     = $("#arm_form input[name=water_table_depth]").val(); 
+                var forage_height     = fieldvaluesarray[6];  //     = $("#arm_form input[name=forage_height]").val(); 
+                
+                // radio and checkboxes  **************************************************************
+                var soil_type         = fieldvaluesarray[7]; // $("#arm_form input[name=soil_type]:checked").val(); 
+                var soil_moisture     = fieldvaluesarray[8]; // $("#arm_form input[name=soil_moisture]:checked").val();
+                // set value
+                // var forage_density          = $("[name=forage_density][value=50]").prop("checked",true); 
+                var forage_density    = fieldvaluesarray[9]; // $("[name=forage_density]:checked").val(); 
+                var surface_condition = fieldvaluesarray[10]; //surface_condition_array.toString();
+                var application_equipment = fieldvaluesarray[11];// $("#arm_form input[name=application_equipment]:checked").val(); 
+                // if yes two more questions
+                critical_area             = fieldvaluesarray[12];// $("#arm_form input[name=critical_area]:checked").val();   
+                // manure_setback_distance check if visible or of critical area = yes
+                if (critical_area === "yes"){
+                    var manure_setback_distance = fieldvaluesarray[13]; // $("#arm_form input[name=manure_setback_distance]").val();     
+                    var vegetation_buffer       = fieldvaluesarray[14]; // $("#arm_form input[name=vegetation_buffer]:checked").val();  // values can be 22, 34, 36 feet
+                }
+                var adminunit = fieldvaluesarray[15];
+                $.ajax({
+                   async: false, // work around to wait for php return if slow ...
+                   type: "GET",
+                   url: "/print/print_ws.php",
+                   data: { 
+                      'dairy_farm_name':   dairy_farm_name,
+                      'apply_date':        apply_date,
+                      'managment_unit':    managment_unit,
+                      'precipitation_1':   precipitation_1,
+                      'precipitation_2':   precipitation_2,
+                      'water_table_depth': water_table_depth,
+                      'forage_height':     forage_height,
+                      'soil_type':         soil_type,
+                      'soil_moisture':     soil_moisture,
+                      'forage_density':    forage_density,
+                      'application_equipment':   application_equipment,
+                      'critical_area':           critical_area,
+                      'manure_setback_distance': manure_setback_distance,
+                      'vegetation_buffer':       vegetation_buffer,
+                      'surface_condition':       surface_condition,
+                      'countylist':              adminunit
+                   },
+                   success: function(xhr){
+                       // alert(xhr);
+                       $( "#downloadwindow" ).dialog({
+                           open: function(event, ui) { $('#downloadwindow').focus(); },
+                           dialogClass: 'fixed-dialog',
+                           autoOpen: false,
+                           position: ['center','center'],
+                           height: "auto",
+                           width: "auto"
+                       });
+                       pdfdownloadlink = armbaseurl + xhr;
+                       returnlink = xhr;
+                       if (requesttype ==='print'){
+                          showDownload(pdfdownloadlink);
+                       }
+                       else {
+                          thedownloadlink = armbaseurl + xhr;
+                          var emailmessage = "You can download your form in PDF format here "+thedownloadlink ;
+                          window.location.href = "mailto:?subject=Your ARM Worksheet Download Link&body="+emailmessage; 
+                       }
+                   }
+                });
+            }
+            else {
+                // validator.focusInvalid({ignore:":not(:visible)"});
+                // loop trough invalid fiedls only
+                // $('#arm_form').data('bootstrapValidator').revalidateField('soil_moisture');
+                // validator.focusInvalid();
+                alert('Required form entires missing. Please find required form fields (marked in red) to fill out and submit the form once again!');
+                $('#arm_form').find(":input.error:first").focus();
+                // special display
+                remove_risk_rating_classes( $( "input[ name='total_risk' ]" ) );
+                $( "input[ name='total_risk' ]" ).addClass( 'high' );
+                $( "input[ name='total_risk' ]" ).val( 'Fill Out All Fields' ); 
+                $( "input[ name='total_risk' ]" ).parents( '.form-group' ).find( '.desc' ).text( "Please fill out all form fields." ); 
+            }
+        }
+
+
+
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+        
+        function showDownload(pdfdownloadlink) {
+            $("#downloadwindow").empty(); // empty out previous content if any 
+            $('<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>Click <span class="armhili"><a target="_blank" href="'+pdfdownloadlink+'"> here to save/open your PDF</a></span></div>').appendTo('#downloadwindow');
+            $( "#downloadwindow" ).dialog({
+              resizable: false,
+              height:'auto',
+              modal: true,
+              autoOpen: false,
+              buttons: {
+                Close: function() {
+                  $("#downloadwindow").empty();
+                  $( this ).dialog( "close" );
+                }
+              }
+            });
+            $("#downloadwindow").dialog( "open" );
+        }  
+
+    }); //  ready
+
+
+</script>
+</body>
+</html>

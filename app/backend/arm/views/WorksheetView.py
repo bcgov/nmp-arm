@@ -106,7 +106,7 @@ def format_submission( sdict ):
 
 class WorksheetView( FormView ):
 
-    template_name = 'bc_worksheet.html'
+    template_name = 'worksheet.html'
     form_class = WorksheetForm 
 
     http_method_names = [ 'get', 'post', ]
@@ -137,7 +137,7 @@ class WorksheetView( FormView ):
                         'ARM worksheet submission', 
                         'please see attachement', 
                         'no_reply@whatcomcd.org',
-                        ['NEmbertson@whatcomcd.org'], ['info@terragis.net','whatcomcd6975@gmail.com'],
+                        ['NEmbertson@whatcomcd.org'], ['gregcorradini@gmail.com','whatcomcd6975@gmail.com'],
                         headers = {})
             email.attach_file('/tmp/'+filename)
             email.send()
