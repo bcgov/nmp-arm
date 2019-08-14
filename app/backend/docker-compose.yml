@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+
+  web:
+    image: arm-legacy-web:latest
+    container_name: arm-legacy-web
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+      
+    environment:
+      ENVIRONMENT: dev
+      ADMIN_EMAIL: admin.email@domain
+      DATABASE_NAME:  DATABASE_NAME
+      DATABASE_USER: DATABASE_USER
+      DATABASE_PASSWORD: DATABASE_PASSWORD
+      DEFAULT_FROM_EMAIL: admin.email@domain
+      EMAIL_TO: admin.email@domain
+      SERVER_EMAIL: admin.email@domain
+      SUPPORT_EMAIL: admin.email@domain

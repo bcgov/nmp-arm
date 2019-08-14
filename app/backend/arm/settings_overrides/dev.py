@@ -10,15 +10,20 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 # Settings below (Alphabetically)
-ABSOLUTE_PATH = os.path.dirname( __file__ ).replace( 'inout_board/settings_overrides', '' )
+ABSOLUTE_PATH = os.path.dirname( __file__ ).replace( 'arm/settings_overrides', '' )
 
+ADMIN_EMAIL=os.environ.get( 'ADMIN_EMAIL' )
 ADMINS = (
-    ('Admin', '<admin.email@domain>'),
+    ('Admin', ADMIN_EMAIL),
 )
 
 ALLOWED_HOSTS = [ 'localhost', 'inoutboard.local', 'maps.whatcomcd.org/inout/', socket.gethostname() ]
 
 MANAGERS = ADMINS
+
+DATABASE_NAME = os.environ.get( 'DATABASE_NAME' )
+DATABASE_USER = os.environ.get( 'DATABASE_USER' )
+DATABASE_PASSWORD = os.environ.get( 'DATABASE_PASSWORD' )
 
 DATABASES = {
     'default': {
@@ -27,15 +32,15 @@ DATABASES = {
         #'HOST': 'postgis91.pugetworks.com',
         'HOST': 'localhost',
         'PORT': '5432',
-        'NAME': 'inout_board',
-        'USER': '<user>',
-        'PASSWORD': '<password>',
+        'NAME': DATABASE_NAME,
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASSWORD,
     },
 }
 
-DEFAULT_FROM_EMAIL = '<admin.email@domain>'
+DEFAULT_FROM_EMAIL = os.environ.get( 'DEFAULT_FROM_EMAIL' )
 
-EMAIL_TO='<admin.email@domain>'
+EMAIL_TO = os.environ.get( 'EMAIL_TO' )
 
 FIXTURE_DIRS = ( os.path.join( os.path.dirname( __file__ ), 'fixtures', 'dev' ).replace('\\','/'), )
 
@@ -136,11 +141,11 @@ LOGGING = {
     },
 }
 
-SERVER_EMAIL="<admin.email@domain>"
+SERVER_EMAIL = os.environ.get( 'SERVER_EMAIL' )
 
 SITE_ID = 4
 
-SUPPORT_EMAIL='<admin.email@domain>'
+SUPPORT_EMAIL = os.environ.get( 'SUPPORT_EMAIL' )
 
 '''
 sys.stdout.write(
