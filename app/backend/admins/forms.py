@@ -12,7 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 #
 #  app imports
 #
-from models import Admin
+from .models import Admin
 
 class AdminCreationForm( forms.ModelForm ):
     """
@@ -68,7 +68,7 @@ class AdminChangeForm( forms.ModelForm ):
 
     class Meta:
         model =Admin
-        #fields = [ 'email', 'first_name', 'last_name', 'is_active', 'is_superuser' ]
+        fields = [ 'email', 'first_name', 'last_name', 'is_active', 'is_superuser' ]
 
     def __init__( self, *args, **kwargs ):
         super( AdminChangeForm, self ).__init__( *args, **kwargs )

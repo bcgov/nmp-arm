@@ -15,9 +15,9 @@ class JSONResponseMixin(object):
 
     def get_content_type(self):
         if self.content_type is None:
-            raise ImproperlyConfigured(u"%(cls)s is missing a content type. "
-                u"Define %(cls)s.content_type, or override "
-                u"%(cls)s.get_content_type()." % {
+            raise ImproperlyConfigured("%(cls)s is missing a content type. "
+                "Define %(cls)s.content_type, or override "
+                "%(cls)s.get_content_type()." % {
                 "cls": self.__class__.__name__
             })
         return self.content_type
@@ -38,7 +38,7 @@ class JSONResponseMixin(object):
                 #print objects
                 #print len( objects )
                 json_data = json.dumps( objects[0] ) #TODO: Verify this!! [0]
-        except Exception, e:
+        except Exception as e:
             logger.error( e )
             json_data = serializers.serialize( "json", objects, **kwargs )
 

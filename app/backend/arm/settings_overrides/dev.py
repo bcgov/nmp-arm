@@ -25,18 +25,18 @@ DATABASE_NAME = os.environ.get( 'DATABASE_NAME' )
 DATABASE_USER = os.environ.get( 'DATABASE_USER' )
 DATABASE_PASSWORD = os.environ.get( 'DATABASE_PASSWORD' )
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'HOST': 'postgis91.pugetworks.com',
-        'HOST': 'localhost',
-        'PORT': '5432',
-        'NAME': DATABASE_NAME,
-        'USER': DATABASE_USER,
-        'PASSWORD': DATABASE_PASSWORD,
-    },
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         #'ENGINE': 'django.db.backends.sqlite3',
+#         #'HOST': 'postgis91.pugetworks.com',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#         'NAME': DATABASE_NAME,
+#         'USER': DATABASE_USER,
+#         'PASSWORD': DATABASE_PASSWORD,
+#     },
+# }
 
 DEFAULT_FROM_EMAIL = os.environ.get( 'DEFAULT_FROM_EMAIL' )
 
@@ -102,7 +102,7 @@ LOGGING = {
     'handlers': {
         'null': {
             'level': 'DEBUG',
-            'class': 'django.utils.log.NullHandler',
+            'class': 'logging.NullHandler',
         },
         'console': {
             'level': 'DEBUG',
