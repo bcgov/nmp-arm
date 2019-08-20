@@ -4,7 +4,6 @@
 from django.conf import settings
 from django.forms import Form
 from django.contrib import messages
-from django.contrib.sites.models import Site
 from django.template.context_processors import csrf
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response
