@@ -24,7 +24,7 @@ def SendEmail( template_name, content, email_to, email_from, subject, email_bcc 
                 with open( template_name, 'r' ) as fsock:
                     plaintext = Template( fsock.read() )
                     text_content = plaintext.render( content )
-            except IOError, args:
+            except IOError as args:
                 logger.debug( 'Unable to open template_name as path or template: %s, %s' % ( Exception, args ) )
                 logger.debug( 'Exception: %s' % sys.exc_info()[0] )
             except Exception:
@@ -49,7 +49,7 @@ def SendEmail( template_name, content, email_to, email_from, subject, email_bcc 
                     with open( template_name, 'r' ) as fsock:
                         html = Template( fsock.read() )
                         html_content = html.render( content )
-                except IOError, args:
+                except IOError as args:
                     logger.debug( 'Unable to open template_name as path or template: %s, %s' % ( Exception, args ) )
                     logger.debug( 'Exception: %s' % sys.exc_info()[0] )
                 except Exception:
@@ -57,7 +57,7 @@ def SendEmail( template_name, content, email_to, email_from, subject, email_bcc 
 
             msg.attach_alternative( html_content, "text/html" )
 
-        except Exception, args:
+        except Exception as args:
             logger.debug( 'HTML email failure: %s, %s' % ( Exception, args ) )
             logger.debug( 'Exception: %s' % sys.exc_info()[0] )
 
@@ -68,7 +68,7 @@ def SendEmail( template_name, content, email_to, email_from, subject, email_bcc 
 
         return
 
-    except Exception, args:
+    except Exception as args:
         logger.debug( 'Plaintext email failure: %s, %s' % ( Exception, args ) )
         logger.debug( 'Exception: %s' % sys.exc_info()[0] )
 

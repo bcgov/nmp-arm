@@ -1,7 +1,6 @@
-Django==1.6
+Django==2.2.4
 django-extensions
 python-dateutil
 django-timezone-field
 pygments
-importlib
 psycopg2

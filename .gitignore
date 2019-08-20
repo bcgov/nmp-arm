@@ -105,6 +105,8 @@ venv.bak/
 .mypy_cache/
 
 .DS_Store
-arm/settings.original.py
+
+# Visual Studio Code
 .vscode
-.vs/slnx.sqlite
+.vs/
+.idea/

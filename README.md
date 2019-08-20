@@ -46,6 +46,8 @@ There appears to be a PostgreSQL database (version yet to be determined), with a
 ### Required Environment Variables
 
       ENVIRONMENT: dev
+      DEBUG: 'False'
+      LOGGER_LEVEL: WARNING
       ADMIN_EMAIL: admin.email@domain
       DATABASE_NAME:  DATABASE_NAME
       DATABASE_USER: DATABASE_USER

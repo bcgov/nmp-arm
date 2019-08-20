@@ -463,7 +463,7 @@ class ModelResource(Resource):
             data_dicts = [data_dicts]
 
         for data in data_dicts:
-            for fieldname in data.keys():
+            for fieldname in list(data.keys()):
                 try:
                     model_field = self.Meta.model._meta.get_field(fieldname)
                     data[fieldname] = self._from_basic_type(model_field, data[fieldname])

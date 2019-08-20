@@ -20,11 +20,10 @@ from common.classes.AES_ECB_Wrapper import AESWrapper
 
 class AESFieldException(Exception): pass
 
-class AESFieldMixin(object):
+class AESFieldMixin(object, metaclass=models.SubfieldBase):
     """
 
     """
-    __metaclass__ = models.SubfieldBase
 
     def __init__(self, *args, **kwargs):
         """
@@ -69,7 +68,7 @@ class AESFieldMixin(object):
 
     def to_python(self, value):
 
-        if value is None or not isinstance(value, types.StringTypes):
+        if value is None or not isinstance(value, (str,)):
             return value
 
         if self.prefix and value.startswith(self.prefix):
@@ -89,7 +88,7 @@ class AESFieldMixin(object):
         if value is None or value == '':
             return value
 
-        if isinstance(value, types.StringTypes):
+        if isinstance(value, (str,)):
             value = value.encode('unicode_escape')
             value = value.encode('ascii')
         else:

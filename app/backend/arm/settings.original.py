@@ -1,4 +1,4 @@
-from django.utils.importlib import import_module
+from importlib import import_module
 from threading import Lock
 import warnings
 import os, sys

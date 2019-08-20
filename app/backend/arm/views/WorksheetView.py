@@ -4,13 +4,12 @@
 from django.conf import settings
 from django.forms import Form
 from django.contrib import messages
-from django.contrib.sites.models import Site
-from django.core.context_processors import csrf
-from django.core.urlresolvers import reverse
+from django.template.context_processors import csrf
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response
 from django.views.generic.edit import FormView
 from django.core.mail import send_mail, BadHeaderError, EmailMessage
+from django.urls import reverse
 
 
 #
@@ -142,7 +141,7 @@ class WorksheetView( FormView ):
             email.attach_file('/tmp/'+filename)
             email.send()
         except Exception as e:
-            logger.exception( e );
+            logger.exception( e )
         return super( WorksheetView, self ).form_valid( form )
 
     def post( self, request, *args, **kwargs ):

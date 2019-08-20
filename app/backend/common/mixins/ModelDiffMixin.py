@@ -15,7 +15,7 @@ class ModelDiffMixin(object):
     def diff(self):
         d1 = self.__initial
         d2 = self._dict
-        diffs = [(k, (v, d2[k])) for k, v in d1.items() if v != d2[k]]
+        diffs = [(k, (v, d2[k])) for k, v in list(d1.items()) if v != d2[k]]
         return dict(diffs)
 
     @property
@@ -24,7 +24,7 @@ class ModelDiffMixin(object):
 
     @property
     def changed_fields(self):
-        return self.diff.keys()
+        return list(self.diff.keys())
 
     def get_field_diff(self, field_name):
         """
