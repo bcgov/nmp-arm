@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+  web:
+    image: arm-legacy-web:latest
+    container_name: arm-legacy-web
+    build: ./app/backend
+    command: python manage.py runserver 0.0.0.0:8000
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./app/backend:/code
+    ports:
+      - "8000:8000"
+      
+    environment:
+      ENVIRONMENT: dev
+      DEBUG: 'False'
+      LOGGER_LEVEL: WARNING
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      ADMIN_EMAIL: ${DEFAULT_EMAIL}
+      DEFAULT_FROM_EMAIL: ${DEFAULT_EMAIL}
+      EMAIL_TO: ${DEFAULT_EMAIL}
+      SERVER_EMAIL: ${DEFAULT_EMAIL}
+      SUPPORT_EMAIL: ${DEFAULT_EMAIL}
