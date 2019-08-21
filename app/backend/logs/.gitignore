@@ -1,0 +1,7 @@
+# ignore all files in this dir...
+*
+
+# folder only is required in order for the python server to run successfully as the settings.py file needs it to exist to create the log files
+
+# ... except for this one.
+!.gitignore
