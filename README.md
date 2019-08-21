@@ -28,6 +28,16 @@ ERROR: django-timezone-field 3.0 has requirement django>=1.8, but you'll have dj
 
 So `Django==1.8` is a more appropriate starting point.
 
+### Post Upgrade to Python 3.7 and Django 2.2.4
+
+### Requirements
+Django==2.2.4
+django-extensions
+python-dateutil
+django-timezone-field
+pygments
+psycopg2
+
 ### Apache Configuration
 In terms of codebase, there appears to be a common codebase that serves out the Whatcom and the BC version of the app.  The legacy app already had a 'BC-specific' side to the app :
 

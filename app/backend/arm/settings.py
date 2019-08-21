@@ -17,7 +17,7 @@ ADMINS = (
     ('Admin', ADMIN_EMAIL),
 )
 
-ALLOWED_HOSTS = [ 'localhost', '127.0.0.1', socket.gethostname() ]
+ALLOWED_HOSTS = [ 'localhost', '127.0.0.1', socket.gethostname(), 'arm-orig.azurewebsites.net' ]
 
 AUTH_USER_MODEL = 'admins.Admin'
 
