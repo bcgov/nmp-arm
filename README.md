@@ -37,6 +37,7 @@ python-dateutil
 django-timezone-field
 pygments
 psycopg2
+python-decouple
 
 ### Apache Configuration
 In terms of codebase, there appears to be a common codebase that serves out the Whatcom and the BC version of the app.  The legacy app already had a 'BC-specific' side to the app :
