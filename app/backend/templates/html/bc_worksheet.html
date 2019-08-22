@@ -546,51 +546,23 @@
 
 
                     <div class="show-hide-wrapper" data-state="closed">
-                    <div class="form-group">
-                        <label class="col-lg-8">Manure Setback Distance</label>
-                        <p class="col-lg-8 desc">Manure setbacks must be a minimum of 10 feet from May 1 to August 31 (40 for Big Gun use). 40 feet from September 1 to May. and 80 feet from October 1 to February 28. For more information on seasonal manure application setback distance, click <a target="_blank" href="http://www.wadairyplan.org/setbacks">here</a></p>
-                        <div class="col-lg-5">
-                            <input type="text" class="form-control" name="manure_setback_distance"
-                                data-bv-notempty="true"
-                                data-bv-notempty-message="manure setback distance is required and cannot be empty"
+                        <div class="form-group">
+                            <label class="col-lg-8">Manure Setback Distance</label>
+                            <p class="col-lg-8 desc">Manure setbacks must be a minimum of 10 feet from May 1 to August 31 (40 for Big Gun use). 40 feet from September 1 to May. and 80 feet from October 1 to February 28. For more information on seasonal manure application setback distance, click <a target="_blank" href="http://www.wadairyplan.org/setbacks">here</a></p>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="manure_setback_distance"
+                                    data-bv-notempty="true"
+                                    data-bv-notempty-message="manure setback distance is required and cannot be empty"
 
-                                data-bv-regexp="true"
-                                data-bv-regexp-regexp="^[0-9]+$"
-                                data-bv-regexp-message="manure setback distance can only consist of number characters"
+                                    data-bv-regexp="true"
+                                    data-bv-regexp-regexp="^[0-9]+$"
+                                    data-bv-regexp-message="manure setback distance can only consist of number characters"
 
-                            />
+                                />
+                            </div>
+                            <div class="col-lg-8 desc riskrating" data-name="manure_setback_distance"></div>
+                            <div class="col-lg-8 cautionrating"></div>
                         </div>
-                        <div class="col-lg-8 desc riskrating" data-name="manure_setback_distance"></div>
-                        <div class="col-lg-8 cautionrating"></div>
-                    </div>
-
-
-
-                    <div class="form-group">
-                        <label class="col-lg-8">Buffer</label>
-                        <p class="col-lg-8 desc">Do you have a dedicated vegitative buffer next to the water body? [If you are applying to a grass field, your grass acts as a “vegetative buffer” as long as it is dense and greater than three inches in height.]</p>
-                        <div class="col-lg-5">
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="vegetation_buffer" value="22"
-                                        data-bv-notempty="true"
-                                        data-bv-notempty-message="vegetation buffer is required" /> No
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="vegetation_buffer" data-distance="10" value="34" /> Yes, it is less than 35 feet
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="vegetation_buffer" data-distance="36" value="36" /> Yes, it is greater than 35 feet
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-lg-8 desc riskrating" data-name="vegetation_buffer">Risk Rating: N/A</div>
-                        <div class="col-lg-8 cautionrating"></div>
-                    </div>
                     </div><!--group-wrapper-->
 
                     <div class="form-group riskanalysis">
@@ -762,7 +734,7 @@
             var scval = "";
             var critical_area = "";
             var surface_condition_array = [];
-            var formfieldsarray = [['dairy_farm_name','text'],['apply_date','text'],['managment_unit','text'],['precipitation_1','text'],['precipitation_2','text'],['water_table_depth','text'],['forage_height','text'],['soil_type','radio'],['soil_moisture','radio'],['forage_density','radio'],['surface_condition','checkbox'],['application_equipment','radio'],['critical_area','radio'],['manure_setback_distance','text'],['vegetation_buffer','radio'],['countylist','dropdown']];
+            var formfieldsarray = [['dairy_farm_name','text'],['apply_date','text'],['managment_unit','text'],['precipitation_1','text'],['precipitation_2','text'],['water_table_depth','text'],['forage_height','text'],['soil_type','radio'],['soil_moisture','radio'],['forage_density','radio'],['surface_condition','checkbox'],['application_equipment','radio'],['critical_area','radio'],['manure_setback_distance','text'],['countylist','dropdown']];
             var fieldvaluesarray = [];
             var len = formfieldsarray.length;
             for (i=0; i<len; ++i) {
@@ -827,7 +799,6 @@
                 // manure_setback_distance check if visible or of critical area = yes
                 if (critical_area === "yes"){
                     var manure_setback_distance = fieldvaluesarray[13]; // $("#arm_form input[name=manure_setback_distance]").val();     
-                    var vegetation_buffer       = fieldvaluesarray[14]; // $("#arm_form input[name=vegetation_buffer]:checked").val();  // values can be 22, 34, 36 feet
                 }
                 var adminunit ="";
                 $.ajax({
@@ -848,7 +819,6 @@
                       'application_equipment':   application_equipment,
                       'critical_area':           critical_area,
                       'manure_setback_distance': manure_setback_distance,
-                      'vegetation_buffer':       vegetation_buffer,
                       'surface_condition':       surface_condition,
                       'countylist':              adminunit
                    },

@@ -398,27 +398,6 @@ window.CONFIG_VALIDATOR = {
                 }
             } ,
         } ,
-
-
-
-        vegetation_buffer : {
-            validators : {
-                restrict_radio : {
-                    comparitor : 'equals' ,
-                    stop_value : '100' ,
-                    stop_message : 'Stop: a vegetation buffer is required',
-                } ,
-                risk_rating : {
-                    values : [100, 80, 40, 35, 30, 25, 24, 22, 20, 10] ,
-                    caution_values : [ 
-                        { value : 22, message : "Caution: If you field is in grass, grass can act like a buffer if it is dense and greater than 7,5 cm in height. You may change your response to “yes” if in grass. If your field is not in grass, observe seasonal setbacks and consider vegetative buffers if needed."  } ,
-                        { value : 34, message : "Caution: buffers may not be adequate to filter runoff, refer to your Nutrient Management Plan for proper buffer width. Make sure to follow all manure setback distances."  } ,
-                    ] ,
-                    is_reversed : true 
-                } ,
-            } ,
-        } ,
-
     } , 
 
 };

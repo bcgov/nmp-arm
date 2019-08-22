@@ -94,8 +94,6 @@ def format_submission( sdict ):
         sdict.get( 'application_equipment_risk', '' ) ,
         sdict.get( 'critical_area', '' ) ,
         sdict.get( 'manure_setback_distance', '' ) ,
-        sdict.get( 'vegetation_buffer', '' ) ,
-        sdict.get( 'vegetation_buffer_risk', '' ) ,
         sdict.get( 'total_risk', '' ) ,
     ]
 
