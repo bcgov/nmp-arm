@@ -3,25 +3,23 @@ var total = 0;
 
 window.RISK_RATING = {
     1 : 'Low' ,
-    2 : 'Low-Med' ,
-    3 : 'Low-Med' ,
+    2 : 'Low' ,
+    3 : 'Low' ,
     4 : 'Medium' ,
     5 : 'Medium' ,
     6 : 'Medium' ,
-    7 : 'Med-High' ,
-    8 : 'Med-High' ,
+    7 : 'Medium' ,
+    8 : 'High' ,
     9 : 'High' ,
-    10: 'Extreme' ,
+    10: 'High' ,
 }
 
 
 window.RISK_CUTOFF = {
 
-    24 : { 'display' : 'LOW RISK', 'message' : "The risk associated with manure application is low. Follow all guidelines and recommendations in your Plan for proper application." } ,
-    25 : { 'display' : 'LOW-MED RISK', 'message' : "Apply manure following all guidelines and recommendations in your Plan." } ,
-    31 : { 'display' : 'MEDIUM RISK', 'message' : "Apply manure with caution. Follow all guidelines and recommendations in your Plan for proper application." } ,
-    40 : { 'display' : 'MEDIUM-HIGH RISK', 'message' : "If you apply manure, do so with EXTREME caution. Follow all recommendations, manure setback distances, and application guidelines in this worksheet and in your Plan." } ,
-    50 : { 'display' : 'HIGH RISK', 'message' : "Do NOT apply manure at this time, the risk is too high. Wait and reevaluate." } ,
+    27 : { 'display' : 'LOW RISK', 'message' : "The risk associated with manure application is low. Follow all guidelines and recommendations in your Plan for proper application." } ,
+    28 : { 'display' : 'MEDIUM RISK', 'message' : "Apply manure with caution. Follow all guidelines and recommendations in your Plan for proper application." } ,
+    43 : { 'display' : 'HIGH RISK', 'message' : "Do NOT apply manure at this time, the risk is too high. Wait and reevaluate." } ,
 
 }
 
@@ -30,9 +28,7 @@ window.RATING = {}
 
 window.remove_risk_rating_classes = function( $field ) {
     $field.removeClass( "low" );
-    $field.removeClass( "low-med" );
     $field.removeClass( "med" );
-    $field.removeClass( "med-high" );
     $field.removeClass( "high" );
 };
 
@@ -40,19 +36,10 @@ window.add_risk_rating_classes = function( $field ) {
     if( /low/i.test( $field.text() ) ) {
         $field.addClass( "low" ); 
     }
-    else if( /low-med/i.test( $field.text() ) ) {
-        $field.addClass( "low-med" ); 
-    }
-    else if( /med-high/i.test( $field.text() ) ) {
-        $field.addClass( "med-high" ); 
-    }
     else if( /med/i.test( $field.text() ) ) {
         $field.addClass( "med" ); 
     }
     else if( /high/i.test( $field.text() ) ) {
-        $field.addClass( "high" ); 
-    }
-    else if( /extreme/i.test( $field.text() ) ) {
         $field.addClass( "high" ); 
     }
 };
@@ -78,24 +65,16 @@ window.update_riskrating_ui = function( $field, rating ) {
         var cutoff = null;
         var cutoffmessage = null;
         var color_class = null;
-        if ( total <= 1 ) {
-            cutoff =  RISK_CUTOFF[ 24 ];
+        if ( total <= 1 && total <= 3 ) {
+            cutoff = RISK_CUTOFF[ 28 ];
             color_class = "low";
         }
-        else if ( total > 1 && total <= 4 ) {
-            cutoff = RISK_CUTOFF[ 25 ];
-            color_class = "low-med";
-        }
-        else if ( total > 4 && total <= 6 ) {
-            cutoff = RISK_CUTOFF[ 31 ];
+        else if ( total > 3 && total <= 7 ) {
+            cutoff = RISK_CUTOFF[ 42 ];
             color_class = "med";
         }
-        else if ( total > 6 &&  total <= 8 ) {
-            cutoff = RISK_CUTOFF[ 40 ];
-            color_class = "med-high";
-        }
-        else if ( total >= 9 ) {
-            cutoff = RISK_CUTOFF[ 50 ];
+        else if ( total > 7 &&  total >= 9 ) {
+            cutoff = RISK_CUTOFF[ 43 ];
             color_class = "high";
         }
         if (color_class === "high"){
@@ -152,24 +131,16 @@ $( document ).on( 'rating-update', function( e, rating, override ) {
 
         var cutoff = null;
         var color_class = null;
-        if ( total <= 24 ) {
-            cutoff = RISK_CUTOFF[ 24 ];
+        if ( total <= 27 ) {
+            cutoff = RISK_CUTOFF[ 27 ];
             color_class = "low";
         }
-        else if ( total >= 25 && total < 31 ) {
-            cutoff = RISK_CUTOFF[ 25 ];
-            color_class = "low-med";
-        }
-        else if ( total >= 31 && total < 40 ) {
-            cutoff = RISK_CUTOFF[ 31 ];
+        else if ( total >= 28 && total < 43 ) {
+            cutoff = RISK_CUTOFF[ 28 ];
             color_class = "med";
         }
-        else if ( total >= 40 &&  total < 50 ) {
-            cutoff = RISK_CUTOFF[ 40 ];
-            color_class = "med-high";
-        }
-        else if ( total >= 50 ) {
-            cutoff = RISK_CUTOFF[ 50 ];
+        else if ( total >= 43 && total >= 50 ) {
+            cutoff = RISK_CUTOFF[ 43 ];
             color_class = "high";
         }
         remove_risk_rating_classes( $( "input[ name='total_risk' ]" ) );
@@ -515,13 +486,13 @@ window.CONFIG_VALIDATOR = {
             //console.log( value );
 
             if ( value === 'below_application' ) {
-                update_riskrating_ui( $field, { risk : 1 ,display : 'Low-Med' } );
+                update_riskrating_ui( $field, { risk : 1 ,display : 'Low' } );
                 var caution = "This is a low risk method of application. Watch for compaction on your field if soil is wet. Follow current manure setback distances.";
                 update_caution_ui( $field, caution );
             }
             else if ( value === 'surface_application' ) {
                 // update_riskrating_ui( $field, { risk : 3, display : 'Medium' } );
-                update_riskrating_ui( $field, { risk : 1, display : 'Low-Med' } );
+                update_riskrating_ui( $field, { risk : 1, display : 'Low' } );
                 var caution =  "Be cautious of turnaround areas and low spots. Watch for compaction on your field if applying to wet soils. Follow current manure setback distances. Use of an aerator is a good method when applying to grass in a higher risk time.";
                 update_caution_ui( $field, caution );
                 // var risk = { risk : 4, display : RISK_RATING[ 4 ] };
@@ -534,7 +505,7 @@ window.CONFIG_VALIDATOR = {
                 update_caution_ui( $field, caution );
             }
             else if ( value === 'grazing' ) {
-                update_riskrating_ui( $field, { risk : 4, display : 'Low-Med' } );
+                update_riskrating_ui( $field, { risk : 4, display : 'Medium' } );
                 var caution = "Grazing is a form of manure application. Be sure to observe manure application setback distances and maintain field cover to reduce a runoff event.";
                 update_caution_ui( $field, caution );
             }
@@ -568,7 +539,7 @@ window.CONFIG_VALIDATOR = {
             for( var i = 0; i < values.length; i++ ) {
                 var value = values[ i ];
                 if ( value in options.stop_values ) {
-                    update_riskrating_ui( $field, { risk : 9, display : 'Extreme' } );
+                    update_riskrating_ui( $field, { risk : 9, display : 'High' } );
                     has_extreme_flag = true;
                 }
             }
