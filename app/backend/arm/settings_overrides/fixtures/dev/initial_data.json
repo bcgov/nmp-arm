@@ -322,6 +322,21 @@
         "order": 1, 
         "is_boolean": true
     }
+},
+{
+    "pk": 20, 
+    "model": "calc.calc", 
+    "fields": {
+        "is_stop": false, 
+        "group": "SURFACE_CONDITION", 
+        "name": "Snow or ice-covered soil", 
+        "text": "Caution: Snow covered - No application is allowed if a field has at least 5 cm (2 in) or more of ice or snow over 50% or more of the area.", 
+        "value": 1.0, 
+        "is_continue": false, 
+        "is_caution": true, 
+        "order": 5, 
+        "is_boolean": true
+    }
 }
 ]
 

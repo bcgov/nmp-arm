@@ -13,10 +13,13 @@ services:
       - ./app/backend:/code
     ports:
       - "8000:8000"
+
+    env_file:
+      - .env
       
     environment:
       ENVIRONMENT: dev
-      DEBUG: 'False'
+      DEBUG: 'True'
       LOGGER_LEVEL: WARNING
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USER: ${DATABASE_USER}
