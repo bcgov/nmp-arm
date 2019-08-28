@@ -1,3 +1,36 @@
+<<<<<<< HEAD
+version: '3'
+
+services:
+
+  web:
+    image: arm-legacy-web:latest
+    container_name: arm-legacy-web
+    build: ./app/backend
+    command: python manage.py runserver 0.0.0.0:8000
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./app/backend:/code
+    ports:
+      - "8000:8000"
+
+    env_file:
+      - .env
+      
+    environment:
+      ENVIRONMENT: dev
+      DEBUG: 'True'
+      LOGGER_LEVEL: WARNING
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      ADMIN_EMAIL: ${DEFAULT_EMAIL}
+      DEFAULT_FROM_EMAIL: ${DEFAULT_EMAIL}
+      EMAIL_TO: ${DEFAULT_EMAIL}
+      SERVER_EMAIL: ${DEFAULT_EMAIL}
+      SUPPORT_EMAIL: ${DEFAULT_EMAIL}
+=======
 # Use postgres/example user/password credentials
 version: '3.7'
 
@@ -69,3 +102,4 @@ services:
   #     EMAIL_TO: ${DEFAULT_EMAIL}
   #     SERVER_EMAIL: ${DEFAULT_EMAIL}
 
+>>>>>>> 4531ffcd055baee77477d091fedb230b2ac567a0
