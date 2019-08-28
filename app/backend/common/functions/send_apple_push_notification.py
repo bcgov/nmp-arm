@@ -42,7 +42,7 @@ def send_apple_push_notification( token, text, badge=None, sound=None, data=None
             logger.debug( "\t\tAdding data" )
 
             # here is argument *arg1* with integer value *54*
-            for key in data.keys():
+            for key in list(data.keys()):
                 if isinstance( key, str ):
                     #print "Key: %s" % key
                     ekey = key.encode( "ASCII", 'ignore' )

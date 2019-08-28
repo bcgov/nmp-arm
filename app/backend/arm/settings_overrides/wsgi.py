@@ -11,7 +11,7 @@ import os
 import sys
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "arm.settings")
-os.environ.setdefault("ENVIRONMENT", "greg" )
+os.environ.setdefault("ENVIRONMENT", "dev" )
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION

@@ -62,7 +62,7 @@ class ENUM_TYPE():
             return None
         
         # if the input is really a valid key, then return it!
-        if my_value in self.as_dict().keys():
+        if my_value in list(self.as_dict().keys()):
             return my_value
         
         # find the appropriate key for this value!
@@ -80,7 +80,7 @@ class ENUM_TYPE():
             return None
         
         # if the input is really a valid key, then return it!
-        if my_value in self.as_dict().keys():
+        if my_value in list(self.as_dict().keys()):
             return self.as_dict()[ my_value ]
         
         # find the appropriate key for this value!

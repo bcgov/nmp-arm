@@ -40,7 +40,6 @@ ADMIN_REORDER = (
 
 from django import template
 from django.conf import settings
-from django.utils.datastructures import SortedDict
 
 import logging
 logger = logging.getLogger( __file__ )
@@ -72,10 +71,10 @@ def admin_reorder(context, token):
     """
     # sort key function - use index of item in order if exists, otherwise item
     sort = lambda order, item: (order.index(item), "") if item in order else ( len(order), item)
-    order = SortedDict(settings.ADMIN_REORDER)
+    order = OrderedDict(settings.ADMIN_REORDER)
     if "app_list" in context:
         # sort the app list
-        context["app_list"].sort(key=lambda app: sort(order.keys(), app["app_url"].strip("/").split("/")[-1]))
+        context["app_list"].sort(key=lambda app: sort(list(order.keys()), app["app_url"].strip("/").split("/")[-1]))
         for i, app in enumerate(context["app_list"]):
             # sort the model list for each app
             app_name = app["app_url"].strip("/").split("/")[-1]

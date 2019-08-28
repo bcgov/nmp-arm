@@ -18,11 +18,10 @@ from common.classes.B64Wrapper import B64Wrapper
 
 class B64FieldException(Exception): pass
 
-class B64FieldMixin(object):
+class B64FieldMixin(object, metaclass=models.SubfieldBase):
     """
 
     """
-    __metaclass__ = models.SubfieldBase
 
     def __init__(self, *args, **kwargs):
         """
@@ -40,7 +39,7 @@ class B64FieldMixin(object):
         return 'TextField'
 
     def to_python(self, value):
-        if value is None or not isinstance(value, types.StringTypes):
+        if value is None or not isinstance(value, (str,)):
             return value
 
         try:
@@ -57,7 +56,7 @@ class B64FieldMixin(object):
         if value is None or value == '':
             return value
 
-        if isinstance(value, types.StringTypes):
+        if isinstance(value, (str,)):
             value = value.encode('unicode_escape')
             value = value.encode('ascii')
         else:

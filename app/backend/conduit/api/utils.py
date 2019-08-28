@@ -118,7 +118,7 @@ class AutoAPI(object):
         resources_str += '\nfrom conduit.api import ModelResource'
         resources_str += '\nfrom conduit.api.fields import ForeignKeyField, ManyToManyField'
 
-        for app_name, models in self.api._app_models.items():
+        for app_name, models in list(self.api._app_models.items()):
             resources_str += '\nfrom {0} import {1}'.format(app_name, ', '.join(models))
 
         # Add resource class strings
@@ -156,7 +156,7 @@ class AutoAPI(object):
         related_fields = self._get_related_fields_by_name(model)
 
         # Iterate through related fields
-        for name, field in related_fields.items():
+        for name, field in list(related_fields.items()):
             related_model = field.related.parent_model
             # If a resource already exists on the api with this model
             # use that resource

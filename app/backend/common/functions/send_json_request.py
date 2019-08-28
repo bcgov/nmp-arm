@@ -5,7 +5,7 @@
 #
 #  system imports
 #
-from urllib import urlencode
+from urllib.parse import urlencode
 import json
 import logging
 import requests
@@ -31,10 +31,10 @@ def send_json_post( url, json_dict ):
             logger.debug( "[%s] Result was: %s" % (r.status_code, r.text ) )
             return r.json()
         
-    except requests.ConnectionError, args:
+    except requests.ConnectionError as args:
         return { 'result': 'error', 'errors': "ConnectionError: %s" % args }
     
-    except Exception, args:
+    except Exception as args:
         LogTraceback()
         logger.error( "Error: %s" % args )
         return { 'result': 'error', 'errors': "Generic: %s" % args }

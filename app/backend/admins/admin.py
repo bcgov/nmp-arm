@@ -12,10 +12,10 @@ from django.utils.translation import ugettext_lazy as _
 
 #
 #  app imports
-from models import Admin
+from .models import Admin
 
-from forms import AdminChangeForm
-from forms import AdminCreationForm
+from .forms import AdminChangeForm
+from .forms import AdminCreationForm
 
 class MyAdminAdmin(UserAdmin):
     # The forms to add and change user instances
