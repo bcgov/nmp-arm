@@ -47,7 +47,7 @@ class FormApiView( JSONResponseMixin, BaseFormView ):
     def form_invalid( self, form ):
         logger.debug( "Form NOT valid" )
         errors = {}
-        for error in form.errors.keys():
+        for error in list(form.errors.keys()):
             if len( form.errors[ error ] ) == 1:
                 errors[ error ] = form.errors[ error ][0]
             else:
@@ -104,7 +104,7 @@ class FormApiView( JSONResponseMixin, BaseFormView ):
         form_values = self.get_initial()
 
         # only allow 1 level deep of dictionaries and lists
-        for key in parsed.keys():
+        for key in list(parsed.keys()):
             if type( parsed[key] ) == list or type( parsed[key] ) == dict:
                 form_values[ key ] = json.dumps( parsed[key] )
             else:

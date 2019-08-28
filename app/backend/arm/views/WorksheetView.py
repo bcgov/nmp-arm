@@ -4,13 +4,12 @@
 from django.conf import settings
 from django.forms import Form
 from django.contrib import messages
-from django.contrib.sites.models import Site
-from django.core.context_processors import csrf
-from django.core.urlresolvers import reverse
+from django.template.context_processors import csrf
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response
 from django.views.generic.edit import FormView
 from django.core.mail import send_mail, BadHeaderError, EmailMessage
+from django.urls import reverse
 
 
 #
@@ -106,7 +105,7 @@ def format_submission( sdict ):
 
 class WorksheetView( FormView ):
 
-    template_name = 'bc_worksheet.html'
+    template_name = 'worksheet.html'
     form_class = WorksheetForm 
 
     http_method_names = [ 'get', 'post', ]
@@ -137,12 +136,12 @@ class WorksheetView( FormView ):
                         'ARM worksheet submission', 
                         'please see attachement', 
                         'no_reply@whatcomcd.org',
-                        ['NEmbertson@whatcomcd.org'], ['info@terragis.net','whatcomcd6975@gmail.com'],
+                        ['NEmbertson@whatcomcd.org'], ['gregcorradini@gmail.com','whatcomcd6975@gmail.com'],
                         headers = {})
             email.attach_file('/tmp/'+filename)
             email.send()
         except Exception as e:
-            logger.exception( e );
+            logger.exception( e )
         return super( WorksheetView, self ).form_valid( form )
 
     def post( self, request, *args, **kwargs ):

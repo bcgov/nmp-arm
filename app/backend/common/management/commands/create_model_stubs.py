@@ -188,7 +188,7 @@ class Command(BaseCommand):
                     model_form_class = import_mods( full_forms_import, options['model_form_name'])
                     model_form.update( { 'model_form' : model_form_class.__name__, 'model_form_app_label': full_forms_import } )
                     logger.debug( "[ FORM ]: success retrieved model form = %s" % model_form )
-                except Exception, e:
+                except Exception as e:
                     logger.exception( e )
                     raise CommandError( "it seems the model-form class you passed in was not found. Did you spell it right? Does it exist in <app_name>/<forms_dir>/<form>.py structure?")
                     sys.exit( 1 )

@@ -2,7 +2,7 @@ from copy import deepcopy
 from base64 import b64encode, b64decode
 from zlib import compress, decompress
 try:
-    from cPickle import loads, dumps
+    from pickle import loads, dumps
 except ImportError:
     from pickle import loads, dumps
 
@@ -63,7 +63,7 @@ def dbsafe_decode(value, compress_object=False):
 from south.modelsinspector import add_introspection_rules
 add_introspection_rules([], ["^common\.functions\.PickledObject\.PickledObjectField"])
 
-class PickledObjectField(models.Field):
+class PickledObjectField(models.Field, metaclass=models.SubfieldBase):
     """
     A field that will accept *any* python object and store it in the
     database. PickledObjectField will optionally compress it's values if
@@ -76,7 +76,6 @@ class PickledObjectField(models.Field):
     None values since they aren't pickled and encoded.
 
     """
-    __metaclass__ = models.SubfieldBase
 
     def __init__(self, *args, **kwargs):
         self.compress = kwargs.pop('compress', False)
@@ -178,24 +177,24 @@ class JSONWidget (widgets.Widget):
             self.attrs.update(attrs)
 
     def render(self, name, value, attrs=None):
-        if not isinstance(value, unicode):
+        if not isinstance(value, str):
             value = simplejson.dumps(value)
 
         final_attrs = self.build_attrs(attrs, name=name)
         return mark_safe(
-                u'<textarea%s>%s</textarea>' %
+                '<textarea%s>%s</textarea>' %
                     ( flatatt(final_attrs), conditional_escape(force_unicode(value)) )
             )
 
     def value_from_datadict(self, data, files, name):
-        return data.get(name, u'{ }')
+        return data.get(name, '{ }')
 
 class JSONField (forms.Field):
 
     widget = JSONWidget
 
     default_error_messages = {
-        'invalid': u'Enter a valid JSON string.'
+        'invalid': 'Enter a valid JSON string.'
     }
 
     def __init__(self, max_value=None, min_value=None, *args, **kwargs):
