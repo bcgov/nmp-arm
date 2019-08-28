@@ -104,15 +104,12 @@ venv.bak/
 .mypy_cache/
 
 .DS_Store
+arm/settings.original.py
 
 # Visual Studio Code
 .vscode
-<<<<<<< HEAD
-
 **/secrets/
 **/data/
 *.gz
-=======
 .vs/
 .idea/
->>>>>>> 5d03492e8e3d380a40252ba6b9c98a754189810d
