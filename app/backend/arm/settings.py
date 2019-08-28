@@ -7,7 +7,7 @@ import logging
 logger = logging.getLogger(__file__)
 
 # Debugging flags:
-DEBUG = config('DEBUG', default='False', cast=bool)
+DEBUG = config('DEBUG', default='True', cast=bool)
 
 # Absolute filesystem path to the project.
 ABSOLUTE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -17,7 +17,7 @@ ADMINS = (
     ('Admin', ADMIN_EMAIL),
 )
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', socket.gethostname(), 'arm-orig.azurewebsites.net']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', socket.gethostname(), '.azurewebsites.net']
 
 AUTH_USER_MODEL = 'admins.Admin'
 
@@ -102,7 +102,7 @@ LOGIN_REDIRECT_URL = '/'
 # the site admins on every HTTP 500 error.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
-LOGGER_LEVEL = config('LOGGER_LEVEL', default='WARNING')
+LOGGER_LEVEL = config('LOGGER_LEVEL', default='DEBUG')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,

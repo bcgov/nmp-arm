@@ -3,8 +3,8 @@ version: '3'
 services:
 
   web:
-    image: arm-legacy-web:latest
-    container_name: arm-legacy-web
+    image: arm-bc-web:latest
+    container_name: arm-bc-web
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     stdin_open: true

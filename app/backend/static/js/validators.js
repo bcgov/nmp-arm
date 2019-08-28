@@ -48,6 +48,11 @@ window.update_riskrating_ui = function( $field, rating ) {
 
     var $risk = $field.parents( '.form-group' ).find( '.riskrating' );
     $risk.text( "Risk Rating: "+rating.display );
+    var $hidden = $field.parents( '.form-group' ).find( 'input.riskhiddenfield:hidden' );
+    if($hidden.length >= 1 )
+    {
+        $hidden[0].value = rating.display;
+    }
     remove_risk_rating_classes( $risk );
     add_risk_rating_classes( $risk );
     RATING[ $field.attr('name') ] = rating.risk;

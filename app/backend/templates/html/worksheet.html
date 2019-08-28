@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css"/>
 
     <!-- jQuery and Bootstrap JS -->
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.1/jquery.min.js"></script>
     
     <!-- added for dialogue windows by KV -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.ui/1.11.4/jquery-ui.min.css" /> 
@@ -191,6 +191,7 @@
                             />
                         </div>
                         <div class="col-lg-8 desc riskrating" data-name="precipitation_1">Risk Rating: N/A</div>
+                        <input type="hidden" class="riskhiddenfield" name="precipitation_1_risk" value="" />
                         <div class="col-lg-8 cautionrating"></div>
                     </div>
 
@@ -213,6 +214,7 @@
                             />
                         </div>
                         <div class="col-lg-8 desc riskrating" data-name="precipitation_2">Risk Rating: N/A</div>
+                        <input type="hidden" class="riskhiddenfield" name="precipitation_2_risk" value="" />
                         <div class="col-lg-8 cautionrating"></div>
                     </div>
 
@@ -284,6 +286,7 @@
                             </div>
                         </div>
                         <div class="col-lg-8 desc riskrating" data-name="soil_moisture">Risk Rating: N/A</div>
+                        <input type="hidden" class="riskhiddenfield" name="soil_moisture_risk" value="" />
                         <div class="col-lg-8 cautionrating"></div>
                     </div>
 
@@ -306,6 +309,7 @@
                             />
                         </div>
                         <div class="col-lg-8 desc riskrating" data-name="water_table_depth">Risk Rating: N/A</div>
+                        <input type="hidden" class="riskhiddenfield" name="water_table_depth_risk" value="" />
                         <div class="col-lg-8 cautionrating"></div>
                     </div>
 
@@ -348,6 +352,7 @@
                             </div>
                         </div>
                         <div class="col-lg-8 desc riskrating" data-name="forage_density">Risk Rating: N/A</div>
+                        <input type="hidden" class="riskhiddenfield" name="forage_density_risk" value="" />
                         <div class="col-lg-8 cautionrating"></div>
                     </div>
 
@@ -369,6 +374,7 @@
                             />
                         </div>
                         <div class="col-lg-8 desc riskrating" data-name="forage_height">Risk Rating: N/A</div>
+                        <input type="hidden" class="riskhiddenfield" name="forage_height_risk" value="" />
                         <div class="col-lg-8 cautionrating"></div>
                     </div>
 
@@ -412,7 +418,9 @@
                             </div>
                         </div>
                         <div class="col-lg-8 desc riskrating" data-name="surface_condition">Risk Rating: N/A</div>
+                        <input type="hidden" class="riskhiddenfield" name="surface_condition_risk" value="" />
                         <div class="col-lg-8 cautionrating"></div>
+                        <input type="hidden" name="surface_condition_list" value="" />
                     </div>
 
 
@@ -450,6 +458,7 @@
                             </div>
                         </div>
                         <div class="col-lg-8 desc riskrating" data-name="application_equipment">Risk Rating: N/A</div>
+                        <input type="hidden" class="riskhiddenfield" name="application_equipment_risk" value="" />
                         <div class="col-lg-8 cautionrating"></div>
                     </div>
 
@@ -470,6 +479,7 @@
                             </div>
                         </div>
                         <div class="col-lg-8 desc riskrating" data-name="critical_area"></div>
+                        <input type="hidden" class="riskhiddenfield" name="critical_area_risk" value="" />
                         <div class="col-lg-8 cautionrating"></div>
                     </div>
 
@@ -491,7 +501,8 @@
                                 />
                             </div>
                             <div class="col-lg-8 desc riskrating" data-name="manure_setback_distance"></div>
-                            <div class="col-lg-8 cautionrating"></div>
+                            <input type="hidden" class="riskhiddenfield" name="manure_setback_distance_risk" value="" />
+                        <div class="col-lg-8 cautionrating"></div>
                         </div>
                     </div><!--group-wrapper-->
 
@@ -508,15 +519,9 @@
                         </div> 
                     </div>
                     <p>Save as PDF by clicking File > Print on your desktop browser menu. Then click Save.</p>
-                    <button id="send_btn" type="submit" class="btn btn-default">Send/Email</button>
+                    <!-- <button id="send_btn" type="submit" class="btn btn-default">Send/Email</button> -->
                     <button id="clear_btn" class="btn btn-default">Clear</button>                    
                     <button id="print_btn" type="submit" class="btn btn-default">Print/Save </button>
-<!-- Print/Save – Opens as a PDF to be printed or saved
-    Send – Send – Opens in an email to send to whoever they want
--->
-
-                    <!--<button id="save_btn" class="btn btn-default">Save</button>-->
-
 
                  <div id="downloadwindow" title="Download PDF Form"></div>
                 </form>
@@ -666,8 +671,6 @@
 
         $( '#print_btn' ).on( 'click', function( e ) {
             // validate entire form
-            // var validator = $('#arm_form').data('bootstrapValidator').validate({ignore:":not(:visible)"});
-            // var amessage = validator.getInvalidFields({ignore:":not(:visible)"});
             e.stopPropagation();
             e.preventDefault();
             // var theerrors = amessage.length;
@@ -726,73 +729,46 @@
             }
             
             if (theerrors < 1) {
-                // $('#arm_form').data('bootstrapValidator').validate(); 
-                // input fields ************************************************************************
-                var dairy_farm_name   = fieldvaluesarray[0];  //   = $("#arm_form input[name=dairy_farm_name]").val();
-                var apply_date        = fieldvaluesarray[1];  //   = $("#arm_form input[name=apply_date]").val();
-                var managment_unit    = fieldvaluesarray[2];  //   = $("#arm_form input[name=managment_unit]").val();
-                var precipitation_1   = fieldvaluesarray[3];  //   = $("#arm_form input[name=precipitation_1]").val();
-                var precipitation_2   = fieldvaluesarray[4];  //   = $("#arm_form input[name=precipitation_2]").val();
-                var water_table_depth = fieldvaluesarray[5];  //     = $("#arm_form input[name=water_table_depth]").val(); 
-                var forage_height     = fieldvaluesarray[6];  //     = $("#arm_form input[name=forage_height]").val(); 
-                
-                // radio and checkboxes  **************************************************************
-                var soil_type         = fieldvaluesarray[7]; // $("#arm_form input[name=soil_type]:checked").val(); 
-                var soil_moisture     = fieldvaluesarray[8]; // $("#arm_form input[name=soil_moisture]:checked").val();
-                // set value
-                // var forage_density          = $("[name=forage_density][value=50]").prop("checked",true); 
-                var forage_density    = fieldvaluesarray[9]; // $("[name=forage_density]:checked").val(); 
-                var surface_condition = fieldvaluesarray[10]; //surface_condition_array.toString();
-                var application_equipment = fieldvaluesarray[11];// $("#arm_form input[name=application_equipment]:checked").val(); 
-                // if yes two more questions
-                critical_area             = fieldvaluesarray[12];// $("#arm_form input[name=critical_area]:checked").val();   
-                // manure_setback_distance check if visible or of critical area = yes
-                if (critical_area === "yes"){
-                    var manure_setback_distance = fieldvaluesarray[13]; // $("#arm_form input[name=manure_setback_distance]").val();     
-                }
-                var adminunit ="";
-                $.ajax({
-                   async: false, // work around to wait for php return if slow ...
-                   type: "GET",
-                   url: "/print/bc_print_ws.php",
-                   data: { 
-                      'dairy_farm_name':   dairy_farm_name,
-                      'apply_date':        apply_date,
-                      'managment_unit':    managment_unit,
-                      'precipitation_1':   precipitation_1,
-                      'precipitation_2':   precipitation_2,
-                      'water_table_depth': water_table_depth,
-                      'forage_height':     forage_height,
-                      'soil_type':         soil_type,
-                      'soil_moisture':     soil_moisture,
-                      'forage_density':    forage_density,
-                      'application_equipment':   application_equipment,
-                      'critical_area':           critical_area,
-                      'manure_setback_distance': manure_setback_distance,
-                      'surface_condition':       surface_condition
-                   },
-                   success: function(xhr){
-                       // alert(xhr);
-                       $( "#downloadwindow" ).dialog({
-                           open: function(event, ui) { $('#downloadwindow').focus(); },
-                           dialogClass: 'fixed-dialog',
-                           autoOpen: false,
-                           position: ['center','center'],
-                           height: "auto",
-                           width: "auto"
-                       });
-                       pdfdownloadlink = armbaseurl + xhr;
-                       returnlink = xhr;
-                       if (requesttype ==='print'){
-                          showDownload(pdfdownloadlink);
-                       }
-                       else {
-                          thedownloadlink = armbaseurl + xhr;
-                          var emailmessage = "You can download your form in PDF format here "+thedownloadlink ;
-                          window.location.href = "mailto:?subject=Your ARM Worksheet Download Link&body="+emailmessage; 
-                       }
-                   }
+
+                //Create delimited list of surface conditions
+                var surfaceConditionList = "";
+                $("input[name=surface_condition]:checked").each(function()
+                {
+                    surfaceConditionList += this.value + ', ';
                 });
+
+                $('input[name=surface_condition_list]').val(surfaceConditionList);    
+
+                // Get PDF from View
+                var post_url = $('#arm_form').attr("action"); //get form action url
+                var form_data = $('#arm_form').serialize(); //Encode form elements for submission
+
+                var request = new XMLHttpRequest();
+                request.open('POST', 'pdf/', true);
+                request.responseType = 'arraybuffer';
+                
+                //Send the proper header information along with the request
+                request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+                request.onreadystatechange = function() {//Call a function when the state changes.
+                    if(request.readyState == 4 && request.status == 200) {
+                        var blob = new Blob([request.response], {type: 'application/pdf'});
+                        var isMS = window.navigator.msSaveOrOpenBlob ? true : false; // check if IE, Edge, etc
+                        if(isMS)
+                        {
+                            var farmName = $("input[name=dairy_farm_name]").val();
+                            filename = `${farmName}.pdf`; // FUTURE: add date stamp to filename?
+                            window.navigator.msSaveOrOpenBlob(blob, filename);
+                        }
+                        else
+                        {
+                            var url = URL.createObjectURL(blob);
+                            window.open(url);
+                        }
+                    }
+                }
+                request.send(form_data);
+
             }
             else {
                 // validator.focusInvalid({ignore:":not(:visible)"});

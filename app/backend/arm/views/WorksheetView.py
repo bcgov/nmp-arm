@@ -5,12 +5,13 @@ from django.conf import settings
 from django.forms import Form
 from django.contrib import messages
 from django.template.context_processors import csrf
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render_to_response
 from django.views.generic.edit import FormView
 from django.core.mail import send_mail, BadHeaderError, EmailMessage
 from django.urls import reverse
-
+from django.template.loader import render_to_string
+from decouple import config
 
 #
 #  sys imports
@@ -19,6 +20,7 @@ from datetime import datetime
 import json
 import uuid
 import io
+import requests
 import logging
 logger = logging.getLogger( __file__ )
 
@@ -26,8 +28,7 @@ logger = logging.getLogger( __file__ )
 #
 #  app imports
 #
-from common.functions.filesystem import create_dirs
-
+from .PdfView import WorksheetData, PdfView
 
 class WorksheetForm( Form ):
 
@@ -40,65 +41,35 @@ class WorksheetForm( Form ):
 
 
 def format_submission( sdict ):
-    record = {}
-    record[ 'headers' ] = [ 
-        'Timestamp' ,
-        'Farm_Name' ,
-        'Apply_Date' ,
-        'Field_Unit' ,
-        '24_Precip' ,
-        '24_Precip_Risk' ,
-        '72_Precip' ,
-        '72_Precip_Risk' ,
-        'Soil_Type' ,
-        'Soil_Mois' ,
-        'Soil_Mois_Risk' ,
-        'WaterT_Depth' ,
-        'WaterT_Depth_Risk' ,
-        'Forage_Density' ,
-        'Forage_Density_Risk' ,
-        'Forage_Height' ,
-        'Forage_Height_Risk' ,
-        'Surface_Condition' ,
-        'Surface_Condition_Risk' ,
-        'App_Equipment' ,
-        'App_Equipment_Risk' ,
-        'Critical_Area' ,
-        'Manure_Setback' ,
-        'Vegitative_Buffer' ,
-        'Vegitative_Buffer_Risk' ,
-        'Total_Risk' ,
-    ]
 
-    record[ 'row' ] = [
-        datetime.now().strftime( '%m/%d/%y' ) ,
+    worksheetData = WorksheetData(
         sdict.get( 'dairy_farm_name', '' ) ,
         sdict.get( 'apply_date', '' ) , 
         sdict.get( 'managment_unit', '' ) ,
         sdict.get( 'precipitation_1', '' ) ,
-        sdict.get( 'precipitation_1_risk', '' ) ,
         sdict.get( 'precipitation_2', '' ) ,
-        sdict.get( 'precipitation_2_risk', '' ) ,
+        sdict.get( 'water_table_depth', '' ) ,
+        sdict.get( 'forage_height', '' ) ,
         sdict.get( 'soil_type', '' ) ,
         sdict.get( 'soil_moisture', '' ) ,
-        sdict.get( 'soil_moisture_risk', '' ) ,
-        sdict.get( 'water_table_depth', '' ) ,
-        sdict.get( 'water_table_depth_risk', '' ) ,
         sdict.get( 'forage_density', '' ) ,
-        sdict.get( 'forage_density_risk', '' ) ,
-        sdict.get( 'forage_height', '' ) ,
-        sdict.get( 'forage_height_risk', '' ) ,
-        sdict.get( 'surface_condition', '' ) ,
-        sdict.get( 'surface_condition_risk', '' ) ,
         sdict.get( 'application_equipment', '' ) ,
-        sdict.get( 'application_equipment_risk', '' ) ,
         sdict.get( 'critical_area', '' ) ,
         sdict.get( 'manure_setback_distance', '' ) ,
-        sdict.get( 'total_risk', '' ) ,
-    ]
+        sdict.get( 'surface_condition', '' ) ,)
 
-    return record
+    return worksheetData
 
+
+def generate_pdf(worksheetData):
+
+    # Rendered
+    html_string = render_to_string('pdf.html', {'WorksheetData': worksheetData})
+    weasy_server = ("%s/pdf?filename=arm_report.pdf" % config('WEASYPRINT_URL'))
+
+    response = requests.post(weasy_server, data=html_string) 
+
+    return response
 
 
 class WorksheetView( FormView ):
@@ -121,26 +92,17 @@ class WorksheetView( FormView ):
         self.success_url = reverse( 'thankyou', )
 
     def form_valid( self, form ):
+        worksheetData = format_submission( self.request.POST )
+        
+        #return super( WorksheetView, self ).form_valid( form )
+        # response = generate_pdf(worksheetData)
+        # print(response.headers)
+        
+        html_string = render_to_string('pdf.html', {'WorksheetData': worksheetData})
 
-        filename = 'submission-'+str(uuid.uuid4())+'.csv'
-        logger.debug( "[ WRITING FILE ]: %s" % filename )
-        with open( '/tmp/'+filename, 'w' ) as fsock:
-            format = format_submission( self.request.POST )
-            fsock.write( ','.join( format[ 'headers' ] ) + "\n" )
-            fsock.write( ','.join( format[ 'row' ] ) + "\n" )
-
-        try:
-            email = EmailMessage(
-                        'ARM worksheet submission', 
-                        'please see attachement', 
-                        'no_reply@whatcomcd.org',
-                        ['NEmbertson@whatcomcd.org'], ['gregcorradini@gmail.com','whatcomcd6975@gmail.com'],
-                        headers = {})
-            email.attach_file('/tmp/'+filename)
-            email.send()
-        except Exception as e:
-            logger.exception( e )
-        return super( WorksheetView, self ).form_valid( form )
+        response = HttpResponse(content_type='text/html;')
+        response.write(html_string)
+        return response
 
     def post( self, request, *args, **kwargs ):
 

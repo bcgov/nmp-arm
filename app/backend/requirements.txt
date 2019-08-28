@@ -5,3 +5,4 @@ django-timezone-field
 pygments
 psycopg2
 python-decouple
+requests
