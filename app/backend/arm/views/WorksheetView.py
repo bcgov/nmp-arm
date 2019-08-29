@@ -29,6 +29,7 @@ logger = logging.getLogger( __file__ )
 #  app imports
 #
 from .PdfView import WorksheetData, PdfView
+from arm.models import FieldDescription
 
 class WorksheetForm( Form ):
 
@@ -46,10 +47,37 @@ class WorksheetView( FormView ):
 
     http_method_names = [ 'get', ]
 
+    def GetFieldDescriptions(self):
+        fieldList = FieldDescription.objects.all()
+
+        fieldDescriptions = {}
+
+        for field in fieldList:
+            fieldDescriptions[field.field_name] = field.description
+
+        return fieldDescriptions
+
     def get( self, request, *args, **kwargs ):
 
+        fieldDescriptions = self.GetFieldDescriptions()
+
         data = {
-                'page_name': 'ARM Worksheet'
+                'page_name': 'ARM Worksheet',
+                'FarmName_description': fieldDescriptions['FarmName'],
+                'Main_description': fieldDescriptions['Main'],
+                'ApplicationDate_description': fieldDescriptions['ApplicationDate'],
+                'FieldName_description': fieldDescriptions['FieldName'],
+                '24Preciptation_description': fieldDescriptions['24Preciptation'],
+                '72Preciptation_description': fieldDescriptions['72Preciptation'],
+                'SoilType_description': fieldDescriptions['SoilType'],
+                'SoilMoisture_description': fieldDescriptions['SoilMoisture'],
+                'WaterTableDepth_description': fieldDescriptions['WaterTableDepth'],
+                'ForageDensity_description': fieldDescriptions['ForageDensity'],
+                'ForageHeight_description': fieldDescriptions['ForageHeight'],
+                'FieldSurfaceConditions_description': fieldDescriptions['FieldSurfaceConditions'],
+                'ManureApplicationEquipment_description': fieldDescriptions['ManureApplicationEquipment'],
+                'WaterbodyCriticalArea_description': fieldDescriptions['WaterbodyCriticalArea'],
+                'ManureSetback_description': fieldDescriptions['ManureSetback'],
         }
         data.update( csrf( request ) )
 

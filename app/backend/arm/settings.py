@@ -19,29 +19,28 @@ ADMINS = (
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', socket.gethostname(), '.azurewebsites.net']
 
-AUTH_USER_MODEL = 'admins.Admin'
+# AUTH_USER_MODEL = 'admins.Admin'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
-MANAGERS = ADMINS
+# MANAGERS = ADMINS
 
+DATABASE_HOST = config('DATABASE_HOST')
 DATABASE_NAME = config('DATABASE_NAME')
 DATABASE_USER = config('DATABASE_USER')
 DATABASE_PASSWORD = config('DATABASE_PASSWORD')
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         #'ENGINE': 'django.db.backends.sqlite3',
-#         #'HOST': 'postgis91.pugetworks.com',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#         'NAME': DATABASE_NAME,
-#         'USER': DATABASE_USER,
-#         'PASSWORD': DATABASE_PASSWORD,
-#     },
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'NAME': DATABASE_NAME,
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASSWORD,
+    },
+}
 
 
 DATE_FORMAT = 'N j, Y'
@@ -78,12 +77,6 @@ INSTALLED_APPS = (
     'django_extensions',
 
     'common',
-
-    # api or alternate view functionality
-    'conduit',
-
-    # For admin functionality
-    'admins',
 
     'arm',  # for management commands
     # 'arm.calc' ,

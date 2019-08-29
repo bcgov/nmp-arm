@@ -13,13 +13,13 @@ TEMPLATE_DEBUG = DEBUG
 ABSOLUTE_PATH = os.path.dirname( __file__ ).replace( 'arm/settings_overrides', '' )
 
 ADMIN_EMAIL=os.environ.get( 'ADMIN_EMAIL' )
-ADMINS = (
-    ('Admin', ADMIN_EMAIL),
-)
+# ADMINS = (
+#     ('Admin', ADMIN_EMAIL),
+# )
 
 ALLOWED_HOSTS = [ 'localhost', 'inoutboard.local', 'maps.whatcomcd.org/inout/', socket.gethostname() ]
 
-MANAGERS = ADMINS
+# MANAGERS = ADMINS
 
 DATABASE_NAME = os.environ.get( 'DATABASE_NAME' )
 DATABASE_USER = os.environ.get( 'DATABASE_USER' )
