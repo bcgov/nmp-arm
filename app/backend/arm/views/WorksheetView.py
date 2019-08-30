@@ -29,7 +29,7 @@ logger = logging.getLogger( __file__ )
 #  app imports
 #
 from .PdfView import WorksheetData, PdfView
-from arm.models import FieldDescription
+from arm.models import FieldDescription, ForageHeightOption
 
 class WorksheetForm( Form ):
 
@@ -57,6 +57,11 @@ class WorksheetView( FormView ):
 
         return fieldDescriptions
 
+    def GetForageHeightOptions(self):
+        options = ForageHeightOption.objects.all().order_by('id')
+
+        return options
+
     def get( self, request, *args, **kwargs ):
 
         fieldDescriptions = self.GetFieldDescriptions()
@@ -79,6 +84,7 @@ class WorksheetView( FormView ):
                 'WaterbodyCriticalArea_description': fieldDescriptions['WaterbodyCriticalArea'],
                 'ManureSetback_description': fieldDescriptions['ManureSetback'],
         }
+        data['ForageHeightOptions'] = self.GetForageHeightOptions()
         data.update( csrf( request ) )
 
         return render_to_response( self.template_name, data )

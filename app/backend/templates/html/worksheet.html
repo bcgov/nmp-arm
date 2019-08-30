@@ -367,21 +367,22 @@
 
 
                     <div class="form-group">
-                        <label class="col-lg-8"><h3>Forage Height ( inches )</h3></label>
+                        <label class="col-lg-8"><h3>Forage Height</h3></label>
                         <p class="col-lg-8 desc">{{ ForageHeight_description|safe }}</p>
                         <div class="col-lg-5">
-                            <input type="number" step="0.1" min="0", max="2000" class="form-control" name="forage_height" placeholder="Enter value in inches"
+                            <select class="form-control" name="forage_height" id="forage_height"
                                 data-bv-notempty="true"
                                 data-bv-notempty-message="the forage height is required and cannot be empty"
-
-                                data-bv-regexp="true"
-                                data-bv-regexp-regexp="^[0-9.]+$"
-                                data-bv-regexp-message="The forage height can only consist of number characters"
 
                                 data-bv-greaterthan-inclusive=false
                                 data-bv-greaterthan-value=1
                                 data-bv-greaterthan-message="Stop: Cover height is not adequate to properly function: Instate a 100 manure setback distance from critical areas"
-                            />
+                            >
+                                    <option value>Select a Value</option>
+                                    {% for option in ForageHeightOptions %}
+                                    <option value="{{ option.value }}">{{ option.description }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                         <div class="col-lg-8 desc riskrating" data-name="forage_height">Risk Rating: N/A</div>
                         <input type="hidden" class="riskhiddenfield" name="forage_height_risk" value="" />
@@ -672,6 +673,8 @@
             });
 
             $( "input[type='radio']:checked" ).prop( "checked", false )
+
+            $('select option:first-child').attr("selected", "selected");
         } ); 
 
         $( '#send_btn' ).on( 'click', function( e ) {
@@ -701,7 +704,7 @@
             var scval = "";
             var critical_area = "";
             var surface_condition_array = [];
-            var formfieldsarray = [['dairy_farm_name','text'],['apply_date','text'],['managment_unit','text'],['precipitation_1','text'],['precipitation_2','text'],['water_table_depth','text'],['forage_height','text'],['soil_type','radio'],['soil_moisture','radio'],['forage_density','radio'],['surface_condition','checkbox'],['application_equipment','radio'],['critical_area','radio'],['manure_setback_distance','text']];
+            var formfieldsarray = [['dairy_farm_name','text'],['apply_date','text'],['managment_unit','text'],['precipitation_1','text'],['precipitation_2','text'],['water_table_depth','text'],['forage_height','dropdown'],['soil_type','radio'],['soil_moisture','radio'],['forage_density','radio'],['surface_condition','checkbox'],['application_equipment','radio'],['critical_area','radio'],['manure_setback_distance','text']];
             var fieldvaluesarray = [];
             var len = formfieldsarray.length;
             for (i=0; i<len; ++i) {
@@ -726,13 +729,13 @@
                     fieldvaluesarray[i] = surface_condition_array.toString();
                 }
                 else if (fieldtype === "dropdown"){
-                    fieldvaluesarray[i] = ""; // $("#"+formfield+" :selected").val();
+                    fieldvaluesarray[i] = $("#"+formfield+" :selected").val();
                 }
                 // if no value reevaluate for invalid mark
                 if     ( fieldvaluesarray[i] === "" || typeof fieldvaluesarray[i] === "undefined"){
                     // re-validate only that field
                     // check if visible
-                    var isvisible = $("#arm_form input[name="+formfield+"]").is(":visible"); 
+                    var isvisible = $("#arm_form input[name="+formfield+"]").is(":visible") || $("#arm_form select[name="+formfield+"]").is(":visible"); 
                     if (isvisible){
                        $('#arm_form').data('bootstrapValidator').revalidateField(formfieldsarray[i][0]);
                        console.log("Assumed form field entry error in "+ formfieldsarray[i][0]);
