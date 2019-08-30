@@ -303,19 +303,20 @@
                         <!-- <p class="col-lg-8 desc">Water table can be determined by nearby ditches, or by digging a hole in your field. For more on how to determine water table depth, click <a target="_blank" href="http://www.wadairyplan.org/ARM/water-table-depth-determination">here</a>. 1 foot = 12 inches.</p> -->
                         <p class="col-lg-8 desc">{{ WaterTableDepth_description|safe }}</p>
                         <div class="col-lg-5">
-                            <input type="number" step="0.01" min="2", max="20000" class="form-control" name="water_table_depth" placeholder="Enter value in inches"
-                                data-bv-notempty="true"
-                                data-bv-notempty-message="the water table depth is required and cannot be empty"
+                        <select class="form-control" name="water_table_depth" id="water_table_depth"
+                            data-bv-notempty="true"
+                            data-bv-notempty-message="the water table depth is required and cannot be empty"
 
-                                data-bv-regexp="true"
-                                data-bv-regexp-regexp="^[0-9.]+$"
-                                data-bv-regexp-message="The water table depth can only consist of number characters"
-
-                                data-bv-greaterthan-inclusive=false
-                                data-bv-greaterthan-value=12
-                                data-bv-greaterthan-message="Stop: The water table is too close to the soil surface for safe application at this time. Wait until it recedes  before manure is applied."
-                            />
+                            data-bv-greaterthan-inclusive=false
+                            data-bv-greaterthan-value=12
+                            data-bv-greaterthan-message="Stop: The water table is too close to the soil surface for safe application at this time. Wait until it recedes  before manure is applied." >
+                                <option value>Select a Value</option>
+                            {% for option in WaterTableDepthOptions %}
+                                <option value="{{ option.value }}">{{ option.description }}</option>
+                            {% endfor %}
+                        </select>
                         </div>
+
                         <div class="col-lg-8 desc riskrating" data-name="water_table_depth">Risk Rating: N/A</div>
                         <input type="hidden" class="riskhiddenfield" name="water_table_depth_risk" value="" />
                         <div class="col-lg-8 cautionrating"></div>
@@ -379,7 +380,7 @@
                                 data-bv-greaterthan-message="Stop: Cover height is not adequate to properly function: Instate a 100 manure setback distance from critical areas"
                             >
                                     <option value>Select a Value</option>
-                                    {% for option in ForageHeightOptions %}
+                                {% for option in ForageHeightOptions %}
                                     <option value="{{ option.value }}">{{ option.description }}</option>
                                 {% endfor %}
                             </select>
@@ -483,7 +484,7 @@
                         <div class="col-lg-5">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="critical_area" value="yes" data-bv-notempty="true" data-bv-notempty-message="critical area is required" /> Yes (answer next two questions)
+                                    <input type="radio" name="critical_area" value="yes" data-bv-notempty="true" data-bv-notempty-message="critical area is required" /> Yes (answer next question)
                                 </label>
                             </div>
                             <div class="radio">

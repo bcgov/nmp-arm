@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.forms import TextInput, Textarea
 from django.db import models
 
-from .models import FieldDescription, ForageHeightOption
+from .models import FieldDescription, ForageHeightOption, WaterTableDepthOption
 
 @admin.register(FieldDescription)
 class FieldDescriptionAdmin(admin.ModelAdmin):
@@ -14,4 +14,8 @@ class FieldDescriptionAdmin(admin.ModelAdmin):
 
 @admin.register(ForageHeightOption)
 class ForageHeightOptionsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'value', 'description', 'active')
+    
+@admin.register(WaterTableDepthOption)
+class WaterTableDepthOptionAdmin(admin.ModelAdmin):
     list_display = ('id', 'value', 'description', 'active')
