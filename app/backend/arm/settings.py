@@ -7,7 +7,7 @@ import logging
 logger = logging.getLogger(__file__)
 
 # Debugging flags:
-DEBUG = config('DEBUG', default='False', cast=bool)
+DEBUG = config('DEBUG', default='True', cast=bool)
 
 # Absolute filesystem path to the project.
 ABSOLUTE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -17,31 +17,30 @@ ADMINS = (
     ('Admin', ADMIN_EMAIL),
 )
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', socket.gethostname(), 'arm-orig.azurewebsites.net']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', socket.gethostname(), '.azurewebsites.net']
 
-AUTH_USER_MODEL = 'admins.Admin'
+# AUTH_USER_MODEL = 'admins.Admin'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
-MANAGERS = ADMINS
+# MANAGERS = ADMINS
 
+DATABASE_HOST = config('DATABASE_HOST')
 DATABASE_NAME = config('DATABASE_NAME')
 DATABASE_USER = config('DATABASE_USER')
 DATABASE_PASSWORD = config('DATABASE_PASSWORD')
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         #'ENGINE': 'django.db.backends.sqlite3',
-#         #'HOST': 'postgis91.pugetworks.com',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#         'NAME': DATABASE_NAME,
-#         'USER': DATABASE_USER,
-#         'PASSWORD': DATABASE_PASSWORD,
-#     },
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'NAME': DATABASE_NAME,
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASSWORD,
+    },
+}
 
 
 DATE_FORMAT = 'N j, Y'
@@ -79,12 +78,6 @@ INSTALLED_APPS = (
 
     'common',
 
-    # api or alternate view functionality
-    'conduit',
-
-    # For admin functionality
-    'admins',
-
     'arm',  # for management commands
     # 'arm.calc' ,
 )
@@ -102,7 +95,7 @@ LOGIN_REDIRECT_URL = '/'
 # the site admins on every HTTP 500 error.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
-LOGGER_LEVEL = config('LOGGER_LEVEL', default='WARNING')
+LOGGER_LEVEL = config('LOGGER_LEVEL', default='DEBUG')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,

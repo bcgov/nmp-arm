@@ -4,7 +4,7 @@
 #  django imports
 #
 from django.conf import settings
-from django.db.models.signals import post_syncdb
+#from django.db.models.signals import post_syncdb
 from django.db import connection, transaction
 from django.dispatch import receiver
 

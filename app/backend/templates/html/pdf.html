@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    
+    <style type="text/css">    
+        body{
+            font-size: 16px;
+            line-height: 1.5;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            margin-bottom: 10px;
+            padding-top: 15px;
+        }
+
+        .answer {
+            text-align: center;
+            padding: 5px;
+            border: solid 1px black;
+            max-width: 200px;
+        }
+    </style>
+
+    <title>ARM Worksheet BC</title>
+</head>
+<body>    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="page-header">
+                    <h2>ARM Worksheet BC</h2>
+                    <!-- <p>It is recommended that you fill out this form no more than 24 hours <u>prior</u> to a manure application event, particularly from October through February. You can group similar fields together into one field unit. For questions related to filling out any of the fields below, click on the provided hyperlinks for more information.</p> -->
+                </div>
+
+                <form id="arm_form" method="post" class="form-horizontal" action="">
+                    <div class="form-group">
+                        <h3>Farm Name</h3>
+                        <div class="answer">
+                            {{ WorksheetData.farm_name}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h3>Application Date</h3>
+                        <!-- <div class="col-lg-8">Date you want to apply: You must do this evaluation no more than 24 hours prior to application.</p> -->
+                        <div class="answer">
+                            {{ WorksheetData.apply_date}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h3>Field Name or Unit</h3>
+                        <!-- <p class="col-lg-8 desc">Do a separate evaluation for each field or management unit. A "management unit" is a group of fields with similar soil, crop type, and management conditions.</p> -->
+                        <div class="answer">
+                            {{ WorksheetData.managment_unit}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h3>24 hour Precipitation</h3>
+                        <!-- <p class="col-lg-8 desc">MSA precipitation: https://sites.google.com/site/wadairyplan/MSA</p> -->
+                        <div class="answer">
+                            {{ WorksheetData.precipitation_1 }} mm
+                        </div>
+                        <div class="col-lg-8 desc riskrating" data-name="precipitation_1">Risk Rating: {{ WorksheetData.precipitation_1_risk }}</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <h3>72 hour Precipitation</h3>
+                        <!-- <div class="col-lg-8 desc">MSA precipitation:  https://sites.google.com/site/wadairyplan/MSA</div> -->
+                        <div class="answer">
+                            {{ WorksheetData.precipitation_2 }} mm
+                        </div>
+                        <div class="col-lg-8 desc riskrating" data-name="precipitation_2">Risk Rating: {{ WorksheetData.precipitation_2_risk }}</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <h3>Soil Type</h3>
+                        <!-- <p class="col-lg-8 desc">Enter the general soil type you want to apply to. If you dont know your soil type, make your selection under "Don't know". Soil type can be found on your farm plan map.</p> -->
+                        <ul>
+                            <li>
+                                <label>
+                                    Sandy/Gravelly (Course Textured Soil - A) {% if WorksheetData.soil_type == 'sand' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Silt (Medium Textured Soil - B) 
+                                    {% if WorksheetData.soil_type == 'silt' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Clay (Fine Textured Soil – C/D)
+                                    {% if WorksheetData.soil_type == 'clay' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Peat/Muck (Organic Soil)
+                                    {% if WorksheetData.soil_type == 'peat_muck' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Don't know
+                                    {% if WorksheetData.soil_type == 'other' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                        </ul>
+                        <!--col-lg-5-->
+                    </div>
+
+
+                    <div class="form-group">
+                        <h3>Soil Moisture</h3>
+                        <!-- <p>Enter moisture value in %. Click on the link for guidance on how to determine soil moisture http://www.wadairyplan.org/ARM/soil-moisture-determination</p> -->
+                        <ul>
+                            <li>
+                                <label>
+                                    90-100% (If your boots squish in the field, you are at saturation)
+                                    {% if WorksheetData.soil_moisture == '100' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    80-90% (In this range you would not comforatably drive a tractor into the field  and are worried about potential soil compaction due to field wetness)
+                                    {% if WorksheetData.soil_moisture == '80' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    60-80% (In this range you could comfortably drive a tractor out into the field without worrying about ruts or field compaction)
+                                    {% if WorksheetData.soil_moisture == '60' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    &lt; 60% (In this range your soil is firm and starting to dry out)
+                                    {% if WorksheetData.soil_moisture == '50' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                        </ul>
+                        <div class="col-lg-8 desc riskrating" data-name="soil_moisture">Risk Rating: {{ WorksheetData.soil_moisture_risk }}</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <h3>Water Table Depth</h3>
+                        <!-- <p class="col-lg-8 desc">Water table can be determined by nearby ditches, or by digging a hole in your field. For more on how to determine water table depth, click <a target="_blank" href="http://www.wadairyplan.org/ARM/water-table-depth-determination">here</a>. 1 foot = 12 inches.</p> -->
+                        <div class="answer">
+                            {{ WorksheetData.water_table_depth}} inches
+                        </div>
+                        <div class="col-lg-8 desc riskrating" data-name="water_table_depth">Risk Rating: {{ WorksheetData.water_table_depth_risk }}</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <h3>Forage Density ( % )</h3>
+                        <!-- <p class="col-lg-8 desc">Click link for guidance on how to determine forage density <a  target="_blank" href="http://www.wadairyplan.org/ARM/forage-density-determination">here</a></p> -->
+                        <ul>
+                            <li>
+                                <label>
+                                    90-100%
+                                    {% if WorksheetData.forage_density == '90' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    80-90%
+                                    {% if WorksheetData.forage_density == '80' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    70-80%
+                                    {% if WorksheetData.forage_density == '70' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    50-70%
+                                    {% if WorksheetData.forage_density == '60' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    &lt; 50%
+                                    {% if WorksheetData.forage_density == '50' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Other: Annual/Fallow/Row Crop Field (eg, new seeding, corn, berry, bare soil, etc.)
+                                    {% if WorksheetData.forage_density == '101' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                        </ul>
+                        <div class="col-lg-8 desc riskrating" data-name="forage_density">Risk Rating: {{ WorksheetData.forage_density_risk }}</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <h3>Forage Height</h3>
+                        <div class="answer">
+                            {{ WorksheetData.forage_height}} inches
+                        </div>
+                        <div class="col-lg-8 desc riskrating" data-name="forage_height">Risk Rating: {{ WorksheetData.forage_height_risk }}</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3>Field Surface Condition</h3>
+                        <!-- <p class="col-lg-8 desc">Check all that apply to your current field conditions</p> -->
+                        <ul>
+                            <li>
+                                <label>
+                                    Ponding
+                                    {% if 'ponding' in WorksheetData.surface_condition %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Flooding current or potential in 15 days
+                                    {% if 'flooding' in WorksheetData.surface_condition %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Frozen ( more than 1 inch ) or snow covered
+                                    {% if 'frozen' in WorksheetData.surface_condition %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Snow or ice-covered soil (5cm or more of snow over 50% (or more) of the field
+                                    {% if 'snow-ice' in WorksheetData.surface_condition %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Tiles present in field
+                                    {% if 'tiles' in WorksheetData.surface_condition %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    None of the above
+                                    {% if 'none' in WorksheetData.surface_condition %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                        </ul>
+                        <div class="col-lg-8 desc riskrating" data-name="surface_condition">Risk Rating: {{ WorksheetData.surface_condition_risk }}</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <h3>Manure Application Equipment</h3>
+                        <!-- <p class="col-lg-8 desc">Check equipment/method of application</p> -->
+                        <ul>
+                            <li>
+                                <label>
+                                    Below surface applicator (eg, injector, incorportaion within 24 hours)
+                                    {% if WorksheetData.application_equipment == 'below_application' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Surface application (eg, splash plate, tank, aerator)
+                                    {% if WorksheetData.application_equipment == 'surface_application' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Irrigation sprinkler (eg, Big Gun)
+                                    {% if WorksheetData.application_equipment == 'irrigation_sprinkler' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Grazing
+                                    {% if WorksheetData.application_equipment == 'grazing' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Solid Manure Application
+                                    {% if WorksheetData.application_equipment == 'soild_manure_application' %} <b>Selected</b> {% endif %}
+                                </label>
+                            </li>
+                        </ul>
+                        <div class="col-lg-8 desc riskrating" data-name="application_equipment">Risk Rating: {{ WorksheetData.application_equipment_risk }}</div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <h3>Waterbody or Critical Area</h3>
+                        <p class="col-lg-8 desc">Do you have a waterbody (i.e., ditch, stream, river, etc.) or identified critcal area (i.e., swale, wetland, etc) adjacent to your field?</p>
+                        <div class="answer">
+                            {{ WorksheetData.critical_area }}
+                        </div>
+                        <div class="col-lg-8 desc riskrating" data-name="critical_area"></div>
+                        <div class="col-lg-8 cautionrating"></div>
+                    </div>
+
+
+                    {% if WorksheetData.critical_area == 'yes' %}
+                        <div class="show-hide-wrapper" data-state="closed">
+                            <div class="form-group">
+                                <h3>Manure Setback Distance</h3>
+                                <p class="col-lg-8 desc">Manure setbacks must be a minimum of 10 feet from May 1 to August 31 (40 for Big Gun use). 40 feet from September 1 to May. and 80 feet from October 1 to February 28. For more information on seasonal manure application setback distance, click <a target="_blank" href="http://www.wadairyplan.org/setbacks">here</a></p>
+                                <div class="answer">
+                                    {{ WorksheetData.manure_setback_distance }}
+                                </div>
+                                <div class="col-lg-8 desc riskrating" data-name="manure_setback_distance"></div>
+                                <div class="col-lg-8 cautionrating"></div>
+                            </div>
+                        </div><!--group-wrapper-->
+                    {% endif %}
+
+                    <div class="form-group riskanalysis">
+                        <h3>Application Risk Analysis for Surface Runoff</h3>
+                        <div class="col-lg-8">
+                            <div class="answer">
+                                <label>
+                                    {{ WorksheetData.total_risk }}
+                                </label>
+                            </div>
+                        </div> 
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
