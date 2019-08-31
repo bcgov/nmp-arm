@@ -6,7 +6,9 @@ services:
     image: arm-bc-web:latest
     container_name: arm-bc-web
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    # command: python manage.py runserver 0.0.0.0:8000
+    # command: bash "prod_run.sh"
+
     stdin_open: true
     tty: true
     volumes:
@@ -19,13 +21,15 @@ services:
       
     environment:
       ENVIRONMENT: dev
-      DEBUG: 'True'
+      DEBUG: 'False'
       LOGGER_LEVEL: WARNING
-      ADMIN_EMAIL: admin.email@domain
-      DATABASE_NAME:  DATABASE_NAME
-      DATABASE_USER: DATABASE_USER
-      DATABASE_PASSWORD: DATABASE_PASSWORD
-      DEFAULT_FROM_EMAIL: admin.email@domain
-      EMAIL_TO: admin.email@domain
-      SERVER_EMAIL: admin.email@domain
-      SUPPORT_EMAIL: admin.email@domain
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      ADMIN_EMAIL: ${DEFAULT_EMAIL}
+      DEFAULT_FROM_EMAIL: ${DEFAULT_EMAIL}
+      EMAIL_TO: ${DEFAULT_EMAIL}
+      SERVER_EMAIL: ${DEFAULT_EMAIL}
+      SUPPORT_EMAIL: ${DEFAULT_EMAIL}
+      WEASYPRINT_URL: ${WEASYPRINT_URL}

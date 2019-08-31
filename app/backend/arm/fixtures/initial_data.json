@@ -1,0 +1,221 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$150000$xIc12TAznw9c$lySNgjuJ/8aWgLGzy0/mrofmPPsVzyFzbI+yuOK+e40=",
+            "last_login": "2019-08-31T14:17:56.939Z",
+            "is_superuser": true,
+            "username": "arm-admin",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2019-08-31T14:16:16.508Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "arm.fielddescription",
+        "id": 1,
+        "fields": {
+            "field_name": "Main",
+            "description": "It is recommended that you fill out this form no more than 24 hours <u>prior</u> to a manure application event, particularly from October through February. You can group similar fields together into one field unit. For questions related to filling out any of the fields below, click on the provided hyperlinks for more information."
+        }
+    },
+    {
+        "model": "arm.fielddescription",
+        "id": 2,
+        "fields": {
+            "field_name": "FarmName",
+            "description": ""
+        }
+    },
+    {
+        "model": "arm.fielddescription",
+        "id": 3,
+        "fields": {
+            "field_name": "ApplicationDate",
+            "description": "Date you want to apply: You must do this evaluation no more than 24 hours prior to application."
+        }
+    },
+    {
+        "model": "arm.fielddescription",
+        "id": 4,
+        "fields": {
+            "field_name": "FieldName",
+            "description": "Do a separate evaluation for each field or management unit. A \"management unit\" is a group of fields with similar soil, crop type, and management conditions."
+        }
+    },
+    {
+        "model": "arm.fielddescription",
+        "id": 5,
+        "fields": {
+            "field_name": "24Preciptation",
+            "description": "Link to <a target=\"_blank\" href=\"https://sites.google.com/site/wadairyplan/MSA\">MSA precipitation</a>"
+        }
+    },
+    {
+        "model": "arm.fielddescription",
+        "id": 6,
+        "fields": {
+            "field_name": "72Preciptation",
+            "description": "Link to <a target=\"_blank\" href=\"https://sites.google.com/site/wadairyplan/MSA\">MSA precipitation</a>"
+        }
+    },
+    {
+        "model": "arm.fielddescription",
+        "id": 7,
+        "fields": {
+            "field_name": "SoilType",
+            "description": "Enter the general soil type you want to apply to. If you dont know your soil type, make your selection under \"Don't know\". Soil type can be found on your farm plan map."
+        }
+    },
+    {
+        "model": "arm.fielddescription",
+        "id": 8,
+        "fields": {
+            "field_name": "SoilMoisture",
+            "description": "Enter moisture value in %. Click on the link for guidance on how to determine soil moisture <a  target=\"_blank\" href=\"http://www.wadairyplan.org/ARM/soil-moisture-determination\">here</a>"
+        }
+    },
+    {
+        "model": "arm.fielddescription",
+        "id": 9,
+        "fields": {
+            "field_name": "WaterTableDepth",
+            "description": "Water table can be determined by nearby ditches, or by digging a hole in your field. For more on how to determine water table depth, click <a target=\"_blank\" href=\"http://www.wadairyplan.org/ARM/water-table-depth-determination\">here</a>. 1 foot = 12 inches."
+        }
+    },
+    {
+        "model": "arm.fielddescription",
+        "id": 10,
+        "fields": {
+            "field_name": "ForageDensity",
+            "description": "Click link for guidance on how to determine forage density <a  target=\"_blank\" href=\"http://www.wadairyplan.org/ARM/forage-density-determination\">here</a>"
+        }
+    },
+    {
+        "model": "arm.fielddescription",
+        "id": 11,
+        "fields": {
+            "field_name": "ForageHeight",
+            "description": ""
+        }
+    },
+    {
+        "model": "arm.fielddescription",
+        "id": 12,
+        "fields": {
+            "field_name": "FieldSurfaceConditions",
+            "description": "Check all that apply to your current field conditions"
+        }
+    },
+    {
+        "model": "arm.fielddescription",
+        "id": 13,
+        "fields": {
+            "field_name": "ManureApplicationEquipment",
+            "description": "Check equipment/method of application"
+        }
+    },
+    {
+        "model": "arm.fielddescription",
+        "id": 14,
+        "fields": {
+            "field_name": "WaterbodyCriticalArea",
+            "description": "Do you have a waterbody (i.e., ditch, stream, river, etc.) or identified critcal area (i.e., swale, wetland, etc) adjacent to your field?"
+        }
+    },
+    {
+        "model": "arm.fielddescription",
+        "id": 15,
+        "fields": {
+            "field_name": "ManureSetback",
+            "description": "Manure setbacks must be a minimum of 10 feet from May 1 to August 31 (40 for Big Gun use). 40 feet from September 1 to May. and 80 feet from October 1 to February 28. For more information on seasonal manure application setback distance, click <a target=\"_blank\" href=\"http://www.wadairyplan.org/setbacks\">here</a>"
+        }
+    },
+    {
+        "model": "arm.forageheightoption",
+        "id": 4,
+        "fields": {
+            "value": 7,
+            "description": ">15 cm (>6 in)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.forageheightoption",
+        "id": 1,
+        "fields": {
+            "value": 0,
+            "description": "No cover or < 2.5 cm (< 1 in)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.forageheightoption",
+        "id": 5,
+        "fields": {
+            "value": 5,
+            "description": "Not forage crop",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.forageheightoption",
+        "id": 3,
+        "fields": {
+            "value": 5,
+            "description": "7.5-15 cm (3-6 in)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.forageheightoption",
+        "id": 2,
+        "fields": {
+            "value": 2.8,
+            "description": "2.5-7.5 cm (1-3 in)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.watertabledepthoption",
+        "id": 1,
+        "fields": {
+            "value": 1,
+            "description": "0-30 cm (1-12 in)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.watertabledepthoption",
+        "id": 2,
+        "fields": {
+            "value": 1,
+            "description": "30-60 cm (12-24 in)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.watertabledepthoption",
+        "id": 3,
+        "fields": {
+            "value": 24,
+            "description": "60-120 cm (24-48 in)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.watertabledepthoption",
+        "id": 4,
+        "fields": {
+            "value": 49,
+            "description": "> 120 cm (> 48 in)",
+            "active": true
+        }
+    }
+]
