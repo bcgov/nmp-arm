@@ -150,7 +150,7 @@
         "model": "arm.forageheightoption",
         "id": 2,
         "fields": {
-            "value": 2.8,
+            "value": 2,
             "description": "2.5-7.5 cm (1-3 in)",
             "active": true
         }
@@ -159,7 +159,7 @@
         "model": "arm.forageheightoption",
         "id": 3,
         "fields": {
-            "value": 5,
+            "value": 3,
             "description": "7.5-15 cm (3-6 in)",
             "active": true
         }
@@ -177,7 +177,7 @@
         "model": "arm.forageheightoption",
         "id": 5,
         "fields": {
-            "value": 5,
+            "value": 6,
             "description": "Not forage crop",
             "active": true
         }
