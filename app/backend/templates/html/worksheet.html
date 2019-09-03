@@ -268,7 +268,7 @@
                         <div class="col-lg-5">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="soil_moisture" value="100" 
+                                    <input type="radio" name="soil_moisture" value="95" 
                                         data-bv-notempty="true"
                                         data-bv-notempty-message="soil moisture is required"
                                     /> 90-100% (If your boots squish in the field, you are at saturation)
@@ -278,7 +278,7 @@
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="soil_moisture" value="80" /> 80-90% (In this range you would not comforatably drive a tractor into the field  and are worried about potential soil compaction due to field wetness)
+                                    <input type="radio" name="soil_moisture" value="85" /> 80-90% (In this range you would not comforatably drive a tractor into the field  and are worried about potential soil compaction due to field wetness)
                                 </label>
                             </div>
                             <div class="radio">
@@ -330,21 +330,21 @@
                         <div class="col-lg-5">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="forage_density" value="90"
+                                    <input type="radio" name="forage_density" value="100"
                                         data-bv-notempty="true"
                                         data-bv-notempty-message="forage density is required" /> 90-100%
                                 </label>
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="forage_density" value="80" /> 80-90%
+                                    <input type="radio" name="forage_density" value="70" /> 70-90%
                                 </label>
                             </div>
-                            <div class="radio">
+                            <!-- <div class="radio">
                                 <label>
                                     <input type="radio" name="forage_density" value="70" /> 70-80%
                                 </label>
-                            </div>
+                            </div> -->
                             <div class="radio">
                                 <label>
                                     <input type="radio" name="forage_density"  value="60" /> 50-70%
@@ -357,7 +357,7 @@
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="forage_density"  value="101" /> Other: Annual/Fallow/Row Crop Field (eg, new seeding, corn, berry, bare soil, etc.)
+                                    <input type="radio" name="forage_density"  value="70" /> Other: Annual/Fallow/Row Crop Field (eg, new seeding, corn, berry, bare soil, etc.)
                                 </label>
                             </div>
                         </div>
@@ -705,7 +705,7 @@
             var scval = "";
             var critical_area = "";
             var surface_condition_array = [];
-            var formfieldsarray = [['dairy_farm_name','text'],['apply_date','text'],['managment_unit','text'],['precipitation_1','text'],['precipitation_2','text'],['water_table_depth','text'],['forage_height','dropdown'],['soil_type','radio'],['soil_moisture','radio'],['forage_density','radio'],['surface_condition','checkbox'],['application_equipment','radio'],['critical_area','radio'],['manure_setback_distance','text']];
+            var formfieldsarray = [['dairy_farm_name','text'],['apply_date','text'],['managment_unit','text'],['precipitation_1','text'],['precipitation_2','text'],['water_table_depth','dropdown'],['forage_height','dropdown'],['soil_type','radio'],['soil_moisture','radio'],['forage_density','radio'],['surface_condition','checkbox'],['application_equipment','radio'],['critical_area','radio'],['manure_setback_distance','text']];
             var fieldvaluesarray = [];
             var len = formfieldsarray.length;
             for (i=0; i<len; ++i) {
