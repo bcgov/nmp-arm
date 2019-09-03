@@ -72,62 +72,6 @@ window.update_riskrating_ui = function( $field, rating ) {
     remove_risk_rating_classes( $risk );
     add_risk_rating_classes( $risk );
     RATING[ $field.attr('name') ] = rating.risk;
-    // update total 
-    // rupdate( rating, override );
-        // KV - use total of 72 hour precip for final rating
-        
-        // if($field.attr('name') == 'precipitation_1')
-        // {
-        //     total = RATING.precipitation_1  ;  // 24 h
-        //     // check if 72 h value object exists
-        //     if (RATING.precipitation_2 != null) {
-        //     total = RATING.precipitation_2  ;  // 72 h
-        //     }
-        // }
-        // else
-        // {
-        //     total = rating.risk;
-        // }
-        // console.log( "[ TOTAL RISK ]: ", total );
-
-        // var cutoff = null;
-        // var cutoffmessage = null;
-        // var color_class = null;
-        // if ( total <= 1 ) {
-        //     cutoff =  RISK_CUTOFF[ 24 ];
-        //     color_class = "low";
-        // }
-        // else if ( total > 1 && total <= 4 ) {
-        //     cutoff = RISK_CUTOFF[ 25 ];
-        //     color_class = "low-med";
-        // }
-        // else if ( total > 4 && total <= 6 ) {
-        //     cutoff = RISK_CUTOFF[ 31 ];
-        //     color_class = "med";
-        // }
-        // else if ( total > 6 &&  total <= 8 ) {
-        //     cutoff = RISK_CUTOFF[ 40 ];
-        //     color_class = "med-high";
-        // }
-        // else if ( total >= 9 ) {
-        //     cutoff = RISK_CUTOFF[ 50 ];
-        //     color_class = "high";
-        // }
-        // if (color_class === "high"){
-        //    remove_risk_rating_classes( $( "input[ name='total_risk' ]" ) );
-        //    $( "input[ name='total_risk' ]" ).addClass( 'high' );
-        //    $( "input[ name='total_risk' ]" ).val( 'NO APPLICATION' ); 
-        //    $( "input[ name='total_risk' ]" ).parents( '.form-group' ).find( '.desc' ).text( "NO application, one or more indicators is above the critical value" ); 
-        // }
-        // else {
-        //    remove_risk_rating_classes( $( "input[ name='total_risk' ]" ) );
-        //    $( "input[ name='total_risk' ]" ).addClass( color_class );
-        //    $( "input[ name='total_risk' ]" ).val( cutoff.display ); 
-        //    $( "input[ name='total_risk' ]" ).parents( '.form-group' ).find( '.desc' ).text( cutoff.message ); 
-        // }
-
-  
-
 };
 
 
@@ -406,6 +350,8 @@ window.CONFIG_VALIDATOR = {
         critical_area: {
             validators : {
                 show_hide: {
+                },
+                critical_area_risk_rating: {
                 }
             } ,
         } ,
@@ -668,10 +614,50 @@ window.CONFIG_VALIDATOR = {
     };
 }(window.jQuery));
 
+
+
+(function($) {
+    $.fn.bootstrapValidator.validators.critical_area_risk_rating = {
+        validate: function(validator, $field, options) {
+            var value = $field.val();
+            //console.log( value );
+
+            if ( value === 'no' ) {
+                update_riskrating_ui( $field, { risk : 1 ,display : 'Low' } );
+                var caution = "";
+                update_caution_ui( $field, caution );
+            }
+            else if ( value === 'yes' ) {
+                update_riskrating_ui( $field, { risk : 3, display : 'Low-Med' } );
+                var caution =  "";
+                update_caution_ui( $field, caution );
+            }
+            return true;
+        }
+    };
+}(window.jQuery));
+
+
 (function($) {
     $.fn.bootstrapValidator.validators.manure_setback_distance = {
         validate: function(validator, $field, options) {
             var value = $field.val();
+
+            if ( value >= 12 ) {
+                update_riskrating_ui( $field, { risk : 1 ,display : 'Low' } );
+                var caution = "";
+                update_caution_ui( $field, caution );
+            }
+            else if ( value <= 11.99 && value > 1.5 ) {
+                update_riskrating_ui( $field, { risk : 4, display : 'Med' } );
+                var caution =  "";
+                update_caution_ui( $field, caution );
+            }
+            else if ( value < 1.5 ) {
+                update_riskrating_ui( $field, { risk : 7, display : 'High-Med' } );
+                var caution =  "";
+                update_caution_ui( $field, caution );
+            }
 
             var apply_value = $( "input[name='apply_date']" ).val();
             if ( typeof apply_value === 'undefined' || apply_value === null || apply_value === "" ) {
@@ -724,8 +710,8 @@ window.CONFIG_VALIDATOR = {
                     message: options.stop_message
                 };
             }
-
             return true;
+
         }
     };
 }(window.jQuery));
