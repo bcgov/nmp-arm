@@ -143,7 +143,6 @@ class PdfView(FormView):
                             [worksheetData.emailAddressForReport],
                             headers = {})
                 email.attach(filename, pdfResult.content,'application/pdf')
-                print('pre send')
                 email.send()
                 response.status_code = 200
 

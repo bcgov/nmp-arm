@@ -125,6 +125,13 @@
                             data-bv-emailaddress-message="The email address is not a valid"
                         >
                     </div>
+                    <div class="show-hide-wrapper" data-state="closed" id="processingMessage">
+                        <div class="d-flex justify-content-center">
+                            <div class="alert alert-info" role="alert">
+                                    Sending Email
+                            </div>
+                        </div>
+                    </div>
                     <div class="show-hide-wrapper" data-state="closed" id="sentMessage">                        
                         <div class="alert alert-success" role="alert">
                             Report has been sent
@@ -166,6 +173,7 @@
         
         </div>
     </div>    
+    
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
@@ -767,6 +775,9 @@
             e.stopPropagation();
             e.preventDefault();
 
+            $('#processingMessage').attr( 'data-state', 'opened' );
+            $('#sendButtons').attr( 'data-state', 'closed' );
+
             var address = $('#emailAddress').val();
             $('#emailReportForm').data('bootstrapValidator').revalidateField('emailAddress');
             if(address === '' || address === undefined)
@@ -790,6 +801,7 @@
         function ResetEmailModal()
         {
             $('#sentMessage').attr( 'data-state', 'closed' );
+            $('#processingMessage').attr( 'data-state', 'closed' );
             $('#sentMessageButtons').attr( 'data-state', 'closed' );
             $('#sendButtons').attr( 'data-state', 'opened' );            
             $('#emailReportForm').trigger("reset");
@@ -942,6 +954,7 @@
                 $('#sentMessage').attr( 'data-state', 'opened' );
                 $('#sentMessageButtons').attr( 'data-state', 'opened' );
                 $('#sendButtons').attr( 'data-state', 'closed' );
+                $('#processingMessage').attr( 'data-state', 'closed' );
             }
             else {
             }
