@@ -1,7 +1,3 @@
-
-var total = 0;
-var total2 = 0;
-
 window.RISK_RATING = {
     1 : 'Low' ,
     2 : 'Low-Med' ,

@@ -24,6 +24,10 @@
 
     <!-- BootstrapValidator JS -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
+
+    <!-- You can alternatively load the minified version -->
+    <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+
     <!-- adding GoogleAnalytics -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -98,6 +102,73 @@
     </style>
 </head>
 <body>
+
+    <!-- Modal -->
+    <div id="emailReportModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Email ARM Report</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="emailReportForm" 
+                    data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                    data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                    data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+                    <div class="form-group">
+                        <label for="emailAddress">Email Address</label>
+                        <input type="text" class="form-control" name="emailAddress" id="emailAddress" placeholder="Enter email"
+                            data-bv-notempty="true"
+                            data-bv-notempty-message="Email is required and cannot be empty"
+
+                            data-bv-emailaddress="true"
+                            data-bv-emailaddress-message="The email address is not a valid"
+                        >
+                    </div>
+                    <div class="show-hide-wrapper" data-state="closed" id="sentMessage">                        
+                        <div class="alert alert-success" role="alert">
+                            Report has been sent
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="show-hide-wrapper" data-state="opened" id="sendButtons">
+                    <button type="submit" class="btn btn-default" id="sendEmailButton">Send</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="cancelEmailButton">Cancel</button>                    
+                </div>                
+                <div class="show-hide-wrapper" data-state="closed"  id="sentMessageButtons">
+                    <button type="button" class="btn btn-default" id="sendAnotherEmail">Send Another Email</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelEmailButton">Close</button>                    
+                </div>                
+            </div>
+          </div>
+      
+        </div>
+    </div>    
+    
+    <div id="alertModel" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+        
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Required form entires missing</h4>
+            </div>
+            <div class="modal-body">
+                <p>Please find required form fields (marked in red) to fill out and submit the form once again!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        
+        </div>
+    </div>    
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
@@ -258,6 +329,9 @@
                             </div>
                         </div>
                         <!--col-lg-5-->
+                        <div class="col-lg-8 desc riskrating" data-name="forage_height">Risk Rating: N/A</div>
+                        <input type="hidden" class="riskhiddenfield" name="forage_height_risk" value="" />
+                        <div class="col-lg-8 cautionrating"></div>
                     </div>
 
 
@@ -299,7 +373,7 @@
 
 
                     <div class="form-group">
-                        <label class="col-lg-8"><h3>Water Table Depth ( inches )</h3></label>
+                        <label class="col-lg-8"><h3>Water Table Depth</h3></label>
                         <!-- <p class="col-lg-8 desc">Water table can be determined by nearby ditches, or by digging a hole in your field. For more on how to determine water table depth, click <a target="_blank" href="http://www.wadairyplan.org/ARM/water-table-depth-determination">here</a>. 1 foot = 12 inches.</p> -->
                         <p class="col-lg-8 desc">{{ WaterTableDepth_description|safe }}</p>
                         <div class="col-lg-5">
@@ -535,11 +609,14 @@
                         </div> 
                     </div>
                     <p>Save as PDF by clicking File > Print on your desktop browser menu. Then click Save.</p>
-                    <!-- <button id="send_btn" type="submit" class="btn btn-default">Send/Email</button> -->
+                    <button id="send_btn" type="submit" class="btn btn-default">Send/Email</button>
                     <button id="clear_btn" class="btn btn-default">Clear</button>                    
-                    <button id="print_btn" type="submit" class="btn btn-default">Print/Save </button>
+                    <button id="print_btn" type="submit" class="btn btn-default">Print/Save</button>
 
                  <div id="downloadwindow" title="Download PDF Form"></div>
+
+                 <input type="hidden" name="emailAddressForReport" id="emailAddressForReport" />
+                 <input type="hidden" name="reportType" id="reportType" />
                 </form>
             </div>
         </div>
@@ -563,8 +640,6 @@
     $(document).ready(function() {
 
         var form_selector = '#arm_form';
-        var pdfdownloadlink = "";
-        var armbaseurl = "https://maps.whatcomcd.org/";
         $( form_selector )
             .on('init.form.bv', function(e) {
 
@@ -630,6 +705,8 @@
             });
 
 
+        $('#emailReportForm').bootstrapValidator();
+
         /*
         **
         **  event bindings
@@ -681,26 +758,63 @@
         $( '#send_btn' ).on( 'click', function( e ) {
             e.stopPropagation();
             e.preventDefault();
-            createFormPdf('email');
-            // var thedownloadlink = createFormPdf('email');
-            // var emailmessage = "You can download your form in PDF format here "+thedownloadlink ;
-            // window.location.href = "mailto:?subject=Your ARM Worksheet Download Link&body="+emailmessage; 
+            
+            if(ValidateForm())
+            {
+                $("#emailReportModal").modal();
+                $('#emailReportForm').data('bootstrapValidator').resetForm(true);
+            }
         });
+
+        $( '#sendEmailButton' ).on( 'click', function( e ) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            var address = $('#emailAddress').val();
+            $('#emailReportForm').data('bootstrapValidator').revalidateField('emailAddress');
+            if(address === '' || address === undefined)
+            {
+                return;
+            }
+            
+            $('#emailAddressForReport').val(address);
+            createFormPdf('email');
+        });
+
+        
+        $( '#sendAnotherEmail' ).on( 'click', function( e ) {
+            ResetEmailModal()
+        });
+
+        $("#emailReportModal").on('hidden.bs.modal', function(){
+            ResetEmailModal()
+        });
+
+        function ResetEmailModal()
+        {
+            $('#sentMessage').attr( 'data-state', 'closed' );
+            $('#sentMessageButtons').attr( 'data-state', 'closed' );
+            $('#sendButtons').attr( 'data-state', 'opened' );            
+            $('#emailReportForm').trigger("reset");
+            $('#emailReportForm').data('bootstrapValidator').resetForm(true);
+        }
 
         $( '#print_btn' ).on( 'click', function( e ) {
             // validate entire form
             e.stopPropagation();
             e.preventDefault();
-            // var theerrors = amessage.length;
-            // loop fields check if invalid
-            createFormPdf('print');
+            
+            if(ValidateForm())
+            {
+                createFormPdf('print');
+            }
         });
 
-        function createFormPdf(requesttype){
-        // create array for check
+        function ValidateForm()
+        {
+            // create array for check
             var i, formfield, theerrors, returnlink;
             returnlink = null;
-            // armbaseurl = "https://maps.whatcomcd.org/";
             var theerrors = 0;
             var scval = "";
             var critical_area = "";
@@ -745,65 +859,96 @@
                 }
               }
             }
-            
-            if (theerrors < 1) {
 
-                //Create delimited list of surface conditions
-                var surfaceConditionList = "";
-                $("input[name=surface_condition]:checked").each(function()
-                {
-                    surfaceConditionList += this.value + ', ';
-                });
-
-                $('input[name=surface_condition_list]').val(surfaceConditionList);    
-
-                // Get PDF from View
-                var post_url = $('#arm_form').attr("action"); //get form action url
-                var form_data = $('#arm_form').serialize(); //Encode form elements for submission
-
-                var request = new XMLHttpRequest();
-                request.open('POST', 'pdf/', true);
-                request.responseType = 'arraybuffer';
-                
-                //Send the proper header information along with the request
-                request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-                request.onreadystatechange = function() {//Call a function when the state changes.
-                    if(request.readyState == 4 && request.status == 200) {
-                        var blob = new Blob([request.response], {type: 'application/pdf'});
-                        var isMS = window.navigator.msSaveOrOpenBlob ? true : false; // check if IE, Edge, etc
-                        if(isMS)
-                        {
-                            var farmName = $("input[name=dairy_farm_name]").val();
-                            filename = `${farmName}.pdf`; // FUTURE: add date stamp to filename?
-                            window.navigator.msSaveOrOpenBlob(blob, filename);
-                        }
-                        else
-                        {
-                            var url = URL.createObjectURL(blob);
-                            window.open(url);
-                        }
-                    }
-                }
-                request.send(form_data);
-
-            }
-            else {
-                // validator.focusInvalid({ignore:":not(:visible)"});
-                // loop trough invalid fiedls only
-                // $('#arm_form').data('bootstrapValidator').revalidateField('soil_moisture');
-                // validator.focusInvalid();
-                alert('Required form entires missing.\n Please find required form fields (marked in red)\n to fill out and submit the form\n once again!');
+            if (theerrors > 0) {
+                $("#alertModel").modal();
                 $('#arm_form').find(":input.error:first").focus();
                 // special display
                 remove_risk_rating_classes( $( "input[ name='total_risk' ]" ) );
                 $( "input[ name='total_risk' ]" ).addClass( 'high' );
                 $( "input[ name='total_risk' ]" ).val( 'Fill Out All Fields' ); 
                 $( "input[ name='total_risk' ]" ).parents( '.form-group' ).find( '.desc' ).text( "Please fill out all form fields." ); 
-
+            
+                return false;
             }
+
+            return true;
         }
 
+        function createFormPdf(requesttype){
+            //Create delimited list of surface conditions
+            var surfaceConditionList = "";
+            $("input[name=surface_condition]:checked").each(function()
+            {
+                surfaceConditionList += this.value + ', ';
+            });
+
+            $('input[name=surface_condition_list]').val(surfaceConditionList);    
+
+            $('#reportType').val('pdf');
+            if (requesttype ==='email')
+            {
+                $('#reportType').val('email');
+            }                
+
+            // Get PDF from View
+            var post_url = $('#arm_form').attr("action"); //get form action url
+            var form_data = $('#arm_form').serialize(); //Encode form elements for submission
+            console.log(form_data)
+            var request = new XMLHttpRequest();
+            request.open('POST', 'pdf/', true);
+            request.responseType = 'arraybuffer';
+                
+            //Send the proper header information along with the request
+            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+            request.onreadystatechange = function() {//Call a function when the state changes.
+                if(request.readyState == 4 && request.status == 200) 
+                {
+                    if(requesttype === 'email' )
+                    {
+                        console.log('email sent')
+                        EmailSent(true)
+                    }
+                    else
+                    {
+                        var blob = new Blob([request.response], {type: 'application/pdf'});
+                        var isMS = window.navigator.msSaveOrOpenBlob ? true : false; // check if IE, Edge, etc
+                        
+                        var farmName = $("input[name=dairy_farm_name]").val();
+                            filename = farmName + '.pdf'; // FUTURE: add date stamp to filename?
+
+                        if(isMS)
+                        {
+                            window.navigator.msSaveOrOpenBlob(blob, filename);
+                        }
+                        else
+                        {
+                            var url = URL.createObjectURL(blob);
+                            window.open(url);
+                            
+                            var link = document.createElement('a');
+                            link.style = "display: none";  
+                            link.download = filename;
+                            link.href = url;
+                            link.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));
+                        }
+                    }
+                }
+            }
+            request.send(form_data);
+        }
+
+        function EmailSent(result)
+        {
+            if ( result === true ) {
+                $('#sentMessage').attr( 'data-state', 'opened' );
+                $('#sentMessageButtons').attr( 'data-state', 'opened' );
+                $('#sendButtons').attr( 'data-state', 'closed' );
+            }
+            else {
+            }
+        }
 
 
         $(window).keydown(function(event){
@@ -813,23 +958,6 @@
             }
         });
         
-        function showDownload(pdfdownloadlink) {
-            $("#downloadwindow").empty(); // empty out previous content if any 
-            $('<span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>Click <span class="armhili"><a target="_blank" href="'+pdfdownloadlink+'"> here to save/open your PDF</a></span></div>').appendTo('#downloadwindow');  
-            $( "#downloadwindow" ).dialog({
-              resizable: false,
-              height:'auto',
-              modal: true,
-              autoOpen: false,
-              buttons: {
-                Close: function() {
-                  $("#downloadwindow").empty();
-                  $( this ).dialog( "close" );
-                }
-              }
-            });
-            $("#downloadwindow").dialog( "open" );
-        }  
 
     }); //  ready
 

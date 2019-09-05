@@ -1,6 +1,7 @@
 from django.views.generic.edit import FormView
 from django.http import HttpResponse
 from django.template.loader import render_to_string
+from django.core.mail import send_mail, BadHeaderError, EmailMessage
 from decouple import config
 
 import requests
@@ -31,7 +32,8 @@ class WorksheetData:
                     manure_setback_distance_risk,
                     surface_condition,
                     surface_condition_risk,
-                    total_risk):
+                    total_risk,
+                    emailAddressForReport):
 
         self.farm_name = farm_name
         self.apply_date = apply_date
@@ -58,6 +60,7 @@ class WorksheetData:
         self.surface_condition = surface_condition
         self.surface_condition_risk = surface_condition_risk
         self.total_risk = total_risk
+        self.emailAddressForReport = emailAddressForReport
 
 class PdfView(FormView):
     template_name = 'pdf.html'
@@ -91,7 +94,8 @@ class PdfView(FormView):
             sdict.get( 'manure_setback_distance_risk', 'N/A' ) ,
             sdict.get( 'surface_condition_list', '' ) ,
             sdict.get( 'surface_condition_risk', 'N/A' ) ,
-            sdict.get( 'total_risk', '' ) ,)
+            sdict.get( 'total_risk', '' ) ,
+            sdict.get( 'emailAddressForReport', '' ),)
             
         return worksheetData
 
@@ -111,8 +115,54 @@ class PdfView(FormView):
 
         return response
 
-    def post( self, request ):
+    def get_pdf_response(self, worksheetData):
 
+        pdfResult = self.generate_pdf(worksheetData)
+
+        # # Creating http response
+        response = HttpResponse(content_type='application/pdf;')
+        response['Content-Disposition'] = 'inline; filename=arm_report.pdf'
+        response['Content-Transfer-Encoding'] = 'binary'
+        response.content = pdfResult.content
+
+        return response
+
+    def email_pdf(self, worksheetData):
+ 
+        pdfResult = self.generate_pdf(worksheetData)
+        response = HttpResponse(content_type='text/html;')
+
+        if pdfResult.status_code == requests.codes.ok:
+
+            filename = ("%s.pdf" % worksheetData.farm_name).replace(" ", "")
+            try:
+                email = EmailMessage(
+                            'ARM worksheet submission',
+                            'please see attachement',
+                            config('DEFAULT_FROM_EMAIL'),
+                            [worksheetData.emailAddressForReport],
+                            headers = {})
+                email.attach(filename, pdfResult.content,'application/pdf')
+                print('pre send')
+                email.send()
+                response.status_code = 200
+
+            except Exception as e:
+                print(e)
+                logger.exception( e )
+                response.status_code = 500
+                response.content = 'Email failed'
+        else:
+            response.status_code = pdfResult.status_code
+
+        return response
+
+
+    def post( self, request ):
+        reporttype = request.POST.get("reportType", None)
         data = self.format_submission(self.request.POST)
-        response = self.generate_pdf(data)
+        if reporttype == 'email':
+            response = self.email_pdf(data)
+        else:
+            response = self.generate_pdf(data)
         return response
