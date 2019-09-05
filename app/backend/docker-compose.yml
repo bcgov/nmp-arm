@@ -6,7 +6,7 @@ services:
     image: arm-bc-web:latest
     container_name: arm-bc-web
     build: .
-    # command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000
     # command: bash "prod_run.sh"
 
     stdin_open: true
@@ -29,6 +29,10 @@ services:
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       ADMIN_EMAIL: ${DEFAULT_EMAIL}
       DEFAULT_FROM_EMAIL: ${DEFAULT_EMAIL}
+      EMAIL_PORT: ${EMAIL_PORT}
+      EMAIL_HOST_USER: ${EMAIL_HOST_USER}
+      EMAIL_HOST: ${EMAIL_HOST}
+      EMAIL_HOST_PASSWORD: ${EMAIL_HOST_PASSWORD}
       EMAIL_TO: ${DEFAULT_EMAIL}
       SERVER_EMAIL: ${DEFAULT_EMAIL}
       SUPPORT_EMAIL: ${DEFAULT_EMAIL}

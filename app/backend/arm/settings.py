@@ -33,6 +33,8 @@ DATABASE_PASSWORD = config('DATABASE_PASSWORD')
 
 DATABASES = {
     'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(ABSOLUTE_PATH, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -51,8 +53,16 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 TIME_FORMAT = 'H:i P'
 
 # Mail Server info
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 25
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = 'tmp/email-messages/'
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = 25
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_USE_TLS = 1
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 EMAIL_TO = config('EMAIL_TO')
 
