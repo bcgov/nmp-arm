@@ -1,5 +1,5 @@
 # set the base image 
-FROM python:latest
+FROM python:3.7
 
 ENV PYTHONUNBUFFERED 1
 RUN mkdir /code
@@ -14,9 +14,10 @@ RUN pip install -Ur requirements.txt
 # RUN python /code/manage.py collectstatic --noinput
 
 ### Containers should not run as root as a good practice
-USER root
-RUN chmod +x ./prod_run.sh
+# USER root
+#RUN chmod +x ./prod_run.sh
 
-USER 10001
+#ENTRYPOINT [ "./prod_run.sh" ]
 
-ENTRYPOINT [ "sh", "./prod_run.sh" ]
+# RUN python /code/manage.py migrate;
+# RUN python /code/manage.py loaddata initial_data; 
