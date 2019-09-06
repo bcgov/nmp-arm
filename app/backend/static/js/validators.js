@@ -14,12 +14,8 @@ window.RISK_RATING = {
 
 window.RISK_CUTOFF = {
 
-    // 24 : { 'display' : 'LOW RISK', 'message' : "The risk associated with manure application is low. Follow all guidelines and recommendations in your Plan for proper application." } ,
-    // 25 : { 'display' : 'LOW-MED RISK', 'message' : "Apply manure following all guidelines and recommendations in your Plan." } ,
     27 : { 'display' : 'LOW RISK', 'message' : "The risk associated with manure application is low. Follow all guidelines and recommendations in your Plan for proper application." } ,
-    // 31 : { 'display' : 'MEDIUM RISK', 'message' : "Apply manure with caution. Follow all guidelines and recommendations in your Plan for proper application." } ,
     28 : { 'display' : 'MEDIUM RISK', 'message' : "Apply manure with caution. Follow all guidelines and recommendations in your Plan for proper application." } ,
-    // 40 : { 'display' : 'MEDIUM-HIGH RISK', 'message' : "If you apply manure, do so with EXTREME caution. Follow all recommendations, manure setback distances, and application guidelines in this worksheet and in your Plan." } ,
     50 : { 'display' : 'HIGH RISK', 'message' : "Do NOT apply manure at this time, the risk is too high. Wait and reevaluate." } ,
 
 }
@@ -145,13 +141,6 @@ $( document ).on( 'rating-update', function( e, rating, override ) {
 })
 
 window.calculate_caution = function( value_to_check, L, options ) {
-    // expects array of hashes
-    // { 'value' : number, 'message' : str }
-    /*
-    var options = options || {};
-    var is_reversed = options.is_reversed || false;
-    if( is_reversed ) { L.reverse(); }
-    */
 
     var left, right;
     for ( left=0,right=1; right < L.length; left++,right++ ) {
@@ -357,7 +346,6 @@ window.CONFIG_VALIDATOR = {
             trigger : 'input change keyup' , 
             validators : {
                 manure_setback_distance : {
-                    stop_message : "Stop: manure setbacks must be a minimum of 10 feet from May 1 to August 31 (40 for Big Gun use). 40 feet from September 1 to May. and 80 feet from October 1 to February 28",
                 }
             } ,
         } ,
@@ -639,72 +627,19 @@ window.CONFIG_VALIDATOR = {
         validate: function(validator, $field, options) {
             var value = $field.val();
 
+            var caution = "Warning: Your setback is either lower than legal requirements or the recommended setback distance. Increasing setback distance will reduce the risk of off-site nutrient transport.";
+
             if ( value >= 12 ) {
                 update_riskrating_ui( $field, { risk : 1 ,display : 'Low' } );
-                var caution = "";
                 update_caution_ui( $field, caution );
             }
             else if ( value <= 11.99 && value > 1.5 ) {
                 update_riskrating_ui( $field, { risk : 4, display : 'Med' } );
-                var caution =  "";
                 update_caution_ui( $field, caution );
             }
             else if ( value < 1.5 ) {
                 update_riskrating_ui( $field, { risk : 7, display : 'High-Med' } );
-                var caution =  "";
                 update_caution_ui( $field, caution );
-            }
-
-            var apply_value = $( "input[name='apply_date']" ).val();
-            if ( typeof apply_value === 'undefined' || apply_value === null || apply_value === "" ) {
-                return {
-                    valid : false ,
-                    message : 'you need to provide an application date' ,
-                }
-            }
-
-            var apply_date =  new Date( apply_value );
-
-            var current_year = new Date().getFullYear();
-            var january = new Date( '01/01/2014' ).setFullYear( current_year );
-            var feb_28th = new Date( '02/28/2014' ).setFullYear( current_year );
-            var april_30th = new Date( '04/30/2014' ).setFullYear( current_year );
-            var august_31st = new Date( '08/31/2014' ).setFullYear( current_year );
-            var sept_30th = new Date( '09/30/2014' ).setFullYear( current_year );
-            var december = new Date( '12/31/2014' ).setFullYear( current_year );
-        
-
-            var error_flag = false;
-            if ( (( apply_date >= january && apply_date < feb_28th ) || ( apply_date > sept_30th && apply_date <= december )) ) {
-                if ( value < 80 ) {
-                    error_flag = true; 
-                }
-            }
-
-            if ( apply_date >= feb_28th && apply_date <= april_30th ) {
-                if ( value < 40 ) {
-                    error_flag = true;
-                }
-            }
-
-            if ( apply_date > april_30th && apply_date <= august_31st ) {
-                if ( value < 10 ) {
-                    error_flag = true;
-                }
-            }
-
-            if ( apply_date > august_31st && apply_date <= sept_30th ) {
-                if ( value < 40 ) {
-                    error_flag = true;
-                }
-            }
-
-
-            if ( error_flag ) {
-                return {
-                    valid: false ,
-                    message: options.stop_message
-                };
             }
             return true;
 
