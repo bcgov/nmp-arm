@@ -232,5 +232,221 @@
             "description": "> 120 cm (> 48 in)",
             "active": true
         }
+    },
+    {
+        "model": "arm.soiltypeoption",
+        "pk": 1,
+        "fields": {
+            "value": "sand",
+            "description": "Sandy/Gravelly (Course Textured Soil - A)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.soiltypeoption",
+        "pk": 2,
+        "fields": {
+            "value": "silt",
+            "description": "Silt (Medium Textured Soil - B)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.soiltypeoption",
+        "pk": 3,
+        "fields": {
+            "value": "clay",
+            "description": "Clay (Fine Textured Soil – C/D)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.soiltypeoption",
+        "pk": 4,
+        "fields": {
+            "value": "peat_muck",
+            "description": "Peat/Muck (Organic Soil)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.soiltypeoption",
+        "pk": 5,
+        "fields": {
+            "value": "other",
+            "description": "Don't know",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.soilmoistureoption",
+        "pk": 1,
+        "fields": {
+            "value": 95,
+            "description": "90-100% (If your boots squish in the field, you are at saturation)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.soilmoistureoption",
+        "pk": 2,
+        "fields": {
+            "value": 85,
+            "description": "80-90% (In this range you would not comforatably drive a tractor into the field  and are worried about potential soil compaction due to field wetness)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.soilmoistureoption",
+        "pk": 3,
+        "fields": {
+            "value": 60,
+            "description": "60-80% (In this range you could comfortably drive a tractor out into the field without worrying about ruts or field compaction)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.soilmoistureoption",
+        "pk": 4,
+        "fields": {
+            "value": 50,
+            "description": "< 60% (In this range your soil is firm and starting to dry out)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.foragedensityoption",
+        "pk": 1,
+        "fields": {
+            "value": 100,
+            "description": "90-100%",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.foragedensityoption",
+        "pk": 2,
+        "fields": {
+            "value": 70,
+            "description": "70-90%",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.foragedensityoption",
+        "pk": 3,
+        "fields": {
+            "value": 60,
+            "description": "50-70%",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.foragedensityoption",
+        "pk": 4,
+        "fields": {
+            "value": 50,
+            "description": "< 50",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.foragedensityoption",
+        "pk": 5,
+        "fields": {
+            "value": 70,
+            "description": "Other: Annual/Fallow/Row Crop Field (eg, new seeding, corn, berry, bare soil, etc.)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.surfaceconditionoption",
+        "pk": 1,
+        "fields": {
+            "value": "flooding",
+            "description": "Flooding current or potential in 15 days",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.surfaceconditionoption",
+        "pk": 2,
+        "fields": {
+            "value": "frozen",
+            "description": "Frozen ( more than 1 inch ) or snow covered",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.surfaceconditionoption",
+        "pk": 3,
+        "fields": {
+            "value": "snow-ice",
+            "description": "Snow or ice-covered soil (5cm or more of snow over 50% (or more) of the field",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.surfaceconditionoption",
+        "pk": 4,
+        "fields": {
+            "value": "tiles",
+            "description": "Tiles present in field",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.surfaceconditionoption",
+        "pk": 5,
+        "fields": {
+            "value": "none",
+            "description": "None of the above",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.applicationequipmentoption",
+        "pk": 1,
+        "fields": {
+            "value": "below_application",
+            "description": "Below surface applicator (eg, injector, incorportaion within 24 hours)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.applicationequipmentoption",
+        "pk": 2,
+        "fields": {
+            "value": "surface_application",
+            "description": "Surface application (eg, splash plate, tank, aerator)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.applicationequipmentoption",
+        "pk": 3,
+        "fields": {
+            "value": "irrigation_sprinkler",
+            "description": "Irrigation sprinkler (eg, Big Gun)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.applicationequipmentoption",
+        "pk": 4,
+        "fields": {
+            "value": "grazing",
+            "description": "Grazing",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.applicationequipmentoption",
+        "pk": 5,
+        "fields": {
+            "value": "soild_manure_application",
+            "description": "Solid Manure Application",
+            "active": true
+        }
     }
 ]
