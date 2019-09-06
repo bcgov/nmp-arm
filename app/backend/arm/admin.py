@@ -2,11 +2,11 @@ from django.contrib import admin
 from django.forms import TextInput, Textarea
 from django.db import models
 
-from .models import FieldDescription, ForageHeightOption, WaterTableDepthOption
+from .models import FormField, ForageHeightOption, WaterTableDepthOption
 
-@admin.register(FieldDescription)
-class FieldDescriptionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'field_name', 'description')
+@admin.register(FormField)
+class FormFieldAdmin(admin.ModelAdmin):
+    list_display = ('id', 'field_name', 'title', 'description')
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size':'50'})},
         models.TextField: {'widget': Textarea(attrs={'rows':10, 'cols':200})},

@@ -29,7 +29,7 @@ logger = logging.getLogger( __file__ )
 #  app imports
 #
 from .PdfView import WorksheetData, PdfView
-from arm.models import FieldDescription, ForageHeightOption, WaterTableDepthOption
+from arm.models import FormField, ForageHeightOption, WaterTableDepthOption
 
 class WorksheetForm( Form ):
 
@@ -47,43 +47,50 @@ class WorksheetView( FormView ):
 
     http_method_names = [ 'get', ]
 
-    def GetFieldDescriptions(self):
-        fieldList = FieldDescription.objects.all()
-
-        fieldDescriptions = {}
-
-        for field in fieldList:
-            fieldDescriptions[field.field_name] = field.description
-
-        return fieldDescriptions
 
     def get( self, request, *args, **kwargs ):
 
-        fieldDescriptions = self.GetFieldDescriptions()
+        staticData = StaticData()
 
         data = {
                 'page_name': 'ARM Worksheet',
-                'FarmName_description': fieldDescriptions['FarmName'],
-                'Main_description': fieldDescriptions['Main'],
-                'ApplicationDate_description': fieldDescriptions['ApplicationDate'],
-                'FieldName_description': fieldDescriptions['FieldName'],
-                '24Preciptation_description': fieldDescriptions['24Preciptation'],
-                '72Preciptation_description': fieldDescriptions['72Preciptation'],
-                'SoilType_description': fieldDescriptions['SoilType'],
-                'SoilMoisture_description': fieldDescriptions['SoilMoisture'],
-                'WaterTableDepth_description': fieldDescriptions['WaterTableDepth'],
-                'ForageDensity_description': fieldDescriptions['ForageDensity'],
-                'ForageHeight_description': fieldDescriptions['ForageHeight'],
-                'FieldSurfaceConditions_description': fieldDescriptions['FieldSurfaceConditions'],
-                'ManureApplicationEquipment_description': fieldDescriptions['ManureApplicationEquipment'],
-                'WaterbodyCriticalArea_description': fieldDescriptions['WaterbodyCriticalArea'],
-                'ManureSetback_description': fieldDescriptions['ManureSetback'],
+                'staticData': staticData
         }
-        data['ForageHeightOptions'] = ForageHeightOption.objects.all().order_by('id')
-        data['WaterTableDepthOptions'] = WaterTableDepthOption.objects.all().order_by('id')
         data.update( csrf( request ) )
 
         return render_to_response( self.template_name, data )
 
 
+class StaticData():
 
+    def __init__(self):
+
+        fieldList = FormField.objects.all()
+
+        form_fields = {}
+
+        for field in fieldList:
+            form_fields[field.field_name] = field
+
+        self.application_date = form_fields['ApplicationDate']
+        self.farm_name = form_fields['FarmName']
+        self.main = form_fields['Main']
+        self.field_name = form_fields['FieldName']
+        self.preciptation_24 = form_fields['24Preciptation']
+        self.preciptation_72 = form_fields['72Preciptation']
+        self.soil_type = form_fields['SoilType']
+        self.soil_moisture = form_fields['SoilMoisture']
+        self.water_table_depth = form_fields['WaterTableDepth']
+        self.forage_density = form_fields['ForageDensity']
+        self.forage_height = form_fields['ForageHeight']
+        self.field_surface_conditions = form_fields['FieldSurfaceConditions']
+        self.manure_application_equipment = form_fields['ManureApplicationEquipment']
+        self.waterbody_critical_area = form_fields['WaterbodyCriticalArea']
+        self.manure_setback = form_fields['ManureSetback']
+
+        self.forage_height_options = ForageHeightOption.objects.all().order_by('id')
+        self.water_table_depth_options = WaterTableDepthOption.objects.all().order_by('id')
+
+
+    def __str__(self):
+        return self.farm_name.field_name
