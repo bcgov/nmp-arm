@@ -30,7 +30,8 @@ logger = logging.getLogger( __file__ )
 #
 from .PdfView import WorksheetData, PdfView
 from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, RiskRatingValue, CautionMessage, \
-                    RestrictionStopMessage, SurfaceConditionCautionMessage
+                    RestrictionStopMessage, SurfaceConditionCautionMessage, ApplicationEquipmentOption, SoilTypeOption, \
+                    SoilMoistureOption, ForageDensityOption, SurfaceConditionOption
 
 class WorksheetForm( Form ):
 
@@ -89,11 +90,15 @@ class StaticData():
         self.waterbody_critical_area = form_fields['WaterbodyCriticalArea']
         self.manure_setback = form_fields['ManureSetback']
 
-        self.forage_height_options = ForageHeightOption.objects.all().order_by('id')
-        self.water_table_depth_options = WaterTableDepthOption.objects.all().order_by('id')
+        self.soil_type_options = SoilTypeOption.objects.filter(active=True).order_by('id')
+        self.soil_moisture_options = SoilMoistureOption.objects.filter(active=True).order_by('id')
+        self.forage_density_options = ForageDensityOption.objects.filter(active=True).order_by('id')
+        self.surface_condition_options = SurfaceConditionOption.objects.filter(active=True).order_by('id')
+        self.forage_height_options = ForageHeightOption.objects.filter(active=True).order_by('id')
+        self.water_table_depth_options = WaterTableDepthOption.objects.filter(active=True).order_by('id')
+        self.application_equipment_options = ApplicationEquipmentOption.objects.filter(active=True).order_by('id')
 
         self.fields_configurations = fields_configurations().toJSON()
-        print(self.fields_configurations)
 
 class JSONSerializable():
     

@@ -363,6 +363,15 @@
         "model": "arm.surfaceconditionoption",
         "pk": 1,
         "fields": {
+            "value": "ponding",
+            "description": "Ponding",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.surfaceconditionoption",
+        "pk": 2,
+        "fields": {
             "value": "flooding",
             "description": "Flooding current or potential in 15 days",
             "active": true
@@ -370,7 +379,7 @@
     },
     {
         "model": "arm.surfaceconditionoption",
-        "pk": 2,
+        "pk": 3,
         "fields": {
             "value": "frozen",
             "description": "Frozen ( more than 1 inch ) or snow covered",
@@ -379,7 +388,7 @@
     },
     {
         "model": "arm.surfaceconditionoption",
-        "pk": 3,
+        "pk": 4,
         "fields": {
             "value": "snow-ice",
             "description": "Snow or ice-covered soil (5cm or more of snow over 50% (or more) of the field",
@@ -388,7 +397,7 @@
     },
     {
         "model": "arm.surfaceconditionoption",
-        "pk": 4,
+        "pk": 5,
         "fields": {
             "value": "tiles",
             "description": "Tiles present in field",
@@ -397,7 +406,7 @@
     },
     {
         "model": "arm.surfaceconditionoption",
-        "pk": 5,
+        "pk": 6,
         "fields": {
             "value": "none",
             "description": "None of the above",
