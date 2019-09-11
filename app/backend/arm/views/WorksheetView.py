@@ -16,6 +16,7 @@ from decouple import config
 #
 #  sys imports
 #
+from decimal import Decimal
 from datetime import datetime
 import json
 import uuid
@@ -24,12 +25,12 @@ import requests
 import logging
 logger = logging.getLogger( __file__ )
 
-
 #
 #  app imports
 #
 from .PdfView import WorksheetData, PdfView
-from arm.models import FormField, ForageHeightOption, WaterTableDepthOption
+from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, RiskRatingValue, CautionMessage, \
+                    RestrictionStopMessage, SurfaceConditionCautionMessage
 
 class WorksheetForm( Form ):
 
@@ -91,6 +92,137 @@ class StaticData():
         self.forage_height_options = ForageHeightOption.objects.all().order_by('id')
         self.water_table_depth_options = WaterTableDepthOption.objects.all().order_by('id')
 
+        self.fields_configurations = fields_configurations().toJSON()
+        print(self.fields_configurations)
 
-    def __str__(self):
-        return self.farm_name.field_name
+class JSONSerializable():
+    
+    def _try(self, o): 
+
+        if isinstance(o, Decimal):
+            return float(o)
+    
+        try: 
+            return o.__dict__ 
+        except TypeError:
+            pass
+        else:
+            return str(o).__dict__ 
+
+        # Let the base class default method raise the TypeError
+        return json.JSONEncoder.default(self, o)
+
+    def toJSON(self): 
+        return json.dumps(self, default=lambda o: self._try(o), sort_keys=False, indent=0, separators=(',',':')).replace('\n', '')
+
+class fields_configurations(JSONSerializable):
+
+    def __init__(self):
+        self.precipitation_1 = field('24precipitation')
+        self.precipitation_2 = field('72precipitation')
+        self.soil_moisture = field('soil_moisture', True, False)
+        self.water_table_depth = field('water_table_depth', False, True)
+        self.forage_density = field('forage_density', False, True)
+        self.forage_height = field('forage_height', False, True)
+        self.surface_condition = field('surface_condition', True, False)
+        self.soil_type = field('soil_type')
+        self.application_equipment = field('application_equipment')
+        self.critical_area = field('critical_area')
+        self.manure_setback_distance = field('manure_setback_distance')
+
+class field():   
+
+    def __init__(self, field_name, restrict_radio_required = False, risk_values_reversed = False):
+        self.trigger = 'input change keyup'
+        self.validators = validator(field_name, restrict_radio_required, risk_values_reversed)
+
+class validator():
+
+    def __init__(self, field_name, restrict_radio_required, risk_values_reversed):
+
+        if(restrict_radio_required):
+            self.restrict_radio = restrict_radio(field_name)
+
+        if field_name == 'soil_type':
+            self.soil_type_risk_rating = soil_type_risk_rating()
+        elif field_name == 'application_equipment':
+            self.applicator_risk_rating = applicator_risk_rating()
+        elif field_name == 'critical_area':
+            self.show_hide = show_hide()
+            self.critical_area_risk_rating = critical_area_risk_rating()
+        elif field_name == 'manure_setback_distance':
+            self.manure_setback_distance = manure_setback_distance()
+        elif field_name == 'surface_condition':
+            self.surface_risk_rating = surface_risk_rating()
+        else:
+            self.risk_rating = risk_rating(field_name, risk_values_reversed)    
+
+
+class restrict_radio():
+    
+    def __init__(self, field_name):
+        self.comparitor = self.get_comparitor(field_name)
+        
+        if field_name == 'soil_moisture':
+            self.stop_value = 90
+        elif field_name == 'surface_condition':
+            self.stop_values = {'flooding': True, 'frozen': True, 'snow-ice': True}
+        self.stop_message = RestrictionStopMessage.objects.get(risk_name__exact=field_name).stop_message
+
+    def get_comparitor(self, field_name):
+        if field_name == 'soil_moisture':
+            return 'greater_than'
+        elif field_name == 'surface_condition':
+            return 'in'
+        
+        return ''
+
+class risk_rating():
+    
+    def __init__(self, field_name, risk_values_reversed):
+        self.values = self.get_values_list(field_name)
+        self.caution_values = self.get_caution_values(field_name)
+        self.is_reversed = risk_values_reversed
+            
+    def get_values_list(self, field_name):
+        risk_rating_value = RiskRatingValue.objects.get(risk_name__exact=field_name)
+        value_list = [float(i) for i in risk_rating_value.value_list.split(',')]
+        return value_list
+
+    def get_caution_values(self, field_name):
+        caution_messages = CautionMessage.objects.filter(risk_name__exact=field_name)
+        caution_value_list = [caution_value(i) for i in caution_messages]
+        return caution_value_list
+
+class surface_risk_rating():
+
+    def __init__(self):
+        self.comparitor = 'in'
+        self.stop_values = {'flooding': True, 'frozen': True, 'snow-ice': True}
+        self.caution_values = self.get_caution_values()
+
+    def get_caution_values(self):
+        caution_messages = SurfaceConditionCautionMessage.objects.all()
+        caution_value_list = [caution_value(i) for i in caution_messages]
+        return caution_value_list
+
+class soil_type_risk_rating():
+    pass
+    
+class applicator_risk_rating():
+    pass
+    
+class critical_area_risk_rating():
+    pass
+
+class show_hide():
+    pass
+
+class manure_setback_distance():
+    pass
+
+class caution_value():
+
+    def __init__(self, caution_message):
+        self.value = caution_message.risk_caution_value
+        self.message = caution_message.message

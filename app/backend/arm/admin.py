@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.forms import TextInput, Textarea
 from django.db import models
 
-from .models import ApplicationEquipmentOption, FormField, ForageDensityOption, ForageHeightOption, SoilMoistureOption, SoilTypeOption, SurfaceConditionOption, WaterTableDepthOption
+from .models import ApplicationEquipmentOption, FormField, ForageDensityOption, ForageHeightOption, SoilMoistureOption, SoilTypeOption, SurfaceConditionOption, WaterTableDepthOption, \
+                    CautionMessage, RiskRatingValue, SurfaceConditionCautionMessage, RestrictionStopMessage
 
 @admin.register(FormField)
 class FormFieldAdmin(admin.ModelAdmin):
@@ -40,3 +41,19 @@ class SurfaceConditionOptionsAdmin(admin.ModelAdmin):
 @admin.register(WaterTableDepthOption)
 class WaterTableDepthOptionAdmin(admin.ModelAdmin):
     list_display = ('id', 'value', 'description', 'active')
+
+@admin.register(RiskRatingValue)
+class RiskRatingValueAdmin(admin.ModelAdmin):
+    list_display = ('id', 'risk_name', 'value_list')
+
+@admin.register(CautionMessage)
+class CautionMessagesAdmin(admin.ModelAdmin):
+    list_display = ('id', 'risk_name', 'risk_caution_value', 'message')
+
+@admin.register(SurfaceConditionCautionMessage)
+class SurfaceConditionCautionMessageAdmin(admin.ModelAdmin):
+    list_display = ('id', 'risk_caution_value', 'message')
+
+@admin.register(RestrictionStopMessage)
+class RestrictionStopMessageAdmin(admin.ModelAdmin):
+    list_display = ('id', 'risk_name', 'stop_message')

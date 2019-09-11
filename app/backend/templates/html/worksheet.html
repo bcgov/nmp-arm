@@ -604,9 +604,17 @@
                 </form>
             </div>
         </div>
-    </div>
+        </div>
 
-    <script type="text/javascript" src="{% static 'js/validators.js' %}?v=1"></script> 
+        <script type="text/javascript">
+            window.CONFIG_VALIDATOR = {
+                    fields : {{ staticData.fields_configurations|safe }}
+                };
+        </script> 
+
+    <script type="text/javascript" src="{% static 'js/validators.js' %}?v=1.1"></script>
+    
+     
 <script>
 
     function getParameterByName(name) {
