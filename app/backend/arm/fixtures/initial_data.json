@@ -511,7 +511,7 @@
         "pk": 2,
         "fields": {
             "risk_name": "24precipitation",
-            "risk_caution_value": "12.25",
+            "risk_caution_value": "12.50",
             "message": "Caution: More than 12 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate."
         }
     },
@@ -629,7 +629,7 @@
         "fields": {
             "risk_name": "forage_height",
             "risk_caution_value": "1.00",
-            "message": "forage_height"
+            "message": "Caution: Your field is at a higher risk for runoff. Make sure vegetation is dense and able to properly filter runoff if a large rain event is forecasted. Observe seasonal setbacks."
         }
     },
     {
@@ -638,7 +638,7 @@
         "fields": {
             "risk_name": "forage_height",
             "risk_caution_value": "3.00",
-            "message": "forage_height"
+            "message": "Caution: Your field is at a higher risk for runoff. Make sure vegetation is dense and able to properly filter runoff if a large rain event is forecasted. Observe seasonal setbacks."
         }
     },
     {
@@ -679,6 +679,22 @@
         "fields": {
             "risk_caution_value": "tiles",
             "message": "Tiles - Caution: Tiles must have at least 60 cm of cover, not be discharging manure, and their location must be known prior to application. Monitor tiles closely after application. If manure discharges from tile, plug immediately."
+        }
+    },
+    {
+        "model": "arm.restrictionstopmessage",
+        "pk": 1,
+        "fields": {
+            "risk_name": "soil_moisture",
+            "stop_message": "Stop: Do not apply at this time. The soil moisture is too high and the risk of runoff on this field is very high."
+        }
+    },
+    {
+        "model": "arm.restrictionstopmessage",
+        "pk": 2,
+        "fields": {
+            "risk_name": "surface_condition",
+            "stop_message": "Stop: No Application permitted"
         }
     }
 ]
