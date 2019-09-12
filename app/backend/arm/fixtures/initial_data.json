@@ -705,5 +705,38 @@
             "risk_name": "surface_condition",
             "stop_message": "Stop: No Application permitted"
         }
+    },
+    {
+        "model": "arm.riskcutoffsetting",
+        "pk": 1,
+        "fields": {
+            "risk_level_name": "low",
+            "display": "LOW RISK",
+            "minimum_score": 0,
+            "maximum_score": 27,
+            "message": "The risk associated with manure application is low. Follow all guidelines and recommendations in your Plan for proper application."
+        }
+    },
+    {
+        "model": "arm.riskcutoffsetting",
+        "pk": 2,
+        "fields": {
+            "risk_level_name": "med",
+            "display": "MEDIUM RISK",
+            "minimum_score": 28,
+            "maximum_score": 41,
+            "message": "Apply manure with caution. Follow all guidelines and recommendations in your Plan for proper application."
+        }
+    },
+    {
+        "model": "arm.riskcutoffsetting",
+        "pk": 3,
+        "fields": {
+            "risk_level_name": "high",
+            "display": "HIGH RISK",
+            "minimum_score": 42,
+            "maximum_score": 999,
+            "message": "Do NOT apply manure at this time, the risk is too high. Wait and reevaluate."
+        }
     }
 ]

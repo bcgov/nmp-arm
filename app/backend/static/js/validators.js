@@ -12,13 +12,13 @@ window.RISK_RATING = {
 }
 
 
-window.RISK_CUTOFF = {
+// window.RISK_CUTOFF = {
 
-    27 : { 'display' : 'LOW RISK', 'message' : "The risk associated with manure application is low. Follow all guidelines and recommendations in your Plan for proper application." } ,
-    28 : { 'display' : 'MEDIUM RISK', 'message' : "Apply manure with caution. Follow all guidelines and recommendations in your Plan for proper application." } ,
-    50 : { 'display' : 'HIGH RISK', 'message' : "Do NOT apply manure at this time, the risk is too high. Wait and reevaluate." } ,
+//     27 : { 'display' : 'LOW RISK', 'message' : "The risk associated with manure application is low. Follow all guidelines and recommendations in your Plan for proper application." } ,
+//     28 : { 'display' : 'MEDIUM RISK', 'message' : "Apply manure with caution. Follow all guidelines and recommendations in your Plan for proper application." } ,
+//     50 : { 'display' : 'HIGH RISK', 'message' : "Do NOT apply manure at this time, the risk is too high. Wait and reevaluate." } ,
 
-}
+// }
 
 window.CAUTIONS  = {}
 window.RATING = {}
@@ -103,18 +103,18 @@ $( document ).on( 'rating-update', function( e, rating, override ) {
 
         var cutoff = null;
         var color_class = null;
-        if ( total <= 27 ) {
-            cutoff = RISK_CUTOFF[ 27 ];
+        if ( total <= RISK_CUTOFF[ 'low' ].maximum_score ) {
+            cutoff = RISK_CUTOFF[ 'low' ];
             color_class = "low";
         }
         
-        else if ( total >= 28 && total < 42 ) {
-            cutoff = RISK_CUTOFF[ 28 ];
+        else if ( total >= RISK_CUTOFF[ 'med' ].minimum_score && total <= RISK_CUTOFF[ 'med' ].maximum_score ) {
+            cutoff = RISK_CUTOFF[ 'med' ];
             color_class = "med";
         }
 
-        else if ( total >= 42 ) {
-            cutoff = RISK_CUTOFF[ 50 ];
+        else if ( total >= RISK_CUTOFF[ 'high' ].minimum_score ) {
+            cutoff = RISK_CUTOFF[ 'high' ];
             color_class = "high";
         }
         remove_risk_rating_classes( $( "input[ name='total_risk' ]" ) );

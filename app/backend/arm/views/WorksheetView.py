@@ -31,7 +31,7 @@ logger = logging.getLogger( __file__ )
 from .PdfView import WorksheetData, PdfView
 from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, RiskRatingValue, CautionMessage, \
                     RestrictionStopMessage, SurfaceConditionCautionMessage, ApplicationEquipmentOption, SoilTypeOption, \
-                    SoilMoistureOption, ForageDensityOption, SurfaceConditionOption
+                    SoilMoistureOption, ForageDensityOption, SurfaceConditionOption, RiskCutoffSetting
 
 class WorksheetForm( Form ):
 
@@ -99,6 +99,8 @@ class StaticData():
         self.application_equipment_options = ApplicationEquipmentOption.objects.filter(active=True).order_by('id')
 
         self.fields_configurations = fields_configurations().toJSON()
+
+        self.risk_cuttoff_settings = risk_cuttoff_settings().toJSON()
 
 class JSONSerializable():
     
@@ -231,3 +233,19 @@ class caution_value():
     def __init__(self, caution_message):
         self.value = caution_message.risk_caution_value
         self.message = caution_message.message
+
+class risk_cuttoff_settings(JSONSerializable):
+
+    def __init__(self):
+        self.low = risk_cuttoff('low')
+        self.med = risk_cuttoff('med')
+        self.high = risk_cuttoff('high')
+
+class risk_cuttoff():
+
+    def __init__(self, level):
+        setting = RiskCutoffSetting.objects.get(risk_level_name__exact=level)
+        self.display = setting.display
+        self.minimum_score = setting.minimum_score
+        self.maximum_score = setting.maximum_score
+        self.message = setting.message

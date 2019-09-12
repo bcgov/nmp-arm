@@ -529,12 +529,13 @@
         </div>
 
         <script type="text/javascript">
+            window.RISK_CUTOFF = {{ staticData.risk_cuttoff_settings|safe }}
             window.CONFIG_VALIDATOR = {
                     fields : {{ staticData.fields_configurations|safe }}
                 };
         </script> 
 
-    <script type="text/javascript" src="{% static 'js/validators.js' %}?v=1.1"></script>
+    <script type="text/javascript" src="{% static 'js/validators.js' %}?v=1.2"></script>
     
      
 <script>

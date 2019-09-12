@@ -78,3 +78,11 @@ class RestrictionStopMessage(models.Model):
 
     risk_name = models.CharField(max_length=30)
     stop_message = models.TextField(max_length=500, default='add a message', blank=False, null=False)
+
+class RiskCutoffSetting(models.Model):
+
+    risk_level_name = models.CharField(max_length=4)
+    display = models.CharField(max_length=11)
+    minimum_score = models.IntegerField()
+    maximum_score = models.IntegerField()
+    message = models.TextField(max_length=500, default='add a message', blank=False, null=False)
