@@ -18,173 +18,188 @@
         }
     },
     {
-        "model": "arm.fielddescription",
-        "id": 1,
+        "model": "arm.formfield",
+        "pk": 1,
         "fields": {
             "field_name": "Main",
+            "title": "ARM Worksheet BC",
             "description": "It is recommended that you fill out this form no more than 24 hours <u>prior</u> to a manure application event, particularly from October through February. You can group similar fields together into one field unit. For questions related to filling out any of the fields below, click on the provided hyperlinks for more information."
         }
     },
     {
-        "model": "arm.fielddescription",
-        "id": 2,
+        "model": "arm.formfield",
+        "pk": 2,
         "fields": {
             "field_name": "FarmName",
+            "title": "Farm Name",
             "description": ""
         }
     },
     {
-        "model": "arm.fielddescription",
-        "id": 3,
+        "model": "arm.formfield",
+        "pk": 3,
         "fields": {
             "field_name": "ApplicationDate",
+            "title": "Application Date",
             "description": "Date you want to apply: You must do this evaluation no more than 24 hours prior to application."
         }
     },
     {
-        "model": "arm.fielddescription",
-        "id": 4,
+        "model": "arm.formfield",
+        "pk": 4,
         "fields": {
             "field_name": "FieldName",
+            "title": "Field Name or Unit",
             "description": "Do a separate evaluation for each field or management unit. A \"management unit\" is a group of fields with similar soil, crop type, and management conditions."
         }
     },
     {
-        "model": "arm.fielddescription",
-        "id": 5,
+        "model": "arm.formfield",
+        "pk": 5,
         "fields": {
             "field_name": "24Preciptation",
+            "title": "24 hour Precipitation ( mm )",
             "description": "Link to <a target=\"_blank\" href=\"https://sites.google.com/site/wadairyplan/MSA\">MSA precipitation</a>"
         }
     },
     {
-        "model": "arm.fielddescription",
-        "id": 6,
+        "model": "arm.formfield",
+        "pk": 6,
         "fields": {
             "field_name": "72Preciptation",
+            "title": "72 hour Precipitation ( mm )",
             "description": "Link to <a target=\"_blank\" href=\"https://sites.google.com/site/wadairyplan/MSA\">MSA precipitation</a>"
         }
     },
     {
-        "model": "arm.fielddescription",
-        "id": 7,
+        "model": "arm.formfield",
+        "pk": 7,
         "fields": {
             "field_name": "SoilType",
+            "title": "Soil Type",
             "description": "Enter the general soil type you want to apply to. If you dont know your soil type, make your selection under \"Don't know\". Soil type can be found on your farm plan map."
         }
     },
     {
-        "model": "arm.fielddescription",
-        "id": 8,
+        "model": "arm.formfield",
+        "pk": 8,
         "fields": {
             "field_name": "SoilMoisture",
+            "title": "Soil Moisture",
             "description": "Enter moisture value in %. Click on the link for guidance on how to determine soil moisture <a  target=\"_blank\" href=\"http://www.wadairyplan.org/ARM/soil-moisture-determination\">here</a>"
         }
     },
     {
-        "model": "arm.fielddescription",
-        "id": 9,
+        "model": "arm.formfield",
+        "pk": 9,
         "fields": {
             "field_name": "WaterTableDepth",
+            "title": "Water Table Depth",
             "description": "Water table can be determined by nearby ditches, or by digging a hole in your field. For more on how to determine water table depth, click <a target=\"_blank\" href=\"http://www.wadairyplan.org/ARM/water-table-depth-determination\">here</a>. 1 foot = 12 inches."
         }
     },
     {
-        "model": "arm.fielddescription",
-        "id": 10,
+        "model": "arm.formfield",
+        "pk": 10,
         "fields": {
             "field_name": "ForageDensity",
+            "title": "Forage Density ( % )",
             "description": "Click link for guidance on how to determine forage density <a  target=\"_blank\" href=\"http://www.wadairyplan.org/ARM/forage-density-determination\">here</a>"
         }
     },
     {
-        "model": "arm.fielddescription",
-        "id": 11,
+        "model": "arm.formfield",
+        "pk": 11,
         "fields": {
             "field_name": "ForageHeight",
+            "title": "Forage Height",
             "description": ""
         }
     },
     {
-        "model": "arm.fielddescription",
-        "id": 12,
+        "model": "arm.formfield",
+        "pk": 12,
         "fields": {
             "field_name": "FieldSurfaceConditions",
+            "title": "Field Surface Condition",
             "description": "Check all that apply to your current field conditions"
         }
     },
     {
-        "model": "arm.fielddescription",
-        "id": 13,
+        "model": "arm.formfield",
+        "pk": 13,
         "fields": {
             "field_name": "ManureApplicationEquipment",
+            "title": "Manure Application Equipment",
             "description": "Check equipment/method of application"
         }
     },
     {
-        "model": "arm.fielddescription",
-        "id": 14,
+        "model": "arm.formfield",
+        "pk": 14,
         "fields": {
             "field_name": "WaterbodyCriticalArea",
+            "title": "Waterbody or Critical Area",
             "description": "Do you have a waterbody (i.e., ditch, stream, river, etc.) or identified critcal area (i.e., swale, wetland, etc) adjacent to your field?"
         }
     },
     {
-        "model": "arm.fielddescription",
-        "id": 15,
+        "model": "arm.formfield",
+        "pk": 15,
         "fields": {
             "field_name": "ManureSetback",
-            "description": "Manure setbacks must be a minimum of 10 feet from May 1 to August 31 (40 for Big Gun use). 40 feet from September 1 to May. and 80 feet from October 1 to February 28. For more information on seasonal manure application setback distance, click <a target=\"_blank\" href=\"http://www.wadairyplan.org/setbacks\">here</a>"
+            "title": "Manure Setback Distance (m)",
+            "description": "How far away from the waterbody's high-water mark is manure, fertilizer, or other nutrients set back during application?<br/><br/>Nutrient application setbacks must be at least 1.5 m for commercial fertilizers or subsurface injection of manures, or 3 m for other nutrient sources such as broadcast manure. As a beneficial management practice, a setback of 12 m or more is recommended."
         }
     },
     {
         "model": "arm.forageheightoption",
-        "id": 1,
+        "pk": 1,
         "fields": {
-            "value": 0,
+            "value": "0.0",
             "description": "No cover or < 2.5 cm (< 1 in)",
             "active": true
         }
     },
     {
         "model": "arm.forageheightoption",
-        "id": 2,
+        "pk": 2,
         "fields": {
-            "value": 2,
+            "value": "2.0",
             "description": "2.5-7.5 cm (1-3 in)",
             "active": true
         }
     },
     {
         "model": "arm.forageheightoption",
-        "id": 3,
+        "pk": 3,
         "fields": {
-            "value": 3,
+            "value": "3.0",
             "description": "7.5-15 cm (3-6 in)",
             "active": true
         }
     },
     {
         "model": "arm.forageheightoption",
-        "id": 4,
+        "pk": 4,
         "fields": {
-            "value": 7,
+            "value": "7.0",
             "description": ">15 cm (>6 in)",
             "active": true
         }
     },
     {
         "model": "arm.forageheightoption",
-        "id": 5,
+        "pk": 5,
         "fields": {
-            "value": 6,
+            "value": "6.0",
             "description": "Not forage crop",
             "active": true
         }
     },
     {
         "model": "arm.watertabledepthoption",
-        "id": 1,
+        "pk": 1,
         "fields": {
             "value": 12,
             "description": "0-30 cm (1-12 in)",
@@ -193,7 +208,7 @@
     },
     {
         "model": "arm.watertabledepthoption",
-        "id": 2,
+        "pk": 2,
         "fields": {
             "value": 20,
             "description": "30-60 cm (12-24 in)",
@@ -202,7 +217,7 @@
     },
     {
         "model": "arm.watertabledepthoption",
-        "id": 3,
+        "pk": 3,
         "fields": {
             "value": 30,
             "description": "60-120 cm (24-48 in)",
@@ -211,11 +226,517 @@
     },
     {
         "model": "arm.watertabledepthoption",
-        "id": 4,
+        "pk": 4,
         "fields": {
             "value": 49,
             "description": "> 120 cm (> 48 in)",
             "active": true
+        }
+    },
+    {
+        "model": "arm.soiltypeoption",
+        "pk": 1,
+        "fields": {
+            "value": "sand",
+            "description": "Sandy/Gravelly (Course Textured Soil - A)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.soiltypeoption",
+        "pk": 2,
+        "fields": {
+            "value": "silt",
+            "description": "Silt (Medium Textured Soil - B)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.soiltypeoption",
+        "pk": 3,
+        "fields": {
+            "value": "clay",
+            "description": "Clay (Fine Textured Soil – C/D)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.soiltypeoption",
+        "pk": 4,
+        "fields": {
+            "value": "peat_muck",
+            "description": "Peat/Muck (Organic Soil)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.soiltypeoption",
+        "pk": 5,
+        "fields": {
+            "value": "other",
+            "description": "Don't know",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.soilmoistureoption",
+        "pk": 1,
+        "fields": {
+            "value": 95,
+            "description": "90-100% (If your boots squish in the field, you are at saturation)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.soilmoistureoption",
+        "pk": 2,
+        "fields": {
+            "value": 85,
+            "description": "80-90% (In this range you would not comforatably drive a tractor into the field  and are worried about potential soil compaction due to field wetness)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.soilmoistureoption",
+        "pk": 3,
+        "fields": {
+            "value": 60,
+            "description": "60-80% (In this range you could comfortably drive a tractor out into the field without worrying about ruts or field compaction)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.soilmoistureoption",
+        "pk": 4,
+        "fields": {
+            "value": 50,
+            "description": "< 60% (In this range your soil is firm and starting to dry out)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.foragedensityoption",
+        "pk": 1,
+        "fields": {
+            "value": 100,
+            "description": "90-100%",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.foragedensityoption",
+        "pk": 2,
+        "fields": {
+            "value": 70,
+            "description": "70-90%",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.foragedensityoption",
+        "pk": 3,
+        "fields": {
+            "value": 60,
+            "description": "50-70%",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.foragedensityoption",
+        "pk": 4,
+        "fields": {
+            "value": 50,
+            "description": "< 50",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.foragedensityoption",
+        "pk": 5,
+        "fields": {
+            "value": 70,
+            "description": "Other: Annual/Fallow/Row Crop Field (eg, new seeding, corn, berry, bare soil, etc.)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.surfaceconditionoption",
+        "pk": 1,
+        "fields": {
+            "value": "ponding",
+            "description": "Ponding",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.surfaceconditionoption",
+        "pk": 2,
+        "fields": {
+            "value": "flooding",
+            "description": "Flooding current or potential in 15 days",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.surfaceconditionoption",
+        "pk": 3,
+        "fields": {
+            "value": "frozen",
+            "description": "Frozen ( more than 1 inch ) or snow covered",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.surfaceconditionoption",
+        "pk": 4,
+        "fields": {
+            "value": "snow-ice",
+            "description": "Snow or ice-covered soil (5cm or more of snow over 50% (or more) of the field",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.surfaceconditionoption",
+        "pk": 5,
+        "fields": {
+            "value": "tiles",
+            "description": "Tiles present in field",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.surfaceconditionoption",
+        "pk": 6,
+        "fields": {
+            "value": "none",
+            "description": "None of the above",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.applicationequipmentoption",
+        "pk": 1,
+        "fields": {
+            "value": "below_application",
+            "description": "Below surface applicator (eg, injector, incorportaion within 24 hours)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.applicationequipmentoption",
+        "pk": 2,
+        "fields": {
+            "value": "surface_application",
+            "description": "Surface application (eg, splash plate, tank, aerator)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.applicationequipmentoption",
+        "pk": 3,
+        "fields": {
+            "value": "irrigation_sprinkler",
+            "description": "Irrigation sprinkler (eg, Big Gun)",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.applicationequipmentoption",
+        "pk": 4,
+        "fields": {
+            "value": "grazing",
+            "description": "Grazing",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.applicationequipmentoption",
+        "pk": 5,
+        "fields": {
+            "value": "soild_manure_application",
+            "description": "Solid Manure Application",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.riskratingvalue",
+        "pk": 1,
+        "fields": {
+            "risk_name": "24precipitation",
+            "value_list": "0,0.25,1.25,2,2.5,3.75,5,6.25,8.75,12.5"
+        }
+    },
+    {
+        "model": "arm.riskratingvalue",
+        "pk": 2,
+        "fields": {
+            "risk_name": "72precipitation",
+            "value_list": "0,1.25,2.5,5,6.25,7.5,8.75,10,12.5,16.25"
+        }
+    },
+    {
+        "model": "arm.riskratingvalue",
+        "pk": 3,
+        "fields": {
+            "risk_name": "soil_moisture",
+            "value_list": "0,60,65,70,74,75,76,79,80,90"
+        }
+    },
+    {
+        "model": "arm.riskratingvalue",
+        "pk": 4,
+        "fields": {
+            "risk_name": "water_table_depth",
+            "value_list": "49,40,36,30,28,24,20,18,16,12"
+        }
+    },
+    {
+        "model": "arm.riskratingvalue",
+        "pk": 5,
+        "fields": {
+            "risk_name": "forage_density",
+            "value_list": "90, 85, 80, 75, 70, 65, 60, 55, 50, 40"
+        }
+    },
+    {
+        "model": "arm.riskratingvalue",
+        "pk": 6,
+        "fields": {
+            "risk_name": "forage_height",
+            "value_list": "7, 6, 3, 2.9, 2.5, 2.4, 2.3, 2, 0, -1"
+        }
+    },
+    {
+        "model": "arm.cautionmessage",
+        "pk": 1,
+        "fields": {
+            "risk_name": "24precipitation",
+            "risk_caution_value": "6.25",
+            "message": "Caution: More than 6 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate."
+        }
+    },
+    {
+        "model": "arm.cautionmessage",
+        "pk": 2,
+        "fields": {
+            "risk_name": "24precipitation",
+            "risk_caution_value": "12.50",
+            "message": "Caution: More than 12 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate."
+        }
+    },
+    {
+        "model": "arm.cautionmessage",
+        "pk": 3,
+        "fields": {
+            "risk_name": "72precipitation",
+            "risk_caution_value": "6.25",
+            "message": "Caution: More than 6 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate."
+        }
+    },
+    {
+        "model": "arm.cautionmessage",
+        "pk": 4,
+        "fields": {
+            "risk_name": "72precipitation",
+            "risk_caution_value": "12.50",
+            "message": "Caution: More than 12 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate."
+        }
+    },
+    {
+        "model": "arm.cautionmessage",
+        "pk": 5,
+        "fields": {
+            "risk_name": "soil_moisture",
+            "risk_caution_value": "80.00",
+            "message": "Caution: You may be at risk for runoff if soils are saturated. Check field conditions and the forecast, and restrict application rates so you don’t saturate your field."
+        }
+    },
+    {
+        "model": "arm.cautionmessage",
+        "pk": 6,
+        "fields": {
+            "risk_name": "soil_moisture",
+            "risk_caution_value": "90.00",
+            "message": "Caution: You may be at risk for runoff if soils are saturated. Check field conditions and the forecast, and restrict application rates so you don’t saturate your field."
+        }
+    },
+    {
+        "model": "arm.cautionmessage",
+        "pk": 7,
+        "fields": {
+            "risk_name": "soil_moisture",
+            "risk_caution_value": "90.00",
+            "message": "Caution: your soil may reach saturation with manure application. Postpone application, or apply at a low rate to avoid saturation."
+        }
+    },
+    {
+        "model": "arm.cautionmessage",
+        "pk": 8,
+        "fields": {
+            "risk_name": "soil_moisture",
+            "risk_caution_value": "95.00",
+            "message": "Caution: your soil may reach saturation with manure application. Postpone application, or apply at a low rate to avoid saturation."
+        }
+    },
+    {
+        "model": "arm.cautionmessage",
+        "pk": 9,
+        "fields": {
+            "risk_name": "water_table_depth",
+            "risk_caution_value": "12.00",
+            "message": "Caution: There is an elevated water table at this location, which can cause a runoff event. Watch for ponding in low spots and soil saturation, and restrict application rates."
+        }
+    },
+    {
+        "model": "arm.cautionmessage",
+        "pk": 10,
+        "fields": {
+            "risk_name": "water_table_depth",
+            "risk_caution_value": "30.00",
+            "message": "Caution: There is an elevated water table at this location, which can cause a runoff event. Watch for ponding in low spots and soil saturation, and restrict application rates."
+        }
+    },
+    {
+        "model": "arm.cautionmessage",
+        "pk": 11,
+        "fields": {
+            "risk_name": "forage_density",
+            "risk_caution_value": "0.00",
+            "message": "Caution: Your field is at a higher risk for runoff. Observe 80 foot setbacks from ditches, waterways, swales etc, unless an adequate filter strip is in place next to waterway. In no water is adjacent to field, application is permitted."
+        }
+    },
+    {
+        "model": "arm.cautionmessage",
+        "pk": 12,
+        "fields": {
+            "risk_name": "forage_density",
+            "risk_caution_value": "49.00",
+            "message": "Caution: Your field is at a higher risk for runoff. Observe 80 foot setbacks from ditches, waterways, swales etc, unless an adequate filter strip is in place next to waterway. In no water is adjacent to field, application is permitted."
+        }
+    },
+    {
+        "model": "arm.cautionmessage",
+        "pk": 13,
+        "fields": {
+            "risk_name": "forage_density",
+            "risk_caution_value": "59.00",
+            "message": "Caution: Cover is adequate, but make sure a dense filter strip lies adjacent to any waterways and/or observe seasonal setbacks from waterways, swales, and other areas that could lead to a ditch."
+        }
+    },
+    {
+        "model": "arm.cautionmessage",
+        "pk": 14,
+        "fields": {
+            "risk_name": "forage_density",
+            "risk_caution_value": "70.00",
+            "message": "Caution: Cover is adequate, but make sure a dense filter strip lies adjacent to any waterways and/or observe seasonal setbacks from waterways, swales, and other areas that could lead to a ditch."
+        }
+    },
+    {
+        "model": "arm.cautionmessage",
+        "pk": 15,
+        "fields": {
+            "risk_name": "forage_height",
+            "risk_caution_value": "1.00",
+            "message": "Caution: Your field is at a higher risk for runoff. Make sure vegetation is dense and able to properly filter runoff if a large rain event is forecasted. Observe seasonal setbacks."
+        }
+    },
+    {
+        "model": "arm.cautionmessage",
+        "pk": 16,
+        "fields": {
+            "risk_name": "forage_height",
+            "risk_caution_value": "3.00",
+            "message": "Caution: Your field is at a higher risk for runoff. Make sure vegetation is dense and able to properly filter runoff if a large rain event is forecasted. Observe seasonal setbacks."
+        }
+    },
+    {
+        "model": "arm.surfaceconditioncautionmessage",
+        "pk": 1,
+        "fields": {
+            "risk_caution_value": "ponding",
+            "message": "Ponding - Caution: Avoid ponded areas with appropriate seasonal setback distance, particularly if it drains to a waterway. Ponding can be a sign of a high water table, so be cautious of soil saturation."
+        }
+    },
+    {
+        "model": "arm.surfaceconditioncautionmessage",
+        "pk": 2,
+        "fields": {
+            "risk_caution_value": "flooding",
+            "message": "Flooding - No application is allowed if flooding is predicted in a 15 day window after application."
+        }
+    },
+    {
+        "model": "arm.surfaceconditioncautionmessage",
+        "pk": 3,
+        "fields": {
+            "risk_caution_value": "frozen",
+            "message": "Frozen - No application is allowed on soils frozen 2,5 cm or greater below the surface, or covered in snow."
+        }
+    },
+    {
+        "model": "arm.surfaceconditioncautionmessage",
+        "pk": 4,
+        "fields": {
+            "risk_caution_value": "snow-ice",
+            "message": "Snow covered - No application is allowed if a field has at least 5 cm (2 in) or more of ice or snow over 50% or more of the area."
+        }
+    },
+    {
+        "model": "arm.surfaceconditioncautionmessage",
+        "pk": 5,
+        "fields": {
+            "risk_caution_value": "tiles",
+            "message": "Tiles - Caution: Tiles must have at least 60 cm of cover, not be discharging manure, and their location must be known prior to application. Monitor tiles closely after application. If manure discharges from tile, plug immediately."
+        }
+    },
+    {
+        "model": "arm.restrictionstopmessage",
+        "pk": 1,
+        "fields": {
+            "risk_name": "soil_moisture",
+            "stop_message": "Stop: Do not apply at this time. The soil moisture is too high and the risk of runoff on this field is very high."
+        }
+    },
+    {
+        "model": "arm.restrictionstopmessage",
+        "pk": 2,
+        "fields": {
+            "risk_name": "surface_condition",
+            "stop_message": "Stop: No Application permitted"
+        }
+    },
+    {
+        "model": "arm.riskcutoffsetting",
+        "pk": 1,
+        "fields": {
+            "risk_level_name": "low",
+            "display": "LOW RISK",
+            "minimum_score": 0,
+            "maximum_score": 27,
+            "message": "The risk associated with manure application is low. Follow all guidelines and recommendations in your Plan for proper application."
+        }
+    },
+    {
+        "model": "arm.riskcutoffsetting",
+        "pk": 2,
+        "fields": {
+            "risk_level_name": "med",
+            "display": "MEDIUM RISK",
+            "minimum_score": 28,
+            "maximum_score": 41,
+            "message": "Apply manure with caution. Follow all guidelines and recommendations in your Plan for proper application."
+        }
+    },
+    {
+        "model": "arm.riskcutoffsetting",
+        "pk": 3,
+        "fields": {
+            "risk_level_name": "high",
+            "display": "HIGH RISK",
+            "minimum_score": 42,
+            "maximum_score": 999,
+            "message": "Do NOT apply manure at this time, the risk is too high. Wait and reevaluate."
         }
     }
 ]

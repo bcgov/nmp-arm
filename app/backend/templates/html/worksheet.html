@@ -45,7 +45,7 @@
             top: 33%;
             left: 33%;
         }
-        // remove all input spinners
+        /* remove all input spinners */
         input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
             -webkit-appearance: none;
             margin: 0;
@@ -54,8 +54,6 @@
             -moz-appearance:textfield;
         }
 
-
-        p.desc { }
         .form-horizontal .has-feedback .form-control-feedback {
             top: 27px !important;
             right: -29px !important;
@@ -99,6 +97,7 @@
     </style>
 </head>
 <body>
+
 
     <!-- Modal -->
     <div id="emailReportModal" class="modal fade" role="dialog">
@@ -173,14 +172,13 @@
         
         </div>
     </div>    
-    
+
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <div class="page-header">
-                    <h2>ARM Worksheet BC</h2>
-                    <!-- <p>It is recommended that you fill out this form no more than 24 hours <u>prior</u> to a manure application event, particularly from October through February. You can group similar fields together into one field unit. For questions related to filling out any of the fields below, click on the provided hyperlinks for more information.</p> -->
-                    <p>{{ Main_description|safe }}</p>
+                    <h2>{{ staticData.main.title|safe }}</h2>
+                    <p>{{ staticData.main.description|safe }}</p>
                 </div>
 
                 <!- -
@@ -194,9 +192,8 @@
 
 
                     <div class="form-group">
-                        <!--<label class="col-lg-3 control-label">Farm Name</label>-->
-                        <label class="col-lg-8"><h3>Farm Name</h3></label>
-                        <p class="col-lg-8 desc">{{ FarmName_description|safe }}</p>
+                        <label class="col-lg-8"><h3>{{ staticData.farm_name.title|safe }}</h3></label>
+                        <p class="col-lg-8 desc">{{ staticData.farm_name.description|safe }}</p>
                         <div class="col-lg-5">
                             <input type="text" class="form-control" name="dairy_farm_name"
                                 data-bv-notempty="true"
@@ -214,9 +211,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-8"><h3>Application Date</h3></label>
-                        <!-- <p class="col-lg-8 desc">Date you want to apply: You must do this evaluation no more than 24 hours prior to application.</p> -->
-                        <p class="col-lg-8 desc">{{ ApplicationDate_description|safe }}</p>
+                        <label class="col-lg-8"><h3>{{ staticData.application_date.title|safe }}</h3></label>
+                        <p class="col-lg-8 desc">{{ staticData.application_date.description|safe }}</p>
                         <div class="col-lg-5">
                             <input type="text" class="form-control" name="apply_date" placeholder="MM/DD/YYYY"
                                 data-bv-notempty="true"
@@ -231,9 +227,8 @@
 
 
                     <div class="form-group">
-                        <label class="col-lg-8"><h3>Field Name or Unit</h3></label>
-                        <!-- <p class="col-lg-8 desc">Do a separate evaluation for each field or management unit. A "management unit" is a group of fields with similar soil, crop type, and management conditions.</p> -->
-                        <p class="col-lg-8 desc">{{ FieldName_description|safe }}</p>
+                        <label class="col-lg-8"><h3>{{ staticData.field_name.title|safe }}</h3></label>
+                        <p class="col-lg-8 desc">{{ staticData.field_name.description|safe }}</p>
                         <div class="col-lg-5">
                             <input type="text" class="form-control" name="managment_unit" placeholder="Enter the field name/number you want to apply to"
                                 data-bv-notempty="true"
@@ -253,9 +248,8 @@
 
 
                     <div class="form-group">
-                        <label class="col-lg-8"><h3>24 hour Precipitation ( mm )</h3></label>
-                        <!-- <p class="col-lg-8 desc">Link to <a target="_blank" href="https://sites.google.com/site/wadairyplan/MSA">MSA precipitation</a></p> -->
-                        <p class="col-lg-8 desc">{{ 24Preciptation_description|safe }}</p>
+                        <label class="col-lg-8"><h3>{{ staticData.preciptation_24.title|safe }}</h3></label>
+                        <p class="col-lg-8 desc">{{ staticData.preciptation_24.description|safe }}</p>
                         <div class="col-lg-5">
                             <input type="number" step="0.01" min="0", max="2000" class="form-control" name="precipitation_1" placeholder="Enter the 24 hour precipition amount"
                                 data-bv-notempty="true"
@@ -277,9 +271,8 @@
 
 
                     <div class="form-group">
-                        <label class="col-lg-8"><h3>72 hour Precipitation ( mm )</h3></label>
-                        <!-- <p class="col-lg-8 desc">Link to <a target="_blank" href="https://sites.google.com/site/wadairyplan/MSA">MSA precipitation</a></p> -->
-                        <p class="col-lg-8 desc">{{ 72Preciptation_description|safe }}</p>
+                        <label class="col-lg-8"><h3>{{ staticData.preciptation_72.title|safe }}</h3></label>
+                        <p class="col-lg-8 desc">{{ staticData.preciptation_72.description|safe }}</p>
                         <div class="col-lg-5">
                             <input type="number" step="0.01" min="0", max="2000" class="form-control" name="precipitation_2" placeholder="Enter the 72 hour precipition amount"
                                 data-bv-notempty="true"
@@ -301,37 +294,21 @@
 
 
                     <div class="form-group">
-                        <label class="col-lg-8"><h3>Soil Type</h3></label>
-                        <!-- <p class="col-lg-8 desc">Enter the general soil type you want to apply to. If you dont know your soil type, make your selection under "Don't know". Soil type can be found on your farm plan map.</p> -->
-                        <p class="col-lg-8 desc">{{ SoilType_description|safe }}</p>
-                        <div class="col-lg-5">
+                        <label class="col-lg-8"><h3>{{ staticData.soil_type.title|safe }}</h3></label>
+                        <p class="col-lg-8 desc">{{ staticData.soil_type.description|safe }}</p>
+                        <div class="col-lg-5">                          
+                        {% for option in staticData.soil_type_options %}
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="soil_type" value="sand"
+                                    <input type="radio" name="soil_type" value="{{option.value}}"
+                                    {% if option.id == 1 %}
                                         data-bv-notempty="true"
-                                        data-bv-notempty-message="soil type is required" /> Sandy/Gravelly (Course Textured Soil - A)
+                                        data-bv-notempty-message="soil type is required"
+                                    {% endif %}
+                                    /> {{option.description}}
                                 </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="soil_type" value="silt" /> Silt (Medium Textured Soil - B)
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="soil_type" value="clay" /> Clay (Fine Textured Soil – C/D)
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="soil_type"  value="peat_muck" /> Peat/Muck (Organic Soil)
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="soil_type"  value="other" /> Don't know
-                                </label>
-                            </div>
+                            </div>                                    
+                        {% endfor %}
                         </div>
                         <!--col-lg-5-->
                         <div class="col-lg-8 desc riskrating" data-name="forage_height">Risk Rating: N/A</div>
@@ -341,35 +318,21 @@
 
 
                     <div class="form-group">
-                        <label class="col-lg-8"><h3>Soil Moisture</h3></label>
-                        <!-- <p class="col-lg-8 desc">Enter moisture value in %. Click on the link for guidance on how to determine soil moisture <a  target="_blank" href="http://www.wadairyplan.org/ARM/soil-moisture-determination">here</a></p> -->
-                        <p class="col-lg-8 desc">{{ SoilMoisture_description|safe }}</p>
+                        <label class="col-lg-8"><h3>{{ staticData.soil_moisture.title|safe }}</h3></label>
+                        <p class="col-lg-8 desc">{{ staticData.soil_moisture.description|safe }}</p>
                         <div class="col-lg-5">
+                        {% for option in staticData.soil_moisture_options %}
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="soil_moisture" value="95" 
-                                        data-bv-notempty="true"
-                                        data-bv-notempty-message="soil moisture is required"
-                                    /> 90-100% (If your boots squish in the field, you are at saturation)
-
-
+                                    <input type="radio" name="soil_moisture" value="{{option.value}}"
+                                    {% if option.id == 1 %}
+                                    data-bv-notempty="true"
+                                    data-bv-notempty-message="soil moisture is required"
+                                    {% endif %}
+                                    /> {{option.description}}
                                 </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="soil_moisture" value="85" /> 80-90% (In this range you would not comforatably drive a tractor into the field  and are worried about potential soil compaction due to field wetness)
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="soil_moisture" value="60" /> 60-80% (In this range you could comfortably drive a tractor out into the field without worrying about ruts or field compaction)
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="soil_moisture"  value="50" /> &lt; 60% (In this range your soil is firm and starting to dry out)
-                                </label>
-                            </div>
+                            </div>                                    
+                        {% endfor %}                            
                         </div>
                         <div class="col-lg-8 desc riskrating" data-name="soil_moisture">Risk Rating: N/A</div>
                         <input type="hidden" class="riskhiddenfield" name="soil_moisture_risk" value="" />
@@ -378,9 +341,8 @@
 
 
                     <div class="form-group">
-                        <label class="col-lg-8"><h3>Water Table Depth</h3></label>
-                        <!-- <p class="col-lg-8 desc">Water table can be determined by nearby ditches, or by digging a hole in your field. For more on how to determine water table depth, click <a target="_blank" href="http://www.wadairyplan.org/ARM/water-table-depth-determination">here</a>. 1 foot = 12 inches.</p> -->
-                        <p class="col-lg-8 desc">{{ WaterTableDepth_description|safe }}</p>
+                        <label class="col-lg-8"><h3>{{ staticData.water_table_depth.title|safe }}</h3></label>
+                        <p class="col-lg-8 desc">{{ staticData.water_table_depth.description|safe }}</p>
                         <div class="col-lg-5">
                         <select class="form-control" name="water_table_depth" id="water_table_depth"
                             data-bv-notempty="true"
@@ -390,7 +352,7 @@
                             data-bv-greaterthan-value=12
                             data-bv-greaterthan-message="Stop: The water table is too close to the soil surface for safe application at this time. Wait until it recedes  before manure is applied." >
                                 <option value>Select a Value</option>
-                            {% for option in WaterTableDepthOptions %}
+                            {% for option in staticData.water_table_depth_options %}
                                 <option value="{{ option.value }}">{{ option.description }}</option>
                             {% endfor %}
                         </select>
@@ -403,42 +365,21 @@
 
 
                     <div class="form-group">
-                        <label class="col-lg-8"><h3>Forage Density ( % )</h3></label>
-                        <!-- <p class="col-lg-8 desc">Click link for guidance on how to determine forage density <a  target="_blank" href="http://www.wadairyplan.org/ARM/forage-density-determination">here</a></p> -->
-                        <p class="col-lg-8 desc">{{ ForageDensity_description|safe }}</p>
+                        <label class="col-lg-8"><h3>{{ staticData.forage_density.title|safe }}</h3></label>
+                        <p class="col-lg-8 desc">{{ staticData.forage_density.description|safe }}</p>
                         <div class="col-lg-5">
+                        {% for option in staticData.forage_density_options %}
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="forage_density" value="100"
-                                        data-bv-notempty="true"
-                                        data-bv-notempty-message="forage density is required" /> 90-100%
+                                    <input type="radio" name="forage_density" value="{{option.value}}"
+                                    {% if option.id == 1 %}
+                                    data-bv-notempty="true"
+                                    data-bv-notempty-message="forage density is required"
+                                    {% endif %}
+                                    /> {{option.description}}
                                 </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="forage_density" value="70" /> 70-90%
-                                </label>
-                            </div>
-                            <!-- <div class="radio">
-                                <label>
-                                    <input type="radio" name="forage_density" value="70" /> 70-80%
-                                </label>
-                            </div> -->
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="forage_density"  value="60" /> 50-70%
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="forage_density"  value="50" /> &lt; 50%
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="forage_density"  value="70" /> Other: Annual/Fallow/Row Crop Field (eg, new seeding, corn, berry, bare soil, etc.)
-                                </label>
-                            </div>
+                            </div>                                    
+                        {% endfor %}         
                         </div>
                         <div class="col-lg-8 desc riskrating" data-name="forage_density">Risk Rating: N/A</div>
                         <input type="hidden" class="riskhiddenfield" name="forage_density_risk" value="" />
@@ -447,8 +388,8 @@
 
 
                     <div class="form-group">
-                        <label class="col-lg-8"><h3>Forage Height</h3></label>
-                        <p class="col-lg-8 desc">{{ ForageHeight_description|safe }}</p>
+                        <label class="col-lg-8"><h3>{{ staticData.forage_height.title|safe }}</h3></label>
+                        <p class="col-lg-8 desc">{{ staticData.forage_height.description|safe }}</p>
                         <div class="col-lg-5">
                             <select class="form-control" name="forage_height" id="forage_height"
                                 data-bv-notempty="true"
@@ -459,7 +400,7 @@
                                 data-bv-greaterthan-message="Stop: Cover height is not adequate to properly function: Instate a 100 manure setback distance from critical areas"
                             >
                                     <option value>Select a Value</option>
-                                {% for option in ForageHeightOptions %}
+                                {% for option in staticData.forage_height_options %}
                                     <option value="{{ option.value }}">{{ option.description }}</option>
                                 {% endfor %}
                             </select>
@@ -472,42 +413,21 @@
 
 
                     <div class="form-group">
-                        <label class="col-lg-8"><h3>Field Surface Condition</h3></label>
-                        <!-- <p class="col-lg-8 desc">Check all that apply to your current field conditions</p> -->
-                        <p class="col-lg-8 desc">{{ ForageHeight_description|safe }}</p>
+                        <label class="col-lg-8"><h3>{{ staticData.field_surface_conditions.title|safe }}</h3></label>
+                        <p class="col-lg-8 desc">{{ staticData.field_surface_conditions.description|safe }}</p>
                         <div class="col-lg-5">
+                        {% for option in staticData.surface_condition_options %}
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="surface_condition" value="ponding"
-                                        data-bv-notempty="true"
-                                        data-bv-notempty-message="field surface condition is required" /> Ponding
+                                    <input type="checkbox" name="surface_condition" value="{{option.value}}"
+                                    {% if option.id == 1 %}
+                                    data-bv-notempty="true"
+                                    data-bv-notempty-message="field surface condition is required" 
+                                    {% endif %}
+                                    /> {{option.description}}
                                 </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="surface_condition" value="flooding" /> Flooding current or potential in 15 days
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="surface_condition" value="frozen" /> Frozen ( more than 1 inch ) or snow covered
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="surface_condition" value="snow-ice" /> Snow or ice-covered soil (5cm or more of snow over 50% (or more) of the field
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="surface_condition"  value="tiles" /> Tiles present in field
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="surface_condition"  value="none" /> None of the above
-                                </label>
-                            </div>
+                            </div>                                    
+                        {% endfor %}         
                         </div>
                         <div class="col-lg-8 desc riskrating" data-name="surface_condition">Risk Rating: N/A</div>
                         <input type="hidden" class="riskhiddenfield" name="surface_condition_risk" value="" />
@@ -518,37 +438,21 @@
 
 
                     <div class="form-group">
-                        <label class="col-lg-8"><h3>Manure Application Equipment</h3></label>
-                        <!-- <p class="col-lg-8 desc">Check equipment/method of application</p> -->
-                        <p class="col-lg-8 desc">{{ ManureApplicationEquipment_description|safe }}</p>
+                        <label class="col-lg-8"><h3>{{ staticData.manure_application_equipment.title|safe }}</h3></label>
+                        <p class="col-lg-8 desc">{{ staticData.manure_application_equipment.description|safe }}</p>
                         <div class="col-lg-5">
+                        {% for option in staticData.application_equipment_options %}
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="application_equipment" value="below_application"
+                                    <input type="radio" name="application_equipment" value="{{option.value}}"
+                                    {% if option.id == 1 %}
                                         data-bv-notempty="true"
-                                        data-bv-notempty-message="application equipment is required" /> Below surface applicator (eg, injector, incorportaion within 24 hours)
+                                        data-bv-notempty-message="application equipment is required" 
+                                    {% endif %}
+                                    /> {{option.description}}
                                 </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="application_equipment" value="surface_application" /> Surface application (eg, splash plate, tank, aerator)
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="application_equipment"  value="irrigation_sprinkler" /> Irrigation sprinkler (eg, Big Gun)
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="application_equipment"  value="grazing" /> Grazing
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="application_equipment"  value="soild_manure_application" /> Solid Manure Application
-                                </label>
-                            </div>
+                            </div>                                    
+                        {% endfor %}
                         </div>
                         <div class="col-lg-8 desc riskrating" data-name="application_equipment">Risk Rating: N/A</div>
                         <input type="hidden" class="riskhiddenfield" name="application_equipment_risk" value="" />
@@ -557,9 +461,8 @@
 
 
                     <div class="form-group">
-                        <label class="col-lg-8"><h3>Waterbody or Critical Area</h3></label>
-                        <!-- <p class="col-lg-8 desc">Do you have a waterbody (i.e., ditch, stream, river, etc.) or identified critcal area (i.e., swale, wetland, etc) adjacent to your field?</p> -->
-                        <p class="col-lg-8 desc">{{ WaterbodyCriticalArea_description|safe }}</p>
+                        <label class="col-lg-8"><h3>{{ staticData.waterbody_critical_area.title|safe }}</h3></label>
+                        <p class="col-lg-8 desc">{{ staticData.waterbody_critical_area.description|safe }}</p>
                         <div class="col-lg-5">
                             <div class="radio">
                                 <label>
@@ -581,9 +484,8 @@
 
                     <div class="show-hide-wrapper" data-state="closed">
                         <div class="form-group">
-                            <label class="col-lg-8">Manure Setback Distance</label>
-                            <!-- <p class="col-lg-8 desc">Manure setbacks must be a minimum of 10 feet from May 1 to August 31 (40 for Big Gun use). 40 feet from September 1 to May. and 80 feet from October 1 to February 28. For more information on seasonal manure application setback distance, click <a target="_blank" href="http://www.wadairyplan.org/setbacks">here</a></p> -->
-                            <p class="col-lg-8 desc">{{ ManureSetback_description|safe }}</p>
+                            <label class="col-lg-8">{{ staticData.manure_setback.title|safe }}</label>
+                            <p class="col-lg-8 desc">{{ staticData.manure_setback.description|safe }}</p>
                         <div class="col-lg-5">
                                 <input type="text" class="form-control" name="manure_setback_distance"
                                     data-bv-notempty="true"
@@ -604,7 +506,6 @@
                     <div class="form-group riskanalysis">
                         <label class="col-lg-8"><h3>Application Risk Analysis for Surface Runoff</h3></label>
                         <p class="col-lg-8 desc"></p>
-                        <!--<div class="col-lg-8 desc riskrating" data-name="total_risk">Risk Rating: N/A</div>-->
                         <div class="col-lg-8">
                             <div class="readonly">
                                 <label>
@@ -625,9 +526,18 @@
                 </form>
             </div>
         </div>
-    </div>
+        </div>
 
-    <script type="text/javascript" src="{% static 'js/validators.js' %}"></script> 
+        <script type="text/javascript">
+            window.RISK_CUTOFF = {{ staticData.risk_cuttoff_settings|safe }}
+            window.CONFIG_VALIDATOR = {
+                    fields : {{ staticData.fields_configurations|safe }}
+                };
+        </script> 
+
+    <script type="text/javascript" src="{% static 'js/validators.js' %}?v=1.2"></script>
+    
+     
 <script>
 
     function getParameterByName(name) {
