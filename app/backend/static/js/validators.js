@@ -570,14 +570,14 @@ window.calculate_risk_rating = function( value_to_check, values, options ) {
             
             var values = Object.keys( all_checked_values );
             var surface_risk = 0;
+            console.log('surface_risk_rating')
+            update_caution_ui( $field, null );
             for( var value in values ) {
-                console.log(values[value])
                 setting = SURFACE_CONDITION_RISK_SETTINGS[ values[value] ]
-                // console.log(setting)
                 surface_risk += setting.risk_value
-                console.log(surface_risk)
+                console.log('surface_risk: ' + surface_risk)
                 update_riskrating_ui( $field, { risk : surface_risk, display : setting.risk_display_text } );
-                update_caution_ui( $field, setting.caution_text );
+                update_caution_ui( $field, setting.caution_message, true );
             }
 
             // var values = Object.keys( all_checked_values );
@@ -611,22 +611,22 @@ window.calculate_risk_rating = function( value_to_check, values, options ) {
 
 
             // cautions
-            update_caution_ui( $field, null );
-            for( var i = 0; i < values.length; i++ ) {
-                var value = values[ i ];
-                if ( value === 'ponding' ) {
-                    update_caution_ui( $field, options.caution_values[0].message, true );
-                }
-                else if ( value === 'flooding' ) {
-                    update_caution_ui( $field, options.caution_values[1].message, true );
-                }
-                else if ( value === 'frozen' ) {
-                    update_caution_ui( $field, options.caution_values[2].message, true );
-                }
-                else if ( value === 'tiles' ) {
-                    update_caution_ui( $field, options.caution_values[3].message, true );
-                }
-            }
+            // update_caution_ui( $field, null );
+            // for( var i = 0; i < values.length; i++ ) {
+            //     var value = values[ i ];
+            //     if ( value === 'ponding' ) {
+            //         update_caution_ui( $field, options.caution_values[0].message, true );
+            //     }
+            //     else if ( value === 'flooding' ) {
+            //         update_caution_ui( $field, options.caution_values[1].message, true );
+            //     }
+            //     else if ( value === 'frozen' ) {
+            //         update_caution_ui( $field, options.caution_values[2].message, true );
+            //     }
+            //     else if ( value === 'tiles' ) {
+            //         update_caution_ui( $field, options.caution_values[3].message, true );
+            //     }
+            // }
 
 
             return true;

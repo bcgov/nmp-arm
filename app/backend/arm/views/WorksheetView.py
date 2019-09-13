@@ -30,7 +30,7 @@ logger = logging.getLogger( __file__ )
 #
 from .PdfView import WorksheetData, PdfView
 from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, RiskRatingValue, CautionMessage, \
-                    RestrictionStopMessage, SurfaceConditionCautionMessage, ApplicationEquipmentOption, SoilTypeOption, \
+                    RestrictionStopMessage, ApplicationEquipmentOption, SoilTypeOption, \
                     SoilMoistureOption, ForageDensityOption, SurfaceConditionOption, RiskCutoffSetting, \
                     ApplicationRiskRating, SoilTypeRiskRating, SurfaceConditionRiskRating, CriticalAreaRiskRating, ManureSetbackDistanceRiskRating
 
@@ -211,12 +211,6 @@ class surface_risk_rating():
     def __init__(self):
         self.comparitor = 'in'
         self.stop_values = {'flooding': True, 'frozen': True, 'snow-ice': True}
-        self.caution_values = self.get_caution_values()
-
-    def get_caution_values(self):
-        caution_messages = SurfaceConditionCautionMessage.objects.all()
-        caution_value_list = [caution_value(i) for i in caution_messages]
-        return caution_value_list
 
 class soil_type_risk_rating():
     pass

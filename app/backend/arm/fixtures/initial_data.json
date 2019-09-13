@@ -651,46 +651,6 @@
         }
     },
     {
-        "model": "arm.surfaceconditioncautionmessage",
-        "pk": 1,
-        "fields": {
-            "risk_caution_value": "ponding",
-            "message": "Ponding - Caution: Avoid ponded areas with appropriate seasonal setback distance, particularly if it drains to a waterway. Ponding can be a sign of a high water table, so be cautious of soil saturation."
-        }
-    },
-    {
-        "model": "arm.surfaceconditioncautionmessage",
-        "pk": 2,
-        "fields": {
-            "risk_caution_value": "flooding",
-            "message": "Flooding - No application is allowed if flooding is predicted in a 15 day window after application."
-        }
-    },
-    {
-        "model": "arm.surfaceconditioncautionmessage",
-        "pk": 3,
-        "fields": {
-            "risk_caution_value": "frozen",
-            "message": "Frozen - No application is allowed on soils frozen 2,5 cm or greater below the surface, or covered in snow."
-        }
-    },
-    {
-        "model": "arm.surfaceconditioncautionmessage",
-        "pk": 4,
-        "fields": {
-            "risk_caution_value": "snow-ice",
-            "message": "Snow covered - No application is allowed if a field has at least 5 cm (2 in) or more of ice or snow over 50% or more of the area."
-        }
-    },
-    {
-        "model": "arm.surfaceconditioncautionmessage",
-        "pk": 5,
-        "fields": {
-            "risk_caution_value": "tiles",
-            "message": "Tiles - Caution: Tiles must have at least 60 cm of cover, not be discharging manure, and their location must be known prior to application. Monitor tiles closely after application. If manure discharges from tile, plug immediately."
-        }
-    },
-    {
         "model": "arm.restrictionstopmessage",
         "pk": 1,
         "fields": {
@@ -846,7 +806,8 @@
             "surface_condition": "ponding",
             "is_a_stop_application_item": false,
             "risk_value": 5,
-            "risk_display_text": "Medium"
+            "risk_display_text": "Medium",
+            "caution_message": "Ponding - Caution: Avoid ponded areas with appropriate seasonal setback distance, particularly if it drains to a waterway. Ponding can be a sign of a high water table, so be cautious of soil saturation."
         }
     },
     {
@@ -856,7 +817,8 @@
             "surface_condition": "tiles",
             "is_a_stop_application_item": false,
             "risk_value": 6,
-            "risk_display_text": "Medium"
+            "risk_display_text": "Medium",
+            "caution_message": "Tiles - Caution: Tiles must have at least 60 cm of cover, not be discharging manure, and their location must be known prior to application. Monitor tiles closely after application. If manure discharges from tile, plug immediately."
         }
     },
     {
@@ -866,7 +828,8 @@
             "surface_condition": "none",
             "is_a_stop_application_item": false,
             "risk_value": 0,
-            "risk_display_text": "Low"
+            "risk_display_text": "Low",
+            "caution_message": null
         }
     },
     {
@@ -876,7 +839,8 @@
             "surface_condition": "flooding",
             "is_a_stop_application_item": true,
             "risk_value": 10,
-            "risk_display_text": "Extreme"
+            "risk_display_text": "Extreme",
+            "caution_message": "Flooding - No application is allowed if flooding is predicted in a 15 day window after application."
         }
     },
     {
@@ -886,7 +850,8 @@
             "surface_condition": "frozen",
             "is_a_stop_application_item": true,
             "risk_value": 10,
-            "risk_display_text": "Extreme"
+            "risk_display_text": "Extreme",
+            "caution_message": "Frozen - No application is allowed on soils frozen 2,5 cm or greater below the surface, or covered in snow."
         }
     },
     {
@@ -896,7 +861,8 @@
             "surface_condition": "snow-ice",
             "is_a_stop_application_item": true,
             "risk_value": 10,
-            "risk_display_text": "Extreme"
+            "risk_display_text": "Extreme",
+            "caution_message": "Snow covered - No application is allowed if a field has at least 5 cm (2 in) or more of ice or snow over 50% or more of the area."
         }
     },
     {

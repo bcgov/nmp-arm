@@ -69,11 +69,6 @@ class CautionMessage(models.Model):
     risk_caution_value = models.DecimalField(decimal_places=2, max_digits=4, default=0)
     message = models.TextField(max_length=500, default='add a message', blank=False, null=False)
 
-class SurfaceConditionCautionMessage(models.Model):
-
-    risk_caution_value = models.CharField(max_length=10)
-    message = models.TextField(max_length=500, default='add a message', blank=False, null=False)
-
 class RestrictionStopMessage(models.Model):
 
     risk_name = models.CharField(max_length=30)
@@ -116,6 +111,7 @@ class SurfaceConditionRiskRating(models.Model):
     is_a_stop_application_item = models.BooleanField(default=False)
     risk_value = models.IntegerField(blank=False, null=False)
     risk_display_text = models.CharField(max_length=10, default='Low', choices=RATING_DISPLAY_TEXT)
+    caution_message = models.TextField(max_length=500, blank=True, null=True)
 
 class CriticalAreaRiskRating(models.Model):
 

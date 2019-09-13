@@ -4,7 +4,7 @@ from django.db import models
 
 from .models import ApplicationEquipmentOption, FormField, ForageDensityOption, ForageHeightOption, SoilMoistureOption, SoilTypeOption, \
                     SurfaceConditionOption, WaterTableDepthOption, \
-                    CautionMessage, RiskRatingValue, SurfaceConditionCautionMessage, RestrictionStopMessage, RiskCutoffSetting, \
+                    CautionMessage, RiskRatingValue, RestrictionStopMessage, RiskCutoffSetting, \
                     ApplicationRiskRating, SoilTypeRiskRating, SurfaceConditionRiskRating, CriticalAreaRiskRating, ManureSetbackDistanceRiskRating
 
 @admin.register(FormField)
@@ -52,10 +52,6 @@ class RiskRatingValueAdmin(admin.ModelAdmin):
 class CautionMessagesAdmin(admin.ModelAdmin):
     list_display = ('id', 'risk_name', 'risk_caution_value', 'message')
 
-@admin.register(SurfaceConditionCautionMessage)
-class SurfaceConditionCautionMessageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'risk_caution_value', 'message')
-
 @admin.register(RestrictionStopMessage)
 class RestrictionStopMessageAdmin(admin.ModelAdmin):
     list_display = ('id', 'risk_name', 'stop_message')
@@ -70,15 +66,15 @@ class ApplicationRiskRatingAdmin(admin.ModelAdmin):
 
 @admin.register(SoilTypeRiskRating)
 class SoilTypeRiskRatingAdmin(admin.ModelAdmin):
-    list_display = ('id', 'soil_type', 'risk_value', 'risk_display_text')
+    list_display = ('id', 'soil_type', 'risk_value', 'risk_display_text', 'caution_message')
 
 @admin.register(SurfaceConditionRiskRating)
 class SurfaceConditionRiskRatingAdmin(admin.ModelAdmin):
-    list_display = ('id', 'surface_condition', 'is_a_stop_application_item', 'risk_value', 'risk_display_text')
+    list_display = ('id', 'surface_condition', 'is_a_stop_application_item', 'risk_value', 'risk_display_text', 'caution_message')
 
 @admin.register(CriticalAreaRiskRating)
 class CriticalAreaRiskRatingAdmin(admin.ModelAdmin):
-    list_display = ('id', 'answer', 'risk_value', 'risk_display_text')
+    list_display = ('id', 'answer', 'risk_value', 'risk_display_text', 'caution_message')
 
 @admin.register(ManureSetbackDistanceRiskRating)
 class ManureSetbackDistanceRiskRatingAdmin(admin.ModelAdmin):
