@@ -31,7 +31,8 @@ logger = logging.getLogger( __file__ )
 from .PdfView import WorksheetData, PdfView
 from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, RiskRatingValue, CautionMessage, \
                     RestrictionStopMessage, SurfaceConditionCautionMessage, ApplicationEquipmentOption, SoilTypeOption, \
-                    SoilMoistureOption, ForageDensityOption, SurfaceConditionOption, RiskCutoffSetting
+                    SoilMoistureOption, ForageDensityOption, SurfaceConditionOption, RiskCutoffSetting, \
+                    ApplicationRiskRating, SoilTypeRiskRating, SurfaceConditionRiskRating, CriticalAreaRiskRating, ManureSetbackDistanceRiskRating
 
 class WorksheetForm( Form ):
 
@@ -99,8 +100,12 @@ class StaticData():
         self.application_equipment_options = ApplicationEquipmentOption.objects.filter(active=True).order_by('id')
 
         self.fields_configurations = fields_configurations().toJSON()
-
         self.risk_cuttoff_settings = risk_cuttoff_settings().toJSON()
+        self.application_equipment_risk_settings = application_equipment_risk_settings().toJSON()
+        self.soil_type_risk_settings = soil_type_risk_settings().toJSON()
+        self.surface_condition_risk_settings = surface_condition_risk_settings().toJSON()
+        self.critical_area_risk_settings = critical_area_risk_settings().toJSON()
+        self.manure_setback_settings = manure_setback_settings().toJSON()
 
 class JSONSerializable():
     
@@ -249,3 +254,64 @@ class risk_cuttoff():
         self.minimum_score = setting.minimum_score
         self.maximum_score = setting.maximum_score
         self.message = setting.message
+
+class application_equipment_risk_settings(JSONSerializable):
+    
+    def __init__(self):
+        settings = ApplicationRiskRating.objects.all().order_by('id')
+
+        for setting in settings:
+            saved_setting = risk_rating_setting(setting)
+            self.__dict__[setting.applicator_name] = saved_setting     
+
+class soil_type_risk_settings(JSONSerializable):
+    
+    def __init__(self):
+        settings = SoilTypeRiskRating.objects.all().order_by('id')
+
+        for setting in settings:
+            saved_setting = risk_rating_setting(setting)
+            self.__dict__[setting.soil_type] = saved_setting     
+
+class surface_condition_risk_settings(JSONSerializable):
+    
+    def __init__(self):
+        settings = SurfaceConditionRiskRating.objects.all().order_by('id')
+
+        for setting in settings:
+            saved_setting = risk_rating_setting(setting)
+            self.__dict__[setting.surface_condition] = saved_setting     
+
+
+class critical_area_risk_settings(JSONSerializable):
+    
+    def __init__(self):
+        settings = CriticalAreaRiskRating.objects.all().order_by('id')
+
+        for setting in settings:
+            saved_setting = risk_rating_setting(setting)
+            self.__dict__[setting.answer] = saved_setting     
+
+class manure_setback_settings(JSONSerializable):
+    
+    def __init__(self):
+        settings = ManureSetbackDistanceRiskRating.objects.all().order_by('id')
+        for setting in settings:
+            self.__dict__[setting.pk] = risk_rating_setting(setting)
+            self.__dict__[setting.pk].distance_minimum = setting.distance_minimum     
+            self.__dict__[setting.pk].distance_maximum = setting.distance_maximum     
+
+class risk_rating_setting():
+
+    def __init__(self, risk_rating):
+        self.risk_value = risk_rating.risk_value
+        self.risk_display_text = risk_rating.risk_display_text
+        try:
+            self.caution_message = risk_rating.caution_message
+        except:
+            self.caution_message = ''
+
+        try:
+            self.is_a_stop_application_item = risk_rating.is_a_stop_application_item
+        except:
+            pass

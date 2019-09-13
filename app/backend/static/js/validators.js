@@ -457,31 +457,46 @@ window.calculate_risk_rating = function( value_to_check, values, options ) {
             var value = $field.val();
             //console.log( value );
 
-            if ( value === 'below_application' ) {
-                update_riskrating_ui( $field, { risk : 2 ,display : 'Low-Med' } );
-                var caution = "This is a low risk method of application. Watch for compaction on your field if soil is wet. Follow current manure setback distances.";
-                update_caution_ui( $field, caution );
+
+            for (var key in APPLICATION_EQUIPMENT_RISK_SETTINGS)
+            {
+                var setting = APPLICATION_EQUIPMENT_RISK_SETTINGS[ key ]
+                if(value === key){
+                    console.log('applicator_risk_rating')
+                    console.log(key)
+                    console.log(setting.risk_value)
+                    console.log(setting.risk_display_text)
+                    update_riskrating_ui( $field, { risk : setting.risk_value, display : setting.risk_display_text } );
+                    update_caution_ui( $field, setting.caution_text );
+                    break;
+                }
             }
-            else if ( value === 'surface_application' ) {
-                update_riskrating_ui( $field, { risk : 3, display : 'Low-Med' } );
-                var caution =  "Be cautious of turnaround areas and low spots. Watch for compaction on your field if applying to wet soils. Follow current manure setback distances. Use of an aerator is a good method when applying to grass in a higher risk time.";
-                update_caution_ui( $field, caution );
-            }
-            else if ( value === 'irrigation_sprinkler' ) {
-                update_riskrating_ui( $field, { risk : 6, display : 'Medium' } );
-                var caution = "While this method decreases compaction issues, it may increase the likelihood of runoff of manure from the surface of your field. Do not apply to saturated soils. Be sure to observe manure setbacks from critical areas at all times. Do not use this method if wind speed is greater than 10 mph.";
-                update_caution_ui( $field, caution );
-            }
-            else if ( value === 'grazing' ) {
-                update_riskrating_ui( $field, { risk : 3, display : 'Low-Med' } );
-                var caution = "Grazing is a form of manure application. Be sure to observe manure application setback distances and maintain field cover to reduce a runoff event.";
-                update_caution_ui( $field, caution );
-            }
-            else if ( value === 'soild_manure_application' ) {
-                update_riskrating_ui( $field, { risk : 5, display : 'Medium' } );
-                var caution = "Solid manure guidelines are the same as liquid manure. Follow all setback guidance. Make sure soild manure is spread evenly and incorporated into the soil surface prior to a rain event, which can significantly increase the probablility of a runoff event.";
-                update_caution_ui( $field, caution );
-            }
+
+            // if ( value === 'below_application' ) {
+            //     update_riskrating_ui( $field, { risk : 2 ,display : 'Low-Med' } );
+            //     var caution = "This is a low risk method of application. Watch for compaction on your field if soil is wet. Follow current manure setback distances.";
+            //     update_caution_ui( $field, caution );
+            // }
+            // else if ( value === 'surface_application' ) {
+            //     update_riskrating_ui( $field, { risk : 3, display : 'Low-Med' } );
+            //     var caution =  "Be cautious of turnaround areas and low spots. Watch for compaction on your field if applying to wet soils. Follow current manure setback distances. Use of an aerator is a good method when applying to grass in a higher risk time.";
+            //     update_caution_ui( $field, caution );
+            // }
+            // else if ( value === 'irrigation_sprinkler' ) {
+            //     update_riskrating_ui( $field, { risk : 6, display : 'Medium' } );
+            //     var caution = "While this method decreases compaction issues, it may increase the likelihood of runoff of manure from the surface of your field. Do not apply to saturated soils. Be sure to observe manure setbacks from critical areas at all times. Do not use this method if wind speed is greater than 10 mph.";
+            //     update_caution_ui( $field, caution );
+            // }
+            // else if ( value === 'grazing' ) {
+            //     update_riskrating_ui( $field, { risk : 3, display : 'Low-Med' } );
+            //     var caution = "Grazing is a form of manure application. Be sure to observe manure application setback distances and maintain field cover to reduce a runoff event.";
+            //     update_caution_ui( $field, caution );
+            // }
+            // else if ( value === 'soild_manure_application' ) {
+            //     update_riskrating_ui( $field, { risk : 5, display : 'Medium' } );
+            //     var caution = "Solid manure guidelines are the same as liquid manure. Follow all setback guidance. Make sure soild manure is spread evenly and incorporated into the soil surface prior to a rain event, which can significantly increase the probablility of a runoff event.";
+            //     update_caution_ui( $field, caution );
+            // }
 
             return true;
         }
@@ -497,26 +512,41 @@ window.calculate_risk_rating = function( value_to_check, values, options ) {
             var value = $field.val();
             //console.log( value );
 
-            if ( value === 'sand' ) {
-                update_riskrating_ui( $field, { risk : 1 ,display : 'Low' } );
-                var caution = "";
-                update_caution_ui( $field, caution );
+
+            for (var key in SOIL_TYPE_RISK_SETTINGS)
+            {
+                var setting = SOIL_TYPE_RISK_SETTINGS[ key ]
+                if(value === key){
+                    console.log('soil_type_risk_rating')
+                    console.log(key)
+                    console.log(setting.risk_value)
+                    console.log(setting.risk_display_text)
+                    update_riskrating_ui( $field, { risk : setting.risk_value, display : setting.risk_display_text } );
+                    update_caution_ui( $field, setting.caution_text );
+                    break;
+                }
             }
-            else if ( value === 'silt' ) {
-                update_riskrating_ui( $field, { risk : 2, display : 'Low-Med' } );
-                var caution =  "";
-                update_caution_ui( $field, caution );
-            }
-            else if ( value === 'clay' ) {
-                update_riskrating_ui( $field, { risk : 5, display : 'Medium' } );
-                var caution = "";
-                update_caution_ui( $field, caution );
-            }
-            else if ( value === 'peat_muck' ) {
-                update_riskrating_ui( $field, { risk : 6, display : 'Medium' } );
-                var caution = "";
-                update_caution_ui( $field, caution );
-            }
+
+            // if ( value === 'sand' ) {
+            //     update_riskrating_ui( $field, { risk : 1 ,display : 'Low' } );
+            //     var caution = "";
+            //     update_caution_ui( $field, caution );
+            // }
+            // else if ( value === 'silt' ) {
+            //     update_riskrating_ui( $field, { risk : 2, display : 'Low-Med' } );
+            //     var caution =  "";
+            //     update_caution_ui( $field, caution );
+            // }
+            // else if ( value === 'clay' ) {
+            //     update_riskrating_ui( $field, { risk : 5, display : 'Medium' } );
+            //     var caution = "";
+            //     update_caution_ui( $field, caution );
+            // }
+            // else if ( value === 'peat_muck' ) {
+            //     update_riskrating_ui( $field, { risk : 6, display : 'Medium' } );
+            //     var caution = "";
+            //     update_caution_ui( $field, caution );
+            // }
             return true;
         }
     };
@@ -537,34 +567,47 @@ window.calculate_risk_rating = function( value_to_check, values, options ) {
                 }
             }
 
+            
             var values = Object.keys( all_checked_values );
-            var has_extreme_flag = false;
-            for( var i = 0; i < values.length; i++ ) {
-                var value = values[ i ];
-                if ( value in options.stop_values ) {
-                    update_riskrating_ui( $field, { risk : 10, display : 'Extreme' } );
-                    has_extreme_flag = true;
-                }
+            var surface_risk = 0;
+            for( var value in values ) {
+                console.log(values[value])
+                setting = SURFACE_CONDITION_RISK_SETTINGS[ values[value] ]
+                // console.log(setting)
+                surface_risk += setting.risk_value
+                console.log(surface_risk)
+                update_riskrating_ui( $field, { risk : surface_risk, display : setting.risk_display_text } );
+                update_caution_ui( $field, setting.caution_text );
             }
 
-            // handle 'none' option and 'Medium'
-            if (  'none' in all_checked_values && Object.keys( all_checked_values ).length === 1 ) {
-                update_riskrating_ui( $field, { risk: 0, display : 'Low' } );
-            }
-            else if( has_extreme_flag === false ) {
+            // var values = Object.keys( all_checked_values );
+            // var has_extreme_flag = false;
+            // for( var i = 0; i < values.length; i++ ) {
+            //     var value = values[ i ];
+            //     if ( value in options.stop_values ) {
+            //         update_riskrating_ui( $field, { risk : 10, display : 'Extreme' } );
+            //         has_extreme_flag = true;
+            //     }
+            // }
 
-                if(Object.keys( all_checked_values ).length === 1)
-                {
-                    if('ponding' in all_checked_values)
-                    {
-                        update_riskrating_ui( $field, { risk: 5, display : 'Medium' } );
-                    }
-                    if('tiles' in all_checked_values)
-                    {
-                        update_riskrating_ui( $field, { risk: 6, display : 'Medium' } );
-                    }
-                }
-            }
+            // // handle 'none' option and 'Medium'
+            // if (  'none' in all_checked_values && Object.keys( all_checked_values ).length === 1 ) {
+            //     update_riskrating_ui( $field, { risk: 0, display : 'Low' } );
+            // }
+            // else if( has_extreme_flag === false ) {
+
+            //     if(Object.keys( all_checked_values ).length === 1)
+            //     {
+            //         if('ponding' in all_checked_values)
+            //         {
+            //             update_riskrating_ui( $field, { risk: 5, display : 'Medium' } );
+            //         }
+            //         if('tiles' in all_checked_values)
+            //         {
+            //             update_riskrating_ui( $field, { risk: 6, display : 'Medium' } );
+            //         }
+            //     }
+            // }
 
 
             // cautions
@@ -599,16 +642,30 @@ window.calculate_risk_rating = function( value_to_check, values, options ) {
             var value = $field.val();
             //console.log( value );
 
-            if ( value === 'no' ) {
-                update_riskrating_ui( $field, { risk : 1 ,display : 'Low' } );
-                var caution = "";
-                update_caution_ui( $field, caution );
+            for (var key in CRITICAL_AREA_RISK_SETTINGS)
+            {
+                var setting = CRITICAL_AREA_RISK_SETTINGS[ key ]
+                if(value === key){
+                    console.log('critical_area_risk_rating')
+                    console.log(key)
+                    console.log(setting.risk_value)
+                    console.log(setting.risk_display_text)
+                    update_riskrating_ui( $field, { risk : setting.risk_value, display : setting.risk_display_text } );
+                    update_caution_ui( $field, setting.caution_text );
+                    break;
+                }
             }
-            else if ( value === 'yes' ) {
-                update_riskrating_ui( $field, { risk : 3, display : 'Low-Med' } );
-                var caution =  "";
-                update_caution_ui( $field, caution );
-            }
+
+            // if ( value === 'no' ) {
+            //     update_riskrating_ui( $field, { risk : 1 ,display : 'Low' } );
+            //     var caution = "";
+            //     update_caution_ui( $field, caution );
+            // }
+            // else if ( value === 'yes' ) {
+            //     update_riskrating_ui( $field, { risk : 3, display : 'Low-Med' } );
+            //     var caution =  "";
+            //     update_caution_ui( $field, caution );
+            // }
             return true;
         }
     };
@@ -620,20 +677,36 @@ window.calculate_risk_rating = function( value_to_check, values, options ) {
         validate: function(validator, $field, options) {
             var value = $field.val();
 
-            var caution = "Warning: Your setback is either lower than legal requirements or the recommended setback distance. Increasing setback distance will reduce the risk of off-site nutrient transport.";
+            console.log('manure_setback_distance')
+            console.log(value)
+            for (var key in MANURE_SETBACK_SETTINGS)
+            {
+                var setting = MANURE_SETBACK_SETTINGS[ key ]
+                console.log(value.toString() + ' <= ' + setting.distance_maximum + ' ' + setting.risk_display_text)
+                console.log(value.toString()     + ' >= ' + setting.distance_minimum + ' ' + setting.risk_display_text)
+                if(value <= setting.distance_maximum && value >= setting.distance_minimum){
+                    console.log(setting.risk_value)
+                    console.log(setting.risk_display_text)
+                    update_riskrating_ui( $field, { risk : setting.risk_value, display : setting.risk_display_text } );
+                    update_caution_ui( $field, setting.caution_text );
+                    break;
+                }
+            }
 
-            if ( value >= 12 ) {
-                update_riskrating_ui( $field, { risk : 1 ,display : 'Low' } );
-                update_caution_ui( $field, caution );
-            }
-            else if ( value <= 11.99 && value > 1.5 ) {
-                update_riskrating_ui( $field, { risk : 4, display : 'Med' } );
-                update_caution_ui( $field, caution );
-            }
-            else if ( value < 1.5 ) {
-                update_riskrating_ui( $field, { risk : 7, display : 'High-Med' } );
-                update_caution_ui( $field, caution );
-            }
+            // var caution = "Warning: Your setback is either lower than legal requirements or the recommended setback distance. Increasing setback distance will reduce the risk of off-site nutrient transport.";
+
+            // if ( value >= 12 ) {
+            //     update_riskrating_ui( $field, { risk : 1 ,display : 'Low' } );
+            //     update_caution_ui( $field, caution );
+            // }
+            // else if ( value <= 11.99 && value > 1.5 ) {
+            //     update_riskrating_ui( $field, { risk : 4, display : 'Med' } );
+            //     update_caution_ui( $field, caution );
+            // }
+            // else if ( value < 1.5 ) {
+            //     update_riskrating_ui( $field, { risk : 7, display : 'High-Med' } );
+            //     update_caution_ui( $field, caution );
+            // }
             return true;
 
         }

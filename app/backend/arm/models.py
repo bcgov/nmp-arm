@@ -86,3 +86,48 @@ class RiskCutoffSetting(models.Model):
     minimum_score = models.IntegerField()
     maximum_score = models.IntegerField()
     message = models.TextField(max_length=500, default='add a message', blank=False, null=False)
+
+RATING_DISPLAY_TEXT = (
+    ('Low', 'Low'),
+    ('Low-Med', 'Low-Med'),
+    ('Medium', 'Medium'),
+    ('Med-High', 'Med-High'),
+    ('High', 'High'),
+    ('Extreme', 'Extreme'),
+)
+
+class ApplicationRiskRating(models.Model):
+
+    applicator_name = models.CharField(max_length=50, blank=False, null=False)
+    risk_value = models.IntegerField(blank=False, null=False)
+    risk_display_text = models.CharField(max_length=10, default='Low', choices=RATING_DISPLAY_TEXT)
+    caution_message = models.TextField(max_length=500, blank=False, null=False)
+
+class SoilTypeRiskRating(models.Model):
+
+    soil_type = models.CharField(max_length=10, blank=False, null=False)
+    risk_value = models.IntegerField(blank=False, null=False)
+    risk_display_text = models.CharField(max_length=10, default='Low', choices=RATING_DISPLAY_TEXT)
+    caution_message = models.TextField(max_length=500, blank=True, null=True)
+
+class SurfaceConditionRiskRating(models.Model):
+
+    surface_condition = models.CharField(max_length=10, blank=False, null=False)
+    is_a_stop_application_item = models.BooleanField(default=False)
+    risk_value = models.IntegerField(blank=False, null=False)
+    risk_display_text = models.CharField(max_length=10, default='Low', choices=RATING_DISPLAY_TEXT)
+
+class CriticalAreaRiskRating(models.Model):
+
+    answer = models.CharField(max_length=10, blank=False, null=False)
+    risk_value = models.IntegerField(blank=False, null=False)
+    risk_display_text = models.CharField(max_length=10, default='Low', choices=RATING_DISPLAY_TEXT)
+    caution_message = models.TextField(max_length=500, blank=True, null=True)
+
+class ManureSetbackDistanceRiskRating(models.Model):
+
+    distance_minimum = models.DecimalField(decimal_places=2, max_digits=10, blank=False, null=False, default=0)
+    distance_maximum = models.DecimalField(decimal_places=2, max_digits=10, blank=False, null=False, default=0)
+    risk_value = models.IntegerField(blank=False, null=False)
+    risk_display_text = models.CharField(max_length=10, default='Low', choices=RATING_DISPLAY_TEXT)
+    caution_message = models.TextField(max_length=500, blank=False, null=False)

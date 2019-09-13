@@ -1,20 +1,335 @@
 [
     {
-        "model": "auth.user",
+        "model": "sites.site",
+        "pk": 4,
+        "fields": {
+            "domain": "example.com",
+            "name": "example.com"
+        }
+    },
+    {
+        "model": "admin.logentry",
         "pk": 1,
         "fields": {
-            "password": "pbkdf2_sha256$150000$xIc12TAznw9c$lySNgjuJ/8aWgLGzy0/mrofmPPsVzyFzbI+yuOK+e40=",
-            "last_login": "2019-08-31T14:17:56.939Z",
-            "is_superuser": true,
-            "username": "arm-admin",
-            "first_name": "",
-            "last_name": "",
-            "email": "",
-            "is_staff": true,
-            "is_active": true,
-            "date_joined": "2019-08-31T14:16:16.508Z",
-            "groups": [],
-            "user_permissions": []
+            "action_time": "2019-09-12T22:33:34.276Z",
+            "user": 1,
+            "content_type": 21,
+            "object_id": "1",
+            "object_repr": "ApplicationRiskRating object (1)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 2,
+        "fields": {
+            "action_time": "2019-09-12T22:34:01.554Z",
+            "user": 1,
+            "content_type": 21,
+            "object_id": "2",
+            "object_repr": "ApplicationRiskRating object (2)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 3,
+        "fields": {
+            "action_time": "2019-09-12T22:34:21.803Z",
+            "user": 1,
+            "content_type": 21,
+            "object_id": "3",
+            "object_repr": "ApplicationRiskRating object (3)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 4,
+        "fields": {
+            "action_time": "2019-09-12T22:34:47.586Z",
+            "user": 1,
+            "content_type": 21,
+            "object_id": "4",
+            "object_repr": "ApplicationRiskRating object (4)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 5,
+        "fields": {
+            "action_time": "2019-09-12T22:35:12.875Z",
+            "user": 1,
+            "content_type": 21,
+            "object_id": "5",
+            "object_repr": "ApplicationRiskRating object (5)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 6,
+        "fields": {
+            "action_time": "2019-09-13T03:40:43.223Z",
+            "user": 1,
+            "content_type": 24,
+            "object_id": "1",
+            "object_repr": "SoilTypeRiskRating object (1)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 7,
+        "fields": {
+            "action_time": "2019-09-13T03:41:03.839Z",
+            "user": 1,
+            "content_type": 24,
+            "object_id": "2",
+            "object_repr": "SoilTypeRiskRating object (2)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 8,
+        "fields": {
+            "action_time": "2019-09-13T03:41:13.907Z",
+            "user": 1,
+            "content_type": 24,
+            "object_id": "3",
+            "object_repr": "SoilTypeRiskRating object (3)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 9,
+        "fields": {
+            "action_time": "2019-09-13T03:41:31.727Z",
+            "user": 1,
+            "content_type": 24,
+            "object_id": "4",
+            "object_repr": "SoilTypeRiskRating object (4)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 10,
+        "fields": {
+            "action_time": "2019-09-13T03:43:02.491Z",
+            "user": 1,
+            "content_type": 25,
+            "object_id": "1",
+            "object_repr": "SurfaceConditionRiskRating object (1)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 11,
+        "fields": {
+            "action_time": "2019-09-13T03:43:18.726Z",
+            "user": 1,
+            "content_type": 25,
+            "object_id": "2",
+            "object_repr": "SurfaceConditionRiskRating object (2)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 12,
+        "fields": {
+            "action_time": "2019-09-13T03:44:24.236Z",
+            "user": 1,
+            "content_type": 25,
+            "object_id": "3",
+            "object_repr": "SurfaceConditionRiskRating object (3)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 13,
+        "fields": {
+            "action_time": "2019-09-13T03:44:44.701Z",
+            "user": 1,
+            "content_type": 25,
+            "object_id": "4",
+            "object_repr": "SurfaceConditionRiskRating object (4)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 14,
+        "fields": {
+            "action_time": "2019-09-13T03:45:04.516Z",
+            "user": 1,
+            "content_type": 25,
+            "object_id": "5",
+            "object_repr": "SurfaceConditionRiskRating object (5)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 15,
+        "fields": {
+            "action_time": "2019-09-13T03:45:21.013Z",
+            "user": 1,
+            "content_type": 25,
+            "object_id": "6",
+            "object_repr": "SurfaceConditionRiskRating object (6)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 16,
+        "fields": {
+            "action_time": "2019-09-13T03:46:57.931Z",
+            "user": 1,
+            "content_type": 22,
+            "object_id": "1",
+            "object_repr": "CriticalAreaRiskRating object (1)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 17,
+        "fields": {
+            "action_time": "2019-09-13T03:47:04.378Z",
+            "user": 1,
+            "content_type": 22,
+            "object_id": "2",
+            "object_repr": "CriticalAreaRiskRating object (2)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 18,
+        "fields": {
+            "action_time": "2019-09-13T04:12:34.329Z",
+            "user": 1,
+            "content_type": 23,
+            "object_id": "1",
+            "object_repr": "ManureSetbackDistanceRiskRating object (1)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 19,
+        "fields": {
+            "action_time": "2019-09-13T04:13:09.835Z",
+            "user": 1,
+            "content_type": 23,
+            "object_id": "1",
+            "object_repr": "ManureSetbackDistanceRiskRating object (1)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"distance_maximum\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 20,
+        "fields": {
+            "action_time": "2019-09-13T04:14:55.599Z",
+            "user": 1,
+            "content_type": 23,
+            "object_id": "2",
+            "object_repr": "ManureSetbackDistanceRiskRating object (2)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 21,
+        "fields": {
+            "action_time": "2019-09-13T04:16:53.860Z",
+            "user": 1,
+            "content_type": 23,
+            "object_id": "3",
+            "object_repr": "ManureSetbackDistanceRiskRating object (3)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 22,
+        "fields": {
+            "action_time": "2019-09-13T04:17:04.760Z",
+            "user": 1,
+            "content_type": 23,
+            "object_id": "2",
+            "object_repr": "ManureSetbackDistanceRiskRating object (2)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"risk_display_text\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 23,
+        "fields": {
+            "action_time": "2019-09-13T04:17:24.444Z",
+            "user": 1,
+            "content_type": 23,
+            "object_id": "3",
+            "object_repr": "ManureSetbackDistanceRiskRating object (3)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"risk_display_text\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 24,
+        "fields": {
+            "action_time": "2019-09-13T16:39:38.290Z",
+            "user": 1,
+            "content_type": 24,
+            "object_id": "5",
+            "object_repr": "SoilTypeRiskRating object (5)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 25,
+        "fields": {
+            "action_time": "2019-09-13T17:48:44.475Z",
+            "user": 1,
+            "content_type": 25,
+            "object_id": "5",
+            "object_repr": "SurfaceConditionRiskRating object (5)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"surface_condition\"]}}]"
         }
     },
     {
