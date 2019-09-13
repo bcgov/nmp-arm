@@ -651,46 +651,6 @@
         }
     },
     {
-        "model": "arm.surfaceconditioncautionmessage",
-        "pk": 1,
-        "fields": {
-            "risk_caution_value": "ponding",
-            "message": "Ponding - Caution: Avoid ponded areas with appropriate seasonal setback distance, particularly if it drains to a waterway. Ponding can be a sign of a high water table, so be cautious of soil saturation."
-        }
-    },
-    {
-        "model": "arm.surfaceconditioncautionmessage",
-        "pk": 2,
-        "fields": {
-            "risk_caution_value": "flooding",
-            "message": "Flooding - No application is allowed if flooding is predicted in a 15 day window after application."
-        }
-    },
-    {
-        "model": "arm.surfaceconditioncautionmessage",
-        "pk": 3,
-        "fields": {
-            "risk_caution_value": "frozen",
-            "message": "Frozen - No application is allowed on soils frozen 2,5 cm or greater below the surface, or covered in snow."
-        }
-    },
-    {
-        "model": "arm.surfaceconditioncautionmessage",
-        "pk": 4,
-        "fields": {
-            "risk_caution_value": "snow-ice",
-            "message": "Snow covered - No application is allowed if a field has at least 5 cm (2 in) or more of ice or snow over 50% or more of the area."
-        }
-    },
-    {
-        "model": "arm.surfaceconditioncautionmessage",
-        "pk": 5,
-        "fields": {
-            "risk_caution_value": "tiles",
-            "message": "Tiles - Caution: Tiles must have at least 60 cm of cover, not be discharging manure, and their location must be known prior to application. Monitor tiles closely after application. If manure discharges from tile, plug immediately."
-        }
-    },
-    {
         "model": "arm.restrictionstopmessage",
         "pk": 1,
         "fields": {
@@ -737,6 +697,225 @@
             "minimum_score": 42,
             "maximum_score": 999,
             "message": "Do NOT apply manure at this time, the risk is too high. Wait and reevaluate."
+        }
+    },
+    {
+        "model": "arm.applicationriskrating",
+        "pk": 1,
+        "fields": {
+            "applicator_name": "below_application",
+            "risk_value": 2,
+            "risk_display_text": "Low-Med",
+            "caution_message": "This is a low risk method of application. Watch for compaction on your field if soil is wet. Follow current manure setback distances."
+        }
+    },
+    {
+        "model": "arm.applicationriskrating",
+        "pk": 2,
+        "fields": {
+            "applicator_name": "surface_application",
+            "risk_value": 3,
+            "risk_display_text": "Low-Med",
+            "caution_message": "Be cautious of turnaround areas and low spots. Watch for compaction on your field if applying to wet soils. Follow current manure setback distances. Use of an aerator is a good method when applying to grass in a higher risk time."
+        }
+    },
+    {
+        "model": "arm.applicationriskrating",
+        "pk": 3,
+        "fields": {
+            "applicator_name": "irrigation_sprinkler",
+            "risk_value": 6,
+            "risk_display_text": "Medium",
+            "caution_message": "While this method decreases compaction issues, it may increase the likelihood of runoff of manure from the surface of your field. Do not apply to saturated soils. Be sure to observe manure setbacks from critical areas at all times. Do not use this method if wind speed is greater than 10 mph."
+        }
+    },
+    {
+        "model": "arm.applicationriskrating",
+        "pk": 4,
+        "fields": {
+            "applicator_name": "grazing",
+            "risk_value": 3,
+            "risk_display_text": "Low-Med",
+            "caution_message": "Grazing is a form of manure application. Be sure to observe manure application setback distances and maintain field cover to reduce a runoff event."
+        }
+    },
+    {
+        "model": "arm.applicationriskrating",
+        "pk": 5,
+        "fields": {
+            "applicator_name": "soild_manure_application",
+            "risk_value": 5,
+            "risk_display_text": "Medium",
+            "caution_message": "Solid manure guidelines are the same as liquid manure. Follow all setback guidance. Make sure soild manure is spread evenly and incorporated into the soil surface prior to a rain event, which can significantly increase the probablility of a runoff event."
+        }
+    },
+    {
+        "model": "arm.soiltyperiskrating",
+        "pk": 1,
+        "fields": {
+            "soil_type": "sand",
+            "risk_value": 1,
+            "risk_display_text": "Low",
+            "caution_message": null
+        }
+    },
+    {
+        "model": "arm.soiltyperiskrating",
+        "pk": 2,
+        "fields": {
+            "soil_type": "silt",
+            "risk_value": 2,
+            "risk_display_text": "Low-Med",
+            "caution_message": null
+        }
+    },
+    {
+        "model": "arm.soiltyperiskrating",
+        "pk": 3,
+        "fields": {
+            "soil_type": "clay",
+            "risk_value": 5,
+            "risk_display_text": "Medium",
+            "caution_message": null
+        }
+    },
+    {
+        "model": "arm.soiltyperiskrating",
+        "pk": 4,
+        "fields": {
+            "soil_type": "peat_muck",
+            "risk_value": 6,
+            "risk_display_text": "Medium",
+            "caution_message": null
+        }
+    },
+    {
+        "model": "arm.soiltyperiskrating",
+        "pk": 5,
+        "fields": {
+            "soil_type": "other",
+            "risk_value": 4,
+            "risk_display_text": "Medium",
+            "caution_message": null
+        }
+    },
+    {
+        "model": "arm.surfaceconditionriskrating",
+        "pk": 1,
+        "fields": {
+            "surface_condition": "ponding",
+            "is_a_stop_application_item": false,
+            "risk_value": 5,
+            "risk_display_text": "Medium",
+            "caution_message": "Ponding - Caution: Avoid ponded areas with appropriate seasonal setback distance, particularly if it drains to a waterway. Ponding can be a sign of a high water table, so be cautious of soil saturation."
+        }
+    },
+    {
+        "model": "arm.surfaceconditionriskrating",
+        "pk": 2,
+        "fields": {
+            "surface_condition": "tiles",
+            "is_a_stop_application_item": false,
+            "risk_value": 6,
+            "risk_display_text": "Medium",
+            "caution_message": "Tiles - Caution: Tiles must have at least 60 cm of cover, not be discharging manure, and their location must be known prior to application. Monitor tiles closely after application. If manure discharges from tile, plug immediately."
+        }
+    },
+    {
+        "model": "arm.surfaceconditionriskrating",
+        "pk": 3,
+        "fields": {
+            "surface_condition": "none",
+            "is_a_stop_application_item": false,
+            "risk_value": 0,
+            "risk_display_text": "Low",
+            "caution_message": null
+        }
+    },
+    {
+        "model": "arm.surfaceconditionriskrating",
+        "pk": 4,
+        "fields": {
+            "surface_condition": "flooding",
+            "is_a_stop_application_item": true,
+            "risk_value": 10,
+            "risk_display_text": "Extreme",
+            "caution_message": "Flooding - No application is allowed if flooding is predicted in a 15 day window after application."
+        }
+    },
+    {
+        "model": "arm.surfaceconditionriskrating",
+        "pk": 5,
+        "fields": {
+            "surface_condition": "frozen",
+            "is_a_stop_application_item": true,
+            "risk_value": 10,
+            "risk_display_text": "Extreme",
+            "caution_message": "Frozen - No application is allowed on soils frozen 2,5 cm or greater below the surface, or covered in snow."
+        }
+    },
+    {
+        "model": "arm.surfaceconditionriskrating",
+        "pk": 6,
+        "fields": {
+            "surface_condition": "snow-ice",
+            "is_a_stop_application_item": true,
+            "risk_value": 10,
+            "risk_display_text": "Extreme",
+            "caution_message": "Snow covered - No application is allowed if a field has at least 5 cm (2 in) or more of ice or snow over 50% or more of the area."
+        }
+    },
+    {
+        "model": "arm.criticalareariskrating",
+        "pk": 1,
+        "fields": {
+            "answer": "yes",
+            "risk_value": 3,
+            "risk_display_text": "Low-Med",
+            "caution_message": null
+        }
+    },
+    {
+        "model": "arm.criticalareariskrating",
+        "pk": 2,
+        "fields": {
+            "answer": "no",
+            "risk_value": 1,
+            "risk_display_text": "Low",
+            "caution_message": null
+        }
+    },
+    {
+        "model": "arm.manuresetbackdistanceriskrating",
+        "pk": 1,
+        "fields": {
+            "distance_minimum": "12.00",
+            "distance_maximum": "99999999.00",
+            "risk_value": 1,
+            "risk_display_text": "Low",
+            "caution_message": "Warning: Your setback is either lower than legal requirements or the recommended setback distance. Increasing setback distance will reduce the risk of off-site nutrient transport."
+        }
+    },
+    {
+        "model": "arm.manuresetbackdistanceriskrating",
+        "pk": 2,
+        "fields": {
+            "distance_minimum": "1.50",
+            "distance_maximum": "11.99",
+            "risk_value": 4,
+            "risk_display_text": "Medium",
+            "caution_message": "Warning: Your setback is either lower than legal requirements or the recommended setback distance. Increasing setback distance will reduce the risk of off-site nutrient transport."
+        }
+    },
+    {
+        "model": "arm.manuresetbackdistanceriskrating",
+        "pk": 3,
+        "fields": {
+            "distance_minimum": "0.00",
+            "distance_maximum": "1.49",
+            "risk_value": 7,
+            "risk_display_text": "Med-High",
+            "caution_message": "Warning: Your setback is either lower than legal requirements or the recommended setback distance. Increasing setback distance will reduce the risk of off-site nutrient transport."
         }
     }
 ]

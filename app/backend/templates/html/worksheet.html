@@ -529,13 +529,18 @@
         </div>
 
         <script type="text/javascript">
+            window.APPLICATION_EQUIPMENT_RISK_SETTINGS = {{ staticData.application_equipment_risk_settings|safe }}
+            window.SOIL_TYPE_RISK_SETTINGS = {{ staticData.soil_type_risk_settings|safe }}
+            window.SURFACE_CONDITION_RISK_SETTINGS = {{ staticData.surface_condition_risk_settings|safe }}
+            window.CRITICAL_AREA_RISK_SETTINGS = {{ staticData.critical_area_risk_settings|safe }}
+            window.MANURE_SETBACK_SETTINGS = {{ staticData.manure_setback_settings|safe }}
             window.RISK_CUTOFF = {{ staticData.risk_cuttoff_settings|safe }}
             window.CONFIG_VALIDATOR = {
                     fields : {{ staticData.fields_configurations|safe }}
                 };
         </script> 
 
-    <script type="text/javascript" src="{% static 'js/validators.js' %}?v=1.2"></script>
+    <script type="text/javascript" src="{% static 'js/validators.js' %}?v=1.3"></script>
     
      
 <script>
