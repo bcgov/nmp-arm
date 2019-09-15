@@ -33,14 +33,14 @@ DATABASE_PASSWORD = config('DATABASE_PASSWORD')
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(ABSOLUTE_PATH, 'db.sqlite3'),
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'HOST': 'localhost',
-        # 'PORT': '5432',
-        # 'NAME': DATABASE_NAME,
-        # 'USER': DATABASE_USER,
-        # 'PASSWORD': DATABASE_PASSWORD,
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(ABSOLUTE_PATH, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'NAME': DATABASE_NAME,
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASSWORD,
     },
 }
 
