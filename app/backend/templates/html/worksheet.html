@@ -4,9 +4,20 @@
 
 <head>
     <title>ARM Worksheet BC</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3.2.0/css/bootstrap.min.css"/>
 
+    <link href="{% static 'bootstrap-theme/dist/css/bootstrap-theme.min.css' %}" rel="stylesheet">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="{% static 'bootstrap-theme/dist/images/bcid-apple-touch-icon.png' %}" sizes="180x180">
+    <link rel="icon" href="{% static 'bootstrap-theme/dist/images/bcid-favicon-32x32.png' %}" sizes="32x32" type="image/png">
+    <link rel="icon" href="{% static 'bootstrap-theme/dist/images/bcid-favicon-16x16.png' %}" sizes="16x16" type="image/png">
+    <link rel="manifest" href="{% static 'bootstrap-theme/dist/images/manifest.json' %}">
+    <link rel="mask-icon" href="{% static 'bootstrap-theme/dist/images/bcid-apple-icon.svg' %}" color="#036">
+    <link rel="icon" href="{% static 'bootstrap-theme/dist/images/bcid-favicon-32x32.png' %}">
+    <meta name="msapplication-config" content="{% static 'bootstrap-theme/dist/images/browserconfig.xm' %}">
+    <meta name="theme-color" content="#036">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Include FontAwesome CSS if you want to use feedback icons provided by FontAwesome -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/fontawesome/4.1.0/css/font-awesome.min.css" />
 
@@ -14,13 +25,10 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css"/>
 
     <!-- jQuery and Bootstrap JS -->
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.1/jquery.min.js"></script>
-    
-    <!-- added for dialogue windows by KV -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.ui/1.11.4/jquery-ui.min.css" /> 
-    <script src="https://cdn.jsdelivr.net/jquery.ui/1.11.4/jquery-ui.min.js"></script>
-    
-    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 
     <!-- BootstrapValidator JS -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.bootstrapvalidator/0.5.0/js/bootstrapValidator.min.js"></script>
@@ -94,10 +102,26 @@
         .high  {
             color: red;
         }
+
+        header {
+            padding-bottom: 30px
+        }
+        footer {
+            padding-top: 30px
+        }
     </style>
 </head>
 <body>
-
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="https://www2.gov.bc.ca">
+                    <img class="img-fluid d-none d-md-block" src="{% static 'bootstrap-theme/dist/images/bcid-logo-rev-en.svg' %}" width="181" height="44" alt="B.C. Government Logo">
+                    <img class="img-fluid d-md-none" src="{% static 'bootstrap-theme/dist/images/bcid-symbol-rev.svg' %}" width="64" height="44" alt="B.C. Government Logo">
+                </a>
+            </div>
+        </nav>
+    </header>
 
     <!-- Modal -->
     <div id="emailReportModal" class="modal fade" role="dialog">
@@ -175,7 +199,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
+            <div class="col-lg-10 col-lg-offset-2">
                 <div class="page-header">
                     <h2>{{ staticData.main.title|safe }}</h2>
                     <p>{{ staticData.main.description|safe }}</p>
@@ -320,7 +344,7 @@
                     <div class="form-group">
                         <label class="col-lg-8"><h3>{{ staticData.soil_moisture.title|safe }}</h3></label>
                         <p class="col-lg-8 desc">{{ staticData.soil_moisture.description|safe }}</p>
-                        <div class="col-lg-5">
+                        <div class="col-lg-8">
                         {% for option in staticData.soil_moisture_options %}
                             <div class="radio">
                                 <label>
@@ -343,7 +367,7 @@
                     <div class="form-group">
                         <label class="col-lg-8"><h3>{{ staticData.water_table_depth.title|safe }}</h3></label>
                         <p class="col-lg-8 desc">{{ staticData.water_table_depth.description|safe }}</p>
-                        <div class="col-lg-5">
+                        <div class="col-lg-8">
                         <select class="form-control" name="water_table_depth" id="water_table_depth"
                             data-bv-notempty="true"
                             data-bv-notempty-message="the water table depth is required and cannot be empty"
@@ -367,7 +391,7 @@
                     <div class="form-group">
                         <label class="col-lg-8"><h3>{{ staticData.forage_density.title|safe }}</h3></label>
                         <p class="col-lg-8 desc">{{ staticData.forage_density.description|safe }}</p>
-                        <div class="col-lg-5">
+                        <div class="col-lg-8">
                         {% for option in staticData.forage_density_options %}
                             <div class="radio">
                                 <label>
@@ -390,7 +414,7 @@
                     <div class="form-group">
                         <label class="col-lg-8"><h3>{{ staticData.forage_height.title|safe }}</h3></label>
                         <p class="col-lg-8 desc">{{ staticData.forage_height.description|safe }}</p>
-                        <div class="col-lg-5">
+                        <div class="col-lg-8">
                             <select class="form-control" name="forage_height" id="forage_height"
                                 data-bv-notempty="true"
                                 data-bv-notempty-message="the forage height is required and cannot be empty"
@@ -415,7 +439,7 @@
                     <div class="form-group">
                         <label class="col-lg-8"><h3>{{ staticData.field_surface_conditions.title|safe }}</h3></label>
                         <p class="col-lg-8 desc">{{ staticData.field_surface_conditions.description|safe }}</p>
-                        <div class="col-lg-5">
+                        <div class="col-lg-8">
                         {% for option in staticData.surface_condition_options %}
                             <div class="checkbox">
                                 <label>
@@ -440,7 +464,7 @@
                     <div class="form-group">
                         <label class="col-lg-8"><h3>{{ staticData.manure_application_equipment.title|safe }}</h3></label>
                         <p class="col-lg-8 desc">{{ staticData.manure_application_equipment.description|safe }}</p>
-                        <div class="col-lg-5">
+                        <div class="col-lg-8">
                         {% for option in staticData.application_equipment_options %}
                             <div class="radio">
                                 <label>
@@ -463,7 +487,7 @@
                     <div class="form-group">
                         <label class="col-lg-8"><h3>{{ staticData.waterbody_critical_area.title|safe }}</h3></label>
                         <p class="col-lg-8 desc">{{ staticData.waterbody_critical_area.description|safe }}</p>
-                        <div class="col-lg-5">
+                        <div class="col-lg-8">
                             <div class="radio">
                                 <label>
                                     <input type="radio" name="critical_area" value="yes" data-bv-notempty="true" data-bv-notempty-message="critical area is required" /> Yes (answer next question)
@@ -486,7 +510,7 @@
                         <div class="form-group">
                             <label class="col-lg-8">{{ staticData.manure_setback.title|safe }}</label>
                             <p class="col-lg-8 desc">{{ staticData.manure_setback.description|safe }}</p>
-                        <div class="col-lg-5">
+                        <div class="col-lg-8">
                                 <input type="text" class="form-control" name="manure_setback_distance"
                                     data-bv-notempty="true"
                                     data-bv-notempty-message="manure setback distance is required and cannot be empty"
@@ -515,9 +539,9 @@
                         </div> 
                     </div>
                     <p>Save as PDF by clicking File > Print on your desktop browser menu. Then click Save.</p>
-                    <button id="send_btn" type="submit" class="btn btn-default">Send/Email</button>
-                    <button id="clear_btn" class="btn btn-default">Clear</button>                    
-                    <button id="print_btn" type="submit" class="btn btn-default">Print/Save</button>
+                    <button id="send_btn" type="submit" class="btn btn-primary">Send/Email</button>
+                    <button id="clear_btn" class="btn btn-primary">Clear</button>                    
+                    <button id="print_btn" type="submit" class="btn btn-primary">Print/Save</button>
 
                  <div id="downloadwindow" title="Download PDF Form"></div>
 
@@ -526,8 +550,32 @@
                 </form>
             </div>
         </div>
-        </div>
+    </div>
 
+    <footer class="footer">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+              <!-- Navbar content -->
+              <div class="container">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://www2.gov.bc.ca/gov/content/home/disclaimer" target="_blank">Disclaimer</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://www2.gov.bc.ca/gov/content/home/privacy" target="_blank">Privacy</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://www2.gov.bc.ca/gov/content/home/accessibility" target="_blank">Accessibility</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://www2.gov.bc.ca/gov/content/home/copyright" target="_blank">Copyright</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://www2.gov.bc.ca/gov/content/home/contact-us" target="_blank">Contact Us</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </footer>
         <script type="text/javascript">
             window.APPLICATION_EQUIPMENT_RISK_SETTINGS = {{ staticData.application_equipment_risk_settings|safe }}
             window.SOIL_TYPE_RISK_SETTINGS = {{ staticData.soil_type_risk_settings|safe }}
