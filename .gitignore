@@ -114,3 +114,6 @@ arm/settings.original.py
 .vs/
 .idea/
 tmp/
+
+# Temporary until automated pull of dist for BCGov bootstrap-theme is setup
+!**/bootstrap-theme/dist/
