@@ -1,5 +1,14 @@
 from django.db import models
 
+RATING_DISPLAY_TEXT = (
+    ('Low', 'Low'),
+    ('Low-Med', 'Low-Med'),
+    ('Medium', 'Medium'),
+    ('Med-High', 'Med-High'),
+    ('High', 'High'),
+    ('Extreme', 'Extreme'),
+)
+
 class FormField(models.Model):
     
     field_name = models.CharField(max_length=50)
@@ -82,14 +91,37 @@ class RiskCutoffSetting(models.Model):
     maximum_score = models.IntegerField()
     message = models.TextField(max_length=500, default='add a message', blank=False, null=False)
 
-RATING_DISPLAY_TEXT = (
-    ('Low', 'Low'),
-    ('Low-Med', 'Low-Med'),
-    ('Medium', 'Medium'),
-    ('Med-High', 'Med-High'),
-    ('High', 'High'),
-    ('Extreme', 'Extreme'),
-)
+
+class NumericRiskRatingMixin(models.Model):
+    class Meta:
+        abstract=True
+
+    range_minimum = models.DecimalField(decimal_places=2, max_digits=5, default=0)
+    range_maximum = models.DecimalField(decimal_places=2, max_digits=5, default=0)
+    risk_value = models.IntegerField(blank=False, null=False)
+    risk_display_text = models.CharField(max_length=10, default='Low', choices=RATING_DISPLAY_TEXT)
+    caution_message = models.TextField(max_length=500, blank=True, null=True)
+
+    def __str__(self):
+        return "range_minimum:{0}, range_maximum:{1}, risk_value:{2}, risk_display_text:{3}, caution_message:{4}".format(self.range_minimum, self.range_maximum, self.risk_value, self.risk_display_text, self.caution_message)
+
+class Preciptation24RiskRating(NumericRiskRatingMixin):
+    pass
+
+class Preciptation72RiskRating(NumericRiskRatingMixin):
+    pass
+
+class SoilMoistureRiskRating(NumericRiskRatingMixin):
+    pass
+
+class WaterTableRiskRating(NumericRiskRatingMixin):
+    pass
+
+class ForageDensityRiskRating(NumericRiskRatingMixin):
+    pass
+
+class ForageHeightRiskRating(NumericRiskRatingMixin):
+    pass
 
 class ApplicationRiskRating(models.Model):
 

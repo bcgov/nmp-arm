@@ -5,7 +5,10 @@ from django.db import models
 from .models import ApplicationEquipmentOption, FormField, ForageDensityOption, ForageHeightOption, SoilMoistureOption, SoilTypeOption, \
                     SurfaceConditionOption, WaterTableDepthOption, \
                     CautionMessage, RiskRatingValue, RestrictionStopMessage, RiskCutoffSetting, \
-                    ApplicationRiskRating, SoilTypeRiskRating, SurfaceConditionRiskRating, CriticalAreaRiskRating, ManureSetbackDistanceRiskRating
+                    Preciptation24RiskRating, Preciptation72RiskRating, SoilMoistureRiskRating, \
+                    WaterTableRiskRating, ForageDensityRiskRating, ForageHeightRiskRating, \
+                    ApplicationRiskRating, SoilTypeRiskRating, SurfaceConditionRiskRating, \
+                    CriticalAreaRiskRating, ManureSetbackDistanceRiskRating
 
 @admin.register(FormField)
 class FormFieldAdmin(admin.ModelAdmin):
@@ -59,6 +62,30 @@ class RestrictionStopMessageAdmin(admin.ModelAdmin):
 @admin.register(RiskCutoffSetting)
 class RiskCutoffSettingAdmin(admin.ModelAdmin):
     list_display = ('id', 'risk_level_name', 'display', 'minimum_score', 'maximum_score', 'message')
+
+@admin.register(Preciptation24RiskRating)
+class Preciptation24RiskRatingAdmin(admin.ModelAdmin):
+    list_display = ('id', 'range_minimum', 'range_maximum', 'risk_value', 'risk_display_text', 'caution_message')
+
+@admin.register(Preciptation72RiskRating)
+class Preciptation72RiskRatingAdmin(admin.ModelAdmin):
+    list_display = ('id', 'range_minimum', 'range_maximum', 'risk_value', 'risk_display_text', 'caution_message')
+
+@admin.register(SoilMoistureRiskRating)
+class SoilMoistureRiskRatingAdmin(admin.ModelAdmin):
+    list_display = ('id', 'range_minimum', 'range_maximum', 'risk_value', 'risk_display_text', 'caution_message')
+
+@admin.register(WaterTableRiskRating)
+class WaterTableRiskRatingAdmin(admin.ModelAdmin):
+    list_display = ('id', 'range_minimum', 'range_maximum', 'risk_value', 'risk_display_text', 'caution_message')
+
+@admin.register(ForageDensityRiskRating)
+class ForageDensityRiskRatingAdmin(admin.ModelAdmin):
+    list_display = ('id', 'range_minimum', 'range_maximum', 'risk_value', 'risk_display_text', 'caution_message')
+
+@admin.register(ForageHeightRiskRating)
+class ForageHeightRiskRatingAdmin(admin.ModelAdmin):
+    list_display = ('id', 'range_minimum', 'range_maximum', 'risk_value', 'risk_display_text', 'caution_message')
 
 @admin.register(ApplicationRiskRating)
 class ApplicationRiskRatingAdmin(admin.ModelAdmin):

@@ -32,7 +32,9 @@ from .PdfView import WorksheetData, PdfView
 from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, RiskRatingValue, CautionMessage, \
                     RestrictionStopMessage, ApplicationEquipmentOption, SoilTypeOption, \
                     SoilMoistureOption, ForageDensityOption, SurfaceConditionOption, RiskCutoffSetting, \
-                    ApplicationRiskRating, SoilTypeRiskRating, SurfaceConditionRiskRating, CriticalAreaRiskRating, ManureSetbackDistanceRiskRating
+                    Preciptation24RiskRating, Preciptation72RiskRating, SoilMoistureRiskRating, ForageDensityRiskRating, ForageHeightRiskRating, \
+                    ApplicationRiskRating, SoilTypeRiskRating, SurfaceConditionRiskRating, CriticalAreaRiskRating, \
+                    ManureSetbackDistanceRiskRating
 
 class WorksheetForm( Form ):
 
@@ -107,6 +109,8 @@ class StaticData():
         self.critical_area_risk_settings = critical_area_risk_settings().toJSON()
         self.manure_setback_settings = manure_setback_settings().toJSON()
 
+        print(self.fields_configurations)
+
 class JSONSerializable():
     
     def _try(self, o): 
@@ -155,7 +159,9 @@ class validator():
         if(restrict_radio_required):
             self.restrict_radio = restrict_radio(field_name)
 
-        if field_name == 'soil_type':
+        if field_name == '24precipitation':
+            self.risk_rating = preciptation_24_risk_settings()
+        elif field_name == 'soil_type':
             self.soil_type_risk_rating = soil_type_risk_rating()
         elif field_name == 'application_equipment':
             self.applicator_risk_rating = applicator_risk_rating()
@@ -248,6 +254,19 @@ class risk_cuttoff():
         self.minimum_score = setting.minimum_score
         self.maximum_score = setting.maximum_score
         self.message = setting.message
+
+class risk_setting(JSONSerializable):
+    def load_setting(self, settings_name, settings):
+        
+        for setting in settings:
+            self.__dict__[setting.pk] = risk_rating_setting(setting)
+            self.__dict__[setting.pk].range_minimum = setting.range_minimum
+            self.__dict__[setting.pk].range_maximum = setting.range_maximum
+
+class preciptation_24_risk_settings(risk_setting):
+    def __init__(self):
+        settings = Preciptation24RiskRating.objects.all()
+        self = self.load_setting('precipitation_1', settings)
 
 class application_equipment_risk_settings(JSONSerializable):
     

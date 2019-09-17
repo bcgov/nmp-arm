@@ -231,6 +231,26 @@ window.calculate_risk_rating = function( value_to_check, values, options ) {
         validate: function(validator, $field, options) {
             var value = $field.val();
             var field = $field;
+
+            if(field[0].name == 'precipitation_1')
+            {
+                for (var key in options)
+                {
+                    var setting = options[ key ]
+                    if(value >= setting['range_minimum'] && value <= setting['range_maximum']){
+                        console.log('precipitation_1')
+                        console.log(key)
+                        console.log(setting.risk_value)
+                        console.log(setting.risk_display_text)
+                        update_riskrating_ui( $field, { risk : setting.risk_value, display : setting.risk_display_text } );
+                        update_caution_ui( $field, setting.caution_message );
+                        break;
+                    }
+                }
+    
+                return true;                
+            }
+
             var is_reversed = options.is_reversed || false;
             // exception for special text values
             if (value == 101){
