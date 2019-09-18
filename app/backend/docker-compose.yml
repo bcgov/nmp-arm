@@ -1,26 +1,36 @@
-version: '3'
+version: '2'
 
 services:
+
+  db:
+    image: postgres 
+    container_name: arm-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${DATABASE_NAME}
+      POSTGRES_DB: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+
+    env_file:
+      - .env
 
   web:
     image: arm-bc-web:latest
     container_name: arm-bc-web
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    # command: bash "prod_run.sh"
+    command: bash -c "./manage.py collectstatic --no-input;./manage.py migrate; ./manage.py loaddata initial_data; gunicorn arm.wsgi -b 0.0.0.0:5000"
 
     stdin_open: true
     tty: true
+    
     volumes:
       - .:/code
-    ports:
-      - "8000:8000"
+      - static_volume:/static   
 
     env_file:
       - .env
       
     environment:
-      ENVIRONMENT: dev
       DEBUG: 'False'
       LOGGER_LEVEL: WARNING
       DATABASE_HOST: ${DATABASE_HOST}
@@ -33,7 +43,23 @@ services:
       EMAIL_HOST_USER: ${EMAIL_HOST_USER}
       EMAIL_HOST: ${EMAIL_HOST}
       EMAIL_HOST_PASSWORD: ${EMAIL_HOST_PASSWORD}
-      EMAIL_TO: ${DEFAULT_EMAIL}
       SERVER_EMAIL: ${DEFAULT_EMAIL}
       SUPPORT_EMAIL: ${DEFAULT_EMAIL}
       WEASYPRINT_URL: ${WEASYPRINT_URL}
+
+    depends_on:
+    - db      
+
+  nginx:
+    image: nginx:latest
+    container_name: arm-nginx
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./config/nginx:/etc/nginx/conf.d
+      - static_volume:/static   
+    depends_on:
+      - web
+
+volumes:
+  static_volume:
