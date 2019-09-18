@@ -18,7 +18,7 @@ services:
     image: arm-bc-web:latest
     container_name: arm-bc-web
     build: .
-    command: bash -c "./manage.py collectstatic --no-input;./manage.py migrate; ./manage.py loaddata initial_data; gunicorn arm.wsgi -b 0.0.0.0:5000"
+    #command: bash -c "./manage.py collectstatic --no-input;./manage.py migrate; ./manage.py loaddata initial_data; gunicorn arm.wsgi -b 0.0.0.0:5000"
 
     stdin_open: true
     tty: true
