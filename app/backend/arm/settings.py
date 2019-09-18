@@ -36,7 +36,7 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(ABSOLUTE_PATH, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': 'localhost',
+        'HOST': DATABASE_HOST,
         'PORT': '5432',
         'NAME': DATABASE_NAME,
         'USER': DATABASE_USER,
@@ -64,10 +64,6 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
-EMAIL_TO = config('EMAIL_TO')
-
-ENVIRONMENT = config('ENVIRONMENT')
-
 FIXTURE_DIRS = (os.path.join(os.path.dirname(__file__), 'fixtures', 'dev'),)
 
 # FORCE_SCRIPT_NAME='arm'
@@ -83,8 +79,6 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
 
-    # for extended manager options
-    'django_extensions',
 
     'common',
 
@@ -269,6 +263,8 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(ABSOLUTE_PATH, 'static/'),
 )
+
+STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(ABSOLUTE_PATH)), 'static')
 
 SUPPORT_EMAIL = config('SUPPORT_EMAIL')
 

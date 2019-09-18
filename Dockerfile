@@ -4,7 +4,7 @@ FROM python:3.7
 ENV PYTHONUNBUFFERED 1
 RUN mkdir /code
 WORKDIR /code
-COPY . /code/
+COPY ./app/backend /code/
 
 RUN pip install -U pip
 RUN pip install -Ur requirements.txt
