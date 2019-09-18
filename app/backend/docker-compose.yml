@@ -51,7 +51,7 @@ services:
     - db      
 
   nginx:
-    image: nginx:latest
+    image: nginx:1.17
     container_name: arm-nginx
     ports:
       - "8000:8000"
