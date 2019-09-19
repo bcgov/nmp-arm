@@ -54,7 +54,7 @@ services:
     image: nginx:1.17
     container_name: arm-nginx
     ports:
-      - "8000:8000"
+      - "8080:8080"
     volumes:
       - ./config/nginx:/etc/nginx/conf.d
       - static_volume:/static   
