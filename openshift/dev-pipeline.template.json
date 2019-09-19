@@ -27,7 +27,7 @@
         },
         "strategy": {
             "jenkinsPipelineStrategy": {
-                "jenkinsfilePath": "DEVELOP-Jenkinsfile"
+                "jenkinsfilePath": "DEV-Jenkinsfile"
             },
             "type": "JenkinsPipeline"
         },
@@ -36,14 +36,11 @@
             {
                 "github": {
                     "secretReference": {
-                        "name": "embcess-build-secret"
+                        "name": "nmp-arm-build-secret"
                     }
                 },
                 "type": "GitHub"
             }
         ]
-    },
-    "status": {
-        "lastVersion": 0
     }
 }
