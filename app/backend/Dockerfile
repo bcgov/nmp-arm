@@ -6,7 +6,7 @@ RUN mkdir /code
 WORKDIR /code
 COPY . /code/
 
-RUN chmod +w /code/logs
+RUN chmod g+rwx /code/logs
 
 RUN pip install -U pip
 RUN pip install -Ur requirements.txt
