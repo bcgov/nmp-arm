@@ -14,7 +14,7 @@ services:
     env_file:
       - .env
 
-  web:
+  nmp-arm:
     image: arm-bc-web:latest
     container_name: arm-bc-web
     build: .
@@ -59,7 +59,7 @@ services:
       - ./conf.d:/etc/nginx/conf.d
       - static_volume:/static   
     depends_on:
-      - web
+      - nmp-arm
 
 volumes:
   static_volume:
