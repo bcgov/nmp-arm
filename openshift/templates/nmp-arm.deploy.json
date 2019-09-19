@@ -274,7 +274,7 @@
                                 "livenessProbe": {
                                     "httpGet": {
                                         "path": "/",
-                                        "port": 8080,
+                                        "port": 5000,
                                         "scheme": "HTTP"
                                     },
                                     "initialDelaySeconds": 15,
@@ -286,7 +286,7 @@
                                 "readinessProbe": {
                                     "httpGet": {
                                         "path": "/",
-                                        "port": 8080,
+                                        "port": 5000,
                                         "scheme": "HTTP"
                                     },
                                     "initialDelaySeconds": 15,
