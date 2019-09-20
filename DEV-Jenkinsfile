@@ -1,4 +1,4 @@
-APP_NAME = "nmp-arm"
+APP_NAME = "arm-web"
 PROJECT_NAMESPACE = "agri-nmp"
 
 class AppEnvironment {
@@ -9,7 +9,7 @@ class AppEnvironment {
 
 // EDIT LINE BELOW (Edit your environment TAG names)
 environments = [
-  dev:new AppEnvironment(name:"Development",tag:"dev",previousTag:"dev-previous"),
+  dev:new AppEnvironment(name:"Dev",tag:"dev",previousTag:"dev-previous"),
   test:new AppEnvironment(name:"Test",tag:"test",previousTag:"test-previous"),
   prod:new AppEnvironment(name:"Prod",tag:"prod",previousTag:"prod-previous")
 ]
@@ -134,17 +134,16 @@ node('master') {
 
     stage('Startup') {
         // stop pending builds.
-        sh 'oc cancel-build bc/nmp-arm'        
+        sh 'oc cancel-build bc/arm-web'        
     }
+
     stage('Build') {        
       echo "Building Application image..."
       buildAndVerify(ARTIFACT_BUILD)
       
       IMAGE_HASH = getLatestHash(IMAGESTREAM_NAME)
       echo ">> IMAGE_HASH: ${IMAGE_HASH}"
-	  	  
     }
-
 	
 		
 	/* Deploying to DEV
