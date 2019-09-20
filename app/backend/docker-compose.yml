@@ -14,7 +14,7 @@ services:
     env_file:
       - .env
 
-  nmp-arm:
+  arm-web:
     image: arm-bc-web:latest
     container_name: arm-bc-web
     build: .
@@ -59,7 +59,13 @@ services:
       - ./conf.d:/etc/nginx/conf.d
       - static_volume:/static   
     depends_on:
-      - nmp-arm
+      - arm-web
+ 
+  weasy-print:
+    image: bcgovimages/weasyprint
+    container_name: arm-weasyprint
+    ports:
+      - "5001:5001"
 
 volumes:
   static_volume:

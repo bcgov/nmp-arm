@@ -1,0 +1,681 @@
+{
+    "kind": "Template",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "arm-web"
+    },
+    "parameters": [
+        {
+            "name": "NAME",
+            "displayName": "Name",
+            "description": "Main web app name",
+            "required": false,
+            "value": "arm-web"
+        },
+        {
+            "name": "TAG_NAME",
+            "displayName": "Environment Name",
+            "description": "",
+            "required": false,
+            "value": "test"
+        },
+        {
+            "name": "IMAGE_NAMESPACE",
+            "displayName": "Image Namespace",
+            "description": "The namespace of the OpenShift project containing the imagestream for the application.",
+            "required": true,
+            "value": "agri-nmp-tools"
+        },
+        {
+            "name": "HOST",
+            "displayName": "HOST",
+            "description": "Main host name",
+            "required": false,
+            "value": ""
+        },
+        {
+            "name": "DEBUG",
+            "displayName": "DEBUG",
+            "description": "Is django in debug",
+            "value": "False"
+        },
+        {
+            "name": "LOGGER_LEVEL",
+            "displayName": "LOGGER_LEVEL",
+            "description": "Django Logger Level",
+            "value": "WARNING"
+        },
+        {
+            "name": "ADMIN_EMAIL",
+            "displayName": "Admin Email",
+            "description": "Administrator Email",
+            "value": "admin.email@nmp-arm.com"
+        },
+        {
+            "name": "DATABASE_NAME",
+            "displayName": "DB Name",
+            "description": "Name for NMP AgriConfiguration Database.",
+            "value": "nmp-arm"
+        },
+        {
+            "name": "DATABASE_SERVICE_NAME",
+            "displayName": "Database service name",
+            "description": "Name of the database service",
+            "value": "arm-postgresql"
+        },
+        {
+            "name": "DEFAULT_EMAIL",
+            "displayName": "Default Email Address",
+            "description": "Default Email Address",
+            "value": "admin.email@nmp-arm.com"
+        },
+        {
+            "name": "DEFAULT_FROM_EMAIL",
+            "displayName": "Default From Email Address",
+            "description": "Default From Email Address placed in from",
+            "value": "no-reply@gov.bc.ca"
+        },
+        {
+            "name": "EMAIL_HOST",
+            "displayName": "Email Host",
+            "description": "Smtp Emal Host Server address",
+            "value": "apps.smtp.gov.bc.ca"
+        },
+        {
+            "name": "EMAIL_PORT",
+            "displayName": "Email Port",
+            "description": "",
+            "value": "587"
+        },
+        {
+            "name": "EMAIL_HOST_USER",
+            "displayName": "Email Host User",
+            "description": "",
+            "value": ""
+        },
+        {
+            "name": "EMAIL_HOST_PASSWORD",
+            "displayName": "Email Host Password",
+            "description": "",
+            "value": ""
+        },
+        {
+            "name": "SERVER_EMAIL",
+            "displayName": "Server Mail",
+            "description": "",
+            "value": ""
+        },
+        {
+            "name": "SUPPORT_EMAIL",
+            "displayName": "Support Email",
+            "description": "",
+            "value": "admin.email@nmp-arm.com"
+        },
+        {
+            "name": "WEASYPRINT_URL",
+            "displayName": "Weasyprint URL",
+            "description": "Weasy Print Host Address",
+            "value": "${NAME}-weasyprint"
+        },
+        {
+            "name": "STATIC_FILES_PATH",
+            "displayName": "Static Files Path",
+            "description": "Django path containing static files",
+            "value": "/static"
+        },
+        {
+            "name": "STATIC_VOLUME_NAME",
+            "displayName": "Static Files Path",
+            "description": "Django path containing static files",
+            "value": "static-volume"
+        },
+        {
+            "name": "VOLUME_CLAIM_NAME",
+            "displayName": "Volume Claim Name",
+            "description": "Name of the Volume Claim Storage",
+            "value": "arm-web-static"
+        }
+    ],
+    "objects": [
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${NAME}",
+                "labels": {
+                    "app": "${NAME}"
+                },
+                "annotations": {
+                    "description": "Defines how to deploy the backend server"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 600,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%"
+                    },
+                    "resources": {},
+                    "activeDeadlineSeconds": 21600
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "${NAME}"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "namespace": "${IMAGE_NAMESPACE}",
+                                "name": "${NAME}:${TAG_NAME}"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "name": "${NAME}"
+                },
+                "template": {
+                    "metadata": {
+                        "name": "${NAME}",
+                        "labels": {
+                            "name": "${NAME}"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "${NAME}",
+                                "image": " ",
+                                "ports": [
+                                    {
+                                        "containerPort": 5000,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "DEBUG",
+                                        "value": "${DEBUG}"
+                                    },
+                                    {
+                                        "name": "LOGGER_LEVEL",
+                                        "value": "${LOGGER_LEVEL}"
+                                    },
+                                    {
+                                        "name": "ADMIN_EMAIL",
+                                        "value": "${ADMIN_EMAIL}"
+                                    },
+                                    {
+                                        "name": "DATABASE_NAME",
+                                        "value": "${DATABASE_NAME}"
+                                    },
+                                    {
+                                        "name": "DATABASE_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${DATABASE_SERVICE_NAME}-credentials",
+                                                "key": "database-password"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "DATABASE_USER",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "name": "${DATABASE_SERVICE_NAME}-credentials",
+                                                "key": "database-username"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "DATABASE_HOST",
+                                        "value": "${DATABASE_SERVICE_NAME}"
+                                    },
+                                    {
+                                        "name": "DEFAULT_EMAIL",
+                                        "value": "${DEFAULT_EMAIL}"
+                                    },
+                                    {
+                                        "name": "DEFAULT_FROM_EMAIL",
+                                        "value": "${DEFAULT_FROM_EMAIL}"
+                                    },
+                                    {
+                                        "name": "EMAIL_HOST",
+                                        "value": "${EMAIL_HOST}"
+                                    },
+                                    {
+                                        "name": "EMAIL_PORT",
+                                        "value": "${EMAIL_PORT}"
+                                    },
+                                    {
+                                        "name": "EMAIL_HOST_USER",
+                                        "value": "${EMAIL_HOST_USER}"
+                                    },
+                                    {
+                                        "name": "EMAIL_HOST_PASSWORD",
+                                        "value": "${EMAIL_HOST_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "SERVER_EMAIL",
+                                        "value": "${SERVER_EMAIL}"
+                                    },
+                                    {
+                                        "name": "SUPPORT_EMAIL",
+                                        "value": "${SUPPORT_EMAIL}"
+                                    },
+                                    {
+                                        "name": "WEASYPRINT_URL",
+                                        "value": "${WEASYPRINT_URL}"
+                                    }
+                                ],
+                                "resources": {
+                                    "limits": {
+                                        "memory": "2Gi"
+                                    },
+                                    "requests": {
+                                        "memory": "1Gi"
+                                    }
+                                },
+                                "livenessProbe": {
+                                    "httpGet": {
+                                        "path": "/",
+                                        "port": 5000,
+                                        "scheme": "HTTP"
+                                    },
+                                    "initialDelaySeconds": 15,
+                                    "timeoutSeconds": 5,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "failureThreshold": 5
+                                },
+                                "readinessProbe": {
+                                    "httpGet": {
+                                        "path": "/",
+                                        "port": 5000,
+                                        "scheme": "HTTP"
+                                    },
+                                    "initialDelaySeconds": 15,
+                                    "timeoutSeconds": 5,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "failureThreshold": 5
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "imagePullPolicy": "IfNotPresent",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "${STATIC_FILES_PATH}",
+                                        "name": "${STATIC_VOLUME_NAME}"
+                                    }
+                                ]
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {},
+                        "schedulerName": "default-scheduler",
+                        "volumes": [
+                            {
+                                "name": "${STATIC_VOLUME_NAME}",
+                                "persistentVolumeClaim": {
+                                    "claimName": "${VOLUME_CLAIM_NAME}"
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${NAME}",
+                "labels": null,
+                "annotations": {
+                    "description": "Exposes and load balances the application pods"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "web",
+                        "protocol": "TCP",
+                        "port": 5000,
+                        "targetPort": 5000
+                    }
+                ],
+                "selector": {
+                    "name": "${NAME}"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            }
+        },
+        {
+            "apiVersion": "apps.openshift.io/v1",
+            "kind": "DeploymentConfig",
+            "metadata": {
+                "generation": 1,
+                "labels": {
+                    "app": "${NAME}"
+                },
+                "name": "${NAME}-nginx-reverse-proxy"
+            },
+            "spec": {
+                "replicas": 1,
+                "revisionHistoryLimit": 10,
+                "selector": {
+                    "app": "${NAME}-nginx-reverse-proxy",
+                    "deploymentconfig": "${NAME}-nginx-reverse-proxy"
+                },
+                "strategy": {
+                    "activeDeadlineSeconds": 21600,
+                    "resources": {},
+                    "rollingParams": {
+                        "intervalSeconds": 1,
+                        "maxSurge": "25%",
+                        "maxUnavailable": "25%",
+                        "timeoutSeconds": 600,
+                        "updatePeriodSeconds": 1
+                    },
+                    "type": "Rolling"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app": "${NAME}-nginx-reverse-proxy",
+                            "deploymentconfig": "${NAME}-nginx-reverse-proxy"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "imagePullPolicy": "Always",
+                                "livenessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/",
+                                        "port": 8080,
+                                        "scheme": "HTTP"
+                                    },
+                                    "initialDelaySeconds": 15,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 5
+                                },
+                                "name": "${NAME}-nginx-reverse-proxy",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/",
+                                        "port": 8080,
+                                        "scheme": "HTTP"
+                                    },
+                                    "initialDelaySeconds": 15,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 5
+                                },
+                                "resources": {},
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "${STATIC_FILES_PATH}",
+                                        "name": "${STATIC_VOLUME_NAME}"
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "name": "${STATIC_VOLUME_NAME}",
+                                "persistentVolumeClaim": {
+                                    "claimName": "${VOLUME_CLAIM_NAME}"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "test": false,
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "${NAME}-nginx-reverse-proxy"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "arm-nginx-reverse-proxy:latest",
+                                "namespace": "agri-nmp-tools"
+                            }
+                        },
+                        "type": "ImageChange"
+                    }
+                ]
+            },
+            "status": {
+                "availableReplicas": 0,
+                "latestVersion": 0,
+                "observedGeneration": 0,
+                "replicas": 0,
+                "unavailableReplicas": 0,
+                "updatedReplicas": 0
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "labels": {
+                    "app": "${NAME}-nginx-reverse-proxy"
+                },
+                "name": "${NAME}-nginx-reverse-proxy"
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "8080-tcp",
+                        "port": 8080,
+                        "protocol": "TCP",
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "deploymentconfig": "${NAME}-nginx-reverse-proxy"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            }
+        },
+        {
+            "kind": "PersistentVolumeClaim",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${VOLUME_CLAIM_NAME}",
+                "annotations": {
+                    "volume.beta.kubernetes.io/storage-class": "gluster-file-db",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/glusterfs"
+                }
+            },
+            "spec": {
+                "storageClassName": "gluster-file",
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${NAME}",
+                "labels": {
+                    "frontend": "true"
+                },
+                "annotations": {
+                    "haproxy.router.openshift.io/timeout": "5m",
+                    "template.openshift.io.bcgov/tls-secret-name.prod": "${NAME}-route-cert"
+                }
+            },
+            "spec": {
+                "host": "${HOST}",
+                "to": {
+                    "kind": "Service",
+                    "name": "${NAME}-nginx-reverse-proxy",
+                    "weight": 100
+                },
+                "port": {
+                    "targetPort": "8080-tcp"
+                },
+                "tls": {
+                    "termination": "edge",
+                    "insecureEdgeTerminationPolicy": "Redirect"
+                },
+                "wildcardPolicy": "None"
+            }
+        },
+        {
+            "apiVersion": "apps.openshift.io/v1",
+            "kind": "DeploymentConfig",
+            "metadata": {
+                "generation": 1,
+                "labels": {
+                    "app": "${NAME}"
+                },
+                "name": "${NAME}-weasyprint"
+            },
+            "spec": {
+                "replicas": 1,
+                "revisionHistoryLimit": 10,
+                "selector": {
+                    "app": "${NAME}-weasyprint",
+                    "deploymentconfig": "${NAME}-weasyprint"
+                },
+                "strategy": {
+                    "activeDeadlineSeconds": 21600,
+                    "resources": {},
+                    "rollingParams": {
+                        "intervalSeconds": 1,
+                        "maxSurge": "25%",
+                        "maxUnavailable": "25%",
+                        "timeoutSeconds": 600,
+                        "updatePeriodSeconds": 1
+                    },
+                    "type": "Rolling"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app": "${NAME}-weasyprint",
+                            "deploymentconfig": "${NAME}-weasyprint"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "imagePullPolicy": "Always",
+                                "name": "${NAME}-weasyprint",
+                                "ports": [
+                                    {
+                                        "containerPort": 5001,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "resources": {},
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30
+                    }
+                },
+                "test": false,
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "${NAME}-weasyprint"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "arm-weasyprint:latest",
+                                "namespace": "${IMAGE_NAMESPACE}"
+                            }
+                        },
+                        "type": "ImageChange"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "labels": {
+                    "app": "${NAME}-weasyprint"
+                },
+                "name": "${NAME}-weasyprint"
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "5001-tcp",
+                        "port": 5001,
+                        "protocol": "TCP",
+                        "targetPort": 5001
+                    }
+                ],
+                "selector": {
+                    "app": "${NAME}-weasyprint",
+                    "deploymentconfig": "${NAME}-weasyprint"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            }
+        }
+    ]
+}
