@@ -47,12 +47,6 @@
             "value": "WARNING"
         },
         {
-            "name": "ADMIN_EMAIL",
-            "displayName": "Admin Email",
-            "description": "Administrator Email",
-            "value": "admin.email@nmp-arm.com"
-        },
-        {
             "name": "DATABASE_NAME",
             "displayName": "DB Name",
             "description": "Name for NMP AgriConfiguration Database.",
@@ -63,12 +57,6 @@
             "displayName": "Database service name",
             "description": "Name of the database service",
             "value": "arm-postgresql"
-        },
-        {
-            "name": "DEFAULT_EMAIL",
-            "displayName": "Default Email Address",
-            "description": "Default Email Address",
-            "value": "admin.email@nmp-arm.com"
         },
         {
             "name": "DEFAULT_FROM_EMAIL",
@@ -99,18 +87,6 @@
             "displayName": "Email Host Password",
             "description": "",
             "value": ""
-        },
-        {
-            "name": "SERVER_EMAIL",
-            "displayName": "Server Mail",
-            "description": "",
-            "value": ""
-        },
-        {
-            "name": "SUPPORT_EMAIL",
-            "displayName": "Support Email",
-            "description": "",
-            "value": "admin.email@nmp-arm.com"
         },
         {
             "name": "WEASYPRINT_URL",
@@ -197,10 +173,6 @@
                                         "value": "${LOGGER_LEVEL}"
                                     },
                                     {
-                                        "name": "ADMIN_EMAIL",
-                                        "value": "${ADMIN_EMAIL}"
-                                    },
-                                    {
                                         "name": "DATABASE_NAME",
                                         "value": "${DATABASE_NAME}"
                                     },
@@ -227,14 +199,6 @@
                                         "value": "${DATABASE_SERVICE_NAME}"
                                     },
                                     {
-                                        "name": "DEFAULT_EMAIL",
-                                        "value": "${DEFAULT_EMAIL}"
-                                    },
-                                    {
-                                        "name": "DEFAULT_FROM_EMAIL",
-                                        "value": "${DEFAULT_FROM_EMAIL}"
-                                    },
-                                    {
                                         "name": "EMAIL_HOST",
                                         "value": "${EMAIL_HOST}"
                                     },
@@ -249,14 +213,6 @@
                                     {
                                         "name": "EMAIL_HOST_PASSWORD",
                                         "value": "${EMAIL_HOST_PASSWORD}"
-                                    },
-                                    {
-                                        "name": "SERVER_EMAIL",
-                                        "value": "${SERVER_EMAIL}"
-                                    },
-                                    {
-                                        "name": "SUPPORT_EMAIL",
-                                        "value": "${SUPPORT_EMAIL}"
                                     },
                                     {
                                         "name": "WEASYPRINT_URL",

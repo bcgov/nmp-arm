@@ -56,14 +56,16 @@ There appears to be a PostgreSQL database (version yet to be determined), with a
 
 ### Required Environment Variables
 
-      ENVIRONMENT: dev
-      DEBUG: 'False'
+      DEBUG: False
       LOGGER_LEVEL: WARNING
-      ADMIN_EMAIL: admin.email@domain
+      DATABASE_HOST: 127.0.0.1
+      DATABASE_HOST_PORT: 5432
       DATABASE_NAME:  DATABASE_NAME
       DATABASE_USER: DATABASE_USER
       DATABASE_PASSWORD: DATABASE_PASSWORD
-      DEFAULT_FROM_EMAIL: admin.email@domain
-      EMAIL_TO: admin.email@domain
-      SERVER_EMAIL: admin.email@domain
-      SUPPORT_EMAIL: admin.email@domain
+      DEFAULT_FROM_EMAIL=donotreply@email.com
+      EMAIL_HOST: someserver.smtp.com
+      EMAIL_PORT=25
+      EMAIL_HOST_USER=
+      EMAIL_HOST_PASSWORD=
+      WEASYPRINT_URL=http://127.0.0.1:5001

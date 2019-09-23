@@ -64,12 +64,6 @@
             "value": "arm-postgresql"
         },
         {
-            "name": "DEFAULT_EMAIL",
-            "displayName": "Default Email Address",
-            "description": "Default Email Address",
-            "value": "admin.email@nmp-arm.com"
-        },
-        {
             "name": "DEFAULT_FROM_EMAIL",
             "displayName": "Default From Email Address",
             "description": "Default From Email Address placed in from",
@@ -242,10 +236,6 @@
                                     {
                                         "name": "DATABASE_HOST",
                                         "value": "${DATABASE_SERVICE_NAME}"
-                                    },
-                                    {
-                                        "name": "DEFAULT_EMAIL",
-                                        "value": "${DEFAULT_EMAIL}"
                                     },
                                     {
                                         "name": "DEFAULT_FROM_EMAIL",
