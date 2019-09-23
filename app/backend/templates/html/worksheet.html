@@ -490,7 +490,9 @@
                         <div class="col-lg-8">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="critical_area" value="yes" data-bv-notempty="true" data-bv-notempty-message="critical area is required" /> Yes (answer next question)
+                                    <input type="radio" name="critical_area" value="yes" 
+                                    data-bv-notempty="true" 
+                                    data-bv-notempty-message="critical area is required" /> Yes (answer next question)
                                 </label>
                             </div>
                             <div class="radio">
@@ -638,7 +640,10 @@
                         data.bv.revalidateField( 'manure_setback_distance' ); 
                     }
                 }
-                $( document ).trigger( 'rating-update', [ {}, true ] )
+                if(data.field != 'surface_condition')
+                {
+                    $( document ).trigger( 'rating-update', [ {}, true ] )
+                }
             })
             .on('success.field.bv', function(e, data) {
                 // $(e.target)  --> The field element
@@ -711,7 +716,7 @@
             $( 'div.cautionrating' ).text('');
 
             // clear all radio and text inputs except the ones we want
-            $( "input[data-bv-notempty='true']" ).each( function( indx, elem ) {
+            $( "input[type='text']" ).each( function( indx, elem ) {
                 var name = $( elem ).attr( 'name' );
                 if ( !( name in { 'apply_date' : true, 'precipitation_1' : true, 'precipitation_2' : true } ) ) {
                     $( elem ).val( '' );
@@ -719,8 +724,13 @@
             });
 
             $( "input[type='radio']:checked" ).prop( "checked", false )
+            $( "input[type='checkbox']:checked" ).prop( "checked", false )
 
             $('select option:first-child').attr("selected", "selected");
+
+            $('input[name=total_risk]').val('');
+
+            $("input[name='critical_area']").parents( 'form' ).find( '.show-hide-wrapper' ).attr( 'data-state', 'closed' );
         } ); 
 
         $( '#send_btn' ).on( 'click', function( e ) {
