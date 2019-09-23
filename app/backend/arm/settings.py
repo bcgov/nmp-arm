@@ -12,11 +12,6 @@ DEBUG = config('DEBUG', default='True', cast=bool)
 # Absolute filesystem path to the project.
 ABSOLUTE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-ADMIN_EMAIL = config('ADMIN_EMAIL', default='')
-ADMINS = (
-    ('Admin', ADMIN_EMAIL),
-)
-
 ALLOWED_HOSTS = ['*']
 
 # AUTH_USER_MODEL = 'admins.Admin'
@@ -37,13 +32,12 @@ DATABASES = {
         # 'NAME': os.path.join(ABSOLUTE_PATH, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'HOST': DATABASE_HOST,
-        'PORT': '5432',
+        'PORT': config('DATABASE_HOST_PORT', '5432'),
         'NAME': DATABASE_NAME,
         'USER': DATABASE_USER,
         'PASSWORD': DATABASE_PASSWORD,
     },
 }
-
 
 DATE_FORMAT = 'N j, Y'
 DATE_TIME_FORMAT = 'N j, Y, P'
@@ -248,8 +242,6 @@ SESSION_SAVE_EVERY_REQUEST = True
 #
 SESSION_EXPIRY = (259200 * 20)
 
-SERVER_EMAIL = config('SERVER_EMAIL')
-
 SITE_ID = 4
 
 # URL prefix for static files.
@@ -265,8 +257,6 @@ STATICFILES_DIRS = (
 )
 
 STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(ABSOLUTE_PATH)), 'static')
-
-SUPPORT_EMAIL = config('SUPPORT_EMAIL')
 
 # TIME_ZONE = 'UTC'
 TIME_ZONE = 'America/Los_Angeles'

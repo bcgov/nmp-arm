@@ -11,12 +11,6 @@ services:
       POSTGRES_DB: ${DATABASE_USER}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
 
-    #   POSTGRES_PASSWORD_FILE: /run/secrets/postgres-passwd
-    # volumes:
-    #    - ./openshift/postgis-config/secrets:/run/secrets
-    #    - ./openshift/postgis-config/data:/var/lib/postgresql/data
-    #    - ./openshift/postgis-config/initdb:/docker-entrypoint-initdb.d
-
     env_file:
       - .env
 
@@ -45,14 +39,11 @@ services:
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USER: ${DATABASE_USER}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      ADMIN_EMAIL: ${DEFAULT_EMAIL}
-      DEFAULT_FROM_EMAIL: ${DEFAULT_EMAIL}
+      DEFAULT_FROM_EMAIL: ${DEFAULT_FROM_EMAIL}
       EMAIL_PORT: ${EMAIL_PORT}
       EMAIL_HOST_USER: ${EMAIL_HOST_USER}
       EMAIL_HOST: ${EMAIL_HOST}
       EMAIL_HOST_PASSWORD: ${EMAIL_HOST_PASSWORD}
-      SERVER_EMAIL: ${DEFAULT_EMAIL}
-      SUPPORT_EMAIL: ${DEFAULT_EMAIL}
       WEASYPRINT_URL: ${WEASYPRINT_URL}
 
     depends_on:
