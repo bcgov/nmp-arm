@@ -12,12 +12,7 @@ DEBUG = config('DEBUG', default='True', cast=bool)
 # Absolute filesystem path to the project.
 ABSOLUTE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-ADMIN_EMAIL = config('ADMIN_EMAIL', default='')
-ADMINS = (
-    ('Admin', ADMIN_EMAIL),
-)
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', socket.gethostname(), '.azurewebsites.net']
+ALLOWED_HOSTS = ['*']
 
 # AUTH_USER_MODEL = 'admins.Admin'
 
@@ -36,14 +31,13 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(ABSOLUTE_PATH, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'HOST': DATABASE_HOST,
+        'PORT': config('DATABASE_HOST_PORT', '5432'),
         'NAME': DATABASE_NAME,
         'USER': DATABASE_USER,
         'PASSWORD': DATABASE_PASSWORD,
     },
 }
-
 
 DATE_FORMAT = 'N j, Y'
 DATE_TIME_FORMAT = 'N j, Y, P'
@@ -64,10 +58,6 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
-EMAIL_TO = config('EMAIL_TO')
-
-ENVIRONMENT = config('ENVIRONMENT')
-
 FIXTURE_DIRS = (os.path.join(os.path.dirname(__file__), 'fixtures', 'dev'),)
 
 # FORCE_SCRIPT_NAME='arm'
@@ -83,8 +73,6 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
 
-    # for extended manager options
-    'django_extensions',
 
     'common',
 
@@ -254,8 +242,6 @@ SESSION_SAVE_EVERY_REQUEST = True
 #
 SESSION_EXPIRY = (259200 * 20)
 
-SERVER_EMAIL = config('SERVER_EMAIL')
-
 SITE_ID = 4
 
 # URL prefix for static files.
@@ -270,7 +256,7 @@ STATICFILES_DIRS = (
     os.path.join(ABSOLUTE_PATH, 'static/'),
 )
 
-SUPPORT_EMAIL = config('SUPPORT_EMAIL')
+STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(ABSOLUTE_PATH)), 'static')
 
 # TIME_ZONE = 'UTC'
 TIME_ZONE = 'America/Los_Angeles'

@@ -189,7 +189,7 @@ class restrict_radio():
 
     def get_comparitor(self, field_name):
         if field_name == 'soil_moisture':
-            return 'greater_than'
+            return 'greaterthan'
         elif field_name == 'surface_condition':
             return 'in'
         

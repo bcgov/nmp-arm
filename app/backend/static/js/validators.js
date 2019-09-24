@@ -45,16 +45,25 @@ window.add_risk_rating_classes = function( $field ) {
 
 window.update_riskrating_ui = function( $field, rating ) {
 
+    var ratingDisplay = 'N/A';
+    var ratingRisk = 0;
+    if(rating !== null)
+    {
+        ratingDisplay = rating.display;
+        ratingRisk = rating.risk;
+    }
+
+
     var $risk = $field.parents( '.form-group' ).find( '.riskrating' );
-    $risk.text( "Risk Rating: "+rating.display );
+    $risk.text( "Risk Rating: " + ratingDisplay );
     var $hidden = $field.parents( '.form-group' ).find( 'input.riskhiddenfield:hidden' );
     if($hidden.length >= 1 )
     {
-        $hidden[0].value = rating.display;
+        $hidden[0].value = ratingDisplay;
     }
     remove_risk_rating_classes( $risk );
     add_risk_rating_classes( $risk );
-    RATING[ $field.attr('name') ] = rating.risk;
+    RATING[ $field.attr('name') ] = ratingRisk;
 };
 
 
@@ -367,6 +376,7 @@ window.calculate_risk_rating = function( value_to_check, values, options ) {
             var values = Object.keys( all_checked_values );
             var surface_risk = 0;
             console.log('surface_risk_rating')
+            update_riskrating_ui( $field, null );
             update_caution_ui( $field, null );
             for( var value in values ) {
                 setting = SURFACE_CONDITION_RISK_SETTINGS[ values[value] ]

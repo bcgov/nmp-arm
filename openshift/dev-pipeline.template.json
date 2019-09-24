@@ -1,0 +1,46 @@
+{
+    "apiVersion": "build.openshift.io/v1",
+    "kind": "BuildConfig",
+    "metadata": {
+        "creationTimestamp": null,
+        "labels": {
+            "app": "dev-pipeline",
+            "name": "dev-pipeline",
+            "template": "dev-pipeline"
+        },
+        "name": "dev-pipeline",
+        "selfLink": "/apis/build.openshift.io/v1/namespaces/agri-nmp-tools/buildconfigs/dev-pipeline"
+    },
+    "spec": {
+        "failedBuildsHistoryLimit": 5,
+        "nodeSelector": {},
+        "output": {},
+        "postCommit": {},
+        "resources": {},
+        "runPolicy": "Parallel",
+        "source": {
+            "git": {
+                "ref": "develop",
+                "uri": "https://github.com/bcgov/nmp-arm.git"
+            },
+            "type": "Git"
+        },
+        "strategy": {
+            "jenkinsPipelineStrategy": {
+                "jenkinsfilePath": "DEV-Jenkinsfile"
+            },
+            "type": "JenkinsPipeline"
+        },
+        "successfulBuildsHistoryLimit": 5,
+        "triggers": [
+            {
+                "github": {
+                    "secretReference": {
+                        "name": "nmp-arm-build-secret"
+                    }
+                },
+                "type": "GitHub"
+            }
+        ]
+    }
+}

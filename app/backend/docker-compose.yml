@@ -1,39 +1,78 @@
-version: '3'
+version: '2'
 
 services:
 
-  web:
+  db:
+    image: postgres 
+    container_name: arm-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${DATABASE_NAME}
+      POSTGRES_DB: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    env_file:
+      - .env
+    networks:
+      - arm_network
+    ports:
+      - "15432:5432"
+
+  arm-web:
     image: arm-bc-web:latest
     container_name: arm-bc-web
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    # command: bash "prod_run.sh"
-
     stdin_open: true
     tty: true
     volumes:
       - .:/code
-    ports:
-      - "8000:8000"
-
+      - static_volume:/static   
     env_file:
       - .env
-      
     environment:
-      ENVIRONMENT: dev
       DEBUG: 'False'
       LOGGER_LEVEL: WARNING
       DATABASE_HOST: ${DATABASE_HOST}
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USER: ${DATABASE_USER}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      ADMIN_EMAIL: ${DEFAULT_EMAIL}
-      DEFAULT_FROM_EMAIL: ${DEFAULT_EMAIL}
+      DEFAULT_FROM_EMAIL: ${DEFAULT_FROM_EMAIL}
       EMAIL_PORT: ${EMAIL_PORT}
       EMAIL_HOST_USER: ${EMAIL_HOST_USER}
       EMAIL_HOST: ${EMAIL_HOST}
       EMAIL_HOST_PASSWORD: ${EMAIL_HOST_PASSWORD}
-      EMAIL_TO: ${DEFAULT_EMAIL}
-      SERVER_EMAIL: ${DEFAULT_EMAIL}
-      SUPPORT_EMAIL: ${DEFAULT_EMAIL}
       WEASYPRINT_URL: ${WEASYPRINT_URL}
+    networks:
+      - arm_network
+    ports:
+      - "5000:5000"
+    depends_on:
+    - db      
+
+  nginx:
+    image: nginx:1.17
+    container_name: arm-nginx
+    restart: always
+    ports:
+      - "8000:8080"
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+      - static_volume:/static   
+    depends_on:
+      - arm-web
+    networks:
+      - arm_network
+
+  weasy-print:
+    image: bcgovimages/weasyprint
+    restart: always
+    container_name: arm-weasyprint
+    ports:
+      - "5001:5001"
+    networks:
+      - arm_network
+
+volumes:
+  static_volume:  
+
+networks:
+  arm_network:
