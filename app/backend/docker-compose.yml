@@ -10,26 +10,24 @@ services:
       POSTGRES_USER: ${DATABASE_NAME}
       POSTGRES_DB: ${DATABASE_USER}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-
     env_file:
       - .env
+    networks:
+      - arm_network
+    ports:
+      - "15432:5432"
 
   arm-web:
     image: arm-bc-web:latest
     container_name: arm-bc-web
     build: .
-    #command: bash -c "./manage.py collectstatic --no-input;./manage.py migrate; ./manage.py loaddata initial_data; gunicorn arm.wsgi -b 0.0.0.0:5000"
-
     stdin_open: true
     tty: true
-    
     volumes:
       - .:/code
       - static_volume:/static   
-
     env_file:
       - .env
-      
     environment:
       DEBUG: 'False'
       LOGGER_LEVEL: WARNING
@@ -43,26 +41,38 @@ services:
       EMAIL_HOST: ${EMAIL_HOST}
       EMAIL_HOST_PASSWORD: ${EMAIL_HOST_PASSWORD}
       WEASYPRINT_URL: ${WEASYPRINT_URL}
-
+    networks:
+      - arm_network
+    ports:
+      - "5000:5000"
     depends_on:
     - db      
 
   nginx:
     image: nginx:1.17
     container_name: arm-nginx
+    restart: always
     ports:
-      - "8080:8080"
+      - "8000:8080"
     volumes:
       - ./conf.d:/etc/nginx/conf.d
       - static_volume:/static   
     depends_on:
       - arm-web
- 
+    networks:
+      - arm_network
+
   weasy-print:
     image: bcgovimages/weasyprint
+    restart: always
     container_name: arm-weasyprint
     ports:
       - "5001:5001"
+    networks:
+      - arm_network
 
 volumes:
-  static_volume:
+  static_volume:  
+
+networks:
+  arm_network:
