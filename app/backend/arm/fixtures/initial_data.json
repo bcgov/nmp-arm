@@ -327,7 +327,7 @@
         "model": "arm.foragedensityoption",
         "pk": 2,
         "fields": {
-            "value": 70,
+            "value": 75,
             "description": "70-90%",
             "active": true
         }
