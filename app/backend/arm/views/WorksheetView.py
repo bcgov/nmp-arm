@@ -34,7 +34,7 @@ from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, Ris
                     SoilMoistureOption, ForageDensityOption, SurfaceConditionOption, RiskCutoffSetting, \
                     Preciptation24RiskRating, Preciptation72RiskRating, SoilMoistureRiskRating, ForageDensityRiskRating, ForageHeightRiskRating, \
                     ApplicationRiskRating, SoilTypeRiskRating, SurfaceConditionRiskRating, CriticalAreaRiskRating, \
-                    ManureSetbackDistanceRiskRating
+                    ManureSetbackDistanceRiskRating, WaterTableRiskRating
 
 class WorksheetForm( Form ):
 
@@ -158,11 +158,22 @@ class validator():
 
         if(restrict_radio_required):
             self.restrict_radio = restrict_radio(field_name)
+        print(field_name)
 
         if field_name == '24precipitation':
             self.risk_rating = preciptation_24_risk_settings()
+        elif field_name == '72precipitation':
+            self.risk_rating = preciptation_72_risk_settings()
         elif field_name == 'soil_type':
             self.soil_type_risk_rating = soil_type_risk_rating()
+        elif field_name == 'soil_moisture':
+            self.risk_rating = soil_moisture_risk_settings()
+        elif field_name == 'water_table_depth':
+            self.risk_rating = water_table_depth_risk_settings()
+        elif field_name == 'forage_height':
+            self.risk_rating = forage_height_risk_settings()
+        elif field_name == 'forage_density':
+            self.risk_rating = forage_density_risk_settings()
         elif field_name == 'application_equipment':
             self.applicator_risk_rating = applicator_risk_rating()
         elif field_name == 'critical_area':
@@ -267,6 +278,36 @@ class preciptation_24_risk_settings(risk_setting):
     def __init__(self):
         settings = Preciptation24RiskRating.objects.all()
         self = self.load_setting('precipitation_1', settings)
+
+class preciptation_72_risk_settings(risk_setting):
+    def __init__(self):
+        settings = Preciptation72RiskRating.objects.all()
+        self = self.load_setting('precipitation_2', settings)
+
+class soil_type_risk_settings(risk_setting):
+    def __init__(self):
+        settings = SoilTypeRiskRating.objects.all()
+        self = self.load_setting('soil_type', settings)
+
+class soil_moisture_risk_settings(risk_setting):
+    def __init__(self):
+        settings = SoilMoistureRiskRating.objects.all()
+        self = self.load_setting('soil_moisture', settings)
+
+class water_table_depth_risk_settings(risk_setting):
+    def __init__(self):
+        settings = WaterTableRiskRating.objects.all()
+        self.values = self.load_setting('water_table_depth', settings)
+
+class forage_density_risk_settings(risk_setting):
+    def __init__(self):
+        settings = ForageDensityRiskRating.objects.all()
+        self = self.load_setting('forage_density', settings)
+
+class forage_height_risk_settings(risk_setting):
+    def __init__(self):
+        settings = ForageHeightRiskRating.objects.all()
+        self = self.load_setting('forage_height', settings)
 
 class application_equipment_risk_settings(JSONSerializable):
     
