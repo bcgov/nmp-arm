@@ -241,47 +241,21 @@ window.calculate_risk_rating = function( value_to_check, values, options ) {
             var value = $field.val();
             var field = $field;
 
-            if(field[0].name == 'precipitation_1')
+            console.log('field: ' + field[0].name)
+
+            for (var key in options)
             {
-                for (var key in options)
-                {
-                    var setting = options[ key ]
-                    if(value >= setting['range_minimum'] && value <= setting['range_maximum']){
-                        console.log('precipitation_1')
-                        console.log(key)
-                        console.log(setting.risk_value)
-                        console.log(setting.risk_display_text)
-                        update_riskrating_ui( $field, { risk : setting.risk_value, display : setting.risk_display_text } );
-                        update_caution_ui( $field, setting.caution_message );
-                        break;
-                    }
+                var setting = options[ key ]
+                if(value >= setting['range_minimum'] && value <= setting['range_maximum']){
+                    console.log(key)
+                    console.log(setting.risk_value)
+                    console.log(setting.risk_display_text)
+                    update_riskrating_ui( $field, { risk : setting.risk_value, display : setting.risk_display_text } );
+                    update_caution_ui( $field, setting.caution_message );
+                    break;
                 }
+            }
     
-                return true;                
-            }
-
-            var is_reversed = options.is_reversed || false;
-            // exception for special text values
-            if (value == 101){
-              var risk = {
-                'risk':  5,
-                'display': RISK_RATING[ 5 ]
-              }
-            }
-            else {
-            //console.log( value );
-               var risk = calculate_risk_rating( parseFloat( value ), options.values, { is_reversed : is_reversed } );
-            }
-            console.log( field );
-            console.log( value );
-            
-            // var risk = calculate_risk_rating( parseFloat( value ), options.values, { is_reversed : is_reversed } );
-            console.log( "[ RISK ]: ", risk );
-            update_riskrating_ui( $field, risk );
-            var caution = calculate_caution( value, options.caution_values, { is_reversed : is_reversed } );
-            //console.log( "[ CAUTION ]: ", caution );
-            update_caution_ui( $field, caution );
-
             return true;
         }
     };
@@ -445,22 +419,3 @@ window.calculate_risk_rating = function( value_to_check, values, options ) {
         }
     };
 }(window.jQuery));
-
-
-
-function manualval(validator, $field, options) {
-            var value = $field.val();
-            var field = $field;
-            var is_reversed = options.is_reversed || false;
-            console.log( field );
-            console.log( value );
-            
-            var risk = calculate_risk_rating( parseFloat( value ), options.values, { is_reversed : is_reversed } );
-            console.log( "[ RISK ]: ", risk );
-            update_riskrating_ui( $field, risk );
-            var caution = calculate_caution( value, options.caution_values, { is_reversed : is_reversed } );
-            //console.log( "[ CAUTION ]: ", caution );
-            update_caution_ui( $field, caution );
-
-            return true;
-}
