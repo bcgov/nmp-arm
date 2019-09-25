@@ -215,7 +215,7 @@ function process_text_value_risk_rating($field, value, risk_settings_list)
             console.log(setting.risk_display_text)
 
             update_riskrating_ui( $field, { risk : setting.risk_value, display : setting.risk_display_text } );
-            update_caution_ui( $field, setting.caution_text );
+            update_caution_ui( $field, setting.caution_message );
 
             if(setting['show_stop_application'] == true)
             {
@@ -331,7 +331,7 @@ function process_text_value_risk_rating($field, value, risk_settings_list)
                     console.log(setting.risk_value)
                     console.log(setting.risk_display_text)
                     update_riskrating_ui( $field, { risk : setting.risk_value, display : setting.risk_display_text } );
-                    update_caution_ui( $field, setting.caution_text );
+                    update_caution_ui( $field, setting.caution_message );
 
                     if(setting['show_stop_application'] == true)
                     {

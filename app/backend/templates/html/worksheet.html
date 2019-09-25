@@ -224,16 +224,16 @@
                         <div class="col-lg-5">
                             <input type="text" class="form-control" name="dairy_farm_name"
                                 data-bv-notempty="true"
-                                data-bv-notempty-message="the farm name is required and cannot be empty"
+                                data-bv-notempty-message="The Farm Name is required and cannot be empty"
 
                                 data-bv-stringlength="true"
                                 data-bv-stringlength-min="0"
                                 data-bv-stringlength-max="2000"
-                                data-bv-stringlength-message="the farm name must be more than 0 and less than 2000 characters long"
+                                data-bv-stringlength-message="The Farm name must be more than 0 and less than 2000 characters long"
 
                                 data-bv-regexp="true"
                                 data-bv-regexp-regexp="^[a-zA-Z0-9 ]+$"
-                                data-bv-regexp-message="the farm name can only consist of alphabetical, number and space characters"
+                                data-bv-regexp-message="The Farm Name can only consist of alphabetical, number and space characters"
                             />
                         </div>
                     </div>
@@ -243,11 +243,11 @@
                         <div class="col-lg-5">
                             <input type="text" class="form-control" name="apply_date" placeholder="MM/DD/YYYY"
                                 data-bv-notempty="true"
-                                data-bv-notempty-message="the date is required"
+                                data-bv-notempty-message="The Date is required"
 
                                 data-bv-date="true"
                                 data-bv-date-format="MM/DD/YYYY"
-                                data-bv-date-message="the date is not valid" />
+                                data-bv-date-message="The ate is not valid" />
                         </div>
                     </div>
 
@@ -259,12 +259,12 @@
                         <div class="col-lg-5">
                             <input type="text" class="form-control" name="managment_unit" placeholder="Enter the field name/number you want to apply to"
                                 data-bv-notempty="true"
-                                data-bv-notempty-message="the field name is required and cannot be empty"
+                                data-bv-notempty-message="The Field Name is required and cannot be empty"
 
                                 data-bv-stringlength="true"
                                 data-bv-stringlength-min="0"
                                 data-bv-stringlength-max="2000"
-                                data-bv-stringlength-message="the field name must be more than 0 and less than 2000 characters long"
+                                data-bv-stringlength-message="The Field Name must be more than 0 and less than 2000 characters long"
 
                                 data-bv-regexp="true"
                                 data-bv-regexp-regexp="^[a-zA-Z0-9 ]+$"
@@ -280,11 +280,11 @@
                         <div class="col-lg-5">
                             <input type="number" step="0.01" min="0", max="2000" class="form-control" name="precipitation_1" placeholder="Enter the 24 hour precipition amount"
                                 data-bv-notempty="true"
-                                data-bv-notempty-message="the precipiation is required and cannot be empty"
+                                data-bv-notempty-message="The Precipiation is required and cannot be empty"
 
                                 data-bv-regexp="true"
                                 data-bv-regexp-regexp="^[0-9.]+$"
-                                data-bv-regexp-message="The precipitation can only consist of number characters"
+                                data-bv-regexp-message="The Precipitation can only consist of number characters"
 
                                 data-bv-lessthan-inclusive=false
                                 data-bv-lessthan-value=12.7
@@ -303,11 +303,11 @@
                         <div class="col-lg-5">
                             <input type="number" step="0.01" min="0", max="2000" class="form-control" name="precipitation_2" placeholder="Enter the 72 hour precipition amount"
                                 data-bv-notempty="true"
-                                data-bv-notempty-message="the precipiation is required and cannot be empty"
+                                data-bv-notempty-message="The Precipiation is required and cannot be empty"
 
                                 data-bv-regexp="true"
                                 data-bv-regexp-regexp="^[0-9.]+$"
-                                data-bv-regexp-message="The precipitation can only consist of number characters"
+                                data-bv-regexp-message="The Precipitation can only consist of number characters"
 
                                 data-bv-lessthan-inclusive=false
                                 data-bv-lessthan-value=12.7
@@ -330,7 +330,7 @@
                                     <input type="radio" name="soil_type" value="{{option.value}}"
                                     {% if option.id == 1 %}
                                         data-bv-notempty="true"
-                                        data-bv-notempty-message="soil type is required"
+                                        data-bv-notempty-message="Soil Type is required"
                                     {% endif %}
                                     /> {{option.description}}
                                 </label>
@@ -354,7 +354,7 @@
                                     <input type="radio" name="soil_moisture" value="{{option.value}}"
                                     {% if option.id == 1 %}
                                     data-bv-notempty="true"
-                                    data-bv-notempty-message="soil moisture is required"
+                                    data-bv-notempty-message="Soil Moisture is required"
                                     {% endif %}
                                     /> {{option.description}}
                                 </label>
@@ -373,7 +373,7 @@
                         <div class="col-lg-8">
                         <select class="form-control" name="water_table_depth" id="water_table_depth"
                             data-bv-notempty="true"
-                            data-bv-notempty-message="the water table depth is required and cannot be empty"
+                            data-bv-notempty-message="The Water Table Depth is required and cannot be empty"
 
                             data-bv-greaterthan-inclusive=false
                             data-bv-greaterthan-value=12
@@ -401,7 +401,7 @@
                                     <input type="radio" name="forage_density" value="{{option.value}}"
                                     {% if option.id == 1 %}
                                     data-bv-notempty="true"
-                                    data-bv-notempty-message="forage density is required"
+                                    data-bv-notempty-message="Forage Density is required"
                                     {% endif %}
                                     /> {{option.description}}
                                 </label>
@@ -420,7 +420,7 @@
                         <div class="col-lg-8">
                             <select class="form-control" name="forage_height" id="forage_height"
                                 data-bv-notempty="true"
-                                data-bv-notempty-message="the forage height is required and cannot be empty"
+                                data-bv-notempty-message="The Forage Height is required and cannot be empty"
 
                                 data-bv-greaterthan-inclusive=false
                                 data-bv-greaterthan-value=1
@@ -449,7 +449,7 @@
                                     <input type="checkbox" name="surface_condition" value="{{option.value}}"
                                     {% if option.id == 1 %}
                                     data-bv-notempty="true"
-                                    data-bv-notempty-message="field surface condition is required" 
+                                    data-bv-notempty-message="Field Surface Condition is required" 
                                     {% endif %}
                                     /> {{option.description}}
                                 </label>
@@ -474,7 +474,7 @@
                                     <input type="radio" name="application_equipment" value="{{option.value}}"
                                     {% if option.id == 1 %}
                                         data-bv-notempty="true"
-                                        data-bv-notempty-message="application equipment is required" 
+                                        data-bv-notempty-message="Application Equipment is required" 
                                     {% endif %}
                                     /> {{option.description}}
                                 </label>
@@ -518,7 +518,7 @@
                         <div class="col-lg-8">
                                 <input type="number"  step="0.01" min="0", max="2000" class="form-control" name="manure_setback_distance"
                                     data-bv-notempty="true"
-                                    data-bv-notempty-message="manure setback distance is required and cannot be empty"
+                                    data-bv-notempty-message="Manure Setback distance is required and cannot be empty"
 
                                     data-bv-regexp="true"
                                     data-bv-regexp-regexp="^[0-9.]+$"
