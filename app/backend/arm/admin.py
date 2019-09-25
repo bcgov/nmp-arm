@@ -3,8 +3,7 @@ from django.forms import TextInput, Textarea
 from django.db import models
 
 from .models import ApplicationEquipmentOption, FormField, ForageDensityOption, ForageHeightOption, SoilMoistureOption, SoilTypeOption, \
-                    SurfaceConditionOption, WaterTableDepthOption, \
-                    CautionMessage, RiskRatingValue, RestrictionStopMessage, RiskCutoffSetting, \
+                    SurfaceConditionOption, WaterTableDepthOption, RestrictionStopMessage, RiskCutoffSetting, \
                     Preciptation24RiskRating, Preciptation72RiskRating, SoilMoistureRiskRating, \
                     WaterTableRiskRating, ForageDensityRiskRating, ForageHeightRiskRating, \
                     ApplicationRiskRating, SoilTypeRiskRating, SurfaceConditionRiskRating, \
@@ -46,14 +45,6 @@ class SurfaceConditionOptionsAdmin(admin.ModelAdmin):
 @admin.register(WaterTableDepthOption)
 class WaterTableDepthOptionAdmin(admin.ModelAdmin):
     list_display = ('id', 'value', 'description', 'active')
-
-@admin.register(RiskRatingValue)
-class RiskRatingValueAdmin(admin.ModelAdmin):
-    list_display = ('id', 'risk_name', 'value_list')
-
-@admin.register(CautionMessage)
-class CautionMessagesAdmin(admin.ModelAdmin):
-    list_display = ('id', 'risk_name', 'risk_caution_value', 'message')
 
 @admin.register(RestrictionStopMessage)
 class RestrictionStopMessageAdmin(admin.ModelAdmin):

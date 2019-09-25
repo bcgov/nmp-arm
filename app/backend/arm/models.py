@@ -64,20 +64,6 @@ class ApplicationEquipmentOption(models.Model):
     description = models.CharField(max_length=250)
     active = models.BooleanField(default=True)
 
-class RiskRatingValue(models.Model):
-
-    risk_name = models.CharField(max_length=30)
-    value_list = models.CharField(max_length=50)
-
-    def __str__(self):
-        return "{0} values: {1}".format(self.risk_name, self.value_list)
-
-class CautionMessage(models.Model):
-
-    risk_name = models.CharField(max_length=30)
-    risk_caution_value = models.DecimalField(decimal_places=2, max_digits=4, default=0)
-    message = models.TextField(max_length=500, default='add a message', blank=False, null=False)
-
 class RestrictionStopMessage(models.Model):
 
     risk_name = models.CharField(max_length=30)

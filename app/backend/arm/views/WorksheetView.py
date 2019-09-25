@@ -29,7 +29,7 @@ logger = logging.getLogger( __file__ )
 #  app imports
 #
 from .PdfView import WorksheetData, PdfView
-from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, RiskRatingValue, CautionMessage, \
+from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, \
                     RestrictionStopMessage, ApplicationEquipmentOption, SoilTypeOption, \
                     SoilMoistureOption, ForageDensityOption, SurfaceConditionOption, RiskCutoffSetting, \
                     Preciptation24RiskRating, Preciptation72RiskRating, SoilMoistureRiskRating, ForageDensityRiskRating, ForageHeightRiskRating, \
@@ -109,8 +109,6 @@ class StaticData():
         self.critical_area_risk_settings = critical_area_risk_settings().toJSON()
         self.manure_setback_settings = manure_setback_settings().toJSON()
 
-        print(self.fields_configurations)
-
 class JSONSerializable():
     
     def _try(self, o): 
@@ -136,11 +134,11 @@ class fields_configurations(JSONSerializable):
     def __init__(self):
         self.precipitation_1 = field('24precipitation')
         self.precipitation_2 = field('72precipitation')
-        self.soil_moisture = field('soil_moisture', True, False)
-        self.water_table_depth = field('water_table_depth', False, True)
-        self.forage_density = field('forage_density', False, True)
-        self.forage_height = field('forage_height', False, True)
-        self.surface_condition = field('surface_condition', True, False)
+        self.soil_moisture = field('soil_moisture', True)
+        self.water_table_depth = field('water_table_depth', False)
+        self.forage_density = field('forage_density', False)
+        self.forage_height = field('forage_height', False)
+        self.surface_condition = field('surface_condition', True)
         self.soil_type = field('soil_type')
         self.application_equipment = field('application_equipment')
         self.critical_area = field('critical_area')
@@ -148,17 +146,16 @@ class fields_configurations(JSONSerializable):
 
 class field():   
 
-    def __init__(self, field_name, restrict_radio_required = False, risk_values_reversed = False):
+    def __init__(self, field_name, restrict_radio_required = False):
         self.trigger = 'input change keyup'
-        self.validators = validator(field_name, restrict_radio_required, risk_values_reversed)
+        self.validators = validator(field_name, restrict_radio_required)
 
 class validator():
 
-    def __init__(self, field_name, restrict_radio_required, risk_values_reversed):
+    def __init__(self, field_name, restrict_radio_required):
 
         if(restrict_radio_required):
             self.restrict_radio = restrict_radio(field_name)
-        print(field_name)
 
         if field_name == '24precipitation':
             self.risk_rating = preciptation_24_risk_settings()
@@ -182,9 +179,7 @@ class validator():
         elif field_name == 'manure_setback_distance':
             self.manure_setback_distance = manure_setback_distance()
         elif field_name == 'surface_condition':
-            self.surface_risk_rating = surface_risk_rating()
-        else:
-            self.risk_rating = risk_rating(field_name, risk_values_reversed)    
+            self.surface_risk_rating = surface_risk_rating()  
 
 
 class restrict_radio():
@@ -206,23 +201,6 @@ class restrict_radio():
         
         return ''
 
-class risk_rating():
-    
-    def __init__(self, field_name, risk_values_reversed):
-        self.values = self.get_values_list(field_name)
-        self.caution_values = self.get_caution_values(field_name)
-        self.is_reversed = risk_values_reversed
-            
-    def get_values_list(self, field_name):
-        risk_rating_value = RiskRatingValue.objects.get(risk_name__exact=field_name)
-        value_list = [float(i) for i in risk_rating_value.value_list.split(',')]
-        return value_list
-
-    def get_caution_values(self, field_name):
-        caution_messages = CautionMessage.objects.filter(risk_name__exact=field_name)
-        caution_value_list = [caution_value(i) for i in caution_messages]
-        return caution_value_list
-
 class surface_risk_rating():
 
     def __init__(self):
@@ -243,12 +221,6 @@ class show_hide():
 
 class manure_setback_distance():
     pass
-
-class caution_value():
-
-    def __init__(self, caution_message):
-        self.value = caution_message.risk_caution_value
-        self.message = caution_message.message
 
 class risk_cuttoff_settings(JSONSerializable):
 
