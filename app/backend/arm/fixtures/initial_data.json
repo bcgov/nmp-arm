@@ -165,7 +165,7 @@
         "model": "arm.forageheightoption",
         "pk": 2,
         "fields": {
-            "value": "2.0",
+            "value": "5.0",
             "description": "2.5-7.5 cm (1-3 in)",
             "active": true
         }
@@ -174,7 +174,7 @@
         "model": "arm.forageheightoption",
         "pk": 3,
         "fields": {
-            "value": "3.0",
+            "value": "10.0",
             "description": "7.5-15 cm (3-6 in)",
             "active": true
         }
@@ -183,7 +183,7 @@
         "model": "arm.forageheightoption",
         "pk": 4,
         "fields": {
-            "value": "7.0",
+            "value": "20.0",
             "description": ">15 cm (>6 in)",
             "active": true
         }
@@ -192,7 +192,7 @@
         "model": "arm.forageheightoption",
         "pk": 5,
         "fields": {
-            "value": "6.0",
+            "value": "-1.0",
             "description": "Not forage crop",
             "active": true
         }
@@ -201,7 +201,7 @@
         "model": "arm.watertabledepthoption",
         "pk": 1,
         "fields": {
-            "value": 12,
+            "value": 15,
             "description": "0-30 cm (1-12 in)",
             "active": true
         }
@@ -210,7 +210,7 @@
         "model": "arm.watertabledepthoption",
         "pk": 2,
         "fields": {
-            "value": 20,
+            "value": 40,
             "description": "30-60 cm (12-24 in)",
             "active": true
         }
@@ -219,7 +219,7 @@
         "model": "arm.watertabledepthoption",
         "pk": 3,
         "fields": {
-            "value": 30,
+            "value": 90,
             "description": "60-120 cm (24-48 in)",
             "active": true
         }
@@ -228,7 +228,7 @@
         "model": "arm.watertabledepthoption",
         "pk": 4,
         "fields": {
-            "value": 49,
+            "value": 150,
             "description": "> 120 cm (> 48 in)",
             "active": true
         }
@@ -327,7 +327,7 @@
         "model": "arm.foragedensityoption",
         "pk": 2,
         "fields": {
-            "value": 75,
+            "value": 80,
             "description": "70-90%",
             "active": true
         }
@@ -354,7 +354,7 @@
         "model": "arm.foragedensityoption",
         "pk": 5,
         "fields": {
-            "value": 70,
+            "value": -1,
             "description": "Other: Annual/Fallow/Row Crop Field (eg, new seeding, corn, berry, bare soil, etc.)",
             "active": true
         }
@@ -459,214 +459,6 @@
         }
     },
     {
-        "model": "arm.riskratingvalue",
-        "pk": 1,
-        "fields": {
-            "risk_name": "24precipitation",
-            "value_list": "0,0.25,1.25,2,2.5,3.75,5,6.25,8.75,12.5"
-        }
-    },
-    {
-        "model": "arm.riskratingvalue",
-        "pk": 2,
-        "fields": {
-            "risk_name": "72precipitation",
-            "value_list": "0,1.25,2.5,5,6.25,7.5,8.75,10,12.5,16.25"
-        }
-    },
-    {
-        "model": "arm.riskratingvalue",
-        "pk": 3,
-        "fields": {
-            "risk_name": "soil_moisture",
-            "value_list": "0,60,65,70,74,75,76,79,80,90"
-        }
-    },
-    {
-        "model": "arm.riskratingvalue",
-        "pk": 4,
-        "fields": {
-            "risk_name": "water_table_depth",
-            "value_list": "49,40,36,30,28,24,20,18,16,12"
-        }
-    },
-    {
-        "model": "arm.riskratingvalue",
-        "pk": 5,
-        "fields": {
-            "risk_name": "forage_density",
-            "value_list": "90, 85, 80, 75, 70, 65, 60, 55, 50, 40"
-        }
-    },
-    {
-        "model": "arm.riskratingvalue",
-        "pk": 6,
-        "fields": {
-            "risk_name": "forage_height",
-            "value_list": "7, 6, 3, 2.9, 2.5, 2.4, 2.3, 2, 0, -1"
-        }
-    },
-    {
-        "model": "arm.cautionmessage",
-        "pk": 1,
-        "fields": {
-            "risk_name": "24precipitation",
-            "risk_caution_value": "6.25",
-            "message": "Caution: More than 6 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate."
-        }
-    },
-    {
-        "model": "arm.cautionmessage",
-        "pk": 2,
-        "fields": {
-            "risk_name": "24precipitation",
-            "risk_caution_value": "12.50",
-            "message": "Caution: More than 12 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate."
-        }
-    },
-    {
-        "model": "arm.cautionmessage",
-        "pk": 3,
-        "fields": {
-            "risk_name": "72precipitation",
-            "risk_caution_value": "6.25",
-            "message": "Caution: More than 6 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate."
-        }
-    },
-    {
-        "model": "arm.cautionmessage",
-        "pk": 4,
-        "fields": {
-            "risk_name": "72precipitation",
-            "risk_caution_value": "12.50",
-            "message": "Caution: More than 12 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate."
-        }
-    },
-    {
-        "model": "arm.cautionmessage",
-        "pk": 5,
-        "fields": {
-            "risk_name": "soil_moisture",
-            "risk_caution_value": "80.00",
-            "message": "Caution: You may be at risk for runoff if soils are saturated. Check field conditions and the forecast, and restrict application rates so you don’t saturate your field."
-        }
-    },
-    {
-        "model": "arm.cautionmessage",
-        "pk": 6,
-        "fields": {
-            "risk_name": "soil_moisture",
-            "risk_caution_value": "90.00",
-            "message": "Caution: You may be at risk for runoff if soils are saturated. Check field conditions and the forecast, and restrict application rates so you don’t saturate your field."
-        }
-    },
-    {
-        "model": "arm.cautionmessage",
-        "pk": 7,
-        "fields": {
-            "risk_name": "soil_moisture",
-            "risk_caution_value": "90.00",
-            "message": "Caution: your soil may reach saturation with manure application. Postpone application, or apply at a low rate to avoid saturation."
-        }
-    },
-    {
-        "model": "arm.cautionmessage",
-        "pk": 8,
-        "fields": {
-            "risk_name": "soil_moisture",
-            "risk_caution_value": "95.00",
-            "message": "Caution: your soil may reach saturation with manure application. Postpone application, or apply at a low rate to avoid saturation."
-        }
-    },
-    {
-        "model": "arm.cautionmessage",
-        "pk": 9,
-        "fields": {
-            "risk_name": "water_table_depth",
-            "risk_caution_value": "12.00",
-            "message": "Caution: There is an elevated water table at this location, which can cause a runoff event. Watch for ponding in low spots and soil saturation, and restrict application rates."
-        }
-    },
-    {
-        "model": "arm.cautionmessage",
-        "pk": 10,
-        "fields": {
-            "risk_name": "water_table_depth",
-            "risk_caution_value": "30.00",
-            "message": "Caution: There is an elevated water table at this location, which can cause a runoff event. Watch for ponding in low spots and soil saturation, and restrict application rates."
-        }
-    },
-    {
-        "model": "arm.cautionmessage",
-        "pk": 11,
-        "fields": {
-            "risk_name": "forage_density",
-            "risk_caution_value": "0.00",
-            "message": "Caution: Your field is at a higher risk for runoff. Observe 80 foot setbacks from ditches, waterways, swales etc, unless an adequate filter strip is in place next to waterway. In no water is adjacent to field, application is permitted."
-        }
-    },
-    {
-        "model": "arm.cautionmessage",
-        "pk": 12,
-        "fields": {
-            "risk_name": "forage_density",
-            "risk_caution_value": "49.00",
-            "message": "Caution: Your field is at a higher risk for runoff. Observe 80 foot setbacks from ditches, waterways, swales etc, unless an adequate filter strip is in place next to waterway. In no water is adjacent to field, application is permitted."
-        }
-    },
-    {
-        "model": "arm.cautionmessage",
-        "pk": 13,
-        "fields": {
-            "risk_name": "forage_density",
-            "risk_caution_value": "59.00",
-            "message": "Caution: Cover is adequate, but make sure a dense filter strip lies adjacent to any waterways and/or observe seasonal setbacks from waterways, swales, and other areas that could lead to a ditch."
-        }
-    },
-    {
-        "model": "arm.cautionmessage",
-        "pk": 14,
-        "fields": {
-            "risk_name": "forage_density",
-            "risk_caution_value": "70.00",
-            "message": "Caution: Cover is adequate, but make sure a dense filter strip lies adjacent to any waterways and/or observe seasonal setbacks from waterways, swales, and other areas that could lead to a ditch."
-        }
-    },
-    {
-        "model": "arm.cautionmessage",
-        "pk": 15,
-        "fields": {
-            "risk_name": "forage_height",
-            "risk_caution_value": "1.00",
-            "message": "Caution: Your field is at a higher risk for runoff. Make sure vegetation is dense and able to properly filter runoff if a large rain event is forecasted. Observe seasonal setbacks."
-        }
-    },
-    {
-        "model": "arm.cautionmessage",
-        "pk": 16,
-        "fields": {
-            "risk_name": "forage_height",
-            "risk_caution_value": "3.00",
-            "message": "Caution: Your field is at a higher risk for runoff. Make sure vegetation is dense and able to properly filter runoff if a large rain event is forecasted. Observe seasonal setbacks."
-        }
-    },
-    {
-        "model": "arm.restrictionstopmessage",
-        "pk": 1,
-        "fields": {
-            "risk_name": "soil_moisture",
-            "stop_message": "Stop: Do not apply at this time. The soil moisture is too high and the risk of runoff on this field is very high."
-        }
-    },
-    {
-        "model": "arm.restrictionstopmessage",
-        "pk": 2,
-        "fields": {
-            "risk_name": "surface_condition",
-            "stop_message": "Stop: No Application permitted"
-        }
-    },
-    {
         "model": "arm.riskcutoffsetting",
         "pk": 1,
         "fields": {
@@ -700,222 +492,752 @@
         }
     },
     {
-        "model": "arm.applicationriskrating",
+        "model": "arm.preciptation24riskrating",
         "pk": 1,
         "fields": {
-            "applicator_name": "below_application",
-            "risk_value": 2,
-            "risk_display_text": "Low-Med",
-            "caution_message": "This is a low risk method of application. Watch for compaction on your field if soil is wet. Follow current manure setback distances."
-        }
-    },
-    {
-        "model": "arm.applicationriskrating",
-        "pk": 2,
-        "fields": {
-            "applicator_name": "surface_application",
-            "risk_value": 3,
-            "risk_display_text": "Low-Med",
-            "caution_message": "Be cautious of turnaround areas and low spots. Watch for compaction on your field if applying to wet soils. Follow current manure setback distances. Use of an aerator is a good method when applying to grass in a higher risk time."
-        }
-    },
-    {
-        "model": "arm.applicationriskrating",
-        "pk": 3,
-        "fields": {
-            "applicator_name": "irrigation_sprinkler",
-            "risk_value": 6,
-            "risk_display_text": "Medium",
-            "caution_message": "While this method decreases compaction issues, it may increase the likelihood of runoff of manure from the surface of your field. Do not apply to saturated soils. Be sure to observe manure setbacks from critical areas at all times. Do not use this method if wind speed is greater than 10 mph."
-        }
-    },
-    {
-        "model": "arm.applicationriskrating",
-        "pk": 4,
-        "fields": {
-            "applicator_name": "grazing",
-            "risk_value": 3,
-            "risk_display_text": "Low-Med",
-            "caution_message": "Grazing is a form of manure application. Be sure to observe manure application setback distances and maintain field cover to reduce a runoff event."
-        }
-    },
-    {
-        "model": "arm.applicationriskrating",
-        "pk": 5,
-        "fields": {
-            "applicator_name": "soild_manure_application",
-            "risk_value": 5,
-            "risk_display_text": "Medium",
-            "caution_message": "Solid manure guidelines are the same as liquid manure. Follow all setback guidance. Make sure soild manure is spread evenly and incorporated into the soil surface prior to a rain event, which can significantly increase the probablility of a runoff event."
-        }
-    },
-    {
-        "model": "arm.soiltyperiskrating",
-        "pk": 1,
-        "fields": {
-            "soil_type": "sand",
             "risk_value": 1,
             "risk_display_text": "Low",
-            "caution_message": null
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "0.00",
+            "range_maximum": "0.24"
+        }
+    },
+    {
+        "model": "arm.preciptation24riskrating",
+        "pk": 2,
+        "fields": {
+            "risk_value": 2,
+            "risk_display_text": "Low-Med",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "0.25",
+            "range_maximum": "1.24"
+        }
+    },
+    {
+        "model": "arm.preciptation24riskrating",
+        "pk": 3,
+        "fields": {
+            "risk_value": 3,
+            "risk_display_text": "Low-Med",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "1.25",
+            "range_maximum": "1.99"
+        }
+    },
+    {
+        "model": "arm.preciptation24riskrating",
+        "pk": 4,
+        "fields": {
+            "risk_value": 4,
+            "risk_display_text": "Medium",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "2.00",
+            "range_maximum": "2.49"
+        }
+    },
+    {
+        "model": "arm.preciptation24riskrating",
+        "pk": 6,
+        "fields": {
+            "risk_value": 5,
+            "risk_display_text": "Medium",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "2.50",
+            "range_maximum": "3.74"
+        }
+    },
+    {
+        "model": "arm.preciptation24riskrating",
+        "pk": 7,
+        "fields": {
+            "risk_value": 6,
+            "risk_display_text": "Medium",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "3.75",
+            "range_maximum": "4.99"
+        }
+    },
+    {
+        "model": "arm.preciptation24riskrating",
+        "pk": 8,
+        "fields": {
+            "risk_value": 7,
+            "risk_display_text": "Med-High",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "5.00",
+            "range_maximum": "6.24"
+        }
+    },
+    {
+        "model": "arm.preciptation24riskrating",
+        "pk": 9,
+        "fields": {
+            "risk_value": 8,
+            "risk_display_text": "Med-High",
+            "caution_message": "Caution: More than 6 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "6.25",
+            "range_maximum": "8.74"
+        }
+    },
+    {
+        "model": "arm.preciptation24riskrating",
+        "pk": 10,
+        "fields": {
+            "risk_value": 9,
+            "risk_display_text": "High",
+            "caution_message": "Caution: More than 6 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "8.75",
+            "range_maximum": "12.49"
+        }
+    },
+    {
+        "model": "arm.preciptation24riskrating",
+        "pk": 11,
+        "fields": {
+            "risk_value": 10,
+            "risk_display_text": "Extreme",
+            "caution_message": "Caution: More than 12 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "12.50",
+            "range_maximum": "999.00"
+        }
+    },
+    {
+        "model": "arm.preciptation72riskrating",
+        "pk": 1,
+        "fields": {
+            "risk_value": 1,
+            "risk_display_text": "Low",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "0.00",
+            "range_maximum": "1.24"
+        }
+    },
+    {
+        "model": "arm.preciptation72riskrating",
+        "pk": 2,
+        "fields": {
+            "risk_value": 2,
+            "risk_display_text": "Low-Med",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "1.25",
+            "range_maximum": "2.49"
+        }
+    },
+    {
+        "model": "arm.preciptation72riskrating",
+        "pk": 3,
+        "fields": {
+            "risk_value": 3,
+            "risk_display_text": "Low-Med",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "2.50",
+            "range_maximum": "4.99"
+        }
+    },
+    {
+        "model": "arm.preciptation72riskrating",
+        "pk": 4,
+        "fields": {
+            "risk_value": 4,
+            "risk_display_text": "Medium",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "5.00",
+            "range_maximum": "6.24"
+        }
+    },
+    {
+        "model": "arm.preciptation72riskrating",
+        "pk": 5,
+        "fields": {
+            "risk_value": 5,
+            "risk_display_text": "Medium",
+            "caution_message": "Caution: More than 6 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "6.25",
+            "range_maximum": "7.49"
+        }
+    },
+    {
+        "model": "arm.preciptation72riskrating",
+        "pk": 6,
+        "fields": {
+            "risk_value": 6,
+            "risk_display_text": "Medium",
+            "caution_message": "Caution: More than 6 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "7.50",
+            "range_maximum": "8.74"
+        }
+    },
+    {
+        "model": "arm.preciptation72riskrating",
+        "pk": 7,
+        "fields": {
+            "risk_value": 7,
+            "risk_display_text": "Med-High",
+            "caution_message": "Caution: More than 6 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "8.75",
+            "range_maximum": "9.99"
+        }
+    },
+    {
+        "model": "arm.preciptation72riskrating",
+        "pk": 8,
+        "fields": {
+            "risk_value": 8,
+            "risk_display_text": "Med-High",
+            "caution_message": "Caution: More than 6 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "10.00",
+            "range_maximum": "12.49"
+        }
+    },
+    {
+        "model": "arm.preciptation72riskrating",
+        "pk": 9,
+        "fields": {
+            "risk_value": 9,
+            "risk_display_text": "High",
+            "caution_message": "Caution: More than 12 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "12.50",
+            "range_maximum": "16.24"
+        }
+    },
+    {
+        "model": "arm.preciptation72riskrating",
+        "pk": 10,
+        "fields": {
+            "risk_value": 10,
+            "risk_display_text": "Extreme",
+            "caution_message": "Caution: More than 12 mm of rain can cause a runoff event on saturated soils. Pay extreme caution and/or limit manure application rate.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "16.00",
+            "range_maximum": "999.00"
+        }
+    },
+    {
+        "model": "arm.soilmoistureriskrating",
+        "pk": 1,
+        "fields": {
+            "risk_value": 1,
+            "risk_display_text": "Low",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "0.00",
+            "range_maximum": "59.99"
+        }
+    },
+    {
+        "model": "arm.soilmoistureriskrating",
+        "pk": 2,
+        "fields": {
+            "risk_value": 2,
+            "risk_display_text": "Low-Med",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "60.00",
+            "range_maximum": "79.99"
+        }
+    },
+    {
+        "model": "arm.soilmoistureriskrating",
+        "pk": 3,
+        "fields": {
+            "risk_value": 9,
+            "risk_display_text": "High",
+            "caution_message": "Caution: You may be at risk for runoff if soils are saturated. Check field conditions and the forecast, and restrict application rates so you don’t saturate your field.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "80.00",
+            "range_maximum": "89.99"
+        }
+    },
+    {
+        "model": "arm.soilmoistureriskrating",
+        "pk": 4,
+        "fields": {
+            "risk_value": 10,
+            "risk_display_text": "Extreme",
+            "caution_message": "Caution: You may be at risk for runoff if soils are saturated. Check field conditions and the forecast, and restrict application rates so you don’t saturate your field.",
+            "show_stop_application": true,
+            "stop_application_message": "Stop: Do not apply at this time. The soil moisture is too high and the risk of runoff on this field is very high.",
+            "range_minimum": "90.00",
+            "range_maximum": "100.00"
+        }
+    },
+    {
+        "model": "arm.watertableriskrating",
+        "pk": 1,
+        "fields": {
+            "risk_value": 1,
+            "risk_display_text": "Low",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "120.00",
+            "range_maximum": "999.00"
+        }
+    },
+    {
+        "model": "arm.watertableriskrating",
+        "pk": 2,
+        "fields": {
+            "risk_value": 4,
+            "risk_display_text": "Medium",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "60.00",
+            "range_maximum": "119.99"
+        }
+    },
+    {
+        "model": "arm.watertableriskrating",
+        "pk": 3,
+        "fields": {
+            "risk_value": 8,
+            "risk_display_text": "Med-High",
+            "caution_message": "Caution: There is an elevated water table at this location, which can cause a runoff event. Watch for ponding in low spots and soil saturation, and restrict application rates.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "30.00",
+            "range_maximum": "59.99"
+        }
+    },
+    {
+        "model": "arm.watertableriskrating",
+        "pk": 4,
+        "fields": {
+            "risk_value": 10,
+            "risk_display_text": "Extreme",
+            "caution_message": "Caution: There is an elevated water table at this location, which can cause a runoff event. Watch for ponding in low spots and soil saturation, and restrict application rates.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "0.00",
+            "range_maximum": "29.99"
+        }
+    },
+    {
+        "model": "arm.foragedensityriskrating",
+        "pk": 1,
+        "fields": {
+            "risk_value": 1,
+            "risk_display_text": "Low",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "90.01",
+            "range_maximum": "100.00"
+        }
+    },
+    {
+        "model": "arm.foragedensityriskrating",
+        "pk": 2,
+        "fields": {
+            "risk_value": 4,
+            "risk_display_text": "Medium",
+            "caution_message": "Caution: Cover is adequate, but make sure a dense filter strip lies adjacent to any waterways and/or observe seasonal setbacks from waterways, swales, and other areas that could lead to a ditch.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "70.01",
+            "range_maximum": "90.00"
+        }
+    },
+    {
+        "model": "arm.foragedensityriskrating",
+        "pk": 3,
+        "fields": {
+            "risk_value": 7,
+            "risk_display_text": "Med-High",
+            "caution_message": "Caution: Cover is adequate, but make sure a dense filter strip lies adjacent to any waterways and/or observe seasonal setbacks from waterways, swales, and other areas that could lead to a ditch.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "50.01",
+            "range_maximum": "70.00"
+        }
+    },
+    {
+        "model": "arm.foragedensityriskrating",
+        "pk": 4,
+        "fields": {
+            "risk_value": 9,
+            "risk_display_text": "High",
+            "caution_message": "Caution: Your field is at a higher risk for runoff. Observe 80 foot setbacks from ditches, waterways, swales etc, unless an adequate filter strip is in place next to waterway. In no water is adjacent to field, application is permitted.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "0.00",
+            "range_maximum": "50.00"
+        }
+    },
+    {
+        "model": "arm.foragedensityriskrating",
+        "pk": 5,
+        "fields": {
+            "risk_value": 5,
+            "risk_display_text": "Medium",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "-1.00",
+            "range_maximum": "-1.00"
+        }
+    },
+    {
+        "model": "arm.forageheightriskrating",
+        "pk": 1,
+        "fields": {
+            "risk_value": 1,
+            "risk_display_text": "Low",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "15.01",
+            "range_maximum": "999.00"
+        }
+    },
+    {
+        "model": "arm.forageheightriskrating",
+        "pk": 2,
+        "fields": {
+            "risk_value": 4,
+            "risk_display_text": "Low-Med",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "7.51",
+            "range_maximum": "15.00"
+        }
+    },
+    {
+        "model": "arm.forageheightriskrating",
+        "pk": 3,
+        "fields": {
+            "risk_value": 8,
+            "risk_display_text": "Med-High",
+            "caution_message": "Caution: There is an elevated water table at this location, which can cause a runoff event. Watch for ponding in low spots and soil saturation, and restrict application rates.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "2.51",
+            "range_maximum": "7.50"
+        }
+    },
+    {
+        "model": "arm.forageheightriskrating",
+        "pk": 4,
+        "fields": {
+            "risk_value": 8,
+            "risk_display_text": "High",
+            "caution_message": "Caution: There is an elevated water table at this location, which can cause a runoff event. Watch for ponding in low spots and soil saturation, and restrict application rates.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "0.00",
+            "range_maximum": "2.50"
+        }
+    },
+    {
+        "model": "arm.forageheightriskrating",
+        "pk": 5,
+        "fields": {
+            "risk_value": 2,
+            "risk_display_text": "Low-Med",
+            "caution_message": "",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "range_minimum": "-1.00",
+            "range_maximum": "-1.00"
+        }
+    },
+    {
+        "model": "arm.applicationriskrating",
+        "pk": 1,
+        "fields": {
+            "risk_value": 2,
+            "risk_display_text": "Low-Med",
+            "caution_message": "This is a low risk method of application. Watch for compaction on your field if soil is wet. Follow current manure setback distances.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "applicator_name": "below_application"
+        }
+    },
+    {
+        "model": "arm.applicationriskrating",
+        "pk": 2,
+        "fields": {
+            "risk_value": 3,
+            "risk_display_text": "Low-Med",
+            "caution_message": "Be cautious of turnaround areas and low spots. Watch for compaction on your field if applying to wet soils. Follow current manure setback distances. Use of an aerator is a good method when applying to grass in a higher risk time.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "applicator_name": "surface_application"
+        }
+    },
+    {
+        "model": "arm.applicationriskrating",
+        "pk": 3,
+        "fields": {
+            "risk_value": 6,
+            "risk_display_text": "Medium",
+            "caution_message": "While this method decreases compaction issues, it may increase the likelihood of runoff of manure from the surface of your field. Do not apply to saturated soils. Be sure to observe manure setbacks from critical areas at all times. Do not use this method if wind speed is greater than 10 mph.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "applicator_name": "irrigation_sprinkler"
+        }
+    },
+    {
+        "model": "arm.applicationriskrating",
+        "pk": 4,
+        "fields": {
+            "risk_value": 3,
+            "risk_display_text": "Low-Med",
+            "caution_message": "Grazing is a form of manure application. Be sure to observe manure application setback distances and maintain field cover to reduce a runoff event.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "applicator_name": "grazing"
+        }
+    },
+    {
+        "model": "arm.applicationriskrating",
+        "pk": 5,
+        "fields": {
+            "risk_value": 5,
+            "risk_display_text": "Medium",
+            "caution_message": "Solid manure guidelines are the same as liquid manure. Follow all setback guidance. Make sure soild manure is spread evenly and incorporated into the soil surface prior to a rain event, which can significantly increase the probablility of a runoff event.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "applicator_name": "soild_manure_application"
+        }
+    },
+    {
+        "model": "arm.soiltyperiskrating",
+        "pk": 1,
+        "fields": {
+            "risk_value": 1,
+            "risk_display_text": "Low",
+            "caution_message": null,
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "soil_type": "sand"
         }
     },
     {
         "model": "arm.soiltyperiskrating",
         "pk": 2,
         "fields": {
-            "soil_type": "silt",
             "risk_value": 2,
             "risk_display_text": "Low-Med",
-            "caution_message": null
+            "caution_message": null,
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "soil_type": "silt"
         }
     },
     {
         "model": "arm.soiltyperiskrating",
         "pk": 3,
         "fields": {
-            "soil_type": "clay",
             "risk_value": 5,
             "risk_display_text": "Medium",
-            "caution_message": null
+            "caution_message": null,
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "soil_type": "clay"
         }
     },
     {
         "model": "arm.soiltyperiskrating",
         "pk": 4,
         "fields": {
-            "soil_type": "peat_muck",
             "risk_value": 6,
             "risk_display_text": "Medium",
-            "caution_message": null
+            "caution_message": null,
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "soil_type": "peat_muck"
         }
     },
     {
         "model": "arm.soiltyperiskrating",
         "pk": 5,
         "fields": {
-            "soil_type": "other",
             "risk_value": 4,
             "risk_display_text": "Medium",
-            "caution_message": null
+            "caution_message": null,
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "soil_type": "other"
         }
     },
     {
         "model": "arm.surfaceconditionriskrating",
         "pk": 1,
         "fields": {
-            "surface_condition": "ponding",
-            "is_a_stop_application_item": false,
             "risk_value": 5,
             "risk_display_text": "Medium",
-            "caution_message": "Ponding - Caution: Avoid ponded areas with appropriate seasonal setback distance, particularly if it drains to a waterway. Ponding can be a sign of a high water table, so be cautious of soil saturation."
+            "caution_message": "Ponding - Caution: Avoid ponded areas with appropriate seasonal setback distance, particularly if it drains to a waterway. Ponding can be a sign of a high water table, so be cautious of soil saturation.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "surface_condition": "ponding"
         }
     },
     {
         "model": "arm.surfaceconditionriskrating",
         "pk": 2,
         "fields": {
-            "surface_condition": "tiles",
-            "is_a_stop_application_item": false,
             "risk_value": 6,
             "risk_display_text": "Medium",
-            "caution_message": "Tiles - Caution: Tiles must have at least 60 cm of cover, not be discharging manure, and their location must be known prior to application. Monitor tiles closely after application. If manure discharges from tile, plug immediately."
+            "caution_message": "Tiles - Caution: Tiles must have at least 60 cm of cover, not be discharging manure, and their location must be known prior to application. Monitor tiles closely after application. If manure discharges from tile, plug immediately.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "surface_condition": "tiles"
         }
     },
     {
         "model": "arm.surfaceconditionriskrating",
         "pk": 3,
         "fields": {
-            "surface_condition": "none",
-            "is_a_stop_application_item": false,
             "risk_value": 0,
             "risk_display_text": "Low",
-            "caution_message": null
+            "caution_message": null,
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "surface_condition": "none"
         }
     },
     {
         "model": "arm.surfaceconditionriskrating",
         "pk": 4,
         "fields": {
-            "surface_condition": "flooding",
-            "is_a_stop_application_item": true,
             "risk_value": 10,
             "risk_display_text": "Extreme",
-            "caution_message": "Flooding - No application is allowed if flooding is predicted in a 15 day window after application."
+            "caution_message": "Flooding - No application is allowed if flooding is predicted in a 15 day window after application.",
+            "show_stop_application": true,
+            "stop_application_message": "Stop: No Application permitted",
+            "surface_condition": "flooding"
         }
     },
     {
         "model": "arm.surfaceconditionriskrating",
         "pk": 5,
         "fields": {
-            "surface_condition": "frozen",
-            "is_a_stop_application_item": true,
             "risk_value": 10,
             "risk_display_text": "Extreme",
-            "caution_message": "Frozen - No application is allowed on soils frozen 2,5 cm or greater below the surface, or covered in snow."
+            "caution_message": "Frozen - No application is allowed on soils frozen 2,5 cm or greater below the surface, or covered in snow.",
+            "show_stop_application": true,
+            "stop_application_message": "Stop: No Application permitted",
+            "surface_condition": "frozen"
         }
     },
     {
         "model": "arm.surfaceconditionriskrating",
         "pk": 6,
         "fields": {
-            "surface_condition": "snow-ice",
-            "is_a_stop_application_item": true,
             "risk_value": 10,
             "risk_display_text": "Extreme",
-            "caution_message": "Snow covered - No application is allowed if a field has at least 5 cm (2 in) or more of ice or snow over 50% or more of the area."
+            "caution_message": "Snow covered - No application is allowed if a field has at least 5 cm (2 in) or more of ice or snow over 50% or more of the area.",
+            "show_stop_application": true,
+            "stop_application_message": "Stop: No Application permitted",
+            "surface_condition": "snow-ice"
         }
     },
     {
         "model": "arm.criticalareariskrating",
         "pk": 1,
         "fields": {
-            "answer": "yes",
             "risk_value": 3,
             "risk_display_text": "Low-Med",
-            "caution_message": null
+            "caution_message": null,
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "answer": "yes"
         }
     },
     {
         "model": "arm.criticalareariskrating",
         "pk": 2,
         "fields": {
-            "answer": "no",
             "risk_value": 1,
             "risk_display_text": "Low",
-            "caution_message": null
+            "caution_message": null,
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "answer": "no"
         }
     },
     {
         "model": "arm.manuresetbackdistanceriskrating",
         "pk": 1,
         "fields": {
-            "distance_minimum": "12.00",
-            "distance_maximum": "99999999.00",
             "risk_value": 1,
             "risk_display_text": "Low",
-            "caution_message": "Warning: Your setback is either lower than legal requirements or the recommended setback distance. Increasing setback distance will reduce the risk of off-site nutrient transport."
+            "caution_message": "Warning: Your setback is either lower than legal requirements or the recommended setback distance. Increasing setback distance will reduce the risk of off-site nutrient transport.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "distance_minimum": "12.00",
+            "distance_maximum": "99999999.00"
         }
     },
     {
         "model": "arm.manuresetbackdistanceriskrating",
         "pk": 2,
         "fields": {
-            "distance_minimum": "1.50",
-            "distance_maximum": "11.99",
             "risk_value": 4,
             "risk_display_text": "Medium",
-            "caution_message": "Warning: Your setback is either lower than legal requirements or the recommended setback distance. Increasing setback distance will reduce the risk of off-site nutrient transport."
+            "caution_message": "Warning: Your setback is either lower than legal requirements or the recommended setback distance. Increasing setback distance will reduce the risk of off-site nutrient transport.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "distance_minimum": "1.50",
+            "distance_maximum": "11.99"
         }
     },
     {
         "model": "arm.manuresetbackdistanceriskrating",
         "pk": 3,
         "fields": {
-            "distance_minimum": "0.00",
-            "distance_maximum": "1.49",
             "risk_value": 7,
             "risk_display_text": "Med-High",
-            "caution_message": "Warning: Your setback is either lower than legal requirements or the recommended setback distance. Increasing setback distance will reduce the risk of off-site nutrient transport."
+            "caution_message": "Warning: Your setback is either lower than legal requirements or the recommended setback distance. Increasing setback distance will reduce the risk of off-site nutrient transport.",
+            "show_stop_application": false,
+            "stop_application_message": null,
+            "distance_minimum": "0.00",
+            "distance_maximum": "1.49"
         }
     }
 ]

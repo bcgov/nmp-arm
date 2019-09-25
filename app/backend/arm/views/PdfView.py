@@ -7,8 +7,8 @@ from decouple import config
 import requests
 import tempfile
 
-from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, RiskRatingValue, CautionMessage, \
-                    RestrictionStopMessage, ApplicationEquipmentOption, SoilTypeOption, \
+from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, \
+                    ApplicationEquipmentOption, SoilTypeOption, \
                     SoilMoistureOption, ForageDensityOption, SurfaceConditionOption
 
 class WorksheetData:

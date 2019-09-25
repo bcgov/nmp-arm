@@ -29,10 +29,12 @@ logger = logging.getLogger( __file__ )
 #  app imports
 #
 from .PdfView import WorksheetData, PdfView
-from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, RiskRatingValue, CautionMessage, \
-                    RestrictionStopMessage, ApplicationEquipmentOption, SoilTypeOption, \
+from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, \
+                    ApplicationEquipmentOption, SoilTypeOption, \
                     SoilMoistureOption, ForageDensityOption, SurfaceConditionOption, RiskCutoffSetting, \
-                    ApplicationRiskRating, SoilTypeRiskRating, SurfaceConditionRiskRating, CriticalAreaRiskRating, ManureSetbackDistanceRiskRating
+                    Preciptation24RiskRating, Preciptation72RiskRating, SoilMoistureRiskRating, ForageDensityRiskRating, ForageHeightRiskRating, \
+                    ApplicationRiskRating, SoilTypeRiskRating, SurfaceConditionRiskRating, CriticalAreaRiskRating, \
+                    ManureSetbackDistanceRiskRating, WaterTableRiskRating
 
 class WorksheetForm( Form ):
 
@@ -132,11 +134,11 @@ class fields_configurations(JSONSerializable):
     def __init__(self):
         self.precipitation_1 = field('24precipitation')
         self.precipitation_2 = field('72precipitation')
-        self.soil_moisture = field('soil_moisture', True, False)
-        self.water_table_depth = field('water_table_depth', False, True)
-        self.forage_density = field('forage_density', False, True)
-        self.forage_height = field('forage_height', False, True)
-        self.surface_condition = field('surface_condition', True, False)
+        self.soil_moisture = field('soil_moisture')
+        self.water_table_depth = field('water_table_depth')
+        self.forage_density = field('forage_density')
+        self.forage_height = field('forage_height')
+        self.surface_condition = field('surface_condition')
         self.soil_type = field('soil_type')
         self.application_equipment = field('application_equipment')
         self.critical_area = field('critical_area')
@@ -144,19 +146,28 @@ class fields_configurations(JSONSerializable):
 
 class field():   
 
-    def __init__(self, field_name, restrict_radio_required = False, risk_values_reversed = False):
+    def __init__(self, field_name):
         self.trigger = 'input change keyup'
-        self.validators = validator(field_name, restrict_radio_required, risk_values_reversed)
+        self.validators = validator(field_name)
 
 class validator():
 
-    def __init__(self, field_name, restrict_radio_required, risk_values_reversed):
+    def __init__(self, field_name):
 
-        if(restrict_radio_required):
-            self.restrict_radio = restrict_radio(field_name)
-
-        if field_name == 'soil_type':
+        if field_name == '24precipitation':
+            self.risk_rating = preciptation_24_risk_settings()
+        elif field_name == '72precipitation':
+            self.risk_rating = preciptation_72_risk_settings()
+        elif field_name == 'soil_type':
             self.soil_type_risk_rating = soil_type_risk_rating()
+        elif field_name == 'soil_moisture':
+            self.risk_rating = soil_moisture_risk_settings()
+        elif field_name == 'water_table_depth':
+            self.risk_rating = water_table_depth_risk_settings()
+        elif field_name == 'forage_height':
+            self.risk_rating = forage_height_risk_settings()
+        elif field_name == 'forage_density':
+            self.risk_rating = forage_density_risk_settings()
         elif field_name == 'application_equipment':
             self.applicator_risk_rating = applicator_risk_rating()
         elif field_name == 'critical_area':
@@ -165,46 +176,7 @@ class validator():
         elif field_name == 'manure_setback_distance':
             self.manure_setback_distance = manure_setback_distance()
         elif field_name == 'surface_condition':
-            self.surface_risk_rating = surface_risk_rating()
-        else:
-            self.risk_rating = risk_rating(field_name, risk_values_reversed)    
-
-
-class restrict_radio():
-    
-    def __init__(self, field_name):
-        self.comparitor = self.get_comparitor(field_name)
-        
-        if field_name == 'soil_moisture':
-            self.stop_value = 90
-        elif field_name == 'surface_condition':
-            self.stop_values = {'flooding': True, 'frozen': True, 'snow-ice': True}
-        self.stop_message = RestrictionStopMessage.objects.get(risk_name__exact=field_name).stop_message
-
-    def get_comparitor(self, field_name):
-        if field_name == 'soil_moisture':
-            return 'greaterthan'
-        elif field_name == 'surface_condition':
-            return 'in'
-        
-        return ''
-
-class risk_rating():
-    
-    def __init__(self, field_name, risk_values_reversed):
-        self.values = self.get_values_list(field_name)
-        self.caution_values = self.get_caution_values(field_name)
-        self.is_reversed = risk_values_reversed
-            
-    def get_values_list(self, field_name):
-        risk_rating_value = RiskRatingValue.objects.get(risk_name__exact=field_name)
-        value_list = [float(i) for i in risk_rating_value.value_list.split(',')]
-        return value_list
-
-    def get_caution_values(self, field_name):
-        caution_messages = CautionMessage.objects.filter(risk_name__exact=field_name)
-        caution_value_list = [caution_value(i) for i in caution_messages]
-        return caution_value_list
+            self.surface_risk_rating = surface_risk_rating()  
 
 class surface_risk_rating():
 
@@ -227,12 +199,6 @@ class show_hide():
 class manure_setback_distance():
     pass
 
-class caution_value():
-
-    def __init__(self, caution_message):
-        self.value = caution_message.risk_caution_value
-        self.message = caution_message.message
-
 class risk_cuttoff_settings(JSONSerializable):
 
     def __init__(self):
@@ -248,6 +214,49 @@ class risk_cuttoff():
         self.minimum_score = setting.minimum_score
         self.maximum_score = setting.maximum_score
         self.message = setting.message
+
+class risk_setting(JSONSerializable):
+    def load_setting(self, settings_name, settings):
+        
+        for setting in settings:
+            self.__dict__[setting.pk] = risk_rating_setting(setting)
+            self.__dict__[setting.pk].range_minimum = setting.range_minimum
+            self.__dict__[setting.pk].range_maximum = setting.range_maximum
+
+class preciptation_24_risk_settings(risk_setting):
+    def __init__(self):
+        settings = Preciptation24RiskRating.objects.all()
+        self = self.load_setting('precipitation_1', settings)
+
+class preciptation_72_risk_settings(risk_setting):
+    def __init__(self):
+        settings = Preciptation72RiskRating.objects.all()
+        self = self.load_setting('precipitation_2', settings)
+
+class soil_type_risk_settings(risk_setting):
+    def __init__(self):
+        settings = SoilTypeRiskRating.objects.all()
+        self = self.load_setting('soil_type', settings)
+
+class soil_moisture_risk_settings(risk_setting):
+    def __init__(self):
+        settings = SoilMoistureRiskRating.objects.all()
+        self = self.load_setting('soil_moisture', settings)
+
+class water_table_depth_risk_settings(risk_setting):
+    def __init__(self):
+        settings = WaterTableRiskRating.objects.all()
+        self.values = self.load_setting('water_table_depth', settings)
+
+class forage_density_risk_settings(risk_setting):
+    def __init__(self):
+        settings = ForageDensityRiskRating.objects.all()
+        self = self.load_setting('forage_density', settings)
+
+class forage_height_risk_settings(risk_setting):
+    def __init__(self):
+        settings = ForageHeightRiskRating.objects.all()
+        self = self.load_setting('forage_height', settings)
 
 class application_equipment_risk_settings(JSONSerializable):
     
@@ -306,6 +315,11 @@ class risk_rating_setting():
             self.caution_message = ''
 
         try:
-            self.is_a_stop_application_item = risk_rating.is_a_stop_application_item
+            self.show_stop_application = risk_rating.show_stop_application
         except:
-            pass
+            self.show_stop_application = False
+
+        try:
+            self.stop_application_message = risk_rating.stop_application_message
+        except:
+            self.stop_application_message = False
