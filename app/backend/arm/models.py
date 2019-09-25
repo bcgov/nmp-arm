@@ -19,50 +19,39 @@ class FormField(models.Model):
         return "{0}: {1}".format(self.field_name, self.description)
 
 
-class ForageHeightOption(models.Model):
-
-    value = models.DecimalField(max_digits=3, decimal_places=1)
-    description = models.CharField(max_length=50)
+class AnswerOptionMixin(models.Model):
+    class Meta:
+        abstract=True
+    description = models.CharField(max_length=250)
     active = models.BooleanField(default=True)
 
+class ForageHeightOption(AnswerOptionMixin):
+
+    value = models.DecimalField(max_digits=3, decimal_places=1)
     def __str__(self):
         return "value:{0}, description:{1}, active:{2}".format(self.value, self.description, self.active)
 
-class WaterTableDepthOption(models.Model):
-
+class WaterTableDepthOption(AnswerOptionMixin):
     value = models.IntegerField()
-    description = models.CharField(max_length=50)
-    active = models.BooleanField(default=True)
 
-class SoilTypeOption(models.Model):
-
+class SoilTypeOption(AnswerOptionMixin):
     value = models.CharField(max_length=50)
-    description = models.CharField(max_length=250)
-    active = models.BooleanField(default=True)
 
-class SoilMoistureOption(models.Model):
-
+class SoilMoistureOption(AnswerOptionMixin):
     value = models.IntegerField()
-    description = models.CharField(max_length=250)
-    active = models.BooleanField(default=True)
 
-class ForageDensityOption(models.Model):
-
+class ForageDensityOption(AnswerOptionMixin):
     value = models.IntegerField()
-    description = models.CharField(max_length=250)
-    active = models.BooleanField(default=True)
 
-class SurfaceConditionOption(models.Model):
-
+class SurfaceConditionOption(AnswerOptionMixin):
     value = models.CharField(max_length=50)
-    description = models.CharField(max_length=250)
-    active = models.BooleanField(default=True)
     
-class ApplicationEquipmentOption(models.Model):
-
+class ApplicationEquipmentOption(AnswerOptionMixin):
     value = models.CharField(max_length=50)
-    description = models.CharField(max_length=250)
-    active = models.BooleanField(default=True)
+
+class CriticalAreaOption(AnswerOptionMixin):
+    value = models.CharField(max_length=50)
+
 
 class RiskCutoffSetting(models.Model):
 
