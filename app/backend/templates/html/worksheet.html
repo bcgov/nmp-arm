@@ -491,18 +491,18 @@
                         <label class="col-lg-8"><h3>{{ staticData.waterbody_critical_area.title|safe }}</h3></label>
                         <p class="col-lg-8 desc">{{ staticData.waterbody_critical_area.description|safe }}</p>
                         <div class="col-lg-8">
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="critical_area" value="yes" 
-                                    data-bv-notempty="true" 
-                                    data-bv-notempty-message="critical area is required" /> Yes (answer next question)
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="critical_area" value="no" /> No (click submit)
-                                </label>
-                            </div>
+                            {% for option in staticData.critical_area_options %}
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="critical_area" value="{{option.value}}"
+                                        {% if option.id == 1 %}
+                                            data-bv-notempty="true"
+                                            data-bv-notempty-message="critical area is required" 
+                                        {% endif %}
+                                        /> {{option.description}}
+                                    </label>
+                                </div>                                    
+                            {% endfor %}
                         </div>
                         <div class="col-lg-8 desc riskrating" data-name="critical_area"></div>
                         <input type="hidden" class="riskhiddenfield" name="critical_area_risk" value="" />

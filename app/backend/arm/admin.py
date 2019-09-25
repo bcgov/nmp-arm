@@ -3,7 +3,7 @@ from django.forms import TextInput, Textarea
 from django.db import models
 
 from .models import ApplicationEquipmentOption, FormField, ForageDensityOption, ForageHeightOption, SoilMoistureOption, SoilTypeOption, \
-                    SurfaceConditionOption, WaterTableDepthOption, RiskCutoffSetting, \
+                    SurfaceConditionOption, WaterTableDepthOption, CriticalAreaOption, RiskCutoffSetting, \
                     Preciptation24RiskRating, Preciptation72RiskRating, SoilMoistureRiskRating, \
                     WaterTableRiskRating, ForageDensityRiskRating, ForageHeightRiskRating, \
                     ApplicationRiskRating, SoilTypeRiskRating, SurfaceConditionRiskRating, \
@@ -17,34 +17,38 @@ class FormFieldAdmin(admin.ModelAdmin):
         models.TextField: {'widget': Textarea(attrs={'rows':10, 'cols':200})},
     }
     
-
+option_list_display = ('id', 'value', 'description', 'active')   
 @admin.register(ApplicationEquipmentOption)
 class ApplicationEquipmentOptionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'value', 'description', 'active')    
+    list_display = option_list_display 
 
 @admin.register(ForageDensityOption)
 class ForageDensityOptionsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'value', 'description', 'active')
+    list_display = option_list_display
 
 @admin.register(ForageHeightOption)
 class ForageHeightOptionsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'value', 'description', 'active')
+    list_display = option_list_display
 
 @admin.register(SoilMoistureOption)
 class SoilMoistureOptionsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'value', 'description', 'active')
+    list_display = option_list_display
 
 @admin.register(SoilTypeOption)
 class SoilTypeOptionsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'value', 'description', 'active')
+    list_display = option_list_display
 
 @admin.register(SurfaceConditionOption)
 class SurfaceConditionOptionsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'value', 'description', 'active')
+    list_display = option_list_display
 
 @admin.register(WaterTableDepthOption)
 class WaterTableDepthOptionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'value', 'description', 'active')
+    list_display = option_list_display
+
+@admin.register(CriticalAreaOption)
+class WaterTableDepthOptionAdmin(admin.ModelAdmin):
+    list_display = option_list_display
 
 @admin.register(RiskCutoffSetting)
 class RiskCutoffSettingAdmin(admin.ModelAdmin):

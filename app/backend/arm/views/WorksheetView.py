@@ -30,7 +30,7 @@ logger = logging.getLogger( __file__ )
 #
 from .PdfView import WorksheetData, PdfView
 from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, \
-                    ApplicationEquipmentOption, SoilTypeOption, \
+                    ApplicationEquipmentOption, SoilTypeOption, CriticalAreaOption, \
                     SoilMoistureOption, ForageDensityOption, SurfaceConditionOption, RiskCutoffSetting, \
                     Preciptation24RiskRating, Preciptation72RiskRating, SoilMoistureRiskRating, ForageDensityRiskRating, ForageHeightRiskRating, \
                     ApplicationRiskRating, SoilTypeRiskRating, SurfaceConditionRiskRating, CriticalAreaRiskRating, \
@@ -100,6 +100,7 @@ class StaticData():
         self.forage_height_options = ForageHeightOption.objects.filter(active=True).order_by('id')
         self.water_table_depth_options = WaterTableDepthOption.objects.filter(active=True).order_by('id')
         self.application_equipment_options = ApplicationEquipmentOption.objects.filter(active=True).order_by('id')
+        self.critical_area_options = CriticalAreaOption.objects.filter(active=True).order_by('id')
 
         self.fields_configurations = fields_configurations().toJSON()
         self.risk_cuttoff_settings = risk_cuttoff_settings().toJSON()
