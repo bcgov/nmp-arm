@@ -148,110 +148,33 @@ window.calculate_caution = function( value_to_check, L, options ) {
     return null;
 };
 
-
-window.calculate_risk_rating = function( value_to_check, values, options ) {
-    var options = options || {};
-    var is_reversed = options.is_reversed || false;
-
-    var L = [];
-    values.forEach( function( value, indx ) {
-        L.push( { 'value' : value, 'risk' : indx+1 } );
-    })
-    if( is_reversed ) { L.reverse(); }
-
-    var left, right;
-    if ( value_to_check < L[0].value ) value_to_check = L[0].value; // normalize
-    for ( left=0,right=1; right < L.length; left++,right++ ) {
-        console.log( L[left].value, " <= ", value_to_check, " && ", value_to_check, " < ", L[right].value );
-        if ( L[left].value <= value_to_check && value_to_check < L[right].value ) {
-            return { risk : L[left].risk , display : RISK_RATING[ L[left].risk ] };
-        }
-        else if ( value_to_check === L[right].value ) {
-            console.log( value_to_check, " === ", L[right].value );
-            return { risk : L[right].risk, display : RISK_RATING[ L[right].risk ] };
-        }
-    }
-
-    if ( is_reversed ) {
-        return { risk: 1, display : RISK_RATING[ 1 ] };
-    }
-    else {
-        return { risk : 10, display : RISK_RATING[ 10 ] };
-    }
-};
-
-(function($) {
-    $.fn.bootstrapValidator.validators.restrict_radio = {
-        validate: function(validator, $field, options) {
-            var value = $field.val();
-
-            var all_checked_values = {}
-            if ( options.comparitor === 'in' ) {
-                var all_inputs = $field.parents( '.form-group' ).find( 'input:checked' );
-                for ( var i = 0; i < all_inputs.length; i++ ) {
-                    all_checked_values[ $( all_inputs[ i ] ).val() ] = true;
-                }
-            }
-
-            if ( options.comparitor === 'greaterthan' ) {
-                if ( parseInt( value ) >= options.stop_value ) {
-                    return {
-                        valid: false ,
-                        message: options.stop_message
-                    };
-                }
-            }
-            else if ( options.comparitor === 'lessthan' ) {
-                if ( parseInt( value ) <= options.stop_value ) {
-                    return {
-                        valid: false ,
-                        message: options.stop_message
-                    };
-                }
-            }
-            else if ( options.comparitor === 'equals' ) {
-                if ( value === options.stop_value ) {
-                    return {
-                        valid: false ,
-                        message: options.stop_message
-                    };
-                }
-            }
-            else if ( options.comparitor === 'in' ) {
-                var values = Object.keys( all_checked_values );
-                for( var i = 0; i < values.length; i++ ) {
-                    var value = values[ i ];
-                    if ( value in options.stop_values ) {
-                        return {
-                            valid: false ,
-                            message: options.stop_message
-                        };
-                    }
-                }
-            }
-
-            return true;
-        }
-    };
-}(window.jQuery));
-
 (function($) {
     $.fn.bootstrapValidator.validators.risk_rating = {
         validate: function(validator, $field, options) {
             var value = $field.val();
             var field = $field;
-
+            
             console.log('field: ' + field[0].name)
 
             for (var key in options)
             {
                 var setting = options[ key ]
+                
                 if(value >= setting['range_minimum'] && value <= setting['range_maximum']){
+
                     console.log(key)
                     console.log(setting.risk_value)
                     console.log(setting.risk_display_text)
                     update_riskrating_ui( $field, { risk : setting.risk_value, display : setting.risk_display_text } );
                     update_caution_ui( $field, setting.caution_message );
+
+                    if(setting['show_stop_application'] == true)
+                    {
+                        return {
+                            valid: false ,
+                            message: setting['stop_application_message']
+                        };                        
+                    }
                     break;
                 }
             }
@@ -278,27 +201,40 @@ window.calculate_risk_rating = function( value_to_check, values, options ) {
 }(window.jQuery));
 
 
+function process_text_value_risk_rating($field, value, risk_settings_list)
+{
+    for (var key in risk_settings_list)
+    {
+        var setting = risk_settings_list[ key ]
+        if(value === key){
+         
+            console.log('field:' + $field.attr("name"))
+
+            console.log(key)
+            console.log(setting.risk_value)
+            console.log(setting.risk_display_text)
+
+            update_riskrating_ui( $field, { risk : setting.risk_value, display : setting.risk_display_text } );
+            update_caution_ui( $field, setting.caution_text );
+
+            if(setting['show_stop_application'] == true)
+            {
+                return {
+                    valid: false ,
+                    message: setting['stop_application_message']
+                };                        
+            }
+            return true;
+        }
+    }
+}
+
 (function($) {
     $.fn.bootstrapValidator.validators.applicator_risk_rating = {
         validate: function(validator, $field, options) {
             var value = $field.val();
-            //console.log( value );
 
-
-            for (var key in APPLICATION_EQUIPMENT_RISK_SETTINGS)
-            {
-                var setting = APPLICATION_EQUIPMENT_RISK_SETTINGS[ key ]
-                if(value === key){
-                    console.log('applicator_risk_rating')
-                    console.log(key)
-                    console.log(setting.risk_value)
-                    console.log(setting.risk_display_text)
-                    update_riskrating_ui( $field, { risk : setting.risk_value, display : setting.risk_display_text } );
-                    update_caution_ui( $field, setting.caution_text );
-                    break;
-                }
-            }
-            return true;
+            return process_text_value_risk_rating($field, value, APPLICATION_EQUIPMENT_RISK_SETTINGS)
         }
     };
 }(window.jQuery));
@@ -310,24 +246,7 @@ window.calculate_risk_rating = function( value_to_check, values, options ) {
     $.fn.bootstrapValidator.validators.soil_type_risk_rating = {
         validate: function(validator, $field, options) {
             var value = $field.val();
-            //console.log( value );
-
-
-            for (var key in SOIL_TYPE_RISK_SETTINGS)
-            {
-                var setting = SOIL_TYPE_RISK_SETTINGS[ key ]
-                if(value === key){
-                    console.log('soil_type_risk_rating')
-                    console.log(key)
-                    console.log(setting.risk_value)
-                    console.log(setting.risk_display_text)
-                    update_riskrating_ui( $field, { risk : setting.risk_value, display : setting.risk_display_text } );
-                    update_caution_ui( $field, setting.caution_text );
-                    break;
-                }
-            }
-
-            return true;
+            return process_text_value_risk_rating($field, value, SOIL_TYPE_RISK_SETTINGS)
         }
     };
 }(window.jQuery));
@@ -352,12 +271,29 @@ window.calculate_risk_rating = function( value_to_check, values, options ) {
             console.log('surface_risk_rating')
             update_riskrating_ui( $field, null );
             update_caution_ui( $field, null );
+            var show_stop_application = false;
+            var stop_application_message = '';
             for( var value in values ) {
                 setting = SURFACE_CONDITION_RISK_SETTINGS[ values[value] ]
                 surface_risk += setting.risk_value
                 console.log('surface_risk: ' + surface_risk)
                 update_riskrating_ui( $field, { risk : surface_risk, display : setting.risk_display_text } );
                 update_caution_ui( $field, setting.caution_message, true );
+
+                if(setting['show_stop_application'] == true)
+                {
+                    show_stop_application = true;
+                    //take last message
+                    stop_application_message = setting['stop_application_message'];
+                }
+            }
+
+            if(show_stop_application)
+            {
+                return {
+                    valid: false ,
+                    message: stop_application_message
+                };                        
             }
 
             return true;
@@ -371,23 +307,9 @@ window.calculate_risk_rating = function( value_to_check, values, options ) {
     $.fn.bootstrapValidator.validators.critical_area_risk_rating = {
         validate: function(validator, $field, options) {
             var value = $field.val();
-            //console.log( value );
 
-            for (var key in CRITICAL_AREA_RISK_SETTINGS)
-            {
-                var setting = CRITICAL_AREA_RISK_SETTINGS[ key ]
-                if(value === key){
-                    console.log('critical_area_risk_rating')
-                    console.log(key)
-                    console.log(setting.risk_value)
-                    console.log(setting.risk_display_text)
-                    update_riskrating_ui( $field, { risk : setting.risk_value, display : setting.risk_display_text } );
-                    update_caution_ui( $field, setting.caution_text );
-                    break;
-                }
-            }
+            return process_text_value_risk_rating($field, value, CRITICAL_AREA_RISK_SETTINGS)
 
-            return true;
         }
     };
 }(window.jQuery));
@@ -410,6 +332,15 @@ window.calculate_risk_rating = function( value_to_check, values, options ) {
                     console.log(setting.risk_display_text)
                     update_riskrating_ui( $field, { risk : setting.risk_value, display : setting.risk_display_text } );
                     update_caution_ui( $field, setting.caution_text );
+
+                    if(setting['show_stop_application'] == true)
+                    {
+                        return {
+                            valid: false ,
+                            message: setting['stop_application_message']
+                        };                        
+                    }
+
                     break;
                 }
             }

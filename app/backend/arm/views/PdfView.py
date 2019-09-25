@@ -8,7 +8,7 @@ import requests
 import tempfile
 
 from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, \
-                    RestrictionStopMessage, ApplicationEquipmentOption, SoilTypeOption, \
+                    ApplicationEquipmentOption, SoilTypeOption, \
                     SoilMoistureOption, ForageDensityOption, SurfaceConditionOption
 
 class WorksheetData:

@@ -30,7 +30,7 @@ logger = logging.getLogger( __file__ )
 #
 from .PdfView import WorksheetData, PdfView
 from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, \
-                    RestrictionStopMessage, ApplicationEquipmentOption, SoilTypeOption, \
+                    ApplicationEquipmentOption, SoilTypeOption, \
                     SoilMoistureOption, ForageDensityOption, SurfaceConditionOption, RiskCutoffSetting, \
                     Preciptation24RiskRating, Preciptation72RiskRating, SoilMoistureRiskRating, ForageDensityRiskRating, ForageHeightRiskRating, \
                     ApplicationRiskRating, SoilTypeRiskRating, SurfaceConditionRiskRating, CriticalAreaRiskRating, \
@@ -134,11 +134,11 @@ class fields_configurations(JSONSerializable):
     def __init__(self):
         self.precipitation_1 = field('24precipitation')
         self.precipitation_2 = field('72precipitation')
-        self.soil_moisture = field('soil_moisture', True)
-        self.water_table_depth = field('water_table_depth', False)
-        self.forage_density = field('forage_density', False)
-        self.forage_height = field('forage_height', False)
-        self.surface_condition = field('surface_condition', True)
+        self.soil_moisture = field('soil_moisture')
+        self.water_table_depth = field('water_table_depth')
+        self.forage_density = field('forage_density')
+        self.forage_height = field('forage_height')
+        self.surface_condition = field('surface_condition')
         self.soil_type = field('soil_type')
         self.application_equipment = field('application_equipment')
         self.critical_area = field('critical_area')
@@ -146,16 +146,13 @@ class fields_configurations(JSONSerializable):
 
 class field():   
 
-    def __init__(self, field_name, restrict_radio_required = False):
+    def __init__(self, field_name):
         self.trigger = 'input change keyup'
-        self.validators = validator(field_name, restrict_radio_required)
+        self.validators = validator(field_name)
 
 class validator():
 
-    def __init__(self, field_name, restrict_radio_required):
-
-        if(restrict_radio_required):
-            self.restrict_radio = restrict_radio(field_name)
+    def __init__(self, field_name):
 
         if field_name == '24precipitation':
             self.risk_rating = preciptation_24_risk_settings()
@@ -180,26 +177,6 @@ class validator():
             self.manure_setback_distance = manure_setback_distance()
         elif field_name == 'surface_condition':
             self.surface_risk_rating = surface_risk_rating()  
-
-
-class restrict_radio():
-    
-    def __init__(self, field_name):
-        self.comparitor = self.get_comparitor(field_name)
-        
-        if field_name == 'soil_moisture':
-            self.stop_value = 90
-        elif field_name == 'surface_condition':
-            self.stop_values = {'flooding': True, 'frozen': True, 'snow-ice': True}
-        self.stop_message = RestrictionStopMessage.objects.get(risk_name__exact=field_name).stop_message
-
-    def get_comparitor(self, field_name):
-        if field_name == 'soil_moisture':
-            return 'greaterthan'
-        elif field_name == 'surface_condition':
-            return 'in'
-        
-        return ''
 
 class surface_risk_rating():
 
@@ -338,6 +315,11 @@ class risk_rating_setting():
             self.caution_message = ''
 
         try:
-            self.is_a_stop_application_item = risk_rating.is_a_stop_application_item
+            self.show_stop_application = risk_rating.show_stop_application
         except:
-            pass
+            self.show_stop_application = False
+
+        try:
+            self.stop_application_message = risk_rating.stop_application_message
+        except:
+            self.stop_application_message = False
