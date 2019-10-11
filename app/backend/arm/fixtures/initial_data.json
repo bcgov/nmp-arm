@@ -459,6 +459,24 @@
         }
     },
     {
+        "model": "arm.criticalareaoption",
+        "pk": 1,
+        "fields": {
+            "value": "no",
+            "description": "No",
+            "active": true
+        }
+    },
+    {
+        "model": "arm.criticalareaoption",
+        "pk": 2,
+        "fields": {
+            "value": "yes",
+            "description": "Yes (answer next question)",
+            "active": true
+        }
+    },
+    {
         "model": "arm.riskcutoffsetting",
         "pk": 1,
         "fields": {
