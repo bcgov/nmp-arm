@@ -100,8 +100,7 @@
 
     <div class="form-group">
         <h3>{{ WorksheetData.water_table_depth_field.title|safe }}</h3>
-        {{ WorksheetData.water_table_depth}} inches
-
+        {{ WorksheetData.water_table_depth_selected_description}}
         <div><b>Risk Rating: </b>{{ WorksheetData.water_table_depth_risk }}</div>
     </div>
 
@@ -124,7 +123,7 @@
 
     <div class="form-group">
         <h3>{{ WorksheetData.forage_height_field.title|safe }}</h3>
-        {{ WorksheetData.forage_height}} inches
+        {{ WorksheetData.forage_height_selected_description}}
         <div><b>Risk Rating: </b>{{ WorksheetData.forage_height_risk }}</div>
     </div>
 
