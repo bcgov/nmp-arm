@@ -387,6 +387,7 @@
 
                         <div class="col-lg-8 desc riskrating" data-name="water_table_depth">Risk Rating: N/A</div>
                         <input type="hidden" class="riskhiddenfield" name="water_table_depth_risk" value="" />
+                        <input type="hidden" name="water_table_depth_selected_description" value="" />
                         <div class="col-lg-8 cautionrating"></div>
                     </div>
 
@@ -434,6 +435,7 @@
                         </div>
                         <div class="col-lg-8 desc riskrating" data-name="forage_height">Risk Rating: N/A</div>
                         <input type="hidden" class="riskhiddenfield" name="forage_height_risk" value="" />
+                        <input type="hidden" name="forage_height_selected_description" value="" />
                         <div class="col-lg-8 cautionrating"></div>
                     </div>
 
@@ -870,6 +872,9 @@
 
             $('input[name=surface_condition_list]').val(surfaceConditionList);    
 
+            $('input[name=water_table_depth_selected_description]').val($('#water_table_depth option:selected').text());
+            $('input[name=forage_height_selected_description]').val($('#forage_height option:selected').text());
+            
             $('#reportType').val('pdf');
             if (requesttype ==='email')
             {
