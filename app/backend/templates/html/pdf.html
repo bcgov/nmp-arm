@@ -170,11 +170,11 @@
     </div>
 
 
-    {% if WorksheetData.critical_area == 'yes' %}
+    {% if WorksheetData.critical_area.lower() == 'yes' %}
     <div class="form-group">
-        <h3>{{ staticData.manure_setback.description|safe }}</h3>
+        <h3>{{ staticData.manure_setback_field.description|safe }}</h3>
         {{ WorksheetData.manure_setback_distance }}
-        <div><b>Risk Rating: </b></div>
+        <div><b>Risk Rating: </b>{{ WorksheetData.manure_setback_distance_risk }}</div>
     </div>
     {% endif %}
 
