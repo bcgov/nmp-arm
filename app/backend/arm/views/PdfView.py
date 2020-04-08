@@ -21,8 +21,10 @@ class WorksheetData:
                     precipitation_2_risk,
                     water_table_depth,
                     water_table_depth_risk,
+                    water_table_depth_selected_description,
                     forage_height,
                     forage_height_risk,
+                    forage_height_selected_description,
                     soil_type,
                     soil_moisture,
                     soil_moisture_risk,
@@ -48,8 +50,10 @@ class WorksheetData:
         self.precipitation_2_risk = precipitation_2_risk
         self.water_table_depth = water_table_depth
         self.water_table_depth_risk = water_table_depth_risk
+        self.water_table_depth_selected_description = water_table_depth_selected_description
         self.forage_height = forage_height
         self.forage_height_risk = forage_height_risk
+        self.forage_height_selected_description = forage_height_selected_description
         self.soil_type = soil_type
         self.soil_moisture = int(soil_moisture)
         self.soil_moisture_risk = soil_moisture_risk
