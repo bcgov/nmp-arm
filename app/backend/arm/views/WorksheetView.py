@@ -6,7 +6,7 @@ from django.forms import Form
 from django.contrib import messages
 from django.template.context_processors import csrf
 from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.views.generic.edit import FormView
 from django.core.mail import send_mail, BadHeaderError, EmailMessage
 from django.urls import reverse
@@ -63,7 +63,7 @@ class WorksheetView( FormView ):
         }
         data.update( csrf( request ) )
 
-        return render_to_response( self.template_name, data )
+        return render( None, self.template_name, data )
 
 
 class StaticData():
