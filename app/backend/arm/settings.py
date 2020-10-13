@@ -7,42 +7,37 @@ import logging
 logger = logging.getLogger(__file__)
 
 # Debugging flags:
-DEBUG = config('DEBUG', default='False', cast=bool)
+DEBUG = config('DEBUG', default='True', cast=bool)
 
 # Absolute filesystem path to the project.
 ABSOLUTE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-ADMIN_EMAIL = config('ADMIN_EMAIL', default='')
-ADMINS = (
-    ('Admin', ADMIN_EMAIL),
-)
+ALLOWED_HOSTS = ['*']
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', socket.gethostname(), 'arm-orig.azurewebsites.net']
-
-AUTH_USER_MODEL = 'admins.Admin'
+# AUTH_USER_MODEL = 'admins.Admin'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
-MANAGERS = ADMINS
+# MANAGERS = ADMINS
 
+DATABASE_HOST = config('DATABASE_HOST')
 DATABASE_NAME = config('DATABASE_NAME')
 DATABASE_USER = config('DATABASE_USER')
 DATABASE_PASSWORD = config('DATABASE_PASSWORD')
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         #'ENGINE': 'django.db.backends.sqlite3',
-#         #'HOST': 'postgis91.pugetworks.com',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#         'NAME': DATABASE_NAME,
-#         'USER': DATABASE_USER,
-#         'PASSWORD': DATABASE_PASSWORD,
-#     },
-# }
-
+DATABASES = {
+    'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(ABSOLUTE_PATH, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': DATABASE_HOST,
+        'PORT': config('DATABASE_HOST_PORT', '5432'),
+        'NAME': DATABASE_NAME,
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASSWORD,
+    },
+}
 
 DATE_FORMAT = 'N j, Y'
 DATE_TIME_FORMAT = 'N j, Y, P'
@@ -52,12 +47,16 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 TIME_FORMAT = 'H:i P'
 
 # Mail Server info
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 25
-
-EMAIL_TO = config('EMAIL_TO')
-
-ENVIRONMENT = config('ENVIRONMENT')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = 'tmp/email-messages/'
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = 25
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_USE_TLS = 1
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 FIXTURE_DIRS = (os.path.join(os.path.dirname(__file__), 'fixtures', 'dev'),)
 
@@ -74,16 +73,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
 
-    # for extended manager options
-    'django_extensions',
 
     'common',
-
-    # api or alternate view functionality
-    'conduit',
-
-    # For admin functionality
-    'admins',
 
     'arm',  # for management commands
     # 'arm.calc' ,
@@ -102,7 +93,7 @@ LOGIN_REDIRECT_URL = '/'
 # the site admins on every HTTP 500 error.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
-LOGGER_LEVEL = config('LOGGER_LEVEL', default='WARNING')
+LOGGER_LEVEL = config('LOGGER_LEVEL', default='DEBUG')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
@@ -251,10 +242,6 @@ SESSION_SAVE_EVERY_REQUEST = True
 #
 SESSION_EXPIRY = (259200 * 20)
 
-SESSION_SAVE_EVERY_REQUEST = True
-
-SERVER_EMAIL = config('SERVER_EMAIL')
-
 SITE_ID = 4
 
 # URL prefix for static files.
@@ -269,7 +256,7 @@ STATICFILES_DIRS = (
     os.path.join(ABSOLUTE_PATH, 'static/'),
 )
 
-SUPPORT_EMAIL = config('SUPPORT_EMAIL')
+STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(ABSOLUTE_PATH)), 'static')
 
 # TIME_ZONE = 'UTC'
 TIME_ZONE = 'America/Los_Angeles'

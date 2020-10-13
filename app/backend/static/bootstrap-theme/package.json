@@ -1,0 +1,81 @@
+{
+  "_from": "https://github.com/bcgov/bootstrap-theme/releases/download/v1.0.0/bcgov-bootstrap-theme-1.0.0.tgz",
+  "_id": "@bcgov/bootstrap-theme@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-fWiWFWquncQtmiMzEk5/Mcj9YBo2xBeTuxXjwsA+6PTH1CjOxS6s2RhRVX8jG+pIoL9ri3Nt7x998dwkIkq01A==",
+  "_location": "/@bcgov/bootstrap-theme",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "@bcgov/bootstrap-theme@https://github.com/bcgov/bootstrap-theme/releases/download/v1.0.0/bcgov-bootstrap-theme-1.0.0.tgz",
+    "name": "@bcgov/bootstrap-theme",
+    "escapedName": "@bcgov%2fbootstrap-theme",
+    "scope": "@bcgov",
+    "rawSpec": "https://github.com/bcgov/bootstrap-theme/releases/download/v1.0.0/bcgov-bootstrap-theme-1.0.0.tgz",
+    "saveSpec": "https://github.com/bcgov/bootstrap-theme/releases/download/v1.0.0/bcgov-bootstrap-theme-1.0.0.tgz",
+    "fetchSpec": "https://github.com/bcgov/bootstrap-theme/releases/download/v1.0.0/bcgov-bootstrap-theme-1.0.0.tgz"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://github.com/bcgov/bootstrap-theme/releases/download/v1.0.0/bcgov-bootstrap-theme-1.0.0.tgz",
+  "_shasum": "c2cc762b581ca14dd827be2ca989a29d1f584061",
+  "_spec": "@bcgov/bootstrap-theme@https://github.com/bcgov/bootstrap-theme/releases/download/v1.0.0/bcgov-bootstrap-theme-1.0.0.tgz",
+  "_where": "C:\\source\\nmp-arm\\app\\backend",
+  "bugs": {
+    "url": "https://github.com/bcgov/bootstrap-theme/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Greg Turner"
+    },
+    {
+      "name": "Andrew Whitehead",
+      "email": "andrew@1crm.com"
+    }
+  ],
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Government of British Columbia Bootstrap v4 theme",
+  "devDependencies": {
+    "autoprefixer": "^7.2.0",
+    "bootstrap": "^4.3.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.6.0",
+    "cross-env": "^5.2.0",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^1.1.11",
+    "node-sass": "^4.12.0",
+    "postcss-loader": "^2.1.0",
+    "precss": "^3.1.0",
+    "sass-lint": "^1.13.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^3.12.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/bcgov/bootstrap-theme#readme",
+  "license": "Apache-2.0",
+  "main": "dist/js/bootstrap-theme.min.js",
+  "name": "@bcgov/bootstrap-theme",
+  "peerDependencies": {
+    "bootstrap": "~4.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bcgov/bootstrap-theme.git"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack -p --display-error-details",
+    "docs-compile": "bundle exec jekyll build",
+    "docs-serve": "bundle exec jekyll serve",
+    "lint": "sass-lint -v",
+    "watch": "cross-env NODE_ENV=development webpack --progress --colors --watch"
+  },
+  "style": "dist/css/bootstrap-theme.min.css",
+  "version": "1.0.0"
+}

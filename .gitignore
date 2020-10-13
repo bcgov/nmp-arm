@@ -104,8 +104,16 @@ venv.bak/
 .mypy_cache/
 
 .DS_Store
+arm/settings.original.py
 
 # Visual Studio Code
 .vscode
+**/secrets/
+**/data/
+*.gz
 .vs/
 .idea/
+tmp/
+
+# Temporary until automated pull of dist for BCGov bootstrap-theme is setup
+!**/bootstrap-theme/dist/

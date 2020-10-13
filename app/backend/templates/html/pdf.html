@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <style type="text/css">    
+        body{
+            font-size: 14px;
+            line-height: 1.5;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            margin-bottom: 5px;
+            padding-top: 10px;
+        }
+
+        td {
+            padding-right: 30px;
+        }
+        .answer {
+            text-align: center;
+            padding: 5px;
+            border: solid 1px black;
+            max-width: 200px;
+        }
+    </style>
+
+    <title>ARM Worksheet BC</title>
+</head>
+<body>    
+    <h2>ARM Worksheet BC</h2>
+    <table>
+        <tr>
+            <td>
+                <b>Farm Name: </b>{{ WorksheetData.farm_name}}
+            </td>
+            <td>
+                <b>Application Date: </b>{{ WorksheetData.apply_date}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Field Name or Unit: </b>{{ WorksheetData.managment_unit}}
+            </td>
+        </tr>
+    </table>
+    
+    <table>
+        <tr>
+            <td>
+                <h3>24 hour Precipitation</h3>
+                {{ WorksheetData.precipitation_1 }} mm
+                <div><b>Risk Rating: </b>{{ WorksheetData.precipitation_1_risk }}</div>
+            </td>
+            <td>
+                <h3>72 hour Precipitation</h3>
+                {{ WorksheetData.precipitation_2 }} mm
+                <div><b>Risk Rating: </b>{{ WorksheetData.precipitation_2_risk }}</div>
+            </td>
+        </tr>
+    </table>
+    <div class="form-group">
+        <h3>{{ WorksheetData.soil_type_field.title|safe }}</h3> 
+        <ul>
+        {% for option in WorksheetData.soil_type_options %}
+            <li>
+                <label>
+                    {{option.description}}
+                    {% if option.value == WorksheetData.soil_type %}
+                    <b>Selected</b>
+                    {% endif %}
+                </label>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <div class="form-group">
+        <h3>{{ WorksheetData.soil_moisture_field.title|safe }}</h3>
+        <ul>
+        {% for option in WorksheetData.soil_moisture_options %}
+            <li>
+                <label>
+                    {{option.description}}
+                    {% if WorksheetData.soil_moisture == option.value %} 
+                        <b>Selected</b> 
+                    {% endif %}
+                </label>
+            </li>
+        {% endfor %}                            
+        </ul>
+        <div><b>Risk Rating: </b>{{ WorksheetData.soil_moisture_risk }}</div>
+    </div>
+
+    <div class="form-group">
+        <h3>{{ WorksheetData.water_table_depth_field.title|safe }}</h3>
+        {{ WorksheetData.water_table_depth_selected_description}}
+        <div><b>Risk Rating: </b>{{ WorksheetData.water_table_depth_risk }}</div>
+    </div>
+
+    <div class="form-group">
+        <h3>{{ WorksheetData.forage_density_field.title|safe }}</h3>
+        <ul>
+        {% for option in WorksheetData.forage_density_options %}
+            <li>
+                <label>
+                    {{option.description}}
+                    {% if WorksheetData.forage_density == option.value %} 
+                        <b>Selected</b> 
+                    {% endif %}
+                </label>
+            </li>
+        {% endfor %}         
+        </ul>
+        <div><b>Risk Rating: </b>{{ WorksheetData.forage_density_risk }}</div>
+    </div>
+
+    <div class="form-group">
+        <h3>{{ WorksheetData.forage_height_field.title|safe }}</h3>
+        {{ WorksheetData.forage_height_selected_description}}
+        <div><b>Risk Rating: </b>{{ WorksheetData.forage_height_risk }}</div>
+    </div>
+
+    <div class="form-group">
+        <h3>{{ WorksheetData.field_surface_conditions_field.title|safe }}</h3>
+        <ul>
+        {% for option in WorksheetData.surface_condition_options %}
+            <li>
+                <label>
+                    {{option.description}}
+                    {% if option.value in WorksheetData.surface_condition %} 
+                        <b>Selected</b> 
+                    {% endif %}
+                </label>
+            </li>
+        {% endfor %}         
+        </ul>
+        <div><b>Risk Rating: </b>{{ WorksheetData.surface_condition_risk }}</div>
+    </div>
+
+    <div class="form-group">
+        <h3>{{ WorksheetData.manure_application_equipment_field.title|safe }}</h3>
+        <ul>
+            {% for option in WorksheetData.application_equipment_options %}
+            <li>
+                <label>
+                    {{option.description}}
+                    {% if WorksheetData.application_equipment == option.value %} 
+                        <b>Selected</b> 
+                    {% endif %}
+                </label>
+            </li>
+            {% endfor %}
+        </ul>
+        <div><b>Risk Rating: </b>{{ WorksheetData.application_equipment_risk }}</div>
+    </div>
+
+
+    <div class="form-group">
+        <h3>{{ WorksheetData.waterbody_critical_area_field.title|safe }}</h3>
+        <p class="col-lg-8 desc">Do you have a waterbody (i.e., ditch, stream, river, etc.) or identified critcal area (i.e., swale, wetland, etc) adjacent to your field?</p>
+        {{ WorksheetData.critical_area }}
+        <div><b>Risk Rating: </b>{{ WorksheetData.critical_area_risk }}</div>
+    </div>
+
+
+    {% if WorksheetData.critical_area == "YES" %}
+    <div class="form-group">
+        <h3>{{ WorksheetData.manure_setback_field.title|safe }}</h3>
+        {{ WorksheetData.manure_setback_distance }}
+        <div><b>Risk Rating: </b>{{ WorksheetData.manure_setback_distance_risk }}</div>
+    </div>
+    {% endif %}
+
+    <div class="form-group riskanalysis">
+        <h3>Application Risk Analysis for Surface Runoff</h3>
+        <div class="answer">
+                <label>
+                    {{ WorksheetData.total_risk }}
+                </label>
+        </div>
+    </div>
+</body>
+</html>
