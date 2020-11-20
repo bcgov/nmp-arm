@@ -1,9 +1,8 @@
-version: '2'
+version: '3'
 
 services:
-
   db:
-    image: postgres 
+    image: postgres:10
     container_name: arm-postgres
     restart: always
     environment:
@@ -12,14 +11,16 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     env_file:
       - .env
+    volumes:
+      - ./db/nmp-arm.sql:/docker-entrypoint-initdb.d/nmp-arm.sql
     networks:
       - arm_network
     ports:
       - "15432:5432"
 
   arm-web:
-    image: arm-bc-web:latest
-    container_name: arm-bc-web
+    image: arm-web:latest
+    container_name: arm-web
     build: .
     stdin_open: true
     tty: true
