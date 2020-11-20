@@ -18,8 +18,8 @@ services:
       - "15432:5432"
 
   arm-web:
-    image: arm-bc-web:latest
-    container_name: arm-bc-web
+    image: arm-web:latest
+    container_name: arm-web
     build: .
     stdin_open: true
     tty: true
@@ -29,7 +29,7 @@ services:
     env_file:
       - .env
     environment:
-      DEBUG: 'False'
+      DEBUG: 'True'
       LOGGER_LEVEL: WARNING
       DATABASE_HOST: ${DATABASE_HOST}
       DATABASE_NAME: ${DATABASE_NAME}

@@ -117,3 +117,7 @@ tmp/
 
 # Temporary until automated pull of dist for BCGov bootstrap-theme is setup
 !**/bootstrap-theme/dist/
+
+# GW 2020-10-09 09:48:55 
+logs/
+static/
