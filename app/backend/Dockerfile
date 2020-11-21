@@ -13,4 +13,4 @@ RUN pip install -Ur requirements.txt
 
 EXPOSE 5000
 
-CMD python manage.py collectstatic --no-input; python manage.py migrate; gunicorn arm.wsgi -b 0.0.0.0:5000 --log-level debug
+CMD python manage.py collectstatic --no-input; python manage.py migrate; gunicorn arm.wsgi -b 0.0.0.0:5000
