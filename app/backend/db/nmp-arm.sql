@@ -45,7 +45,7 @@ CREATE TABLE public.arm_applicationequipmentoption (
 );
 
 
-ALTER TABLE public.arm_applicationequipmentoption OWNER TO "bcarm";
+-- ALTER TABLE public.arm_applicationequipmentoption OWNER TO "bcarm";
 
 --
 -- Name: arm_applicationequipmentoption_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -60,7 +60,7 @@ CREATE SEQUENCE public.arm_applicationequipmentoption_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_applicationequipmentoption_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_applicationequipmentoption_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_applicationequipmentoption_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -84,7 +84,7 @@ CREATE TABLE public.arm_applicationriskrating (
 );
 
 
-ALTER TABLE public.arm_applicationriskrating OWNER TO "bcarm";
+-- ALTER TABLE public.arm_applicationriskrating OWNER TO "bcarm";
 
 --
 -- Name: arm_applicationriskrating_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -99,7 +99,7 @@ CREATE SEQUENCE public.arm_applicationriskrating_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_applicationriskrating_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_applicationriskrating_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_applicationriskrating_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -120,7 +120,7 @@ CREATE TABLE public.arm_criticalareaoption (
 );
 
 
-ALTER TABLE public.arm_criticalareaoption OWNER TO "bcarm";
+-- ALTER TABLE public.arm_criticalareaoption OWNER TO "bcarm";
 
 --
 -- Name: arm_criticalareaoption_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -135,7 +135,7 @@ CREATE SEQUENCE public.arm_criticalareaoption_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_criticalareaoption_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_criticalareaoption_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_criticalareaoption_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -159,7 +159,7 @@ CREATE TABLE public.arm_criticalareariskrating (
 );
 
 
-ALTER TABLE public.arm_criticalareariskrating OWNER TO "bcarm";
+-- ALTER TABLE public.arm_criticalareariskrating OWNER TO "bcarm";
 
 --
 -- Name: arm_criticalareariskrating_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -174,7 +174,7 @@ CREATE SEQUENCE public.arm_criticalareariskrating_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_criticalareariskrating_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_criticalareariskrating_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_criticalareariskrating_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -195,7 +195,7 @@ CREATE TABLE public.arm_foragedensityoption (
 );
 
 
-ALTER TABLE public.arm_foragedensityoption OWNER TO "bcarm";
+-- ALTER TABLE public.arm_foragedensityoption OWNER TO "bcarm";
 
 --
 -- Name: arm_foragedensityoption_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -210,7 +210,7 @@ CREATE SEQUENCE public.arm_foragedensityoption_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_foragedensityoption_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_foragedensityoption_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_foragedensityoption_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -235,7 +235,7 @@ CREATE TABLE public.arm_foragedensityriskrating (
 );
 
 
-ALTER TABLE public.arm_foragedensityriskrating OWNER TO "bcarm";
+-- ALTER TABLE public.arm_foragedensityriskrating OWNER TO "bcarm";
 
 --
 -- Name: arm_foragedensityriskrating_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -250,7 +250,7 @@ CREATE SEQUENCE public.arm_foragedensityriskrating_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_foragedensityriskrating_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_foragedensityriskrating_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_foragedensityriskrating_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -271,7 +271,7 @@ CREATE TABLE public.arm_forageheightoption (
 );
 
 
-ALTER TABLE public.arm_forageheightoption OWNER TO "bcarm";
+-- ALTER TABLE public.arm_forageheightoption OWNER TO "bcarm";
 
 --
 -- Name: arm_forageheightoption_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -286,7 +286,7 @@ CREATE SEQUENCE public.arm_forageheightoption_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_forageheightoption_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_forageheightoption_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_forageheightoption_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -311,7 +311,7 @@ CREATE TABLE public.arm_forageheightriskrating (
 );
 
 
-ALTER TABLE public.arm_forageheightriskrating OWNER TO "bcarm";
+-- ALTER TABLE public.arm_forageheightriskrating OWNER TO "bcarm";
 
 --
 -- Name: arm_forageheightriskrating_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -326,7 +326,7 @@ CREATE SEQUENCE public.arm_forageheightriskrating_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_forageheightriskrating_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_forageheightriskrating_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_forageheightriskrating_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -347,7 +347,7 @@ CREATE TABLE public.arm_formfield (
 );
 
 
-ALTER TABLE public.arm_formfield OWNER TO "bcarm";
+-- ALTER TABLE public.arm_formfield OWNER TO "bcarm";
 
 --
 -- Name: arm_formfield_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -362,7 +362,7 @@ CREATE SEQUENCE public.arm_formfield_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_formfield_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_formfield_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_formfield_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -387,7 +387,7 @@ CREATE TABLE public.arm_manuresetbackdistanceriskrating (
 );
 
 
-ALTER TABLE public.arm_manuresetbackdistanceriskrating OWNER TO "bcarm";
+-- ALTER TABLE public.arm_manuresetbackdistanceriskrating OWNER TO "bcarm";
 
 --
 -- Name: arm_manuresetbackdistanceriskrating_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -402,7 +402,7 @@ CREATE SEQUENCE public.arm_manuresetbackdistanceriskrating_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_manuresetbackdistanceriskrating_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_manuresetbackdistanceriskrating_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_manuresetbackdistanceriskrating_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -427,7 +427,7 @@ CREATE TABLE public.arm_preciptation24riskrating (
 );
 
 
-ALTER TABLE public.arm_preciptation24riskrating OWNER TO "bcarm";
+-- ALTER TABLE public.arm_preciptation24riskrating OWNER TO "bcarm";
 
 --
 -- Name: arm_preciptation24riskrating_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -442,7 +442,7 @@ CREATE SEQUENCE public.arm_preciptation24riskrating_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_preciptation24riskrating_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_preciptation24riskrating_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_preciptation24riskrating_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -467,7 +467,7 @@ CREATE TABLE public.arm_preciptation72riskrating (
 );
 
 
-ALTER TABLE public.arm_preciptation72riskrating OWNER TO "bcarm";
+-- ALTER TABLE public.arm_preciptation72riskrating OWNER TO "bcarm";
 
 --
 -- Name: arm_preciptation72riskrating_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -482,7 +482,7 @@ CREATE SEQUENCE public.arm_preciptation72riskrating_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_preciptation72riskrating_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_preciptation72riskrating_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_preciptation72riskrating_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -505,7 +505,7 @@ CREATE TABLE public.arm_riskcutoffsetting (
 );
 
 
-ALTER TABLE public.arm_riskcutoffsetting OWNER TO "bcarm";
+-- ALTER TABLE public.arm_riskcutoffsetting OWNER TO "bcarm";
 
 --
 -- Name: arm_riskcutoffsetting_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -520,7 +520,7 @@ CREATE SEQUENCE public.arm_riskcutoffsetting_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_riskcutoffsetting_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_riskcutoffsetting_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_riskcutoffsetting_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -541,7 +541,7 @@ CREATE TABLE public.arm_soilmoistureoption (
 );
 
 
-ALTER TABLE public.arm_soilmoistureoption OWNER TO "bcarm";
+-- ALTER TABLE public.arm_soilmoistureoption OWNER TO "bcarm";
 
 --
 -- Name: arm_soilmoistureoption_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -556,7 +556,7 @@ CREATE SEQUENCE public.arm_soilmoistureoption_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_soilmoistureoption_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_soilmoistureoption_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_soilmoistureoption_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -581,7 +581,7 @@ CREATE TABLE public.arm_soilmoistureriskrating (
 );
 
 
-ALTER TABLE public.arm_soilmoistureriskrating OWNER TO "bcarm";
+-- ALTER TABLE public.arm_soilmoistureriskrating OWNER TO "bcarm";
 
 --
 -- Name: arm_soilmoistureriskrating_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -596,7 +596,7 @@ CREATE SEQUENCE public.arm_soilmoistureriskrating_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_soilmoistureriskrating_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_soilmoistureriskrating_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_soilmoistureriskrating_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -617,7 +617,7 @@ CREATE TABLE public.arm_soiltypeoption (
 );
 
 
-ALTER TABLE public.arm_soiltypeoption OWNER TO "bcarm";
+-- ALTER TABLE public.arm_soiltypeoption OWNER TO "bcarm";
 
 --
 -- Name: arm_soiltypeoption_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -632,7 +632,7 @@ CREATE SEQUENCE public.arm_soiltypeoption_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_soiltypeoption_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_soiltypeoption_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_soiltypeoption_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -656,7 +656,7 @@ CREATE TABLE public.arm_soiltyperiskrating (
 );
 
 
-ALTER TABLE public.arm_soiltyperiskrating OWNER TO "bcarm";
+-- ALTER TABLE public.arm_soiltyperiskrating OWNER TO "bcarm";
 
 --
 -- Name: arm_soiltyperiskrating_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -671,7 +671,7 @@ CREATE SEQUENCE public.arm_soiltyperiskrating_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_soiltyperiskrating_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_soiltyperiskrating_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_soiltyperiskrating_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -692,7 +692,7 @@ CREATE TABLE public.arm_surfaceconditionoption (
 );
 
 
-ALTER TABLE public.arm_surfaceconditionoption OWNER TO "bcarm";
+-- ALTER TABLE public.arm_surfaceconditionoption OWNER TO "bcarm";
 
 --
 -- Name: arm_surfaceconditionoption_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -707,7 +707,7 @@ CREATE SEQUENCE public.arm_surfaceconditionoption_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_surfaceconditionoption_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_surfaceconditionoption_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_surfaceconditionoption_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -731,7 +731,7 @@ CREATE TABLE public.arm_surfaceconditionriskrating (
 );
 
 
-ALTER TABLE public.arm_surfaceconditionriskrating OWNER TO "bcarm";
+-- ALTER TABLE public.arm_surfaceconditionriskrating OWNER TO "bcarm";
 
 --
 -- Name: arm_surfaceconditionriskrating_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -746,7 +746,7 @@ CREATE SEQUENCE public.arm_surfaceconditionriskrating_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_surfaceconditionriskrating_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_surfaceconditionriskrating_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_surfaceconditionriskrating_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -767,7 +767,7 @@ CREATE TABLE public.arm_watertabledepthoption (
 );
 
 
-ALTER TABLE public.arm_watertabledepthoption OWNER TO "bcarm";
+-- ALTER TABLE public.arm_watertabledepthoption OWNER TO "bcarm";
 
 --
 -- Name: arm_watertabledepthoption_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -782,7 +782,7 @@ CREATE SEQUENCE public.arm_watertabledepthoption_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_watertabledepthoption_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_watertabledepthoption_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_watertabledepthoption_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -807,7 +807,7 @@ CREATE TABLE public.arm_watertableriskrating (
 );
 
 
-ALTER TABLE public.arm_watertableriskrating OWNER TO "bcarm";
+-- ALTER TABLE public.arm_watertableriskrating OWNER TO "bcarm";
 
 --
 -- Name: arm_watertableriskrating_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -822,7 +822,7 @@ CREATE SEQUENCE public.arm_watertableriskrating_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.arm_watertableriskrating_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.arm_watertableriskrating_id_seq OWNER TO "bcarm";
 
 --
 -- Name: arm_watertableriskrating_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -841,7 +841,7 @@ CREATE TABLE public.auth_group (
 );
 
 
-ALTER TABLE public.auth_group OWNER TO "bcarm";
+-- ALTER TABLE public.auth_group OWNER TO "bcarm";
 
 --
 -- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -856,7 +856,7 @@ CREATE SEQUENCE public.auth_group_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.auth_group_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.auth_group_id_seq OWNER TO "bcarm";
 
 --
 -- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -876,7 +876,7 @@ CREATE TABLE public.auth_group_permissions (
 );
 
 
-ALTER TABLE public.auth_group_permissions OWNER TO "bcarm";
+-- ALTER TABLE public.auth_group_permissions OWNER TO "bcarm";
 
 --
 -- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -891,7 +891,7 @@ CREATE SEQUENCE public.auth_group_permissions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.auth_group_permissions_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.auth_group_permissions_id_seq OWNER TO "bcarm";
 
 --
 -- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -912,7 +912,7 @@ CREATE TABLE public.auth_permission (
 );
 
 
-ALTER TABLE public.auth_permission OWNER TO "bcarm";
+-- ALTER TABLE public.auth_permission OWNER TO "bcarm";
 
 --
 -- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -927,7 +927,7 @@ CREATE SEQUENCE public.auth_permission_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.auth_permission_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.auth_permission_id_seq OWNER TO "bcarm";
 
 --
 -- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -955,7 +955,7 @@ CREATE TABLE public.auth_user (
 );
 
 
-ALTER TABLE public.auth_user OWNER TO "bcarm";
+-- ALTER TABLE public.auth_user OWNER TO "bcarm";
 
 --
 -- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: bcarm
@@ -968,7 +968,7 @@ CREATE TABLE public.auth_user_groups (
 );
 
 
-ALTER TABLE public.auth_user_groups OWNER TO "bcarm";
+-- ALTER TABLE public.auth_user_groups OWNER TO "bcarm";
 
 --
 -- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -983,7 +983,7 @@ CREATE SEQUENCE public.auth_user_groups_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.auth_user_groups_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.auth_user_groups_id_seq OWNER TO "bcarm";
 
 --
 -- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -1005,7 +1005,7 @@ CREATE SEQUENCE public.auth_user_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.auth_user_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.auth_user_id_seq OWNER TO "bcarm";
 
 --
 -- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -1025,7 +1025,7 @@ CREATE TABLE public.auth_user_user_permissions (
 );
 
 
-ALTER TABLE public.auth_user_user_permissions OWNER TO "bcarm";
+-- ALTER TABLE public.auth_user_user_permissions OWNER TO "bcarm";
 
 --
 -- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -1040,7 +1040,7 @@ CREATE SEQUENCE public.auth_user_user_permissions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.auth_user_user_permissions_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.auth_user_user_permissions_id_seq OWNER TO "bcarm";
 
 --
 -- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -1066,7 +1066,7 @@ CREATE TABLE public.django_admin_log (
 );
 
 
-ALTER TABLE public.django_admin_log OWNER TO "bcarm";
+-- ALTER TABLE public.django_admin_log OWNER TO "bcarm";
 
 --
 -- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -1081,7 +1081,7 @@ CREATE SEQUENCE public.django_admin_log_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.django_admin_log_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.django_admin_log_id_seq OWNER TO "bcarm";
 
 --
 -- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -1101,7 +1101,7 @@ CREATE TABLE public.django_content_type (
 );
 
 
-ALTER TABLE public.django_content_type OWNER TO "bcarm";
+-- ALTER TABLE public.django_content_type OWNER TO "bcarm";
 
 --
 -- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -1116,7 +1116,7 @@ CREATE SEQUENCE public.django_content_type_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.django_content_type_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.django_content_type_id_seq OWNER TO "bcarm";
 
 --
 -- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -1137,7 +1137,7 @@ CREATE TABLE public.django_migrations (
 );
 
 
-ALTER TABLE public.django_migrations OWNER TO "bcarm";
+-- ALTER TABLE public.django_migrations OWNER TO "bcarm";
 
 --
 -- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -1152,7 +1152,7 @@ CREATE SEQUENCE public.django_migrations_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.django_migrations_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.django_migrations_id_seq OWNER TO "bcarm";
 
 --
 -- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -1172,7 +1172,7 @@ CREATE TABLE public.django_session (
 );
 
 
-ALTER TABLE public.django_session OWNER TO "bcarm";
+-- ALTER TABLE public.django_session OWNER TO "bcarm";
 
 --
 -- Name: django_site; Type: TABLE; Schema: public; Owner: bcarm
@@ -1185,7 +1185,7 @@ CREATE TABLE public.django_site (
 );
 
 
-ALTER TABLE public.django_site OWNER TO "bcarm";
+-- ALTER TABLE public.django_site OWNER TO "bcarm";
 
 --
 -- Name: django_site_id_seq; Type: SEQUENCE; Schema: public; Owner: bcarm
@@ -1200,7 +1200,7 @@ CREATE SEQUENCE public.django_site_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.django_site_id_seq OWNER TO "bcarm";
+-- ALTER TABLE public.django_site_id_seq OWNER TO "bcarm";
 
 --
 -- Name: django_site_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bcarm
@@ -1213,217 +1213,217 @@ ALTER SEQUENCE public.django_site_id_seq OWNED BY public.django_site.id;
 -- Name: arm_applicationequipmentoption id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_applicationequipmentoption ALTER COLUMN id SET DEFAULT nextval('public.arm_applicationequipmentoption_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_applicationequipmentoption ALTER COLUMN id SET DEFAULT nextval('public.arm_applicationequipmentoption_id_seq'::regclass);
 
 
 --
 -- Name: arm_applicationriskrating id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_applicationriskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_applicationriskrating_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_applicationriskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_applicationriskrating_id_seq'::regclass);
 
 
 --
 -- Name: arm_criticalareaoption id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_criticalareaoption ALTER COLUMN id SET DEFAULT nextval('public.arm_criticalareaoption_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_criticalareaoption ALTER COLUMN id SET DEFAULT nextval('public.arm_criticalareaoption_id_seq'::regclass);
 
 
 --
 -- Name: arm_criticalareariskrating id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_criticalareariskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_criticalareariskrating_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_criticalareariskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_criticalareariskrating_id_seq'::regclass);
 
 
 --
 -- Name: arm_foragedensityoption id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_foragedensityoption ALTER COLUMN id SET DEFAULT nextval('public.arm_foragedensityoption_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_foragedensityoption ALTER COLUMN id SET DEFAULT nextval('public.arm_foragedensityoption_id_seq'::regclass);
 
 
 --
 -- Name: arm_foragedensityriskrating id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_foragedensityriskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_foragedensityriskrating_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_foragedensityriskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_foragedensityriskrating_id_seq'::regclass);
 
 
 --
 -- Name: arm_forageheightoption id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_forageheightoption ALTER COLUMN id SET DEFAULT nextval('public.arm_forageheightoption_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_forageheightoption ALTER COLUMN id SET DEFAULT nextval('public.arm_forageheightoption_id_seq'::regclass);
 
 
 --
 -- Name: arm_forageheightriskrating id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_forageheightriskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_forageheightriskrating_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_forageheightriskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_forageheightriskrating_id_seq'::regclass);
 
 
 --
 -- Name: arm_formfield id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_formfield ALTER COLUMN id SET DEFAULT nextval('public.arm_formfield_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_formfield ALTER COLUMN id SET DEFAULT nextval('public.arm_formfield_id_seq'::regclass);
 
 
 --
 -- Name: arm_manuresetbackdistanceriskrating id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_manuresetbackdistanceriskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_manuresetbackdistanceriskrating_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_manuresetbackdistanceriskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_manuresetbackdistanceriskrating_id_seq'::regclass);
 
 
 --
 -- Name: arm_preciptation24riskrating id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_preciptation24riskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_preciptation24riskrating_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_preciptation24riskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_preciptation24riskrating_id_seq'::regclass);
 
 
 --
 -- Name: arm_preciptation72riskrating id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_preciptation72riskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_preciptation72riskrating_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_preciptation72riskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_preciptation72riskrating_id_seq'::regclass);
 
 
 --
 -- Name: arm_riskcutoffsetting id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_riskcutoffsetting ALTER COLUMN id SET DEFAULT nextval('public.arm_riskcutoffsetting_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_riskcutoffsetting ALTER COLUMN id SET DEFAULT nextval('public.arm_riskcutoffsetting_id_seq'::regclass);
 
 
 --
 -- Name: arm_soilmoistureoption id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_soilmoistureoption ALTER COLUMN id SET DEFAULT nextval('public.arm_soilmoistureoption_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_soilmoistureoption ALTER COLUMN id SET DEFAULT nextval('public.arm_soilmoistureoption_id_seq'::regclass);
 
 
 --
 -- Name: arm_soilmoistureriskrating id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_soilmoistureriskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_soilmoistureriskrating_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_soilmoistureriskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_soilmoistureriskrating_id_seq'::regclass);
 
 
 --
 -- Name: arm_soiltypeoption id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_soiltypeoption ALTER COLUMN id SET DEFAULT nextval('public.arm_soiltypeoption_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_soiltypeoption ALTER COLUMN id SET DEFAULT nextval('public.arm_soiltypeoption_id_seq'::regclass);
 
 
 --
 -- Name: arm_soiltyperiskrating id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_soiltyperiskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_soiltyperiskrating_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_soiltyperiskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_soiltyperiskrating_id_seq'::regclass);
 
 
 --
 -- Name: arm_surfaceconditionoption id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_surfaceconditionoption ALTER COLUMN id SET DEFAULT nextval('public.arm_surfaceconditionoption_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_surfaceconditionoption ALTER COLUMN id SET DEFAULT nextval('public.arm_surfaceconditionoption_id_seq'::regclass);
 
 
 --
 -- Name: arm_surfaceconditionriskrating id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_surfaceconditionriskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_surfaceconditionriskrating_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_surfaceconditionriskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_surfaceconditionriskrating_id_seq'::regclass);
 
 
 --
 -- Name: arm_watertabledepthoption id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_watertabledepthoption ALTER COLUMN id SET DEFAULT nextval('public.arm_watertabledepthoption_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_watertabledepthoption ALTER COLUMN id SET DEFAULT nextval('public.arm_watertabledepthoption_id_seq'::regclass);
 
 
 --
 -- Name: arm_watertableriskrating id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_watertableriskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_watertableriskrating_id_seq'::regclass);
+ ALTER TABLE ONLY public.arm_watertableriskrating ALTER COLUMN id SET DEFAULT nextval('public.arm_watertableriskrating_id_seq'::regclass);
 
 
 --
 -- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
+ ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
 
 
 --
 -- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
+ ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
 
 
 --
 -- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
+ ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
 
 
 --
 -- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_user ALTER COLUMN id SET DEFAULT nextval('public.auth_user_id_seq'::regclass);
+ ALTER TABLE ONLY public.auth_user ALTER COLUMN id SET DEFAULT nextval('public.auth_user_id_seq'::regclass);
 
 
 --
 -- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_user_groups ALTER COLUMN id SET DEFAULT nextval('public.auth_user_groups_id_seq'::regclass);
+ ALTER TABLE ONLY public.auth_user_groups ALTER COLUMN id SET DEFAULT nextval('public.auth_user_groups_id_seq'::regclass);
 
 
 --
 -- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_user_user_permissions_id_seq'::regclass);
+ ALTER TABLE ONLY public.auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_user_user_permissions_id_seq'::regclass);
 
 
 --
 -- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
+ ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
 
 
 --
 -- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
+ ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
 
 
 --
 -- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+ ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
 
 
 --
 -- Name: django_site id; Type: DEFAULT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.django_site ALTER COLUMN id SET DEFAULT nextval('public.django_site_id_seq'::regclass);
+ ALTER TABLE ONLY public.django_site ALTER COLUMN id SET DEFAULT nextval('public.django_site_id_seq'::regclass);
 
 
 --
@@ -2285,7 +2285,7 @@ SELECT pg_catalog.setval('public.django_site_id_seq', 4, true);
 -- Name: arm_applicationequipmentoption arm_applicationequipmentoption_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_applicationequipmentoption
+ ALTER TABLE ONLY public.arm_applicationequipmentoption
     ADD CONSTRAINT arm_applicationequipmentoption_pkey PRIMARY KEY (id);
 
 
@@ -2293,7 +2293,7 @@ ALTER TABLE ONLY public.arm_applicationequipmentoption
 -- Name: arm_applicationriskrating arm_applicationriskrating_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_applicationriskrating
+ ALTER TABLE ONLY public.arm_applicationriskrating
     ADD CONSTRAINT arm_applicationriskrating_pkey PRIMARY KEY (id);
 
 
@@ -2301,7 +2301,7 @@ ALTER TABLE ONLY public.arm_applicationriskrating
 -- Name: arm_criticalareaoption arm_criticalareaoption_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_criticalareaoption
+ ALTER TABLE ONLY public.arm_criticalareaoption
     ADD CONSTRAINT arm_criticalareaoption_pkey PRIMARY KEY (id);
 
 
@@ -2309,7 +2309,7 @@ ALTER TABLE ONLY public.arm_criticalareaoption
 -- Name: arm_criticalareariskrating arm_criticalareariskrating_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_criticalareariskrating
+ ALTER TABLE ONLY public.arm_criticalareariskrating
     ADD CONSTRAINT arm_criticalareariskrating_pkey PRIMARY KEY (id);
 
 
@@ -2317,7 +2317,7 @@ ALTER TABLE ONLY public.arm_criticalareariskrating
 -- Name: arm_foragedensityoption arm_foragedensityoption_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_foragedensityoption
+ ALTER TABLE ONLY public.arm_foragedensityoption
     ADD CONSTRAINT arm_foragedensityoption_pkey PRIMARY KEY (id);
 
 
@@ -2325,7 +2325,7 @@ ALTER TABLE ONLY public.arm_foragedensityoption
 -- Name: arm_foragedensityriskrating arm_foragedensityriskrating_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_foragedensityriskrating
+ ALTER TABLE ONLY public.arm_foragedensityriskrating
     ADD CONSTRAINT arm_foragedensityriskrating_pkey PRIMARY KEY (id);
 
 
@@ -2333,7 +2333,7 @@ ALTER TABLE ONLY public.arm_foragedensityriskrating
 -- Name: arm_forageheightoption arm_forageheightoption_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_forageheightoption
+ ALTER TABLE ONLY public.arm_forageheightoption
     ADD CONSTRAINT arm_forageheightoption_pkey PRIMARY KEY (id);
 
 
@@ -2341,7 +2341,7 @@ ALTER TABLE ONLY public.arm_forageheightoption
 -- Name: arm_forageheightriskrating arm_forageheightriskrating_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_forageheightriskrating
+ ALTER TABLE ONLY public.arm_forageheightriskrating
     ADD CONSTRAINT arm_forageheightriskrating_pkey PRIMARY KEY (id);
 
 
@@ -2349,7 +2349,7 @@ ALTER TABLE ONLY public.arm_forageheightriskrating
 -- Name: arm_formfield arm_formfield_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_formfield
+ ALTER TABLE ONLY public.arm_formfield
     ADD CONSTRAINT arm_formfield_pkey PRIMARY KEY (id);
 
 
@@ -2357,7 +2357,7 @@ ALTER TABLE ONLY public.arm_formfield
 -- Name: arm_manuresetbackdistanceriskrating arm_manuresetbackdistanceriskrating_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_manuresetbackdistanceriskrating
+ ALTER TABLE ONLY public.arm_manuresetbackdistanceriskrating
     ADD CONSTRAINT arm_manuresetbackdistanceriskrating_pkey PRIMARY KEY (id);
 
 
@@ -2365,7 +2365,7 @@ ALTER TABLE ONLY public.arm_manuresetbackdistanceriskrating
 -- Name: arm_preciptation24riskrating arm_preciptation24riskrating_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_preciptation24riskrating
+ ALTER TABLE ONLY public.arm_preciptation24riskrating
     ADD CONSTRAINT arm_preciptation24riskrating_pkey PRIMARY KEY (id);
 
 
@@ -2373,7 +2373,7 @@ ALTER TABLE ONLY public.arm_preciptation24riskrating
 -- Name: arm_preciptation72riskrating arm_preciptation72riskrating_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_preciptation72riskrating
+ ALTER TABLE ONLY public.arm_preciptation72riskrating
     ADD CONSTRAINT arm_preciptation72riskrating_pkey PRIMARY KEY (id);
 
 
@@ -2381,7 +2381,7 @@ ALTER TABLE ONLY public.arm_preciptation72riskrating
 -- Name: arm_riskcutoffsetting arm_riskcutoffsetting_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_riskcutoffsetting
+ ALTER TABLE ONLY public.arm_riskcutoffsetting
     ADD CONSTRAINT arm_riskcutoffsetting_pkey PRIMARY KEY (id);
 
 
@@ -2389,7 +2389,7 @@ ALTER TABLE ONLY public.arm_riskcutoffsetting
 -- Name: arm_soilmoistureoption arm_soilmoistureoption_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_soilmoistureoption
+ ALTER TABLE ONLY public.arm_soilmoistureoption
     ADD CONSTRAINT arm_soilmoistureoption_pkey PRIMARY KEY (id);
 
 
@@ -2397,7 +2397,7 @@ ALTER TABLE ONLY public.arm_soilmoistureoption
 -- Name: arm_soilmoistureriskrating arm_soilmoistureriskrating_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_soilmoistureriskrating
+ ALTER TABLE ONLY public.arm_soilmoistureriskrating
     ADD CONSTRAINT arm_soilmoistureriskrating_pkey PRIMARY KEY (id);
 
 
@@ -2405,7 +2405,7 @@ ALTER TABLE ONLY public.arm_soilmoistureriskrating
 -- Name: arm_soiltypeoption arm_soiltypeoption_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_soiltypeoption
+ ALTER TABLE ONLY public.arm_soiltypeoption
     ADD CONSTRAINT arm_soiltypeoption_pkey PRIMARY KEY (id);
 
 
@@ -2413,7 +2413,7 @@ ALTER TABLE ONLY public.arm_soiltypeoption
 -- Name: arm_soiltyperiskrating arm_soiltyperiskrating_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_soiltyperiskrating
+ ALTER TABLE ONLY public.arm_soiltyperiskrating
     ADD CONSTRAINT arm_soiltyperiskrating_pkey PRIMARY KEY (id);
 
 
@@ -2421,7 +2421,7 @@ ALTER TABLE ONLY public.arm_soiltyperiskrating
 -- Name: arm_surfaceconditionoption arm_surfaceconditionoption_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_surfaceconditionoption
+ ALTER TABLE ONLY public.arm_surfaceconditionoption
     ADD CONSTRAINT arm_surfaceconditionoption_pkey PRIMARY KEY (id);
 
 
@@ -2429,7 +2429,7 @@ ALTER TABLE ONLY public.arm_surfaceconditionoption
 -- Name: arm_surfaceconditionriskrating arm_surfaceconditionriskrating_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_surfaceconditionriskrating
+ ALTER TABLE ONLY public.arm_surfaceconditionriskrating
     ADD CONSTRAINT arm_surfaceconditionriskrating_pkey PRIMARY KEY (id);
 
 
@@ -2437,7 +2437,7 @@ ALTER TABLE ONLY public.arm_surfaceconditionriskrating
 -- Name: arm_watertabledepthoption arm_watertabledepthoption_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_watertabledepthoption
+ ALTER TABLE ONLY public.arm_watertabledepthoption
     ADD CONSTRAINT arm_watertabledepthoption_pkey PRIMARY KEY (id);
 
 
@@ -2445,7 +2445,7 @@ ALTER TABLE ONLY public.arm_watertabledepthoption
 -- Name: arm_watertableriskrating arm_watertableriskrating_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.arm_watertableriskrating
+ ALTER TABLE ONLY public.arm_watertableriskrating
     ADD CONSTRAINT arm_watertableriskrating_pkey PRIMARY KEY (id);
 
 
@@ -2453,7 +2453,7 @@ ALTER TABLE ONLY public.arm_watertableriskrating
 -- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_group
+ ALTER TABLE ONLY public.auth_group
     ADD CONSTRAINT auth_group_name_key UNIQUE (name);
 
 
@@ -2461,7 +2461,7 @@ ALTER TABLE ONLY public.auth_group
 -- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_group_permissions
+ ALTER TABLE ONLY public.auth_group_permissions
     ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
 
 
@@ -2469,7 +2469,7 @@ ALTER TABLE ONLY public.auth_group_permissions
 -- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_group_permissions
+ ALTER TABLE ONLY public.auth_group_permissions
     ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
 
 
@@ -2477,7 +2477,7 @@ ALTER TABLE ONLY public.auth_group_permissions
 -- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_group
+ ALTER TABLE ONLY public.auth_group
     ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
 
 
@@ -2485,7 +2485,7 @@ ALTER TABLE ONLY public.auth_group
 -- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_permission
+ ALTER TABLE ONLY public.auth_permission
     ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
 
 
@@ -2493,7 +2493,7 @@ ALTER TABLE ONLY public.auth_permission
 -- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_permission
+ ALTER TABLE ONLY public.auth_permission
     ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
 
 
@@ -2501,7 +2501,7 @@ ALTER TABLE ONLY public.auth_permission
 -- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_user_groups
+ ALTER TABLE ONLY public.auth_user_groups
     ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
 
 
@@ -2509,7 +2509,7 @@ ALTER TABLE ONLY public.auth_user_groups
 -- Name: auth_user_groups auth_user_groups_user_id_group_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_user_groups
+ ALTER TABLE ONLY public.auth_user_groups
     ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE (user_id, group_id);
 
 
@@ -2517,7 +2517,7 @@ ALTER TABLE ONLY public.auth_user_groups
 -- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_user
+ ALTER TABLE ONLY public.auth_user
     ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
 
 
@@ -2525,7 +2525,7 @@ ALTER TABLE ONLY public.auth_user
 -- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_user_user_permissions
+ ALTER TABLE ONLY public.auth_user_user_permissions
     ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
 
 
@@ -2533,7 +2533,7 @@ ALTER TABLE ONLY public.auth_user_user_permissions
 -- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_user_user_permissions
+ ALTER TABLE ONLY public.auth_user_user_permissions
     ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE (user_id, permission_id);
 
 
@@ -2541,7 +2541,7 @@ ALTER TABLE ONLY public.auth_user_user_permissions
 -- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_user
+ ALTER TABLE ONLY public.auth_user
     ADD CONSTRAINT auth_user_username_key UNIQUE (username);
 
 
@@ -2549,7 +2549,7 @@ ALTER TABLE ONLY public.auth_user
 -- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.django_admin_log
+ ALTER TABLE ONLY public.django_admin_log
     ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
 
 
@@ -2557,7 +2557,7 @@ ALTER TABLE ONLY public.django_admin_log
 -- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.django_content_type
+ ALTER TABLE ONLY public.django_content_type
     ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
 
 
@@ -2565,7 +2565,7 @@ ALTER TABLE ONLY public.django_content_type
 -- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.django_content_type
+ ALTER TABLE ONLY public.django_content_type
     ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
 
 
@@ -2573,7 +2573,7 @@ ALTER TABLE ONLY public.django_content_type
 -- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.django_migrations
+ ALTER TABLE ONLY public.django_migrations
     ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
 
 
@@ -2581,7 +2581,7 @@ ALTER TABLE ONLY public.django_migrations
 -- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.django_session
+ ALTER TABLE ONLY public.django_session
     ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
 
 
@@ -2589,7 +2589,7 @@ ALTER TABLE ONLY public.django_session
 -- Name: django_site django_site_domain_a2e37b91_uniq; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.django_site
+ ALTER TABLE ONLY public.django_site
     ADD CONSTRAINT django_site_domain_a2e37b91_uniq UNIQUE (domain);
 
 
@@ -2597,7 +2597,7 @@ ALTER TABLE ONLY public.django_site
 -- Name: django_site django_site_pkey; Type: CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.django_site
+ ALTER TABLE ONLY public.django_site
     ADD CONSTRAINT django_site_pkey PRIMARY KEY (id);
 
 
@@ -2703,7 +2703,7 @@ CREATE INDEX django_site_domain_a2e37b91_like ON public.django_site USING btree 
 -- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_group_permissions
+ ALTER TABLE ONLY public.auth_group_permissions
     ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
 
 
@@ -2711,7 +2711,7 @@ ALTER TABLE ONLY public.auth_group_permissions
 -- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_group_permissions
+ ALTER TABLE ONLY public.auth_group_permissions
     ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
 
 
@@ -2719,7 +2719,7 @@ ALTER TABLE ONLY public.auth_group_permissions
 -- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_permission
+ ALTER TABLE ONLY public.auth_permission
     ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
 
 
@@ -2727,7 +2727,7 @@ ALTER TABLE ONLY public.auth_permission
 -- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_user_groups
+ ALTER TABLE ONLY public.auth_user_groups
     ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
 
 
@@ -2735,7 +2735,7 @@ ALTER TABLE ONLY public.auth_user_groups
 -- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_user_groups
+ ALTER TABLE ONLY public.auth_user_groups
     ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
@@ -2743,7 +2743,7 @@ ALTER TABLE ONLY public.auth_user_groups
 -- Name: auth_user_user_permissions auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_user_user_permissions
+ ALTER TABLE ONLY public.auth_user_user_permissions
     ADD CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
 
 
@@ -2751,7 +2751,7 @@ ALTER TABLE ONLY public.auth_user_user_permissions
 -- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.auth_user_user_permissions
+ ALTER TABLE ONLY public.auth_user_user_permissions
     ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
@@ -2759,7 +2759,7 @@ ALTER TABLE ONLY public.auth_user_user_permissions
 -- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.django_admin_log
+ ALTER TABLE ONLY public.django_admin_log
     ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
 
 
@@ -2767,7 +2767,7 @@ ALTER TABLE ONLY public.django_admin_log
 -- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: bcarm
 --
 
-ALTER TABLE ONLY public.django_admin_log
+ ALTER TABLE ONLY public.django_admin_log
     ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
