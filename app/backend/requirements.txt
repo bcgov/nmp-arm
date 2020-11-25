@@ -7,4 +7,3 @@ psycopg2
 python-decouple
 requests
 gunicorn
-ptvsd
