@@ -19,7 +19,7 @@ services:
       - "15432:5432"
 
   arm-web:
-    image: arm-web:latest
+#    image: arm-web:latest
     container_name: arm-web
     build: .
     stdin_open: true
@@ -56,8 +56,9 @@ services:
     ports:
       - "8000:8080"
     volumes:
-      - ./conf.d:/etc/nginx/conf.d
-      - static_volume:/static   
+#      - ./conf.d:/etc/nginx/conf.d
+      - ./app/backend/conf.d/arm.conf:/etc/nginx/conf.d/arm.confs
+      - static_volume:/code/static
     depends_on:
       - arm-web
     networks:
