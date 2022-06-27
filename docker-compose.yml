@@ -61,5 +61,13 @@ services:
     depends_on:
       - web
 
+  weasyprint:
+    image: bcgovimages/weasyprint
+    container_name: arm-weasyprint
+    ports:
+      - "5001:5001"
+    env_file:
+      - .env
+
 volumes:
   static_volume:
