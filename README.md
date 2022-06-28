@@ -6,7 +6,46 @@ Applying manure at the wrong time and the wrong place poses risks to water quali
  
 The Ministry of Agriculture has the opportunity to adapt Whatcom Conservation District’s (WCD) “Application Risk Management” smart form app (https://www.whatcomcd.org/arm), with permission from WCD. The app provides a risk rating to users who must answer questions about factors (soil, crop, and weather conditions) that affect the environmental risk of nutrient application to a particular field on a given day. Once all the questions are answered with valid responses, the smart form allows the user to document the results as PDF that can be saved locally or shared by email from the app.
 
+## Getting started
+
+### Prerequisities
+
+* Python 3
+* Docker
+
+### Running ARM locally
+
+1. Make a copy of `.env.sample`, and rename it to `.env`:
+
+    ```sh
+    cd nmp-arm
+    cp .env.sample .env
+    ```
+
+2. The provided SMTP server (`apps.smtp.gov.bc.ca`) is [only accessible from inside the government datacentre](https://stackoverflow.developer.gov.bc.ca/questions/233/244#244), so you'll have to provide your own SMTP server for local testing. To do so, edit the following entries in `.env` as appropriate:
+    ```
+    DEFAULT_FROM_EMAIL
+    EMAIL_HOST
+    EMAIL_PORT
+    EMAIL_HOST_USER
+    EMAIL_HOST_PASSWORD
+    ```
+    **Note:** By default, Gmail does not allow SMTP access unless a [less-secure "app password"](https://support.google.com/mail/answer/185833?hl=en) is configured. Services such as [Mailgun](https://www.mailgun.com/) can be used instead.
+   
+3. Run via docker-compose:
+
+    ```sh
+    cd nmp-arm 
+    docker-compose up
+    ```
+
+The application can be accessed at http://localhost:8000. To quit, simply hit Ctrl-C in the terminal.
+
 ## History
+
+This section was written by the previous devs, presumably as part of an investigation into setting up the app and/or updating its components.
+
+It is left here for historical context. Please refer to the "Getting Started" section for up-to-date setup instructions.
 
 ### Backend
 Although not documented, the legacy app's `/venv/requirements.txt` implies the following dependencies:  
@@ -19,7 +58,7 @@ pygments
 importlib
 ```
 
-In addition, the legagy app's `/venv/pyvenv/lib/python2.6` implies Python version 2.6.
+In addition, the legacy app's `/venv/pyvenv/lib/python2.6` implies Python version 2.6.
 
 NOTE: `Django==1.6` results in:
 ```
@@ -31,6 +70,7 @@ So `Django==1.8` is a more appropriate starting point.
 ### Post Upgrade to Python 3.7 and Django 2.2.4
 
 ### Requirements
+```
 Django==2.2.4
 django-extensions
 python-dateutil
@@ -38,6 +78,7 @@ django-timezone-field
 pygments
 psycopg2
 python-decouple
+```
 
 ### Apache Configuration
 In terms of codebase, there appears to be a common codebase that serves out the Whatcom and the BC version of the app.  The legacy app already had a 'BC-specific' side to the app :
@@ -53,19 +94,3 @@ There appears to be a PostgreSQL database (version yet to be determined), with a
 'PORT': '5432',
 'NAME': 'arm',
 ```
-
-### Required Environment Variables
-
-      DEBUG: False
-      LOGGER_LEVEL: WARNING
-      DATABASE_HOST: 127.0.0.1
-      DATABASE_HOST_PORT: 5432
-      DATABASE_NAME:  DATABASE_NAME
-      DATABASE_USER: DATABASE_USER
-      DATABASE_PASSWORD: DATABASE_PASSWORD
-      DEFAULT_FROM_EMAIL=donotreply@email.com
-      EMAIL_HOST: someserver.smtp.com
-      EMAIL_PORT=25
-      EMAIL_HOST_USER=
-      EMAIL_HOST_PASSWORD=
-      WEASYPRINT_URL=http://127.0.0.1:5001
