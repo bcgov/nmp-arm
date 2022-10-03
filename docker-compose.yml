@@ -56,7 +56,7 @@ services:
     ports:
       - "8000:8080"
     volumes:
-      - ./app/backend/conf.d:/etc/nginx/conf.d
+      - ./app/backend/conf.d.local:/etc/nginx/conf.d
       - static_volume:/code/static
     depends_on:
       - web
