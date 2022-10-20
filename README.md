@@ -41,6 +41,16 @@ The Ministry of Agriculture has the opportunity to adapt Whatcom Conservation Di
 
 The application can be accessed at http://localhost:8000. To quit, simply hit Ctrl-C in the terminal.
 
+## CI/CD pipeline
+
+As all three NMP projects share the same namespace on OpenShift, they share a similar deployment process.
+
+Image builds are automatically triggered via GitHub webooks, whenever there is a push or PR merge to the main branch. A Tekton pipeline then performs image promotion, auto-deploying the build to DEV. 
+
+Deploying to TEST and PROD are done by manually starting the `promote-test-nmp-arm` and `promote-prod-nmp-arm` pipelines respectively. This can be done in the OpenShift web conosle, under **Pipelines** > **Pipelines** in the tools namespace, and clicking "Start" for the respective pipeline.
+
+To rollback PROD to the previous build, run the `undo-last-promote-prod-nmp-arm` pipeline.
+
 ## History
 
 This section was written by the previous devs, presumably as part of an investigation into setting up the app and/or updating its components.
