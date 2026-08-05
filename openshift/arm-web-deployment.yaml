@@ -1,0 +1,143 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+labels:
+  template: arm-web-template
+parameters:
+  - name: IMAGE_TAG
+    value: latest
+    description: Default is latest, other valid values are test or prod
+objects:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app: arm-web
+      name: arm-web
+      annotations:
+        image.openshift.io/triggers: '[{"from": {"kind": "ImageStreamTag", "name": "arm-web:${IMAGE_TAG}",
+          "namespace": "624dc1-tools"}, "fieldPath": "spec.template.spec.containers[?(@.name==\"arm-web\")].image",
+          "paused": false}]'
+    spec:
+      replicas: 1
+      revisionHistoryLimit: 10
+      selector:
+        matchLabels:
+          name: arm-web
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 25%
+          maxUnavailable: 25%
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            name: arm-web
+          name: arm-web
+        spec:
+          containers:
+          - env:
+            - name: DEBUG
+              value: 'False'
+            - name: LOGGER_LEVEL
+              value: WARNING
+            - name: ADMIN_EMAIL
+              value: admin.email@nmp-arm.com
+            - name: DATABASE_NAME
+              value: nmp-arm
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: database-password
+                  name: arm-postgresql-credentials
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  key: database-username
+                  name: arm-postgresql-credentials
+            - name: DATABASE_HOST
+              value: arm-postgresql
+            - name: DEFAULT_FROM_EMAIL
+              value: no-reply@gov.bc.ca
+            - name: EMAIL_HOST
+              value: apps.smtp.gov.bc.ca
+            - name: EMAIL_PORT
+              value: '25'
+            - name: EMAIL_HOST_USER
+            - name: EMAIL_HOST_PASSWORD
+            - name: SERVER_EMAIL
+            - name: SUPPORT_EMAIL
+              value: admin.email@nmp-arm.com
+            - name: WEASYPRINT_URL
+              value: http://arm-web-weasyprint:5001
+            image: image-registry.openshift-image-registry.svc:5000/624dc1-tools/arm-web@sha256:06bfae0b60a31c19af9798ed33a7b08a46ade90fe6329cbd280a5c1a045e1b16
+            imagePullPolicy: IfNotPresent
+            livenessProbe:
+              failureThreshold: 5
+              httpGet:
+                path: /
+                port: 5000
+                scheme: HTTP
+              initialDelaySeconds: 15
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 5
+            name: arm-web
+            ports:
+            - containerPort: 5000
+              protocol: TCP
+            readinessProbe:
+              failureThreshold: 5
+              httpGet:
+                path: /
+                port: 5000
+                scheme: HTTP
+              initialDelaySeconds: 15
+              periodSeconds: 10
+              successThreshold: 1
+              timeoutSeconds: 5
+            resources:
+              limits:
+                cpu: 100m
+                memory: 200Mi
+              requests:
+                cpu: 100m
+                memory: 200Mi
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            volumeMounts:
+            - mountPath: /static
+              name: static-volume
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+          volumes:
+          - name: static-volume
+            persistentVolumeClaim:
+              claimName: arm-web-static
+  - kind: PersistentVolumeClaim
+    apiVersion: v1
+    metadata:
+      name: arm-web-static
+    spec:
+      accessModes:
+        - ReadWriteMany
+      resources:
+        requests:
+          storage: 1Gi
+      storageClassName: netapp-file-standard
+      volumeMode: Filesystem
+  - kind: Service
+    apiVersion: v1
+    metadata:
+      name: arm-web
+    spec:
+      selector:
+        name: arm-web
+      ports:
+        - name: web
+          protocol: TCP
+          port: 5000
+          targetPort: 5000

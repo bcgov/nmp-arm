@@ -1,0 +1,35 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: arm-nginx-reverse-proxy
+---
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: arm-nginx-reverse-proxy
+  labels:
+    app: arm-nginx-reverse-proxy
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'arm-nginx-reverse-proxy:latest'
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        namespace: openshift
+        name: 'nginx:latest'
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/bcgov/nmp-arm.git'
+      ref: release
+    contextDir: app/backend
+  triggers:
+    - type: GitHub
+      github:
+        secretReference:
+          name: nmp-github-webhook
+    - type: ConfigChange

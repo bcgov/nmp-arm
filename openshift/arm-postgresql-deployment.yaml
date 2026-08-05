@@ -1,0 +1,105 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: arm-postgresql
+  labels:
+    name: arm-postgresql
+  annotations:
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"postgresql:12.9","namespace":"openshift"},"fieldPath":"spec.template.spec.containers[?(@.name==\"postgresql\")].image","paused":false}]'
+spec:
+  selector:
+    matchLabels:
+      name: arm-postgresql
+  template:
+    metadata:
+      labels:
+        name: arm-postgresql
+    spec:
+      volumes:
+        - name: arm-postgresql-data
+          persistentVolumeClaim:
+            claimName: arm-postgresql
+      containers:
+        - name: postgresql
+          image: 'image-registry.openshift-image-registry.svc:5000/openshift/postgresql@sha256:306ce79b5647eb627aebbd6a9c956f9cd09c24ef7b12e42c1de6ba89f8fd8121'
+          ports:
+            - containerPort: 5432
+              protocol: TCP
+          env:
+            - name: POSTGRESQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: arm-postgresql-credentials
+                  key: database-username
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: arm-postgresql-credentials
+                  key: database-password
+            - name: POSTGRESQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: arm-postgresql-credentials
+                  key: database-name
+          resources:
+            limits:
+              cpu: 200m
+              memory: 768Mi
+            requests:
+              cpu: 100m
+              memory: 768Mi
+          volumeMounts:
+            - name: arm-postgresql-data
+              mountPath: /var/lib/pgsql/data
+          livenessProbe:
+            exec:
+              command:
+                - /usr/libexec/check-container
+                - '--live'
+            initialDelaySeconds: 120
+            timeoutSeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            exec:
+              command:
+                - /usr/libexec/check-container
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: arm-postgresql
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: netapp-file-standard
+  volumeMode: Filesystem
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arm-postgresql
+spec:
+  selector:
+    name: arm-postgresql
+  ports:
+    - name: postgresql
+      protocol: TCP
+      port: 5432
+      targetPort: 5432
