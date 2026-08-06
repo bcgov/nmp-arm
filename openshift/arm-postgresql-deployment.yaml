@@ -75,8 +75,6 @@ spec:
     rollingUpdate:
       maxUnavailable: 25%
       maxSurge: 25%
-  revisionHistoryLimit: 10
-  progressDeadlineSeconds: 600
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
