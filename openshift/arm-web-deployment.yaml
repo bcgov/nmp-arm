@@ -4,7 +4,7 @@ labels:
   template: arm-web-template
 parameters:
   - name: IMAGE_TAG
-    value: prod
+    value: latest
     description: Default is latest, other valid values are test or prod
 objects:
   - apiVersion: apps/v1
