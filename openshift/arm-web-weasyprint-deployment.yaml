@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: arm-web
+  name: arm-web-weasyprint
+  annotations:
+    image.openshift.io/triggers: '[{"from": {"kind": "ImageStreamTag", "name": "arm-weasyprint:latest",
+      "namespace": "624dc1-tools"}, "fieldPath": "spec.template.spec.containers[?(@.name==\"arm-web-weasyprint\")].image",
+      "paused": false}]'
+spec:
+  selector:
+    matchLabels:
+      app: arm-web-weasyprint
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: arm-web-weasyprint
+        deploymentconfig: arm-web-weasyprint
+    spec:
+      containers:
+      - image: 'image-registry.openshift-image-registry.svc:5000/624dc1-tools/arm-weasyprint:latest'
+        imagePullPolicy: Always
+        name: arm-web-weasyprint
+        ports:
+        - containerPort: 5001
+          protocol: TCP
+        terminationMessagePath: /dev/termination-log
+      dnsPolicy: ClusterFirst
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: arm-web-weasyprint
+  labels:
+    app: arm-web-weasyprint
+spec:
+  selector:
+    app: arm-web-weasyprint
+    deploymentconfig: arm-web-weasyprint
+  ports:
+    - name: 5001-tcp
+      protocol: TCP
+      port: 5001
+      targetPort: 5001
