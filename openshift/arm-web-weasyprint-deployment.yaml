@@ -19,7 +19,6 @@ spec:
       maxUnavailable: 25%
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: arm-web-weasyprint
         deploymentconfig: arm-web-weasyprint
