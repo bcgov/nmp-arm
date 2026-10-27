@@ -1,12 +1,6 @@
 from django.test import TestCase
 
 from arm.views import WorksheetView
-from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, \
-                    ApplicationEquipmentOption, SoilTypeOption, CriticalAreaOption, \
-                    SoilMoistureOption, ForageDensityOption, SurfaceConditionOption, RiskCutoffSetting, \
-                    Preciptation24RiskRating, Preciptation72RiskRating, SoilMoistureRiskRating, ForageDensityRiskRating, ForageHeightRiskRating, \
-                    ApplicationRiskRating, SoilTypeRiskRating, SurfaceConditionRiskRating, CriticalAreaRiskRating, \
-                    ManureSetbackDistanceRiskRating, WaterTableRiskRating
 import json
 
 def is_json(json_string):

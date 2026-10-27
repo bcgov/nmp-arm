@@ -1,6 +1,5 @@
 from threading import Lock
-import os, sys
-import socket
+import os
 from decouple import config
 import logging
 
@@ -74,10 +73,9 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 
 
-    'common',
+    'common', # for management commands
 
-    'arm',  # for management commands
-    # 'arm.calc' ,
+    'arm',
 )
 
 LANGUAGE_CODE = 'en-us'
@@ -199,7 +197,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'common.classes.SessionExpiryMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -258,8 +255,7 @@ STATICFILES_DIRS = (
 
 STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(ABSOLUTE_PATH)), 'static')
 
-# TIME_ZONE = 'UTC'
-TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = 'America/Vancouver'
 
 TEMPLATES = [
     {

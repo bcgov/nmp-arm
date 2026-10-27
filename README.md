@@ -84,7 +84,6 @@ So `Django==1.8` is a more appropriate starting point.
 Django==2.2.4
 django-extensions
 python-dateutil
-django-timezone-field
 pygments
 psycopg2
 python-decouple
