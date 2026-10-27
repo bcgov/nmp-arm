@@ -7,3 +7,4 @@ python-decouple
 requests
 gunicorn
 tzdata>=2026.5
+pytz>=2026.5
