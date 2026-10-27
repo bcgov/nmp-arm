@@ -16,6 +16,5 @@ def print_timestamp(timestamp):
     logger.debug( "timestamp to convert = %s" % timestamp )
     # make sure we divide by 1000 for seconds
     return datetime.datetime.fromtimestamp(ts/1000.0, tz=utc)
-    #return return_date.replace(tzinfo=utc)
 
 register.filter(print_timestamp)

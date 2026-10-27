@@ -1,15 +1,17 @@
 from django.views.generic.edit import FormView
 from django.http import HttpResponse
 from django.template.loader import render_to_string
-from django.core.mail import send_mail, BadHeaderError, EmailMessage
+from django.core.mail import EmailMessage
 from decouple import config
 
 import requests
-import tempfile
 
 from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, \
                     ApplicationEquipmentOption, SoilTypeOption, \
                     SoilMoistureOption, ForageDensityOption, SurfaceConditionOption
+
+import logging
+logger=logging.getLogger(__file__)
 
 class WorksheetData:
     def __init__(self, farm_name,

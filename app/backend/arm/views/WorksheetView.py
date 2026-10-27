@@ -1,34 +1,22 @@
 #
 #  django imports
 #
-from django.conf import settings
 from django.forms import Form
-from django.contrib import messages
 from django.template.context_processors import csrf
-from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render
 from django.views.generic.edit import FormView
-from django.core.mail import send_mail, BadHeaderError, EmailMessage
-from django.urls import reverse
-from django.template.loader import render_to_string
-from decouple import config
 
 #
 #  sys imports
 #
 from decimal import Decimal
-from datetime import datetime
 import json
-import uuid
-import io
-import requests
 import logging
 logger = logging.getLogger( __file__ )
 
 #
 #  app imports
 #
-from .PdfView import WorksheetData, PdfView
 from arm.models import FormField, ForageHeightOption, WaterTableDepthOption, \
                     ApplicationEquipmentOption, SoilTypeOption, CriticalAreaOption, \
                     SoilMoistureOption, ForageDensityOption, SurfaceConditionOption, RiskCutoffSetting, \
